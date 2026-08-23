@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC alapismeretek – IAP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>PLC alapismeretek</h1>
+    <p>IAP – Integrált Automatika Program</p>
+</header>
+
+<nav>
+    <a href="index.html">Kezdőlap</a>
+    <a href="#tananyagok">Tananyagok</a>
+    <a href="#gyakorlatok">Gyakorlatok</a>
+    <a href="#">Kapcsolat</a>
+</nav>
+
+<main>
+
+<section class="tantargy-fejlec">
+    <h2>PLC alapismeretek</h2>
+    <p>12. évfolyam • heti 5 óra • 36 hét</p>
+</section>
+
+  <section class="plc-nav">
+
+    <a href="#blokk1">
+        <span>01–06</span>
+        PLC alapok
+    </a>
+
+    <a href="#blokk2">
+        <span>07–12</span>
+        Programozás
+    </a>
+
+    <a href="#blokk3">
+        <span>13–18</span>
+        Ipari PLC-k
+    </a>
+
+    <a href="#blokk4">
+        <span>19–27</span>
+        Haladó PLC
+    </a>
+
+    <a href="#blokk5">
+        <span>28–32</span>
+        HMI és kommunikáció
+    </a>
+
+    <a href="#blokk6">
+        <span>33–36</span>
+        Ipar 4.0
+    </a>
+</section>
+
+
+<section class="kereso-terulet">
+
+    <h2>Keresés a tananyagban</h2>
+
+    <p>Keress témára, eszközre vagy fogalomra!</p>
+
+    <input
+        type="text"
+        id="kereso"
+        placeholder="Pl. Omron, időzítő, RS-485, HMI..."
+        onkeyup="kereses()"
+    >
+
+    <p id="talalat-szam"></p>
+
+</section>
+
+
+<section class="blokk" id="blokk1">
+    <h2>1. blokk – PLC alapok</h2>
+
+        <div class="hetek">
+
+            <div class="het">
+                <div class="het-szam">01</div>
+                <div class="het-tartalom">
+                    <h3>Bevezetés a PLC világába</h3>
+                    <p>A PLC fogalma, története, szerepe és ipari alkalmazása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/01_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/01_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/01_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/01_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">02</div>
+                <div class="het-tartalom">
+                    <h3>A PLC felépítése</h3>
+                    <p>CPU, memória, tápegység, bemeneti és kimeneti modulok.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/02_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/02_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/02_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/02_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">03</div>
+                <div class="het-tartalom">
+                    <h3>Digitális bemenetek</h3>
+                    <p>Nyomógombok, kapcsolók és érzékelők csatlakoztatása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/03_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/03_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/03_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/03_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">04</div>
+                <div class="het-tartalom">
+                    <h3>Start–Stop vezérlés és önzárás</h3>
+                    <p>NO/NC érintkezők, relés és PLC-s önzárás, biztonságos indítás és leállítás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/04_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/04_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/04_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/04_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">05</div>
+                <div class="het-tartalom">
+                    <h3>PLC címzés</h3>
+                    <p>Bemeneti, kimeneti és belső memória címek használata.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/05_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/05_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/05_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/05_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">06</div>
+                <div class="het-tartalom">
+                    <h3>Létradiagram alapjai</h3>
+                    <p>Érintkezők, tekercsek és egyszerű PLC programok.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/06_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/06_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/06_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/06_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+   <section class="blokk" id="blokk2">
+    <h2>2. blokk – PLC programozás</h2>
+
+        <div class="hetek">
+
+            <div class="het">
+                <div class="het-szam">07</div>
+                <div class="het-tartalom">
+                    <h3>Logikai alapműveletek</h3>
+                    <p>ÉS, VAGY és NEM műveletek PLC-ben.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/07_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/07_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/07_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/07_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">08</div>
+                <div class="het-tartalom">
+                    <h3>Öntartó kapcsolások</h3>
+                    <p>Start–Stop vezérlések és memóriafunkciók.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/08_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/08_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/08_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/08_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">09</div>
+                <div class="het-tartalom">
+                    <h3>Reteszelések</h3>
+                    <p>Biztonságos vezérlések és kölcsönös kizárások.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/09_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/09_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/09_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/09_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">10</div>
+                <div class="het-tartalom">
+                    <h3>Időzítők</h3>
+                    <p>TON, TOF és időalapú vezérlések.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/10_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/10_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/10_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/10_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">11</div>
+                <div class="het-tartalom">
+                    <h3>Számlálók</h3>
+                    <p>Fel- és leszámlálás, események számolása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/11_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/11_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/11_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/11_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">12</div>
+                <div class="het-tartalom">
+                    <h3>Programozási gyakorlatok</h3>
+                    <p>Összetett létradiagramok és gyakorlati feladatok.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/12_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/12_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/12_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/12_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+  <section class="blokk" id="blokk3">
+    <h2>3. blokk – Ipari PLC-k</h2>
+
+        <div class="hetek">
+
+            <div class="het">
+                <div class="het-szam">13</div>
+                <div class="het-tartalom">
+                    <h3>Moeller EASY</h3>
+                    <p>Az EASY intelligens relé felépítése és működése.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/13_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/13_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/13_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/13_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">14</div>
+                <div class="het-tartalom">
+                    <h3>EASY programozás</h3>
+                    <p>EasySoft használata és egyszerű vezérlések.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/14_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/14_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/14_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/14_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">15</div>
+                <div class="het-tartalom">
+                    <h3>LG PLC</h3>
+                    <p>LG PLC hardver és fejlesztőkörnyezet.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/15_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/15_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/15_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/15_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">16</div>
+                <div class="het-tartalom">
+                    <h3>LG PLC címzés</h3>
+                    <p>Bemenetek, kimenetek és belső címek használata.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/16_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/16_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/16_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/16_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">17</div>
+                <div class="het-tartalom">
+                    <h3>Omron PLC</h3>
+                    <p>Omron PLC-k felépítése, címzés és alapfunkciók.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/17_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/17_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/17_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/17_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">18</div>
+                <div class="het-tartalom">
+                    <h3>Omron programozási gyakorlat</h3>
+                    <p>Egyszerű ipari vezérlések megvalósítása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/18_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/18_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/18_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/18_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<section class="blokk" id="blokk4">
+    <h2>4. blokk – Haladó PLC funkciók</h2>
+
+        <div class="hetek">
+
+            <div class="het">
+                <div class="het-szam">19</div>
+                <div class="het-tartalom">
+                    <h3>Analóg jelek</h3>
+                    <p>Analóg bemenetek és kimenetek alapjai.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/19_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/19_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/19_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/19_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">20</div>
+                <div class="het-tartalom">
+                    <h3>Jelfeldolgozás</h3>
+                    <p>Skálázás és analóg értékek kezelése.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/20_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/20_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/20_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/20_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">21</div>
+                <div class="het-tartalom">
+                    <h3>Összehasonlító műveletek</h3>
+                    <p>Határértékek és feltételes vezérlések.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/21_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/21_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/21_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/21_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">22</div>
+                <div class="het-tartalom">
+                    <h3>Adatmozgatás</h3>
+                    <p>Regiszterek és adatkezelési utasítások.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/22_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/22_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/22_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/22_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">23</div>
+                <div class="het-tartalom">
+                    <h3>Matematikai műveletek</h3>
+                    <p>PLC-ben használható alapvető számítások.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/23_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/23_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/23_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/23_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">24</div>
+                <div class="het-tartalom">
+                    <h3>Szekvenciális vezérlések</h3>
+                    <p>Lépésről lépésre működő technológiai folyamatok.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/24_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/24_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/24_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/24_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">25</div>
+                <div class="het-tartalom">
+                    <h3>Motorvezérlések</h3>
+                    <p>Aszinkron motorok PLC-s indítása és irányváltása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/25_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/25_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/25_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/25_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">26</div>
+                <div class="het-tartalom">
+                    <h3>Frekvenciaváltó és PLC</h3>
+                    <p>Frekvenciaváltók indítása és vezérlése PLC-ről.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/26_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/26_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/26_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/26_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">27</div>
+                <div class="het-tartalom">
+                    <h3>Hibakezelés</h3>
+                    <p>Hibajelzések, nyugtázás és biztonságos leállítás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/27_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/27_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/27_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/27_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+   <section class="blokk" id="blokk5">
+    <h2>5. blokk – HMI és kommunikáció</h2>
+
+        <div class="hetek">
+
+            <div class="het">
+                <div class="het-szam">28</div>
+                <div class="het-tartalom">
+                    <h3>HMI alapjai</h3>
+                    <p>Kezelőpanelek, kijelzés és kezelőszervek.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/28_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/28_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/28_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/28_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">29</div>
+                <div class="het-tartalom">
+                    <h3>HMI–PLC adatkapcsolat</h3>
+                    <p>Adatcímek és változók megjelenítése HMI-n.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/29_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/29_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/29_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/29_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">30</div>
+                <div class="het-tartalom">
+                    <h3>Soros kommunikáció</h3>
+                    <p>RS-232, RS-422 és RS-485 alapjai.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/30_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/30_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/30_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/30_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">31</div>
+                <div class="het-tartalom">
+                    <h3>Ipari kommunikáció</h3>
+                    <p>Kommunikációs hálózatok és adatcsere alapelvei.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/31_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/31_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/31_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/31_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">32</div>
+                <div class="het-tartalom">
+                    <h3>SCADA rendszerek</h3>
+                    <p>Felügyeleti rendszerek és folyamatmegjelenítés.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/32_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/32_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/32_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/32_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+  <section class="blokk" id="blokk6">
+    <h2>6. blokk – Ipar 4.0 és összefoglalás</h2>
+
+        <div class="hetek">
+
+            <div class="het">
+                <div class="het-szam">33</div>
+                <div class="het-tartalom">
+                    <h3>Ipar 4.0</h3>
+                    <p>Digitalizáció, hálózatba kapcsolt gyártás és intelligens rendszerek.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/33_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/33_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/33_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/33_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">34</div>
+                <div class="het-tartalom">
+                    <h3>Digital Twin és Edge</h3>
+                    <p>Digitális iker, edge computing és modern automatizálási megoldások.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/34_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/34_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/34_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/34_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">35</div>
+                <div class="het-tartalom">
+                    <h3>Ipari kiberbiztonság</h3>
+                    <p>Zero Trust és IEC 62443 alapelvek.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/35_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/35_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/35_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/35_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="het">
+                <div class="het-szam">36</div>
+                <div class="het-tartalom">
+                    <h3>Év végi összefoglalás</h3>
+                    <p>PLC, HMI, kommunikáció és automatizálási rendszerek áttekintése.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/plc/36_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/plc/36_het.pptx">📊 Bemutató</a>
+                        <a href="feladatok/plc/36_het.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/plc/36_het.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>IAP – Integrált Automatika Program</p>
+</footer>
+<script>
+
+function kereses() {
+
+    let keresettSzoveg =
+        document.getElementById("kereso").value.toLowerCase();
+
+    let hetek =
+        document.querySelectorAll(".het");
+
+    let talalat = 0;
+
+    hetek.forEach(function(het) {
+
+        let szoveg =
+            het.innerText.toLowerCase();
+
+        if (szoveg.includes(keresettSzoveg)) {
+
+            het.style.display = "flex";
+            talalat++;
+
+        } else {
+
+            het.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("talalat-szam").innerText =
+        "Találatok: " + talalat + " hét";
+
+}
+
+</script>
+</body>
+</html>

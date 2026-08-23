@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAP – Integrált Automatika Program</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png" alt="IAP – Integrált Automatika Program" class="iap-logo" style="width:min(450px, 45vw); height:auto; display:block; margin:0 auto;">
+</header>
+
+<nav>
+    <a href="index.html">Kezdőlap</a>
+    <a href="#evfolyamok">Évfolyamok</a>
+    <a href="#tantargyak">Tantárgyak</a>
+    <a href="#">Kapcsolat</a>
+</nav>
+
+<main>
+
+    <section class="hero">
+        <h2>Digitális tananyagportál</h2>
+
+        <p>
+            Villamos, automatizálási és mechatronikai tananyagok
+            évfolyamok és tantárgyak szerint rendezve.
+        </p>
+
+        <a href="#evfolyamok" class="fo-gomb">
+            Tananyagok megnyitása
+        </a>
+    </section>
+
+
+    <section id="evfolyamok" class="dashboard">
+
+        <h2>Válassz évfolyamot</h2>
+
+        <div class="evfolyam-grid">
+
+            <div class="evfolyam-kartya kiemelt">
+                <div class="evfolyam-szam">9.</div>
+
+                <h3>9. évfolyam</h3>
+
+                <p>Villamos alapozó ismeretek.</p>
+
+                <div class="tantargy-lista">
+                    <a href="villamos9.html">Villamos alapismeretek</a>
+                </div>
+            </div>
+
+
+            <div class="evfolyam-kartya">
+                <div class="evfolyam-szam">10.</div>
+
+                <h3>10. évfolyam</h3>
+
+                <p>Villamos és gépészeti alapozás.</p>
+
+                <div class="tantargy-lista">
+                    <a href="villamos10.html">Villamos alapismeretek</a>
+                    <a href="gepeszet10.html">Gépészeti alapismeretek</a>
+                </div>
+            </div>
+
+
+            <div class="evfolyam-kartya">
+                <div class="evfolyam-szam">11.</div>
+
+                <h3>11. évfolyam</h3>
+
+                <p>Automatizálás és irányítástechnika.</p>
+
+                <div class="tantargy-lista">
+                    <a href="elektrotechnika11.html">Elektrotechnika</a>
+                    <a href="analog11.html">Analóg áramkörök</a>
+                </div>
+            </div>
+
+
+            <div class="evfolyam-kartya">
+                <div class="evfolyam-szam">12.</div>
+
+                <h3>12. évfolyam</h3>
+
+                <p>Haladó villamos és automatizálási témák.</p>
+
+                <div class="tantargy-lista">
+                    <a href="plc.html">PLC alapismeretek</a>
+                    <a href="folyamatiranyitas12.html">Folyamatirányítás</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="tantargyak" class="gyorseleres">
+
+        <h2>Gyors elérés</h2>
+
+        <div class="gyors-grid">
+
+            <a href="plc.html" class="gyors-kartya">
+                <div class="ikon">⚙️</div>
+                <h3>PLC alapismeretek</h3>
+                <p>36 hetes tananyag, bemutatók és gyakorlatok.</p>
+            </a>
+
+
+            <a href="elektrotechnika11.html" class="gyors-kartya">
+                <div class="ikon">⚡</div>
+                <h3>Elektrotechnika</h3>
+                <p>Áramkörök, mérések és villamos gépek.</p>
+            </a>
+
+
+            <a href="analog11.html" class="gyors-kartya">
+                <div class="ikon">📈</div>
+                <h3>Analóg áramkörök</h3>
+                <p>Diódák, tranzisztorok, erősítők és szűrők.</p>
+            </a>
+<a href="folyamatiranyitas12.html" class="gyors-kartya">
+                <div class="ikon">🎛️</div>
+                <h3>Folyamatirányítás</h3>
+                <p>Szabályozás, PID és ipari folyamatok.</p>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>IAP – Integrált Automatika Program</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const kartyak = Array.from(document.querySelectorAll('.evfolyam-kartya'));
+        let taroltEvfolyam = null;
+        try {
+            taroltEvfolyam = localStorage.getItem('iap-kivalasztott-evfolyam');
+        } catch (hiba) {
+            taroltEvfolyam = null;
+        }
+
+        function kijelol(kartya) {
+            kartyak.forEach(function (elem) {
+                elem.classList.remove('kiemelt');
+                elem.setAttribute('aria-selected', 'false');
+            });
+
+            kartya.classList.add('kiemelt');
+            kartya.setAttribute('aria-selected', 'true');
+
+            const evfolyam = kartya.querySelector('.evfolyam-szam');
+            if (evfolyam) {
+                try {
+                    localStorage.setItem(
+                        'iap-kivalasztott-evfolyam',
+                        evfolyam.textContent.trim().replace('.', '')
+                    );
+                } catch (hiba) {
+                    // Helyi fájlként megnyitva is működjön a kijelölés.
+                }
+            }
+        }
+
+        kartyak.forEach(function (kartya) {
+            const evfolyam = kartya.querySelector('.evfolyam-szam');
+            kartya.setAttribute('role', 'button');
+            kartya.setAttribute('tabindex', '0');
+            kartya.style.cursor = 'pointer';
+
+            kartya.addEventListener('click', function () {
+                kijelol(kartya);
+            });
+
+            kartya.addEventListener('keydown', function (esemeny) {
+                if (esemeny.key === 'Enter' || esemeny.key === ' ') {
+                    esemeny.preventDefault();
+                    kijelol(kartya);
+                }
+            });
+
+            if (evfolyam && evfolyam.textContent.trim().replace('.', '') === taroltEvfolyam) {
+                kijelol(kartya);
+            } else if (!kartya.hasAttribute('aria-selected')) {
+                kartya.setAttribute('aria-selected', kartya.classList.contains('kiemelt') ? 'true' : 'false');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

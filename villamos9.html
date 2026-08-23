@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villamos alapismeretek – 9. évfolyam – IAP</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+.gombok a.hamarosan {
+    opacity: 0.45;
+    cursor: default;
+    pointer-events: none;
+}
+.gombok a.feladat-gomb {
+    background: linear-gradient(135deg, #1976d2, #42a5f5);
+    color: #fff;
+}
+.gombok a.gyakorlat-gomb {
+    background: linear-gradient(135deg, #0d47a1, #1e88e5);
+    color: #fff;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Villamos alapismeretek</h1>
+    <p>IAP – Integrált Automatika Program</p>
+</header>
+
+<nav>
+    <a href="index.html">Kezdőlap</a>
+    <a href="#tananyagok">Tananyagok</a>
+    <a href="#gyakorlatok">Gyakorlatok</a>
+    <a href="#">Kapcsolat</a>
+</nav>
+
+<main>
+
+<section class="tantargy-fejlec">
+    <h2>Villamos alapismeretek</h2>
+    <p>9. évfolyam • heti 3 óra • 36 hét</p>
+</section>
+
+  <section class="plc-nav">
+    <a href="#blokk1">
+        <span>01–03</span>
+        Belépés a szakmába
+    </a>
+    <a href="#blokk2">
+        <span>04–08</span>
+        A villamos energia megértése
+    </a>
+    <a href="#blokk3">
+        <span>09–16</span>
+        Az áramkörök világa
+    </a>
+    <a href="#blokk4">
+        <span>17–20</span>
+        Félévi összefoglalás és mágnesesség
+    </a>
+    <a href="#blokk5">
+        <span>21–24</span>
+        Relék és villamos gépek
+    </a>
+    <a href="#blokk6">
+        <span>25–28</span>
+        Biztonság és védelem
+    </a>
+    <a href="#blokk7">
+        <span>29–32</span>
+        Érintésvédelem és évzárás
+    </a>
+    <a href="#blokk8">
+        <span>33–36</span>
+        Év végi összefoglalás
+    </a>
+</section>
+
+<section class="kereso-terulet">
+    <h2>Keresés a tananyagban</h2>
+    <p>Keress témára, mérésre vagy fogalomra!</p>
+    <input type="text" id="kereso"
+           placeholder="Pl. Ohm, mérés, soros, mágnesesség..."
+           onkeyup="kereses()">
+    <p id="talalat-szam"></p>
+</section>
+
+<section class="blokk" id="blokk1">
+    <h2>1. blokk – Belépés a szakmába</h2>
+    <div class="hetek">
+            <div class="het">
+                <div class="het-szam">01</div>
+                <div class="het-tartalom">
+                    <h3>A szakemberré válás első lépései</h3>
+                    <p>Szakmaismeret, tanműhely, felelősség és az első IAP megfigyelés.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/01_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/01_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/01_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/01_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">02</div>
+                <div class="het-tartalom">
+                    <h3>Az első lépések a villamos világban</h3>
+                    <p>Villamos veszélyforrások, önvédelem és egyszerű áramköri tapasztalatok.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/02_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/02_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/02_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/02_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">03</div>
+                <div class="het-tartalom">
+                    <h3>Mi a villamos energia?</h3>
+                    <p>A villamos energia szerepe, felhasználása és útja az erőműtől a fogyasztóig.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/03_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/03_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/03_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/03_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section class="blokk" id="blokk2">
+    <h2>2. blokk – A villamos energia megértése</h2>
+    <div class="hetek">
+            <div class="het">
+                <div class="het-szam">04</div>
+                <div class="het-tartalom">
+                    <h3>Feszültség, áramerősség, ellenállás</h3>
+                    <p>A három alapvető villamos mennyiség gyakorlati értelmezése.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/04_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/04_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/04_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/04_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">05</div>
+                <div class="het-tartalom">
+                    <h3>Ohm törvénye</h3>
+                    <p>A feszültség, áramerősség és ellenállás közötti kapcsolat.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/05_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/05_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/05_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/05_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">06</div>
+                <div class="het-tartalom">
+                    <h3>Számítás és mérés</h3>
+                    <p>Számított és mért villamos értékek összehasonlítása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/06_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/06_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/06_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/06_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">07</div>
+                <div class="het-tartalom">
+                    <h3>Ohm-törvény gyakorlása</h3>
+                    <p>Önálló számítási és mérési feladatok.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/07_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/07_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/07_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/07_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">08</div>
+                <div class="het-tartalom">
+                    <h3>IAP Kihívás I.</h3>
+                    <p>Tudáspróba, mérés és hibakeresés az első témakörből.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/08_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/08_het.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/08_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/08_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section class="blokk" id="blokk3">
+    <h2>3. blokk – Az áramkörök világa</h2>
+    <div class="hetek">
+            <div class="het">
+                <div class="het-szam">09</div>
+                <div class="het-tartalom">
+                    <h3>Mikor működik egy áramkör?</h3>
+                    <p>Zárt és nyitott áramkör, építés és az első hibakeresés.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/09_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/09_het.pptx" target="_blank">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/09_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/09_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">10</div>
+                <div class="het-tartalom">
+                    <h3>A villanyszerelők közös nyelve</h3>
+                    <p>Kapcsolási rajzok, villamos jelképek és rajzból megépített áramkör.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/10_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/10_het.pptx" target="_blank">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/10_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/10_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">11</div>
+                <div class="het-tartalom">
+                    <h3>Soros kapcsolás</h3>
+                    <p>Egyetlen áramút, feszültségmegoszlás, megszakadás és hibakeresés.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/11_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/11_het.pptx" target="_blank">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/11_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/11_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">12</div>
+                <div class="het-tartalom">
+                    <h3>Párhuzamos kapcsolás</h3>
+                    <p>Több önálló áramút, ágfeszültség, árammegoszlás és összehasonlítás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/12_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/12_het.pptx" target="_blank">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/12_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/12_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">13</div>
+                <div class="het-tartalom">
+                    <h3>Vegyes kapcsolások és szakmai döntések</h3>
+                    <p>Kapcsolási mód választása, tervezés, mérés és hibakeresés.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/13_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64,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REVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APF6KKK/VT88CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooqlrepDRtGv8AUGjMq2kEk5jBwW2qWxn8KTaim2NJt2RdorA1rxdFotxpsb27yi7IMjqwAgjLIgdvbdIg/M9qf4k8VReHJrGN4Hn89/3jK2BDFuVWlPsGdM/UntWbqwje723NFTm7WW5uUUUVqZBRXN6N4xOqz6dvsWt7TU42kspzIGLgDdhlA+UlfmHJ6HODxW/dXUNjbSXFxKkMEalnkkOFUepNRGpGa5k9C5QlF2aJaKxNH8S21/GgluYBPLcPDHFGGBBALqrbud2wbug9s9TU1LxnFHrWm6bZFJpLmWRJJGRyqeWQrKCo+9uOOuBg5qfbQS5r/wBf0yvZzvax01FYo8XaZdJdLZ3kNzcQwvKsYJw4XqVP8QBwCRnGadp/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" download="13_het_Vegyes_kapcsolasok_es_szakmai_dontesek.pptx">📊 Bemutató</a>
+                        <a class="feladat-gomb" href="feladatok/villamos9/13_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a class="gyakorlat-gomb" href="gyakorlatok/villamos9/13_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">14</div>
+                <div class="het-tartalom">
+                    <h3>Villamos teljesítmény és energia</h3>
+                    <p>Teljesítmény- és energiafogalmak, egyszerű számítások.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/14_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/14_het.pptx" download="14_het_Miert_fogyaszt_tobbet.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/14_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/14_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">15</div>
+                <div class="het-tartalom">
+                    <h3>Mérés és hibakeresés</h3>
+                    <p>Mérési eredmények értelmezése és egyszerű hibák feltárása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/15_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/15_het.pptx" download="15_het_Mit_mond_a_muszer.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/15_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/15_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">16</div>
+                <div class="het-tartalom">
+                    <h3>IAP Kihívás II. – Mini projekt</h3>
+                    <p>Tervezés, kapcsolási rajz, építés, mérés, dokumentálás és bemutatás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/16_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/16_het.pptx" download="16_het_Szakmai_Kihivas.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/16_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/16_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section class="blokk" id="blokk4">
+    <h2>4. blokk – Félévi összefoglalás és mágnesesség</h2>
+    <div class="hetek">
+            <div class="het">
+                <div class="het-szam">17</div>
+                <div class="het-tartalom">
+                    <h3>Mit tudok már?</h3>
+                    <p>Féléves összegzés, önértékelés és következő fejlődési célok.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/17_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/17_het.pptx" download="17_het_Mit_tudok_mar.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/17_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/17_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">18</div>
+                <div class="het-tartalom">
+                    <h3>A mágnesesség alapjai</h3>
+                    <p>Mágneses jelenségek, pólusok és Faraday munkásságának kapcsolódása.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/18_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/18_het.pptx" download="18_het_Magnesesseg_es_Faraday.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/18_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/18_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">19</div>
+                <div class="het-tartalom">
+                    <h3>Az áram mágneses hatása</h3>
+                    <p>Ørsted kísérlete és az elektromágnes alapelve.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/19_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/19_het.pptx" download="19_het_Hogyan_lesz_az_arambol_magnes.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/19_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/19_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="het">
+                <div class="het-szam">20</div>
+                <div class="het-tartalom">
+                    <h3>Az elektromágnes erőssége</h3>
+                    <p>Menetszám, vasmag és az elektromágnes kísérleti vizsgálata.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/20_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/20_het.pptx" download="20_het_Mitol_lesz_erosebb_egy_elektromagnes.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/20_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/20_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section class="blokk" id="blokk5">
+    <h2>5. blokk – Relék és villamos gépek</h2>
+    <div class="hetek">
+        <div class="het">
+            <div class="het-szam">21</div>
+            <div class="het-tartalom">
+                <h3>Hogyan kapcsol egy relé?</h3>
+                <p>Az elektromágnes első ipari alkalmazása; NO és NC érintkezők.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/21_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/21_het.pptx" download="21_het_Hogyan_kapcsol_egy_rele.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/21_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/21_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">22</div>
+            <div class="het-tartalom">
+                <h3>Hogyan lesz a villamos energiából mozgás?</h3>
+                <p>Nikola Tesla és a villanymotor működésének alapjai.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/22_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/22_het.pptx" download="22_het_Tesla_es_a_villanymotor.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/22_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/22_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">23</div>
+            <div class="het-tartalom">
+                <h3>Siemens és a generátor</h3>
+                <p>Hogyan lesz a mozgásból villamos energia? Indukció és energiaátalakítás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/23_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/23_het.pptx" download="23_het_Siemens_es_a_generator.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/23_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/23_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">24</div>
+            <div class="het-tartalom">
+                <h3>A transzformátor és a ZBD-hármas</h3>
+                <p>Hogyan lesz 400 kV-ból 230 V? A magyar mérnöki örökség és a feszültségátalakítás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/24_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/24_het.pptx" download="24_het_Transzformator_ZBD.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/24_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/24_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blokk" id="blokk6">
+    <h2>6. blokk – Biztonság és védelem</h2>
+    <div class="hetek">
+        <div class="het">
+            <div class="het-szam">25</div>
+            <div class="het-tartalom">
+                <h3>Az energia útja</h3>
+                <p>Az erőműtől a konnektorig: termelés, átvitel, elosztás és felhasználás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/25_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/25_het.pptx" download="25_het_Az_energia_utja.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/25_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/25_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">26</div>
+            <div class="het-tartalom">
+                <h3>A villamos biztonság első lépései</h3>
+                <p>Áramütés, túlterhelés, zárlat, kismegszakító és olvadóbiztosító.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/26_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/26_het.pptx" download="26_het_Villamos_biztonsag_elso_lepesei.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/26_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/26_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">27</div>
+            <div class="het-tartalom">
+                <h3>Zárlat és túláramvédelem</h3>
+                <p>Túlterhelés, zárlat, Diazed–Neozed olvadóbiztosítók és kismegszakítók.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/27_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/27_het.pptx" download="27_het_Zarlat_es_tularamvedelem.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/27_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/27_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">28</div>
+            <div class="het-tartalom">
+                <h3>ÁVK (FI-relé) és életvédelem</h3>
+                <p>Hibaáram, 30 mA-es kioldás, TEST gomb és a túláramvédelemtől való különbség.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/28_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/28_het.pptx" download="28_het_AVK_FI_rele.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/28_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/28_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blokk" id="blokk7">
+    <h2>7. blokk – Érintésvédelem és évzárás</h2>
+    <div class="hetek">
+        <div class="het">
+            <div class="het-szam">29</div>
+            <div class="het-tartalom">
+                <h3>Földelés és PE vezető</h3>
+                <p>Az L, N és PE vezetők, testzárlat, védővezető és az érintésvédelem alapjai.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/29_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/29_het.pptx" download="29_het_Foldeles_es_PE_vezeto.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/29_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/29_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">30</div>
+            <div class="het-tartalom">
+                <h3>A TN-hálózatok alapjai</h3>
+                <p>TN-C, TN-S és TN-C-S rendszerek; L, N, PE és PEN vezetők.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/30_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/30_het.pptx" download="30_het_TN_halozatok_alapjai.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/30_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/30_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">31</div>
+            <div class="het-tartalom">
+                <h3>Vezetőazonosítás és szabványos színek</h3>
+                <p>Tömör és sodrott vezetők, kábeljelölések, blankolás és biztonságos műszeres azonosítás.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/31_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/31_het.pptx" download="31_het_Vezetoazonositas.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/31_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/31_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">32</div>
+            <div class="het-tartalom">
+                <h3>Év végi összefoglalás</h3>
+                <p>Az egész éves tudás összekapcsolása és egy családi ház villamos hálózatának projektje.</p>
+                    <div class="gombok">
+                        <a href="tananyagok/villamos9/32_het.pdf" target="_blank">📖 Tananyag</a>
+                        <a href="ppt/villamos9/32_het.pptx" download="32_het_Evzaro_osszefoglalo.pptx">📊 Bemutató</a>
+                        <a href="feladatok/villamos9/32_het_feladat.pdf" target="_blank">✓ Feladat</a>
+                        <a href="gyakorlatok/villamos9/32_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blokk" id="blokk8">
+    <h2>8. blokk – Év végi összefoglalás</h2>
+    <div class="hetek">
+        <div class="het">
+            <div class="het-szam">33</div>
+            <div class="het-tartalom">
+                <h3>A 33. hét tananyaga</h3>
+                <p>A részletes cím és tartalom a heti anyag feldolgozásakor kerül be.</p>
+                    <div class="gombok">
+                        <a class="hamarosan" href="#" onclick="return false;">📖 Tananyag</a>
+                        <a class="hamarosan" href="#" onclick="return false;">📊 Bemutató</a>
+                        <a class="hamarosan" href="#" onclick="return false;">✓ Feladat</a>
+                        <a class="hamarosan" href="#" onclick="return false;">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">34</div>
+            <div class="het-tartalom">
+                <h3>A 34. hét tananyaga</h3>
+                <p>A részletes cím és tartalom a heti anyag feldolgozásakor kerül be.</p>
+                    <div class="gombok">
+                        <a class="hamarosan" href="#" onclick="return false;">📖 Tananyag</a>
+                        <a class="hamarosan" href="#" onclick="return false;">📊 Bemutató</a>
+                        <a class="hamarosan" href="#" onclick="return false;">✓ Feladat</a>
+                        <a class="hamarosan" href="#" onclick="return false;">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">35</div>
+            <div class="het-tartalom">
+                <h3>A 35. hét tananyaga</h3>
+                <p>A részletes cím és tartalom a heti anyag feldolgozásakor kerül be.</p>
+                    <div class="gombok">
+                        <a class="hamarosan" href="#" onclick="return false;">📖 Tananyag</a>
+                        <a class="hamarosan" href="#" onclick="return false;">📊 Bemutató</a>
+                        <a class="hamarosan" href="#" onclick="return false;">✓ Feladat</a>
+                        <a class="hamarosan" href="#" onclick="return false;">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+        <div class="het">
+            <div class="het-szam">36</div>
+            <div class="het-tartalom">
+                <h3>A 36. hét tananyaga</h3>
+                <p>A részletes cím és tartalom a heti anyag feldolgozásakor kerül be.</p>
+                    <div class="gombok">
+                        <a class="hamarosan" href="#" onclick="return false;">📖 Tananyag</a>
+                        <a class="hamarosan" href="#" onclick="return false;">📊 Bemutató</a>
+                        <a class="hamarosan" href="#" onclick="return false;">✓ Feladat</a>
+                        <a class="hamarosan" href="#" onclick="return false;">🧪 Gyakorlat</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<footer>
+    <p>IAP – Integrált Automatika Program</p>
+</footer>
+<script>
+
+function kereses() {
+
+    let keresettSzoveg =
+        document.getElementById("kereso").value.toLowerCase();
+
+    let hetek =
+        document.querySelectorAll(".het");
+
+    let talalat = 0;
+
+    hetek.forEach(function(het) {
+
+        let szoveg =
+            het.innerText.toLowerCase();
+
+        if (szoveg.includes(keresettSzoveg)) {
+
+            het.style.display = "flex";
+            talalat++;
+
+        } else {
+
+            het.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("talalat-szam").innerText =
+        "Találatok: " + talalat + " hét";
+
+}
+
+</script>
+</body>
+</html>
