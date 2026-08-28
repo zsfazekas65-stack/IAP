@@ -247,8 +247,15 @@
 
     <section id="kapcsolat" class="dashboard">
         <h2>Kapcsolat</h2>
-        <p>Az IAP tananyagportállal kapcsolatos kérdések, észrevételek és hibajelzések ezen a részen jelennek meg.</p>
-        <p>Az oldal készítőjének elérhetősége később egyszerűen hozzáadható ehhez a blokkhoz.</p>
+        <p>Az IAP tananyagportállal kapcsolatos kérdések, észrevételek és hibajelzések:</p>
+        <p>
+            <a href="mailto:fazekas.zsolt@dunaferriskola.hu?subject=IAP%20tananyagport%C3%A1l"
+               class="fo-gomb"
+               aria-label="E-mail küldése Fazekas Zsoltnak">
+                ✉️ E-mail küldése
+            </a>
+        </p>
+        <p><strong>fazekas.zsolt@dunaferriskola.hu</strong></p>
     </section>
 
 </main>
@@ -260,6 +267,20 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Belső menüpontok biztos görgetése (Évfolyamok, Tantárgyak, Kapcsolat)
+        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+            link.addEventListener('click', function (esemeny) {
+                const celId = this.getAttribute('href');
+                if (!celId || celId === '#') return;
+                const cel = document.querySelector(celId);
+                if (cel) {
+                    esemeny.preventDefault();
+                    cel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', celId);
+                }
+            });
+        });
+
         const kartyak = Array.from(document.querySelectorAll('.evfolyam-kartya'));
         let taroltEvfolyam = null;
         try {
