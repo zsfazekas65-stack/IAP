@@ -734,3 +734,13 @@ html {
 #eredmeny h2 {
     color: #183a5a;
 }
+
+/* ===== IAP MOTTÓ ===== */
+.iap-motto {
+    margin: -12px auto 28px auto !important;
+    max-width: 760px !important;
+    font-size: 16px !important;
+    font-style: italic;
+    color: #6f7d89 !important;
+    letter-spacing: 0.1px;
+}

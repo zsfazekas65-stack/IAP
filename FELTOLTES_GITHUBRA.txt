@@ -1,0 +1,43 @@
+IAP GitHub frissítési csomag
+
+A fájlokat a GitHub Pages által elvárt nevekre átneveztem.
+
+Gyökérfájlok:
+ - analog11.html
+ - elektrotechnika11.html
+ - epuletvillamossag13.html
+ - folyamatiranyitas12.html
+ - gepeszet10.html
+ - index.html
+ - moodle.html
+ - plc.html
+ - style.css
+ - villamos10.html
+ - villamos9.html
+ - villamosmuvek13.html
+ - villamosszereles11.html
+
+HTML hivatkozások:
+ - analog11.html
+ - elektrotechnika11.html
+ - epuletvillamossag13.html
+ - folyamatiranyitas12.html
+ - index.html
+ - moodle.html
+ - plc.html
+ - villamos10.html
+ - villamos9.html
+ - villamosmuvek13.html
+ - villamosszereles11.html
+
+A csomagból hiányzó gyökérfájlok (a meglévő GitHub repóban maradjanak meg):
+ - logo.png
+
+A HTML-ek által használt tartalmi mappák (a GitHub repóban maradjanak meg):
+ - data:application/
+ - feladatok/
+ - gyakorlatok/
+ - ppt/
+ - tananyagok/
+
+FONTOS: Ez frissítési csomag, nem teljes webhelymentés. Feltöltéskor ne töröld a repóban már meglévő tananyagok/, ppt/, feladatok/, gyakorlatok/ mappákat és a logo.png fájlt.
