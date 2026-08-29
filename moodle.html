@@ -17,13 +17,13 @@ main{max-width:1180px;margin:0 auto;padding:44px 22px 60px}.hero{display:grid;gr
 <body>
 <header class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-badge">🎓</div><div><h1>IAP Moodle tesztközpont</h1><p>Integrált Automatika Program</p></div></div><a class="vissza" href="index.html">← Vissza a főoldalra</a></div></header>
 <main>
-<section class="hero"><div class="hero-card"><span class="kicker">Tanulói tesztközpont</span><h2>Moodle számonkérések évfolyam és tantárgy szerint</h2><p>Válaszd ki az évfolyamot, majd a hozzá tartozó tantárgyat. Az évfolyamok tantárgybeosztása megegyezik az IAP főoldal felépítésével.</p></div><aside class="info-card"><h3>Hogyan működik?</h3><ul><li>válaszd ki az évfolyamodat</li><li>csak az adott évfolyam tantárgyai jelennek meg</li><li>nyisd meg a megfelelő tantárgyat</li><li>a Moodle kezeli a belépést és a tesztet</li></ul></aside></section>
+<section class="hero"><div class="hero-card"><span class="kicker">Tanulói tesztközpont</span><h2>Moodle számonkérések évfolyam és tantárgy szerint</h2><p>Válaszd ki az évfolyamot, majd a hozzá tartozó tantárgyat. Az évfolyamok tantárgybeosztása megegyezik az IAP főoldal felépítésével.</p></div><aside class="info-card"><h3>Hogyan működik?</h3><ul><li>válaszd ki az évfolyamodat</li><li>csak az adott évfolyam tantárgyai jelennek meg</li><li>a 9. évfolyam közvetlenül megnyitja a Villamos alapismeretek számonkéréseit</li><li>a Moodle kezeli a belépést és a tesztet</li></ul></aside></section>
 <section class="system-info"><strong>Értékelési rend:</strong> az első hat értékelési szakasz 5 hetes, az utolsó 6 hetes. A számonkérések az 5., 10., 15., 20., 25., 30. és 36. héten történnek.</section>
 <div class="section-title"><h2>Évfolyam választása</h2><span>IAP • Moodle</span></div>
-<section class="year-panel"><div class="year-label">Válassz évfolyamot:</div><div class="year-buttons"><button class="year-btn active" data-year="9">9. évfolyam</button><button class="year-btn" data-year="10">10. évfolyam</button><button class="year-btn" data-year="11">11. évfolyam</button><button class="year-btn" data-year="12">12. évfolyam</button><button class="year-btn" data-year="13">13. évfolyam</button></div></section>
+<section class="year-panel"><div class="year-label">Válassz évfolyamot:</div><div class="year-buttons"><button class="year-btn active" data-year="9" data-href="moodle_villamos9.html">9. évfolyam</button><button class="year-btn" data-year="10">10. évfolyam</button><button class="year-btn" data-year="11">11. évfolyam</button><button class="year-btn" data-year="12">12. évfolyam</button><button class="year-btn" data-year="13">13. évfolyam</button></div></section>
 <div class="section-title"><h2 id="subjectTitle">9. évfolyam tantárgyai</h2><span>Válassz tantárgyat</span></div>
 <section class="grid" id="subjectGrid">
-<article class="test-card" data-years="9" data-link-9="moodle_villamos9.html"><div class="icon">⚡</div><h3>Villamos alapismeretek</h3><p>Az adott értékelési szakasz villamos alapismereti számonkérései.</p><a class="open subject-link" href="#">Számonkérések megnyitása →</a></article>
+<article class="test-card" data-years="9" data-link-9="moodle_villamos9.html"><div class="icon">⚡</div><h3>Villamos alapismeretek</h3><p>Az adott értékelési szakasz villamos alapismereti számonkérései.</p><a class="open subject-link" href="moodle_villamos9.html">Számonkérések megnyitása →</a></article>
 <article class="test-card" data-years="10"><div class="icon">⚡</div><h3>Villamos alapismeretek</h3><p>A 10. évfolyam villamos alapismereti számonkérései.</p><a class="open subject-link pending" href="#">Hamarosan</a></article>
 <article class="test-card" data-years="10"><div class="icon">🔧</div><h3>Gépészeti alapismeretek</h3><p>A 10. évfolyam gépészeti számonkérései.</p><a class="open subject-link pending" href="#">Hamarosan</a></article>
 <article class="test-card" data-years="11"><div class="icon">🔌</div><h3>Elektrotechnika</h3><p>A 11. évfolyam elektrotechnikai számonkérései.</p><a class="open subject-link pending" href="#">Hamarosan</a></article>
@@ -54,7 +54,11 @@ function showYear(year){
   });
   subjectTitle.textContent=year+'. évfolyam tantárgyai';
 }
-yearButtons.forEach(btn=>btn.addEventListener('click',()=>showYear(btn.dataset.year)));
+yearButtons.forEach(btn=>btn.addEventListener('click',()=>{
+  const target=btn.getAttribute('data-href');
+  if(target){window.location.href=target;return;}
+  showYear(btn.dataset.year);
+}));
 showYear('9');
 </script>
 </body></html>
