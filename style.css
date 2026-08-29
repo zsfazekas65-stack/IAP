@@ -744,3 +744,8 @@ html {
     color: #6f7d89 !important;
     letter-spacing: 0.1px;
 }
+
+/* 9. évfolyam, 5. hét – Moodle tesztgomb elrejtése */
+.gombok a.moodle-teszt-gomb[href="moodle.html"][title="1–5. hét • 50 kérdéses Moodle teszt"] {
+    display: none !important;
+}
