@@ -1,26 +1,569 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IAP – Villamos művek – 13. évfolyam</title>
 <style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef4f9;color:#203447}header{background:linear-gradient(135deg,#102f4c,#236ca5);color:#fff;padding:28px 20px;text-align:center}header h1{margin:0;font-size:34px}header p{color:#d7e9f6}nav{background:#fff;padding:12px 20px;box-shadow:0 2px 12px #173a5e22;position:sticky;top:0;z-index:5}nav a{color:#173a5e;text-decoration:none;font-weight:700;margin-right:22px}main{max-width:1100px;margin:30px auto;padding:0 18px}.bevezeto,.resz{background:#fff;border-radius:18px;padding:22px 26px;margin-bottom:24px;box-shadow:0 8px 24px #173a5e18;border-left:7px solid #2b78b8}.het{display:flex;background:#fff;border-radius:16px;margin:14px 0;overflow:hidden;box-shadow:0 5px 18px #173a5e14}.het-szam{width:84px;min-width:84px;background:linear-gradient(180deg,#173a5e,#2b78b8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:800}.het-tartalom{padding:18px 20px;flex:1}.het h3{margin:0 0 7px;color:#173a5e}.het p{margin:0 0 13px;color:#607487}.gombok{display:flex;flex-wrap:wrap;gap:9px}.gombok a{padding:9px 13px;border-radius:9px;background:#2b78b8;color:#fff;font-size:14px;font-weight:700;text-decoration:none}.hamarosan{background:#dbe6ee!important;color:#71818d!important;pointer-events:none}.feladat-gomb{background:#2e86c1!important}.gyakorlat-gomb{background:#1769aa!important}.bemutato-gomb{background:#5b56b7!important}.resz h2{margin-top:0;color:#173a5e}.resz h3{color:#2b78b8}.kiemel{background:#e9f4fb;border-radius:12px;padding:14px 16px;margin:14px 0;font-weight:700;color:#173a5e}.keplet{font-size:22px;text-align:center;background:#173a5e;color:#fff;border-radius:12px;padding:15px;margin:16px 0}.tabla{width:100%;border-collapse:collapse;margin:15px 0}.tabla th,.tabla td{border:1px solid #ccd9e3;padding:10px}.tabla th{background:#173a5e;color:#fff}.dia{background:linear-gradient(135deg,#f8fbfd,#e7f1f8);border:1px solid #cbdde9;border-radius:15px;padding:18px;margin:12px 0}.vissza{display:inline-block;margin-top:10px;color:#2b78b8;font-weight:700;text-decoration:none}footer{text-align:center;padding:30px;color:#607487}@media(max-width:650px){.het{display:block}.het-szam{width:100%;height:50px}}
-</style></head><body>
-<header><h1>⚡ Villamos művek – 13. évfolyam</h1><p>IAP • Integrált Automatika Program • 36 hetes tananyagrendszer</p></header>
-<nav><a href="index.html">← IAP főoldal</a><a href="#hetek">Hetek</a><a href="#tananyag-03">3. hét</a></nav>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef4f9;color:#203447}
+header{background:linear-gradient(135deg,#102f4c,#236ca5);color:white;padding:28px 20px;text-align:center}
+header h1{margin:0;font-size:34px}
+header p{color:#d7e9f6}
+nav{background:#fff;padding:12px 20px;box-shadow:0 2px 12px #173a5e22;position:sticky;top:0;z-index:5}
+nav a{color:#173a5e;text-decoration:none;font-weight:700;margin-right:22px}
+main{max-width:1100px;margin:30px auto;padding:0 18px}
+.bevezeto{background:white;border-radius:18px;padding:22px 26px;margin-bottom:24px;box-shadow:0 8px 24px #173a5e18;border-left:7px solid #2b78b8}
+.het{display:flex;background:white;border-radius:16px;margin:14px 0;overflow:hidden;box-shadow:0 5px 18px #173a5e14}
+.het-szam{width:84px;min-width:84px;background:linear-gradient(180deg,#173a5e,#2b78b8);color:white;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:800}
+.het-tartalom{padding:18px 20px;flex:1}
+.het h3{margin:0 0 7px;color:#173a5e}
+.het p{margin:0 0 13px;color:#607487}
+.gombok{display:flex;flex-wrap:wrap;gap:9px}
+.gombok a{padding:9px 13px;border-radius:9px;background:#2b78b8;color:white;font-size:14px;font-weight:700;text-decoration:none}
+.gombok .hamarosan{background:#dbe6ee;color:#71818d;cursor:not-allowed;pointer-events:none}
+.feladat-gomb{background:#2e86c1!important}
+.gyakorlat-gomb{background:#1769aa!important}
+.feladat-gomb.hamarosan,.gyakorlat-gomb.hamarosan{background:#dbe6ee!important;color:#71818d!important}
+footer{text-align:center;padding:30px;color:#607487}
+@media(max-width:650px){.het{display:block}.het-szam{width:100%;height:50px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚡ Villamos művek – 13. évfolyam</h1>
+  <p>IAP • Integrált Automatika Program • 36 hetes tananyagrendszer</p>
+</header>
+<nav>
+  <a href="index.html">← IAP főoldal</a>
+  <a href="#hetek">Hetek</a>
+</nav>
 <main>
-<section class="bevezeto"><h2>Villamos művek</h2><p>36 hetes szakmai kurzus a villamosenergia-termelés, -átvitel, -elosztás, hálózatok, alállomások és kapcsolódó üzemviteli témák feldolgozásához.</p></section>
-<section id="hetek">
-<div class="het"><div class="het-szam">01</div><div class="het-tartalom"><h3>1. hét – hamarosan</h3><p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p><div class="gombok"><a class="hamarosan">📖 Tananyag</a><a class="hamarosan">📊 Bemutató</a><a class="hamarosan">✓ Feladat</a><a class="hamarosan">🧪 Gyakorlat</a></div></div></div>
-<div class="het"><div class="het-szam">02</div><div class="het-tartalom"><h3>2. hét – hamarosan</h3><p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p><div class="gombok"><a class="hamarosan">📖 Tananyag</a><a class="hamarosan">📊 Bemutató</a><a class="hamarosan">✓ Feladat</a><a class="hamarosan">🧪 Gyakorlat</a></div></div></div>
-<div class="het"><div class="het-szam">03</div><div class="het-tartalom"><h3>A villamosenergia-rendszer felépítése – az erőműtől a fogyasztóig</h3><p>Termelés, átvitel, elosztás, alállomások, feszültségszintek és a nagyfeszültségű energiaátvitel szerepe.</p><div class="gombok"><a href="#tananyag-03">📖 Tananyag</a><a class="bemutato-gomb" href="#bemutato-03">📊 Bemutató</a><a class="feladat-gomb" href="#feladat-03">✓ Feladat</a><a class="gyakorlat-gomb" href="#gyakorlat-03">🧪 Gyakorlat</a></div></div></div>
-<div id="tovabbi-hetek"></div>
+<section class="bevezeto">
+  <h2>Villamos művek</h2>
+  <p>36 hetes szakmai kurzus a villamosenergia-termelés, -átvitel, -elosztás, hálózatok, alállomások és kapcsolódó üzemviteli témák feldolgozásához.</p>
+  <p>Minden hétnél külön Tananyag, Bemutató, Feladat és Gyakorlat gomb található. A heteket a tananyagok elkészülésével sorban aktiváljuk.</p>
 </section>
-<section class="resz" id="tananyag-03"><h2>📖 3. hét – Tananyag</h2><h3>A villamosenergia-rendszer felépítése</h3><p>A villamosenergia-rendszer olyan összetett műszaki rendszer, amelyben a termelés, az átvitel, az elosztás és a fogyasztás folyamatosan összekapcsolódik. A termelésnek és a fogyasztásnak minden pillanatban közel egyensúlyban kell lennie.</p><div class="kiemel">Generátor → blokktranszformátor → átviteli hálózat → alállomás → elosztóhálózat → körzeti transzformátor → 0,4 kV-os hálózat → fogyasztó</div><h3>Miért használunk nagy feszültséget?</h3><p>Ugyanazon teljesítmény átvitelénél a feszültség növelésével csökken az áramerősség. Mivel a vezetékveszteség az áram négyzetével arányos, a nagyfeszültségű átvitel jelentősen csökkenti a veszteségeket.</p><div class="keplet">P<sub>vesz</sub> = I² · R</div><table class="tabla"><tr><th>Feszültségszint</th><th>Jellemző feladat</th></tr><tr><td>400/220 kV</td><td>országos és nemzetközi átvitel</td></tr><tr><td>120 kV</td><td>regionális hálózat</td></tr><tr><td>20 kV</td><td>középfeszültségű elosztás</td></tr><tr><td>400/230 V</td><td>végfelhasználók ellátása</td></tr></table><h3>Az alállomás szerepe</h3><p>Az alállomásban transzformátorok, megszakítók, szakaszolók, mérőváltók, túlfeszültség-védelmi eszközök, gyűjtősínek, valamint védelmi és irányítástechnikai rendszerek működnek együtt.</p><h3>Rövid számítási példa</h3><p>10 MW teljesítmény esetén, cosφ≈1 mellett: 20 kV-on kb. 289 A, 120 kV-on kb. 48 A, 400 kV-on kb. 14,4 A folyik.</p><a class="vissza" href="#hetek">↑ Vissza a hetekhez</a></section>
-<section class="resz" id="bemutato-03"><h2>📊 3. hét – Bemutató</h2><div class="dia"><h3>1. dia – Az energia útja</h3><p>Erőmű → blokktranszformátor → átviteli hálózat → alállomás → elosztóhálózat → fogyasztó.</p></div><div class="dia"><h3>2. dia – Feszültségszintek</h3><p>400 kV → 120 kV → 20 kV → 400/230 V.</p></div><div class="dia"><h3>3. dia – Miért nagyfeszültség?</h3><p>Nagyobb U → kisebb I → kisebb I²R veszteség.</p></div><div class="dia"><h3>4. dia – Alállomás</h3><p>Transzformálás, kapcsolás, mérés, védelem és irányítás.</p></div><div class="dia"><h3>5. dia – Üzembiztonság</h3><p>A termelés és fogyasztás egyensúlyát folyamatosan fenn kell tartani.</p></div><a class="vissza" href="#hetek">↑ Vissza a hetekhez</a></section>
-<section class="resz" id="feladat-03"><h2>✓ 3. hét – Feladat</h2><ol><li>Sorold fel a villamosenergia-rendszer fő részeit!</li><li>Írd fel a vezetékveszteség összefüggését!</li><li>Miért előnyös nagy feszültségen továbbítani ugyanazt a teljesítményt?</li><li>Tedd helyes sorrendbe: generátor, fogyasztó, blokktranszformátor, átviteli hálózat, elosztóhálózat!</li><li>Mi a különbség az átviteli és az elosztóhálózat között?</li><li>Nevezz meg öt alállomási berendezést!</li><li>Számítsd ki egy 6 MW-os terhelés áramát 20 kV-on és 120 kV-on!</li><li>Magyarázd meg, mit jelent a termelés és fogyasztás egyensúlya!</li></ol><a class="vissza" href="#hetek">↑ Vissza a hetekhez</a></section>
-<section class="resz" id="gyakorlat-03"><h2>🧪 3. hét – Gyakorlat</h2><h3>Hálózati energiaút és feszültségszintek felismerése</h3><ol><li>Rajzold fel a generátortól a 230 V-os fogyasztóig vezető energiautat.</li><li>Jelöld a rajzon a 400 kV, 120 kV, 20 kV és 400/230 V feszültségszinteket.</li><li>12 MW teljesítményre számítsd ki az áramot 20 kV, 120 kV és 400 kV esetén.</li><li>Hasonlítsd össze az I²R veszteségeket.</li><li>Gondold végig, mi történik egy 20/0,4 kV-os transzformátorállomás kiesésekor.</li></ol><a class="vissza" href="#hetek">↑ Vissza a hetekhez</a></section>
-</main><footer>IAP – Integrált Automatika Program • Villamos művek • 13. évfolyam</footer>
-<script>
-const c=document.getElementById('tovabbi-hetek');for(let i=4;i<=36;i++){const n=String(i).padStart(2,'0');c.insertAdjacentHTML('beforeend',`<div class="het"><div class="het-szam">${n}</div><div class="het-tartalom"><h3>${i}. hét – hamarosan</h3><p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p><div class="gombok"><a class="hamarosan">📖 Tananyag</a><a class="hamarosan">📊 Bemutató</a><a class="hamarosan">✓ Feladat</a><a class="hamarosan">🧪 Gyakorlat</a></div></div></div>`)}
-</script></body></html>
+<section id="hetek">
+
+<div class="het">
+  <div class="het-szam">01</div>
+  <div class="het-tartalom">
+    <h3>1. hét</h3>
+    <p>Villamos művek – 1. heti tananyag.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/01_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/01_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/01_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/01_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">02</div>
+  <div class="het-tartalom">
+    <h3>2. hét</h3>
+    <p>Villamos művek – 2. heti tananyag.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/02_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/02_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/02_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/02_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">03</div>
+  <div class="het-tartalom">
+    <h3>3. hét – A villamosenergia-rendszer felépítése – az erőműtől a fogyasztóig</h3>
+    <p>Termelés, átvitel, elosztás, alállomások, feszültségszintek és a nagyfeszültségű energiaátvitel szerepe.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/03_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/03_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/03_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/03_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">04</div>
+  <div class="het-tartalom">
+    <h3>4. hét – Erőművi generátorok és blokktranszformátorok</h3>
+    <p>Szinkrongenerátorok, gerjesztés, fordulatszám és frekvencia kapcsolata, blokktranszformátor szerepe, hálózatra kapcsolás és alapvető védelmek.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/04_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/04_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/04_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/04_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">05</div>
+  <div class="het-tartalom">
+    <h3>5. hét – Erőműtípusok és energiatermelési módok</h3>
+    <p>Hő-, atom-, víz-, szél- és naperőművek energiaátalakítási lánca, szabályozhatósága, hatásfoka és szerepe a villamosenergia-rendszerben.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/05_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/05_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/05_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/05_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">06</div>
+  <div class="het-tartalom">
+    <h3>6. hét – Komplex összefoglalás: energiaút, generátor, transzformátor, erőműtípusok</h3>
+    <p>Az 1–5. hét témaköreinek lezárása: energiaút az erőműtől a fogyasztóig, szinkrongenerátor, blokktranszformátor, feszültségszintek, erőműtípusok és alapvető számítások.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/06_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/06_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/06_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/06_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">07</div>
+  <div class="het-tartalom">
+    <h3>7. hét – Nagyfeszültségű kapcsolóberendezések és alállomási készülékek</h3>
+    <p>Megszakítók, szakaszolók, földelőkapcsolók, gyűjtősínek, mérőváltók és túlfeszültség-védelem szerepe az alállomásokban.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/07_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/07_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/07_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/07_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">08</div>
+  <div class="het-tartalom">
+    <h3>8. hét – Alállomási kapcsolási sémák és gyűjtősín-rendszerek</h3>
+    <p>Egyszeres, osztott és kettős gyűjtősínes rendszerek, gyűjtősín-összekötő mező, üzembiztonság, karbantarthatóság és kapcsolási rugalmasság.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/08_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/08_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/08_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/08_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">09</div>
+  <div class="het-tartalom">
+    <h3>9. hét – Védelmi rendszerek és relévédelem alapjai</h3>
+    <p>Hálózati hibák, túláram, zárlat, földzárlat, mérőváltók, védelmi relék, megszakító-kioldás és szelektivitás.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/09_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/09_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/09_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/09_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">10</div>
+  <div class="het-tartalom">
+    <h3>10. hét – Transzformátorok az alállomásokban</h3>
+    <p>Teljesítménytranszformátorok feladata és felépítése, hűtés, fokozatkapcsoló, üzemi felügyelet, Buchholz- és differenciálvédelem.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/10_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/10_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/10_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/10_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">11</div>
+  <div class="het-tartalom">
+    <h3>11. hét – Kapcsolási csoportok és párhuzamos üzem</h3>
+    <p>Háromfázisú transzformátorok kapcsolási csoportjai, óraszám és fáziseltolás, párhuzamos üzem feltételei, terhelésmegosztás és hibás párhuzamosítás következményei.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/11_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/11_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/11_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/11_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">12</div>
+  <div class="het-tartalom">
+    <h3>12. hét – Alállomási mérőváltók részletesen</h3>
+    <p>Áramváltók és feszültségváltók feladata, áttétele, mérő- és védelmi magok, pontosság, burden, polaritás, szekunder köri biztonság és alállomási alkalmazások.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/12_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/12_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/12_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/12_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">13</div>
+  <div class="het-tartalom">
+    <h3>13. hét – Alállomási segédüzemi rendszerek és egyenáramú ellátás</h3>
+    <p>AC és DC segédüzem, akkumulátortelep, töltőberendezés, DC elosztó, kioldó- és zárókörök, DC földzárlat, felügyeleti jelzések és üzemzavari ellenőrzések.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/13_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/13_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/13_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/13_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">14</div>
+  <div class="het-tartalom">
+    <h3>14. hét – Alállomási irányítástechnika és távfelügyelet</h3>
+    <p>Helyi és távvezérlés, parancsok és állapot-visszajelzések, reteszelések, SCADA, eseménynaplózás, IED-k, kommunikáció és az IEC 61850 alapgondolata.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/14_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/14_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/14_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/14_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">15</div>
+  <div class="het-tartalom">
+    <h3>15. hét – Villamos kapcsolókészülékek rendszerezése</h3>
+    <div style="display:inline-block;margin:4px 0 10px;padding:5px 11px;border-radius:999px;background:#0b5f9e;color:#fff;font-size:12px;font-weight:800;letter-spacing:.3px;">ÚJ ANYAGRÉSZ – VILLAMOS KAPCSOLÓKÉSZÜLÉKEK</div>
+    <p>Kapcsolási feladatok, megszakító, szakaszoló, terheléskapcsoló, földelőkapcsoló és biztosító; névleges feszültség és áram, zárlati igénybevétel, megszakítóképesség és készülékválasztás.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/15_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/15_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/15_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/15_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">16</div>
+  <div class="het-tartalom">
+    <h3>16. hét – Szakaszolók és földelőkapcsolók</h3>
+    <p>Szakaszolók feladata, látható leválasztás, szerkezeti kialakítások és hajtások; földelőkapcsolók, zárlati záróképesség, reteszelések és biztonságos kapcsolási sorrend.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/16_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/16_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/16_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/16_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">17</div>
+  <div class="het-tartalom">
+    <h3>17. hét – Megszakítók felépítése és működése</h3>
+    <p>A megszakító fő szerkezeti egységei, érintkezőrendszer, kapcsolási ív és ívoltás, rugóerőtárolós hajtás, záró- és kioldótekercsek, védelmi kioldási lánc, valamint a legfontosabb névleges és zárlati adatok.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/17_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/17_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/17_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/17_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">18</div>
+  <div class="het-tartalom">
+    <h3>18. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">19</div>
+  <div class="het-tartalom">
+    <h3>19. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">20</div>
+  <div class="het-tartalom">
+    <h3>20. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">21</div>
+  <div class="het-tartalom">
+    <h3>21. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">22</div>
+  <div class="het-tartalom">
+    <h3>22. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">23</div>
+  <div class="het-tartalom">
+    <h3>23. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">24</div>
+  <div class="het-tartalom">
+    <h3>24. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">25</div>
+  <div class="het-tartalom">
+    <h3>25. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">26</div>
+  <div class="het-tartalom">
+    <h3>26. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">27</div>
+  <div class="het-tartalom">
+    <h3>27. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">28</div>
+  <div class="het-tartalom">
+    <h3>28. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">29</div>
+  <div class="het-tartalom">
+    <h3>29. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">30</div>
+  <div class="het-tartalom">
+    <h3>30. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">31</div>
+  <div class="het-tartalom">
+    <h3>31. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">32</div>
+  <div class="het-tartalom">
+    <h3>32. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">33</div>
+  <div class="het-tartalom">
+    <h3>33. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">34</div>
+  <div class="het-tartalom">
+    <h3>34. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">35</div>
+  <div class="het-tartalom">
+    <h3>35. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">36</div>
+  <div class="het-tartalom">
+    <h3>36. hét – hamarosan</h3>
+    <p>A heti tananyag feltöltése után itt jelenik meg a végleges cím és leírás.</p>
+    <div class="gombok">
+      <a class="hamarosan">📖 Tananyag</a>
+      <a class="hamarosan">📊 Bemutató</a>
+      <a class="feladat-gomb hamarosan">✓ Feladat</a>
+      <a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+
+</section>
+<article class="week-card" id="het12">
+  <div class="week-head"><span class="week-number">12. hét</span><h3>Alállomási mérőváltók részletesen</h3></div>
+  <p>Áramváltók (CT), feszültségváltók (VT/PT), áttételek, mérő- és védelmi magok, pontosság, burden, polaritás és szekunder köri biztonság.</p>
+  <div class="week-actions">
+    <a href="tananyagok/villamosmuvek13/12_het.pdf">📖 Tananyag</a>
+    <a href="ppt/villamosmuvek13/12_het.pptx">📊 Bemutató</a>
+    <a href="feladatok/villamosmuvek13/12_het_feladat.pdf">✓ Feladat</a>
+    <a href="gyakorlatok/villamosmuvek13/12_het_gyakorlat.pdf">🧪 Gyakorlat</a>
+  </div>
+</article>
+</main>
+<footer>IAP • Integrált Automatika Program</footer>
+</body>
+</html>

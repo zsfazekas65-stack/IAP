@@ -1,61 +1,217 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kapcsolat – IAP</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .kapcsolat-kartya{max-width:720px;margin:28px auto;padding:28px;text-align:center;}
-        .email-cim{font-size:1.05rem;font-weight:700;word-break:break-all;margin:20px 0;}
-        .kapcsolat-gombok{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:20px;}
-        .masolas-gomb{border:0;cursor:pointer;font:inherit;}
-        .visszajelzes{min-height:24px;margin-top:14px;font-weight:700;}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapcsolat – IAP</title>
+<style>
+:root{
+  --navy:#061a30;
+  --navy2:#082746;
+  --blue:#0d71b9;
+  --cyan:#2bbcf1;
+  --text:#14243a;
+  --muted:#617089;
+  --line:#dbe3ea;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:#f5f7fa;
+}
+a{text-decoration:none}
+.topbar{
+  background:linear-gradient(180deg,#06182d 0%,#071d35 100%);
+  color:white;
+}
+.brand-row{
+  max-width:1180px;
+  margin:auto;
+  min-height:135px;
+  display:flex;
+  align-items:center;
+  gap:30px;
+  padding:20px 28px;
+}
+.iap-mark{
+  font-size:72px;
+  font-weight:800;
+  line-height:.9;
+}
+.iap-sep{
+  width:1px;
+  height:78px;
+  background:rgba(255,255,255,.35);
+}
+.iap-copy strong{
+  display:block;
+  font-size:24px;
+  line-height:1.15;
+  color:#33b8ef;
+}
+.iap-copy span{
+  display:block;
+  margin-top:7px;
+  font-size:16px;
+}
+.nav{
+  background:var(--navy2);
+}
+.nav-inner{
+  max-width:1180px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  min-height:58px;
+  padding:0 28px;
+}
+.nav a{
+  color:white;
+  font-weight:700;
+  padding:13px 20px;
+}
+.nav a:hover{background:rgba(13,113,185,.45)}
+main{
+  max-width:920px;
+  margin:46px auto;
+  padding:0 22px;
+}
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:0 10px 28px rgba(20,42,74,.10);
+  overflow:hidden;
+}
+.card-head{
+  background:linear-gradient(90deg,#0a2a49,#0d5288);
+  color:white;
+  padding:28px 34px;
+}
+.card-head h1{
+  margin:0 0 8px;
+  font-size:34px;
+}
+.card-head p{
+  margin:0;
+  color:#e7f3fb;
+  line-height:1.5;
+}
+.card-body{
+  padding:34px;
+}
+.intro{
+  font-size:18px;
+  line-height:1.65;
+  color:#33445b;
+  margin-top:0;
+}
+.contact-box{
+  margin-top:28px;
+  padding:28px;
+  border-radius:12px;
+  background:#eaf3fa;
+  text-align:center;
+}
+.name{
+  font-size:22px;
+  font-weight:800;
+  color:#173a5e;
+  margin-bottom:12px;
+}
+.email{
+  display:inline-block;
+  color:#0d5f9d;
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+.email-button{
+  display:inline-block;
+  padding:13px 24px;
+  border-radius:8px;
+  background:var(--blue);
+  color:white;
+  font-weight:800;
+}
+.email-button:hover{background:#0a4f80}
+.back{
+  display:inline-block;
+  margin-top:26px;
+  color:#0d5f9d;
+  font-weight:700;
+}
+footer{
+  background:#061a30;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:55px;
+}
+@media(max-width:620px){
+  .brand-row{min-height:110px;padding:18px}
+  .iap-mark{font-size:58px}
+  .iap-sep{height:62px}
+  .iap-copy strong{font-size:20px}
+  .nav-inner{padding:0 12px}
+  .card-head,.card-body{padding:24px}
+  .card-head h1{font-size:29px}
+  .email{font-size:16px;word-break:break-word}
+}
+</style>
 </head>
 <body>
-<header>
-    <img src="logo.png" alt="IAP – Integrált Automatika Program" class="iap-logo" style="width:min(450px, 45vw); height:auto; display:block; margin:0 auto;">
+
+<header class="topbar">
+  <div class="brand-row">
+    <div class="iap-mark">IAP</div>
+    <div class="iap-sep"></div>
+    <div class="iap-copy">
+      <strong>Integrált<br>Automatika Program</strong>
+      <span>Tanulj. Alkalmazz. Alkoss.</span>
+    </div>
+  </div>
 </header>
-<nav>
-    <a href="index.html">Kezdőlap</a>
-    <a href="index.html#evfolyamok">Évfolyamok</a>
-    <a href="index.html#tantargyak">Tantárgyak</a>
-    <a href="kapcsolat.html" aria-current="page">Kapcsolat</a>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html">← VISSZA A FŐOLDALRA</a>
+  </div>
 </nav>
+
 <main>
-    <section class="hero kapcsolat-kartya">
-        <h2>Kapcsolat</h2>
-        <p>Az IAP – Integrált Automatika Program tananyagportállal kapcsolatos kérdések, észrevételek és hibajelzések.</p>
-        <p class="email-cim" id="emailCim">fazekas.zsolt@dunaferriskola.hu</p>
-        <div class="kapcsolat-gombok">
-            <a href="mailto:fazekas.zsolt@dunaferriskola.hu?subject=IAP%20tananyagport%C3%A1l" class="fo-gomb">✉️ E-mail küldése</a>
-            <button type="button" class="fo-gomb masolas-gomb" id="masolasGomb">📋 E-mail cím másolása</button>
-        </div>
-        <p id="visszajelzes" class="visszajelzes" aria-live="polite"></p>
-        <p><a href="index.html" class="fo-gomb">Vissza a kezdőlapra</a></p>
-    </section>
+  <section class="card">
+    <div class="card-head">
+      <h1>Kapcsolat</h1>
+      <p>IAP – Integrált Automatika Program</p>
+    </div>
+    <div class="card-body">
+      <p class="intro">
+        Az IAP tananyagportállal kapcsolatos kérdések, észrevételek és
+        hibajelzések az alábbi e-mail címen küldhetők.
+      </p>
+
+      <div class="contact-box">
+        <div class="name">Fazekas Zsolt</div>
+        <a class="email" href="mailto:fazekas.zsolt@dunaferriskola.hu">
+          fazekas.zsolt@dunaferriskola.hu
+        </a><br>
+        <a class="email-button"
+           href="mailto:fazekas.zsolt@dunaferriskola.hu?subject=IAP%20kapcsolat">
+          ✉ E-mail küldése
+        </a>
+      </div>
+
+      <a class="back" href="index.html">← Vissza a kezdőlapra</a>
+    </div>
+  </section>
 </main>
+
 <footer>
-    <p>IAP – Integrált Automatika Program</p>
+  IAP • Integrált Automatika Program
 </footer>
-<script>
-    document.getElementById('masolasGomb').addEventListener('click', async function(){
-        const cim = 'fazekas.zsolt@dunaferriskola.hu';
-        const visszajelzes = document.getElementById('visszajelzes');
-        try {
-            await navigator.clipboard.writeText(cim);
-            visszajelzes.textContent = 'Az e-mail cím a vágólapra került.';
-        } catch (hiba) {
-            const mezo = document.createElement('textarea');
-            mezo.value = cim;
-            document.body.appendChild(mezo);
-            mezo.select();
-            document.execCommand('copy');
-            mezo.remove();
-            visszajelzes.textContent = 'Az e-mail cím a vágólapra került.';
-        }
-    });
-</script>
+
 </body>
 </html>
