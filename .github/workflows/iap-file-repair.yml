@@ -1,0 +1,92 @@
+name: IAP file repair
+
+on:
+  push:
+    paths:
+      - '.github/workflows/iap-file-repair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Repair Folyamatiranyitas file placement and status refresh
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+
+          ppt_dir = Path('ppt/folyamatiranyitas12')
+          gyak_dir = Path('gyakorlatok/folyamatiranyitas12')
+          ppt_dir.mkdir(parents=True, exist_ok=True)
+          gyak_dir.mkdir(parents=True, exist_ok=True)
+
+          # Move presentation files uploaded accidentally to repository root.
+          for week in range(1, 37):
+              n = f'{week:02d}'
+              src = Path(f'{n}_het.pptx')
+              dst = ppt_dir / f'{n}_het.pptx'
+              if src.exists():
+                  if dst.exists():
+                      if src.read_bytes() == dst.read_bytes():
+                          src.unlink()
+                          print('duplicate removed:', src)
+                      else:
+                          # Keep existing canonical file if it differs.
+                          print('WARNING different existing PPTX, root copy kept:', src)
+                  else:
+                      shutil.move(str(src), str(dst))
+                      print('moved:', src, '->', dst)
+
+          # Move practical PDFs accidentally uploaded into ppt folder.
+          for src in sorted(ppt_dir.glob('*_het_gyakorlat.pdf')):
+              dst = gyak_dir / src.name
+              if dst.exists():
+                  if src.read_bytes() == dst.read_bytes():
+                      src.unlink()
+                      print('duplicate removed:', src)
+                  else:
+                      print('WARNING different existing practice PDF, source kept:', src)
+              else:
+                  shutil.move(str(src), str(dst))
+                  print('moved:', src, '->', dst)
+
+          # Fix the 30th-week typo.
+          typo = ppt_dir / '30_het_gyakorla.pdf'
+          fixed = gyak_dir / '30_het_gyakorlat.pdf'
+          if typo.exists():
+              if fixed.exists():
+                  if typo.read_bytes() == fixed.read_bytes():
+                      typo.unlink()
+                  else:
+                      print('WARNING 30th week differs; typo source kept')
+              else:
+                  shutil.move(str(typo), str(fixed))
+                  print('fixed:', typo, '->', fixed)
+
+          # Make the status page always request fresh GitHub data on page load.
+          status = Path('statusz.html')
+          text = status.read_text(encoding='utf-8')
+          text = text.replace("const CACHE_MS=10*60*1000;", "const CACHE_MS=0;")
+          text = text.replace("{headers:{Accept:'application/vnd.github+json'}}", "{headers:{Accept:'application/vnd.github+json'},cache:'no-store'}")
+          status.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit repairs
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'Nincs javítandó módosítás.'
+            exit 0
+          fi
+          git config user.name 'IAP automation'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'Repair Folyamatiranyitas file placement and status refresh'
+          git push
