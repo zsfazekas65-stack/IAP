@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IAP státusz – Integrált Automatika Program</title>
+<style>
+:root{--navy:#061a30;--navy2:#0a2a49;--blue:#0e70b7;--cyan:#20b9f2;--text:#14243a;--muted:#617089;--line:#dbe3ea;--bg:#f5f7fa;--ok:#18864b;--warn:#d58a00;--bad:#c0392b;--card:#fff}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}a{text-decoration:none;color:inherit}.top{background:linear-gradient(135deg,var(--navy),#0a3356);color:#fff;padding:24px}.topin{max-width:1400px;margin:auto;display:flex;align-items:center;gap:20px;justify-content:space-between}.brand h1{margin:0;font-size:34px}.brand p{margin:7px 0 0;color:#d8e8f5}.home{padding:10px 16px;border:1px solid #ffffff55;border-radius:9px;font-weight:700}.home:hover{background:#ffffff18}.wrap{max-width:1400px;margin:auto;padding:24px}.hero{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}.metric,.panel,.subject{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 22px #173c6110}.metric{padding:18px}.metric .label{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}.metric .value{font-size:32px;font-weight:800;margin-top:7px;color:var(--navy2)}.metric .sub{font-size:13px;color:var(--muted);margin-top:4px}.panel{padding:20px;margin-bottom:20px}.panel h2{margin:0 0 14px;color:var(--navy2);font-size:22px}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:0;background:var(--blue);color:#fff;padding:10px 15px;border-radius:8px;font-weight:700;cursor:pointer}.btn:hover{filter:brightness(1.08)}#frissitve{color:var(--muted);font-size:13px}.subjects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.subject{padding:18px}.subject-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.subject h3{margin:0;font-size:20px;color:var(--navy2)}.subject h3 a:hover{color:var(--blue)}.grade{color:var(--muted);font-size:13px;margin-top:4px}.pct{font-weight:800;font-size:22px}.bar{height:10px;background:#e9eef3;border-radius:99px;overflow:hidden;margin:14px 0}.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px}.counts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.count{background:#f6f9fc;border:1px solid #e5ebf1;border-radius:9px;padding:9px;text-align:center}.count b{display:block;font-size:17px}.count span{font-size:11px;color:var(--muted)}.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800}.ok{background:#e9f7ef;color:var(--ok)}.warn{background:#fff5df;color:#9b6200}.bad{background:#fdecea;color:var(--bad)}.attention{display:grid;gap:9px}.issue{padding:11px 13px;border-left:4px solid var(--warn);background:#fffaf0;border-radius:7px}.issue strong{color:var(--navy2)}.week-table{width:100%;border-collapse:collapse}.week-table th,.week-table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}.dot.okd{background:var(--ok)}.dot.badd{background:var(--bad)}.loading{text-align:center;padding:28px;color:var(--muted)}.error{padding:14px;background:#fdecea;color:#8a261d;border-radius:9px}.foot{max-width:1400px;margin:6px auto 28px;padding:0 24px;color:var(--muted);font-size:12px;text-align:center}@media(max-width:900px){.hero{grid-template-columns:repeat(2,1fr)}.subjects{grid-template-columns:1fr}}@media(max-width:560px){.hero{grid-template-columns:1fr}.counts{grid-template-columns:repeat(2,1fr)}.topin{align-items:flex-start;flex-direction:column}.brand h1{font-size:28px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin"><div class="brand"><h1>IAP státusz</h1><p>Integrált Automatika Program · központi rendszerállapot</p></div><a class="home" href="index.html">⌂ Kezdőlap</a></div></header>
+<main class="wrap">
+<section class="hero">
+<div class="metric"><div class="label">Aktuális IAP-hét</div><div class="value" id="aktHet">–</div><div class="sub" id="tanevAllapot">Betöltés…</div></div>
+<div class="metric"><div class="label">IAP készültség</div><div class="value" id="osszPct">–</div><div class="sub">A négy heti fájltípus alapján</div></div>
+<div class="metric"><div class="label">Teljes tantárgyak</div><div class="value" id="teljesDb">–</div><div class="sub">100%-os, 36 hetes csomag</div></div>
+<div class="metric"><div class="label">Hiányzó fájlok</div><div class="value" id="hianyDb">–</div><div class="sub">Az elvárt 1296 fájlból</div></div>
+</section>
+<section class="panel"><div class="toolbar"><button class="btn" id="refresh">↻ Frissítés</button><span id="frissitve">GitHub-adatok betöltése…</span></div></section>
+<section class="panel"><h2>Aktuális hét állapota</h2><div id="currentWeek" class="loading">Betöltés…</div></section>
+<section class="panel"><h2>Tantárgyak készültsége</h2><div id="subjects" class="subjects"><div class="loading">Betöltés…</div></div></section>
+<section class="panel"><h2>Figyelmet igényel</h2><div id="attention" class="attention"><div class="loading">Betöltés…</div></div></section>
+</main>
+<div class="foot">IAP – Integrált Automatika Program · az adatok a GitHub main ágán ténylegesen meglévő fájlokból számolódnak</div>
+<script src="iap-naptar.js"></script>
+<script>
+const REPO='zsfazekas65-stack/IAP';
+const CACHE_KEY='iap-status-tree-v1';
+const CACHE_MS=10*60*1000;
+const subjects=[
+ {name:'Villamos alapismeretek',grade:'9. évfolyam',page:'villamos9.html',dir:'villamos9'},
+ {name:'Villamos alapismeretek',grade:'10. évfolyam',page:'villamos10.html',dir:'villamos10'},
+ {name:'Gépészeti alapismeretek',grade:'10. évfolyam',page:'gepeszet10.html',dir:'gepeszet10'},
+ {name:'Analóg áramkörök',grade:'11. évfolyam',page:'analog11.html',dir:'analog11'},
+ {name:'Elektrotechnika',grade:'11. évfolyam',page:'elektrotechnika11.html',dir:'elektrotechnika11'},
+ {name:'PLC alapismeretek',grade:'12. évfolyam',page:'plc.html',dir:'plc'},
+ {name:'Folyamatirányítás',grade:'12. évfolyam',page:'folyamatiranyitas12.html',dir:'folyamatiranyitas12'},
+ {name:'Villamos művek',grade:'13. évfolyam',page:'villamosmuvek13.html',dir:'villamosmuvek13'},
+ {name:'Épületvillamossági hálózatok',grade:'13. évfolyam',page:'epuletvillamossag13.html',dir:'epuletvillamossag13'}
+];
+const types=[
+ {key:'tan',label:'Tananyag',path:(d,n)=>`tananyagok/${d}/${n}_het.pdf`},
+ {key:'ppt',label:'Bemutató',path:(d,n)=>`ppt/${d}/${n}_het.pptx`},
+ {key:'fel',label:'Feladat',path:(d,n)=>`feladatok/${d}/${n}_het_feladat.pdf`},
+ {key:'gyak',label:'Gyakorlat',path:(d,n)=>`gyakorlatok/${d}/${n}_het_gyakorlat.pdf`}
+];
+function n2(n){return String(n).padStart(2,'0')}
+function weekNow(){return typeof window.aktualisIAPHet==='function'?window.aktualisIAPHet():null}
+function renderCalendar(){const w=weekNow();document.getElementById('aktHet').textContent=w?`${w}. hét`:'–';const now=new Date(), start=new Date(2026,8,1), end=new Date(2027,5,15);let t='2026/2027-es tanév';if(now<start)t='A tanév még nem indult el';else if(now>end)t='A tanév lezárult';else if(!w)t='Tanítási szünet';document.getElementById('tanevAllapot').textContent=t}
+async function getTree(force=false){if(!force){try{const c=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');if(c&&Date.now()-c.time<CACHE_MS&&Array.isArray(c.paths))return c.paths}catch(e){}}const r=await fetch(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`,{headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error(`GitHub API hiba: ${r.status}`);const j=await r.json();const paths=j.tree.filter(x=>x.type==='blob').map(x=>x.path);try{localStorage.setItem(CACHE_KEY,JSON.stringify({time:Date.now(),paths}))}catch(e){}return paths}
+function analyze(paths){const set=new Set(paths);let totalHave=0,totalExpected=subjects.length*36*types.length,complete=0;const data=subjects.map(s=>{const counts={},missing={};let have=0;types.forEach(t=>{counts[t.key]=0;missing[t.key]=[];for(let w=1;w<=36;w++){const p=t.path(s.dir,n2(w));if(set.has(p)){counts[t.key]++;have++}else missing[t.key].push(w)}});const pct=Math.round(have/(36*types.length)*100);if(pct===100)complete++;totalHave+=have;return {...s,counts,missing,have,pct}});return {data,totalHave,totalExpected,complete,missing:totalExpected-totalHave,pct:Math.round(totalHave/totalExpected*100),set}}
+function cls(p){return p===100?'ok':p>=75?'warn':'bad'}
+function missingText(a){if(!a.length)return '–';const shown=a.slice(0,12).map(n=>n2(n)).join(', ');return shown+(a.length>12?` … (+${a.length-12})`:'')}
+function render(a){document.getElementById('osszPct').textContent=a.pct+'%';document.getElementById('teljesDb').textContent=`${a.complete}/${subjects.length}`;document.getElementById('hianyDb').textContent=a.missing;document.getElementById('subjects').innerHTML=a.data.map(s=>`<article class="subject"><div class="subject-top"><div><h3><a href="${s.page}">${s.name}</a></h3><div class="grade">${s.grade}</div></div><div><div class="pct">${s.pct}%</div><span class="badge ${cls(s.pct)}">${s.pct===100?'● Kész':s.pct>=75?'● Közel kész':'● Hiányos'}</span></div></div><div class="bar"><span style="width:${s.pct}%"></span></div><div class="counts">${types.map(t=>`<div class="count"><b>${s.counts[t.key]}/36</b><span>${t.label}</span></div>`).join('')}</div></article>`).join('');const issues=[];a.data.forEach(s=>types.forEach(t=>{const m=s.missing[t.key];if(m.length)issues.push(`<div class="issue"><strong>${s.grade} · ${s.name}</strong> — ${t.label}: ${missingText(m)}</div>`)}));document.getElementById('attention').innerHTML=issues.length?issues.join(''):'<div class="issue" style="border-left-color:var(--ok);background:#edf9f2">Minden elvárt heti fájl a helyén van.</div>';renderCurrent(a)}
+function renderCurrent(a){const w=weekNow(),el=document.getElementById('currentWeek');if(!w){el.innerHTML='<div class="issue">Jelenleg nincs aktív tanítási hét. A panel a tanév indulásakor vagy a szünet után automatikusan megjeleníti az aktuális hetet.</div>';return}el.innerHTML=`<table class="week-table"><thead><tr><th>Tantárgy</th>${types.map(t=>`<th>${t.label}</th>`).join('')}</tr></thead><tbody>${a.data.map(s=>`<tr><td><a href="${s.page}"><strong>${s.grade} · ${s.name}</strong></a></td>${types.map(t=>{const ok=a.set.has(t.path(s.dir,n2(w)));return `<td><span class="dot ${ok?'okd':'badd'}"></span>${ok?'Kész':'Hiányzik'}</td>`}).join('')}</tr>`).join('')}</tbody></table>`}
+async function load(force=false){const s=document.getElementById('subjects'),att=document.getElementById('attention'),cw=document.getElementById('currentWeek');s.innerHTML='<div class="loading">GitHub-fájlok ellenőrzése…</div>';att.innerHTML='<div class="loading">Ellenőrzés…</div>';cw.innerHTML='<div class="loading">Ellenőrzés…</div>';try{const paths=await getTree(force);const a=analyze(paths);render(a);document.getElementById('frissitve').textContent='Frissítve: '+new Date().toLocaleString('hu-HU')}catch(e){const msg=`<div class="error">A GitHub állapotadatok most nem tölthetők be. ${e.message}. Próbáld meg később vagy nyomd meg a Frissítés gombot.</div>`;s.innerHTML=msg;att.innerHTML=msg;cw.innerHTML=msg;document.getElementById('frissitve').textContent='Betöltési hiba'}}
+document.getElementById('refresh').addEventListener('click',()=>load(true));renderCalendar();load();
+</script>
+</body>
+</html>
