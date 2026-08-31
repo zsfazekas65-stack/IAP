@@ -39,19 +39,19 @@ main{max-width:1180px;padding:38px 24px 70px}
 .het-tartalom{padding:22px 27px}
 .het-tartalom h3{font-size:20px;color:#123b61;letter-spacing:.005em}
 .het-tartalom p{color:#66778a;line-height:1.5}
-/* Heti műveleti gombok – kontrasztos műszerfal jelleg */
+/* Heti műveleti gombok – visszafogott műszaki kontraszt */
 .gombok{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px;padding-top:13px;border-top:1px solid #dbe5ed}
-.gombok a{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin:0!important;padding:9px 16px!important;border:1px solid #0b4f7c!important;border-radius:7px!important;background:linear-gradient(180deg,#176fa8,#0b4a76)!important;color:#fff!important;font-size:13px!important;font-weight:850!important;letter-spacing:.02em;text-shadow:0 1px 1px rgba(0,0,0,.18);box-shadow:0 4px 9px rgba(8,48,78,.2),inset 0 1px 0 rgba(255,255,255,.22)!important;transition:.18s ease!important}
-.gombok a:before{content:"";width:6px;height:6px;margin-right:8px;border-radius:50%;background:#65d8ff;box-shadow:0 0 0 3px rgba(101,216,255,.18),0 0 7px rgba(101,216,255,.45)}
-.gombok a:hover{transform:translateY(-2px)!important;background:linear-gradient(180deg,#2094d4,#0c6198)!important;border-color:#06446d!important;color:#fff!important;box-shadow:0 7px 15px rgba(8,48,78,.28),inset 0 1px 0 rgba(255,255,255,.28)!important;text-decoration:none!important}
-.gombok a:active{transform:translateY(0)!important;background:#083f66!important;box-shadow:inset 0 3px 6px rgba(0,0,0,.22)!important}
-.gombok a.feladat-gomb{background:linear-gradient(180deg,#168ac5,#0b6395)!important;border-color:#07527f!important;color:#fff!important}
-.gombok a.feladat-gomb:before{background:#8ce7ff}
-.gombok a.gyakorlat-gomb{background:linear-gradient(180deg,#125f91,#083f68)!important;border-color:#052f50!important;color:#fff!important}
-.gombok a.gyakorlat-gomb:before{background:#54c8f0}
-.gombok a.moodle-gomb{background:linear-gradient(180deg,#ef941f,#bd6208)!important;border-color:#984b05!important;color:#fff!important}
-.gombok a.moodle-gomb:before{background:#ffe1a8;box-shadow:0 0 0 3px rgba(255,225,168,.2),0 0 7px rgba(255,225,168,.4)}
-.gombok a.hamarosan{filter:grayscale(.72);opacity:.5!important;box-shadow:none!important}
+.gombok a{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin:0!important;padding:9px 16px!important;border:1px solid #6f9bb8!important;border-radius:7px!important;background:linear-gradient(180deg,#dcebf4,#c7dce9)!important;color:#163f5d!important;font-size:13px!important;font-weight:800!important;letter-spacing:.02em;box-shadow:0 3px 8px rgba(20,55,80,.12),inset 0 1px 0 rgba(255,255,255,.65)!important;transition:.18s ease!important}
+.gombok a:before{content:"";width:6px;height:6px;margin-right:8px;border-radius:50%;background:#2b8fbe;box-shadow:0 0 0 3px rgba(43,143,190,.12)}
+.gombok a:hover{transform:translateY(-2px)!important;background:linear-gradient(180deg,#cce6f4,#afd3e7)!important;border-color:#4388ad!important;color:#0b3553!important;box-shadow:0 6px 13px rgba(20,55,80,.17),inset 0 1px 0 #fff!important;text-decoration:none!important}
+.gombok a:active{transform:translateY(0)!important;background:#b5cfde!important;box-shadow:inset 0 2px 5px rgba(10,45,70,.14)!important}
+.gombok a.feladat-gomb{background:linear-gradient(180deg,#d5eaf6,#bad9e9)!important;border-color:#6b9fbd!important;color:#174b6a!important}
+.gombok a.feladat-gomb:before{background:#2689b7}
+.gombok a.gyakorlat-gomb{background:linear-gradient(180deg,#c8dde9,#aac8da)!important;border-color:#5e8da9!important;color:#123f5d!important}
+.gombok a.gyakorlat-gomb:before{background:#23749d}
+.gombok a.moodle-gomb{background:linear-gradient(180deg,#f7e8cf,#edd1a5)!important;border-color:#d3a363!important;color:#7d4b10!important}
+.gombok a.moodle-gomb:before{background:#c9832c;box-shadow:0 0 0 3px rgba(201,131,44,.12)}
+.gombok a.hamarosan{filter:grayscale(.6);opacity:.5!important;box-shadow:none!important}
 @media(max-width:900px){.plc-nav{grid-template-columns:repeat(2,1fr)}body>nav{overflow-x:auto;white-space:nowrap}body>nav a{margin:0}.tantargy-fejlec:after{display:none}}
 @media(max-width:600px){main{padding:25px 14px 55px}.tantargy-fejlec{padding:22px 22px 22px 27px}.plc-nav{grid-template-columns:1fr}.het{display:block}.het-szam{min-height:58px;width:100%;font-size:25px}.het-tartalom{padding:19px}.gombok{display:grid;grid-template-columns:1fr 1fr}.gombok a{width:100%;text-align:center}body>header:after{font-size:64px}.blokk>h2:after{display:none}}
 @media(max-width:390px){.gombok{grid-template-columns:1fr}}
