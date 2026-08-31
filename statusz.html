@@ -27,7 +27,7 @@
 <script>
 const REPO='zsfazekas65-stack/IAP';
 const CACHE_KEY='iap-status-tree-v1';
-const CACHE_MS=10*60*1000;
+const CACHE_MS=0;
 const subjects=[
  {name:'Villamos alapismeretek',grade:'9. évfolyam',page:'villamos9.html',dir:'villamos9'},
  {name:'Villamos alapismeretek',grade:'10. évfolyam',page:'villamos10.html',dir:'villamos10'},
@@ -48,7 +48,7 @@ const types=[
 function n2(n){return String(n).padStart(2,'0')}
 function weekNow(){return typeof window.aktualisIAPHet==='function'?window.aktualisIAPHet():null}
 function renderCalendar(){const w=weekNow();document.getElementById('aktHet').textContent=w?`${w}. hét`:'–';const now=new Date(), start=new Date(2026,8,1), end=new Date(2027,5,15);let t='2026/2027-es tanév';if(now<start)t='A tanév még nem indult el';else if(now>end)t='A tanév lezárult';else if(!w)t='Tanítási szünet';document.getElementById('tanevAllapot').textContent=t}
-async function getTree(force=false){if(!force){try{const c=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');if(c&&Date.now()-c.time<CACHE_MS&&Array.isArray(c.paths))return c.paths}catch(e){}}const r=await fetch(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`,{headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error(`GitHub API hiba: ${r.status}`);const j=await r.json();const paths=j.tree.filter(x=>x.type==='blob').map(x=>x.path);try{localStorage.setItem(CACHE_KEY,JSON.stringify({time:Date.now(),paths}))}catch(e){}return paths}
+async function getTree(force=false){if(!force){try{const c=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');if(c&&Date.now()-c.time<CACHE_MS&&Array.isArray(c.paths))return c.paths}catch(e){}}const r=await fetch(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`,{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});if(!r.ok)throw new Error(`GitHub API hiba: ${r.status}`);const j=await r.json();const paths=j.tree.filter(x=>x.type==='blob').map(x=>x.path);try{localStorage.setItem(CACHE_KEY,JSON.stringify({time:Date.now(),paths}))}catch(e){}return paths}
 function analyze(paths){const set=new Set(paths);let totalHave=0,totalExpected=subjects.length*36*types.length,complete=0;const data=subjects.map(s=>{const counts={},missing={};let have=0;types.forEach(t=>{counts[t.key]=0;missing[t.key]=[];for(let w=1;w<=36;w++){const p=t.path(s.dir,n2(w));if(set.has(p)){counts[t.key]++;have++}else missing[t.key].push(w)}});const pct=Math.round(have/(36*types.length)*100);if(pct===100)complete++;totalHave+=have;return {...s,counts,missing,have,pct}});return {data,totalHave,totalExpected,complete,missing:totalExpected-totalHave,pct:Math.round(totalHave/totalExpected*100),set}}
 function cls(p){return p===100?'ok':p>=75?'warn':'bad'}
 function missingText(a){if(!a.length)return '–';const shown=a.slice(0,12).map(n=>n2(n)).join(', ');return shown+(a.length>12?` … (+${a.length-12})`:'')}
