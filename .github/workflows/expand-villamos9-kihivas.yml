@@ -1,0 +1,79 @@
+name: Expand Villamos9 weekly challenges
+on:
+  push:
+    paths:
+      - '.github/workflows/expand-villamos9-kihivas.yml'
+permissions:
+  contents: write
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Expand challenge data from Villamos9 week cards
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+          html=Path('villamos9.html').read_text(encoding='utf-8')
+          js=Path('iap-kihivas.js').read_text(encoding='utf-8')
+          cards=re.findall(r'<div class="het"><div class="het-szam">(\d+)</div><div class="het-tartalom"><h3>(.*?)</h3><p>(.*?)</p>',html,re.S)
+          titles={w:(re.sub('<.*?>','',t),re.sub('<.*?>','',d)) for w,t,d in cards}
+          custom={
+          '05':('Számolj!','Egy fogyasztón 12 V feszültség mellett 3 A áram folyik. Mekkora az ellenállása?',['4 Ω','9 Ω','15 Ω','36 Ω'],0,'Ohm törvénye szerint R = U / I = 12 / 3 = 4 Ω.'),
+          '06':('Mérés','A számított érték 100 Ω, a műszer 99,8 Ω-ot mutat. Mi a legjobb következtetés?',['A mérés biztosan hibás.','A mért és számított érték jól egyezik.','Az ellenállás zárlatos.','A műszer csak feszültséget mér.'],1,'A kis eltérés természetes lehet a tűrés és a mérési bizonytalanság miatt.'),
+          '07':('Számolj!','Egy 24 V-os áramkörben 120 Ω az ellenállás. Mekkora az áram?',['0,2 A','2 A','5 A','2880 A'],0,'I = U / R = 24 / 120 = 0,2 A.'),
+          '08':('IAP döntés','Egy mérés eredménye meglepő. Mit tesz a jó szakember először?',['Átírja az eredményt.','Ellenőrzi a kapcsolást, a méréshatárt és megismétli a mérést.','Kicserél minden alkatrészt.','Figyelmen kívül hagyja.'],1,'A megbízható szakmai döntés ellenőrizhető mérésre épül.'),
+          '09':('Hibakereső','A tápegység jó, de a fogyasztó nem működik. Mi az első logikus vizsgálat?',['Az áramút folytonossága és a kapcsoló állapota.','A műhely világítása.','A fogyasztó színe.','A hálózati frekvencia átírása.'],0,'Működéshez zárt áramút szükséges; először az áramút megszakadását érdemes keresni.'),
+          '10':('Kapcsolási rajz','Miért használunk szabványos villamos rajzjeleket?',['Hogy a rajz szebb legyen.','Hogy a kapcsolást más szakember is egyértelműen értelmezhesse.','Hogy ne kelljen vezetéket használni.','Csak a vizsgán van rá szükség.'],1,'A szabványos jelképek a szakma közös nyelvét adják.'),
+          '11':('Soros kapcsolás','Két soros fogyasztó közül az egyik megszakad. Mi történik?',['Csak a hibás fogyasztó áll le.','Az egész áramút megszakad.','Az áram megduplázódik.','A tápegység feszültsége eltűnik.'],1,'Soros kapcsolásban egyetlen áramút van, ezért egy szakadás az egész kört megszakítja.'),
+          '12':('Párhuzamos kapcsolás','Két párhuzamos ág közül az egyik megszakad. Mi történik a másik ép ággal?',['Az is biztosan leáll.','Tovább működhet, mert önálló áramútja van.','Zárlatos lesz.','Megfordul benne az áram.'],1,'A párhuzamos ágak külön áramutak, ezért egy ág hibája nem feltétlenül állítja le a másikat.'),
+          '13':('Szakmai döntés','Két lámpát úgy szeretnél bekötni, hogy az egyik hibája esetén a másik tovább működjön. Melyik kapcsolást választod?',['Soros','Párhuzamos','Rövidzár','Nyitott áramkör'],1,'A párhuzamos kapcsolás önálló áramutat biztosít a fogyasztóknak.'),
+          '14':('Számolj!','Egy 24 V-os fogyasztón 2 A folyik. Mekkora a teljesítménye?',['12 W','22 W','48 W','240 W'],2,'P = U · I = 24 · 2 = 48 W.'),
+          '15':('Mérés','Hogyan kapcsoljuk az ampermérőt az áramkörbe?',['Párhuzamosan a fogyasztóval.','Sorosan az áramútba.','A tápegység mellé, bekötés nélkül.','Mindig rövidzárként.'],1,'Az áramerősség méréséhez a mérőműszeren át kell folynia a mérendő áramnak, ezért sorosan kötjük be.'),
+          '16':('IAP mérföldkő','Egy működő áramkör dokumentálásakor mi a legfontosabb?',['Csak az, hogy emlékezzünk rá.','A rajz, mért értékek és következtetések egyértelmű rögzítése.','Csak egy fénykép.','A vezetékek színének felsorolása.'],1,'A szakmai dokumentáció akkor jó, ha más is reprodukálni és ellenőrizni tudja a munkát.'),
+          '17':('Mágnesesség','Mi jön létre áramjárta vezető körül?',['Csak hő.','Mágneses tér.','Vákuum.','Mechanikai rövidzár.'],1,'Az elektromos áram mágneses teret hoz létre a vezető környezetében.'),
+          '18':('Elektromágnes','Mivel növelhető egy tekercs elektromágneses hatása?',['Az áram megszüntetésével.','Megfelelő vasmag alkalmazásával és a gerjesztés növelésével.','A vezeték elvágásával.','A tekercs rövidre zárásával.'],1,'A vasmag és a megfelelő gerjesztés erősíti az elektromágnes mágneses hatását.'),
+          '19':('Indukció','Mikor indukálódhat feszültség egy vezetőben?',['Ha változik a vezetőt érő mágneses fluxus.','Csak ha a vezető műanyag.','Ha nincs mágneses tér.','Kizárólag egyenáramú ellenálláson.'],0,'Az elektromágneses indukció alapja a mágneses fluxus változása.'),
+          '20':('Összefoglaló','Melyik jelenség kapcsolja össze közvetlenül a villamosságot és a mágnesességet?',['Elektromágneses indukció.','Hőtágulás.','Párolgás.','Súrlódás.'],0,'Az elektromágneses indukció a villamos és mágneses jelenségek egyik alapvető kapcsolata.'),
+          '21':('Relé','Mi a relé egyik alapvető előnye?',['Kis vezérlőjellel másik áramkört tud kapcsolni.','Mindig növeli a hálózati feszültséget.','Csak mechanikai szerkezetekhez használható.','Nem tartalmaz érintkezőket.'],0,'A relé vezérlő- és kapcsolt áramköre lehet egymástól elkülönített, és kis vezérlőteljesítménnyel kapcsolhat terhelést.'),
+          '22':('Kapcsolástechnika','Egy relé NO érintkezője mikor zár?',['Alaphelyzetben mindig.','A relé megfelelő meghúzásakor.','Csak áramszünetkor.','Soha.'],1,'Az NO, vagyis alaphelyzetben nyitott érintkező a relé működtetésekor zár.'),
+          '23':('Villamos gép','Mi a villamos motor alapvető energiaátalakítása?',['Mechanikai → villamos.','Villamos → mechanikai.','Hő → vegyi.','Fény → mechanikai.'],1,'A villamos motor villamos energiából mechanikai energiát állít elő.'),
+          '24':('Generátor','Mi a generátor alapvető energiaátalakítása?',['Mechanikai → villamos.','Villamos → mechanikai.','Villamos → kizárólag hő.','Vegyi → fény.'],0,'A generátor mechanikai energiát alakít villamos energiává.'),
+          '25':('Biztonság','Mi a védővezető (PE) elsődleges szerepe?',['Normál üzemi áram vezetése.','Érintésvédelmi biztonság növelése hiba esetén.','A fogyasztó teljesítményének növelése.','A frekvencia beállítása.'],1,'A PE vezető a hibavédelem fontos része; hiba esetén segíti a veszélyes érintési feszültség elleni védelmet.'),
+          '26':('Védelem','Mi a túláramvédelem feladata?',['A túl nagy áram káros hatásainak korlátozása.','A feszültség állandó növelése.','A védővezető kikapcsolása.','A fogyasztó gyorsítása.'],0,'A túláramvédelem túlterhelés vagy zárlat esetén védi a vezetéket és a berendezést.'),
+          '27':('Zárlat','Mi jellemző egy zárlatra?',['A szokásosnál nagyon nagy áram alakulhat ki.','Az áram mindig nulla.','A biztosító feladata megszűnik.','A vezeték biztosan hidegebb lesz.'],0,'Kis impedanciájú hibás áramút esetén nagy zárlati áram folyhat, ezért gyors védelem szükséges.'),
+          '28':('Védelmi döntés','Miért nem helyettesíti egymást minden esetben a túláramvédelem és az áram-védőkapcsoló?',['Mert eltérő hibajelenségekre és védelmi feladatokra szolgálnak.','Mert ugyanaz az eszköz két neve.','Mert egyik sem kapcsol le.','Csak a készülék színe különbözik.'],0,'A túláramvédelem és az áram-védőkapcsoló eltérő veszélyek érzékelésére szolgál, ezért egymást kiegészíthetik.'),
+          '29':('Érintésvédelem','Egy fémházas készülék burkolata hiba miatt feszültség alá kerül. Mi a cél?',['A veszélyes állapot gyors megszüntetése.','A burkolat feszültségének növelése.','A védővezető eltávolítása.','A hiba figyelmen kívül hagyása.'],0,'A hibavédelem célja, hogy veszélyes érintési helyzetben a védelem megfelelően és gyorsan működjön.'),
+          '30':('Áram-védőkapcsoló','Mit figyel egy áram-védőkapcsoló működésének alapelve szerint?',['A be- és kifolyó áramok különbségét.','Csak a hálózati feszültség színét.','A motor fordulatszámát.','A vezeték hosszát.'],0,'Az RCD a vezetők áramainak egyensúlyát figyeli; hibaáram esetén különbség jelenhet meg.'),
+          '31':('Biztonsági döntés','Feszültségmentesnek gondolt áramkörön dolgoznál. Mi kell a munka előtt?',['A feszültségmentes állapot megfelelő ellenőrzése.','Elég, ha a lámpa nem világít.','Elég a kapcsoló OFF állása.','Csak egy fénykép a kapcsolóról.'],0,'A feszültségmentességet nem feltételezzük, hanem megfelelő eljárással ellenőrizzük.'),
+          '32':('Hibakereső','Egy 24 V-os jelzőlámpa nem világít. A tápegységen 24 V mérhető. Mi legyen a következő logikus lépés?',['A teljes rendszert kicserélni.','A táp és a lámpa közötti áramút mérési pontjait vizsgálni.','A mérőműszert félretenni.','A feszültséget találomra növelni.'],1,'A hibakeresés logikus szűkítés: ismert jó ponttól haladunk a hiba felé mérésekkel.'),
+          '33':('Méréses hibakeresés','P1-en és P2-n 24 V, P3-tól 0 V mérhető. Hol keresnéd a hibát?',['P2 és P3 között.','A tápegység előtt.','Biztosan a lámpában.','Sehol, ez normális.'],0,'A mérési eredmény ott változik meg, ahol a hibás szakasz valószínűsíthető: P2 és P3 között.'),
+          '34':('Tervezés','Mi legyen egy egyszerű villamos rendszer tervezésének első lépése?',['A vezetékek találomra bekötése.','A feladat és a követelmények pontos meghatározása.','Azonnali feszültség alá helyezés.','A rajz kihagyása.'],1,'A jó tervezés a feladat és követelmények tisztázásával kezdődik, csak ezután jön a rajz és az eszközválasztás.'),
+          '35':('IAP szakmai kihívás','S1 működteti a lámpát, S2 nem. A két NO nyomógomb párhuzamos. Mi a legjobb első következtetés?',['A tápegység biztosan rossz.','A H1 lámpa biztosan rossz.','Az S2 ágában kell keresni a hibát.','Mindkét nyomógomb hibás.'],2,'Mivel S1-ről a lámpa működik, a közös táplálás és H1 valószínűleg jó; a hibát az S2 ágára lehet szűkíteni.'),
+          '36':('Év végi mestervizsga','Egy ismeretlen hibás áramkörhöz érkezel. Melyik gondolkodási sorrend a legszakmaibb?',['Találgatás → alkatrészcsere → mérés.','Megfigyelés → biztonság → rajzértelmezés → mérés → következtetés → ellenőrzés.','Feszültségnövelés → próba → találgatás.','Mindent egyszerre kicserélni.'],1,'A tudatos szakmai hibakeresés biztonságos, mérésen alapuló és ellenőrizhető folyamat.'),
+          }
+          def obj(w,v):
+              typ,q,ans,correct,exp=v
+              return f"  '{w}':{{tipus:{json.dumps(typ,ensure_ascii=False)},kerdes:{json.dumps(q,ensure_ascii=False)},valaszok:{json.dumps(ans,ensure_ascii=False)},helyes:{correct},magyarazat:{json.dumps(exp,ensure_ascii=False)}}}"
+          additions=',\n'.join(obj(w,custom[w]) for w in sorted(custom))
+          marker='\n};\n\nconst CSS='
+          if marker not in js: raise SystemExit('challenge object end not found')
+          # Only add weeks that are not already present.
+          missing=[w for w in custom if not re.search(r"['\"]"+re.escape(w)+r"['\"]\s*:\s*\{",js)]
+          if missing:
+              additions=',\n'.join(obj(w,custom[w]) for w in sorted(missing))
+              js=js.replace(marker,',\n'+additions+'\n};\n\nconst CSS=',1)
+              Path('iap-kihivas.js').write_text(js,encoding='utf-8')
+          # verify all 36 weeks are present
+          absent=[f'{i:02d}' for i in range(1,37) if not re.search(r"['\"]"+f'{i:02d}'+r"['\"]\s*:\s*\{",js)]
+          if absent: raise SystemExit('Still missing: '+','.join(absent))
+          print('All 36 weekly challenges present.')
+          PY
+      - name: Commit expanded challenges
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iap-kihivas.js
+          git commit -m 'Add Villamos9 weekly challenges for all 36 weeks' || exit 0
+          git push
