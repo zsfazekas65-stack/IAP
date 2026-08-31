@@ -1,0 +1,61 @@
+name: IAP audit
+on:
+  push:
+    paths:
+      - '.github/workflows/iap-audit.yml'
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build audit report
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          subjects = [
+              ('9. évfolyam · Villamos alapismeretek','villamos9'),
+              ('10. évfolyam · Villamos alapismeretek','villamos10'),
+              ('10. évfolyam · Gépészeti alapismeretek','gepeszet10'),
+              ('11. évfolyam · Analóg áramkörök','analog11'),
+              ('11. évfolyam · Elektrotechnika','elektrotechnika11'),
+              ('12. évfolyam · PLC alapismeretek','plc'),
+              ('12. évfolyam · Folyamatirányítás','folyamatiranyitas12'),
+              ('13. évfolyam · Villamos művek','villamosmuvek13'),
+              ('13. évfolyam · Épületvillamossági hálózatok','epuletvillamossag13'),
+          ]
+          types = [
+              ('Tananyag', lambda d,n:f'tananyagok/{d}/{n}_het.pdf'),
+              ('Bemutató', lambda d,n:f'ppt/{d}/{n}_het.pptx'),
+              ('Feladat', lambda d,n:f'feladatok/{d}/{n}_het_feladat.pdf'),
+              ('Gyakorlat', lambda d,n:f'gyakorlatok/{d}/{n}_het_gyakorlat.pdf'),
+          ]
+          lines=[]; total_have=0; expected=len(subjects)*36*len(types)
+          lines.append('IAP TELJES FÁJLAUDIT')
+          lines.append('====================')
+          for name,d in subjects:
+              lines.append('')
+              lines.append(name)
+              sh=0
+              for label,fn in types:
+                  missing=[]; have=0
+                  for w in range(1,37):
+                      p=Path(fn(d,f'{w:02d}'))
+                      if p.is_file(): have+=1
+                      else: missing.append(w)
+                  sh+=have
+                  lines.append(f'  {label}: {have}/36' + (f" | HIÁNYZIK: {', '.join(f'{w:02d}' for w in missing)}" if missing else ' | KÉSZ'))
+              total_have += sh
+              lines.append(f'  Összesen: {sh}/144 = {round(sh/144*100)}%')
+          missing_total=expected-total_have
+          lines.insert(2,f'Összesen: {total_have}/{expected} = {round(total_have/expected*100)}% | Hiányzó: {missing_total}')
+          Path('iap_audit_report.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          PY
+      - name: Commit report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iap_audit_report.txt
+          git commit -m 'Add IAP audit report' || exit 0
+          git push
