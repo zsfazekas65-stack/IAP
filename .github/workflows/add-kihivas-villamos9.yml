@@ -1,0 +1,32 @@
+name: Add Villamos9 challenge prototype
+on:
+  push:
+    paths:
+      - '.github/workflows/add-kihivas-villamos9.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add challenge script to Villamos9
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('villamos9.html')
+          s=p.read_text(encoding='utf-8')
+          tag='<script src="iap-kihivas.js"></script>'
+          if tag not in s:
+              if '</body>' not in s:
+                  raise SystemExit('villamos9.html: </body> not found')
+              s=s.replace('</body>',tag+'</body>',1)
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit integration
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add villamos9.html
+          git commit -m 'Enable weekly challenge prototype on Villamos9' || exit 0
+          git push
