@@ -1,0 +1,47 @@
+name: Finalize Villamos9 32-36
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve old week 32 as week 36 and patch HTML
+        run: |
+          set -e
+          cp tananyagok/villamos9/32_het.pdf tananyagok/villamos9/36_het.pdf
+          cp ppt/villamos9/32_het.pptx ppt/villamos9/36_het.pptx
+          cp feladatok/villamos9/32_het_feladat.pdf feladatok/villamos9/36_het_feladat.pdf
+          cp gyakorlatok/villamos9/32_het_gyakorlat.pdf gyakorlatok/villamos9/36_het_gyakorlat.pdf
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('villamos9.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('<a href="#blokk7"><span>29–32</span>Érintésvédelem és évzárás</a><a href="#blokk8"><span>33–36</span>Év végi összefoglalás</a>', '<a href="#blokk7"><span>29–31</span>Érintésvédelem</a><a href="#blokk8"><span>32–36</span>Hibakeresés, tervezés és évzárás</a>')
+          s=s.replace('<section class="blokk" id="blokk7"><h2>7. blokk – Érintésvédelem és évzárás</h2>', '<section class="blokk" id="blokk7"><h2>7. blokk – Érintésvédelem</h2>')
+          s=re.sub(r'<div class="het"><div class="het-szam">32</div><div class="het-tartalom"><h3>Év végi összefoglalás</h3>.*?</div></div></div>(?=</div></section><section class="blokk" id="blokk8")','',s,count=1)
+          def card(n,title,desc):
+              nn=f'{n:02d}'
+              return f'<div class="het"><div class="het-szam">{nn}</div><div class="het-tartalom"><h3>{title}</h3><p>{desc}</p><div class="gombok"><a href="tananyagok/villamos9/{nn}_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamos9/{nn}_het.pptx">📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamos9/{nn}_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamos9/{nn}_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
+          cards=''.join([
+              card(32,'Villamos hibakeresés alapjai','Megfigyelés, mérés és következtetés; tipikus hibák felismerése és logikus hibakeresési sorrend.'),
+              card(33,'Méréses hibakeresés','A hiba helyének meghatározása P1–P5 mérési pontokkal, várt és mért értékek összehasonlításával.'),
+              card(34,'Egyszerű villamos rendszer megtervezése','A feladattól a követelményeken és kapcsolási rajzon át az eszközválasztásig és ellenőrzésig.'),
+              card(35,'IAP szakmai kihívás','Komplex feladat: tervezés, építés, működési próba, méréses hibakeresés, javítás és újraellenőrzés.'),
+              card(36,'Év végi összefoglalás','Az egész éves tudás összekapcsolása és egy családi ház villamos hálózatának projektje.')
+          ])
+          newblock='<section class="blokk" id="blokk8"><h2>8. blokk – Hibakeresés, tervezés és évzárás</h2><div class="hetek">'+cards+'</div></section>'
+          s=re.sub(r'<section class="blokk" id="blokk8">.*?</section>',newblock,s,count=1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          rm -f .github/workflows/villamos9-finalize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add villamos9.html tananyagok/villamos9/36_het.pdf ppt/villamos9/36_het.pptx feladatok/villamos9/36_het_feladat.pdf gyakorlatok/villamos9/36_het_gyakorlat.pdf .github/workflows/villamos9-finalize.yml
+          git commit -m "Finalize Villamos9 weeks 32-36 structure"
+          git push
