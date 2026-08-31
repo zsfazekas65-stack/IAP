@@ -1,77 +1,38 @@
-name: IAP calendar binding
+name: IAP status link
 
 on:
   push:
     paths:
       - '.github/workflows/iap-calendar-bind.yml'
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  bind-calendar:
+  add-status-link:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Connect subject pages to central IAP calendar
+      - uses: actions/checkout@v4
+      - name: Add status link to homepage
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
-
-          files = [
-              'villamos9.html',
-              'villamos10.html',
-              'gepeszet10.html',
-              'analog11.html',
-              'elektrotechnika11.html',
-              'plc.html',
-              'folyamatiranyitas12.html',
-              'villamosmuvek13.html',
-              'epuletvillamossag13.html',
-          ]
-
-          loader = '<script src="iap-naptar.js"></script>'
-
-          for name in files:
-              path = Path(name)
-              if not path.exists():
-                  print(f'SKIP: {name} nem található')
-                  continue
-
-              text = path.read_text(encoding='utf-8')
-              original = text
-
-              if 'iap-naptar.js' not in text:
-                  match = list(re.finditer(r'</body\s*>', text, flags=re.IGNORECASE))
-                  if not match:
-                      raise RuntimeError(f'{name}: nincs </body> záró tag')
-                  pos = match[-1].start()
-                  text = text[:pos] + '\n' + loader + '\n' + text[pos:]
-
-              if name == 'plc.html':
-                  text = text.replace('href="#">Kapcsolat</a>', 'href="kapcsolat.html">Kapcsolat</a>')
-
-              if text != original:
-                  path.write_text(text, encoding='utf-8')
-                  print(f'OK: {name} bekötve')
-              else:
-                  print(f'OK: {name} már be volt kötve')
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          old='<div class="links"><a href="kapcsolat.html">KAPCSOLAT</a><a href="moodle.html">MOODLE</a></div>'
+          new='<div class="links"><a href="kapcsolat.html">KAPCSOLAT</a><a href="statusz.html">IAP STÁTUSZ</a><a href="moodle.html">MOODLE</a></div>'
+          if old in s:
+              p.write_text(s.replace(old,new,1),encoding='utf-8')
+          elif 'href="statusz.html"' not in s:
+              raise RuntimeError('A főoldali linkhely nem található.')
           PY
-
-      - name: Commit changes
+      - name: Commit homepage change
         shell: bash
         run: |
-          if git diff --quiet; then
-            echo 'Nincs új módosítás.'
-            exit 0
-          fi
+          if git diff --quiet; then exit 0; fi
           git config user.name 'IAP automation'
           git config user.email 'actions@users.noreply.github.com'
-          git add villamos9.html villamos10.html gepeszet10.html analog11.html elektrotechnika11.html plc.html folyamatiranyitas12.html villamosmuvek13.html epuletvillamossag13.html
-          git commit -m 'Connect all subject pages to IAP calendar'
+          git add index.html
+          git commit -m 'Add IAP status link to homepage'
           git push
