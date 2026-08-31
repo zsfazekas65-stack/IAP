@@ -120,10 +120,17 @@
       const szamElem = het.querySelector('.het-szam');
       if (!szamElem) return;
       const szam = parseInt(szamElem.textContent.trim(), 10);
-      if (szam === aktualisHet) {
-        het.classList.add('aktualis-het');
-      }
+      if (szam === aktualisHet) het.classList.add('aktualis-het');
     });
+  }
+
+  function tantargyiKiegeszitok() {
+    if (/villamos10\.html$/i.test(location.pathname) && !document.querySelector('script[src="iap-kihivas-villamos10.js"]')) {
+      const s = document.createElement('script');
+      s.src = 'iap-kihivas-villamos10.js';
+      s.defer = true;
+      document.head.appendChild(s);
+    }
   }
 
   window.IAP_NAPTAR = IAP_NAPTAR;
@@ -131,8 +138,9 @@
   window.kiemelAktualisHet = kiemelAktualisHet;
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', kiemelAktualisHet);
+    document.addEventListener('DOMContentLoaded', () => { kiemelAktualisHet(); tantargyiKiegeszitok(); });
   } else {
     kiemelAktualisHet();
+    tantargyiKiegeszitok();
   }
 })();
