@@ -11,8 +11,8 @@
     elsoTanitasNap: '2026-09-01',
     utolsoTanitasNap: '2027-06-15',
     szunetek: [
-      { nev: 'Őszi szünet',  tol: '2026-10-23', ig: '2026-11-01' },
-      { nev: 'Téli szünet',  tol: '2026-12-19', ig: '2027-01-03' },
+      { nev: 'Őszi szünet', tol: '2026-10-23', ig: '2026-11-01' },
+      { nev: 'Téli szünet', tol: '2026-12-19', ig: '2027-01-03' },
       { nev: 'Tavaszi szünet', tol: '2027-03-25', ig: '2027-04-04' }
     ],
     maxHet: 36
@@ -70,23 +70,58 @@
     return null;
   }
 
+  function stilusBetoltese() {
+    if (document.getElementById('iap-aktualis-het-stilus')) return;
+    const style = document.createElement('style');
+    style.id = 'iap-aktualis-het-stilus';
+    style.textContent = `
+      .het{position:relative}
+      .het.aktualis-het,.het.aktualis{
+        margin:12px 0;
+        padding:42px 18px 18px;
+        background:linear-gradient(135deg,#e8f3ff,#f8fbff);
+        border:2px solid #1976d2;
+        border-radius:14px;
+        box-shadow:0 10px 28px #1976d22b;
+      }
+      .het.aktualis-het::before,.het.aktualis::before{
+        content:'●  AKTUÁLIS HÉT';
+        position:absolute;
+        top:10px;
+        left:88px;
+        padding:5px 12px;
+        border-radius:999px;
+        background:#1976d2;
+        color:#fff;
+        font-size:.78rem;
+        font-weight:800;
+        letter-spacing:.04em;
+        z-index:1;
+      }
+      .het.aktualis-het .het-szam,.het.aktualis .het-szam{
+        background:linear-gradient(135deg,#0d47a1,#2196f3)!important;
+        box-shadow:0 5px 14px #1976d244;
+      }
+      @media(max-width:650px){
+        .het.aktualis-het,.het.aktualis{padding-top:48px}
+        .het.aktualis-het::before,.het.aktualis::before{left:14px}
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function kiemelAktualisHet() {
+    stilusBetoltese();
     const aktualisHet = aktualisIAPHet();
+    document.querySelectorAll('.het').forEach(het => het.classList.remove('aktualis-het','aktualis'));
     if (!aktualisHet) return;
 
     document.querySelectorAll('.het').forEach(het => {
       const szamElem = het.querySelector('.het-szam');
       if (!szamElem) return;
       const szam = parseInt(szamElem.textContent.trim(), 10);
-      if (szam !== aktualisHet) return;
-
-      het.classList.add('aktualis-het');
-      const tartalom = het.querySelector('.het-tartalom');
-      if (tartalom && !tartalom.querySelector('.aktualis-jelzes')) {
-        const badge = document.createElement('div');
-        badge.className = 'aktualis-jelzes';
-        badge.textContent = 'AKTUÁLIS HÉT';
-        tartalom.prepend(badge);
+      if (szam === aktualisHet) {
+        het.classList.add('aktualis-het');
       }
     });
   }
