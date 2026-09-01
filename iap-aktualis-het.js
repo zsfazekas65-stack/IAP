@@ -1,10 +1,21 @@
 /* IAP – központi aktuális hét
-   Hetente csak az alábbi egy számot kell átírni. */
+   A naptár jelenléte esetén automatikusan a tényleges tanítási hetet használja. */
 const IAP_AKTUALIS_HET = 1;
 
 (function () {
+  const oldal = location.pathname.split('/').pop().toLowerCase();
+  const tantargyiOldalak = ['villamos9.html','villamos10.html','gepeszet10.html','analog11.html','elektrotechnika11.html','villamosszereles11.html','plc.html','folyamatiranyitas12.html','epuletvillamossag13.html','villamosmuvek13.html'];
+
+  // Ha egy régebbi tantárgyi oldal nem tölti be a központi naptárt, pótoljuk.
+  if (tantargyiOldalak.includes(oldal) && !window.IAP_NAPTAR && !document.querySelector('script[src*="iap-naptar.js"]')) {
+    const s = document.createElement('script');
+    s.src = './iap-naptar.js?v=4';
+    s.async = false;
+    document.body.appendChild(s);
+  }
+
   // PLC oldal: régi hivatkozások automatikus javítása a tényleges fájlnevekre.
-  if (/\/plc\.html(?:$|[?#])/i.test(location.pathname + location.search + location.hash)) {
+  if (oldal === 'plc.html') {
     document.querySelectorAll('a[href^="feladatok/plc/"]').forEach(function (a) {
       a.href = a.getAttribute('href').replace(/\/(\d{2})_het\.pdf$/, '/$1_het_feladat.pdf');
     });
@@ -16,13 +27,14 @@ const IAP_AKTUALIS_HET = 1;
     });
   }
 
-  const n = Number(IAP_AKTUALIS_HET);
-  if (!Number.isFinite(n) || n < 1 || n > 36) return;
+  const n = typeof window.aktualisIAPHet === 'function' ? window.aktualisIAPHet() : Number(IAP_AKTUALIS_HET);
+  if (n === null || !Number.isFinite(Number(n)) || Number(n) < 1 || Number(n) > 36) return;
 
+  const hetSzam = Number(n);
   const badge = document.getElementById("iap-aktualis-het-szam");
   const felirat = document.getElementById("iap-aktualis-het-felirat");
-  if (badge) badge.textContent = n + ".";
-  if (felirat) felirat.textContent = n + ". tanítási hét";
+  if (badge) badge.textContent = hetSzam + ".";
+  if (felirat) felirat.textContent = hetSzam + ". tanítási hét";
 
   let aktualis = null;
   document.querySelectorAll(".het").forEach(function (het) {
@@ -30,7 +42,7 @@ const IAP_AKTUALIS_HET = 1;
     if (het.id === "aktualis-het") het.removeAttribute("id");
     const szamEl = het.querySelector(".het-szam");
     const szam = parseInt(szamEl ? szamEl.textContent : "", 10);
-    if (szam === n && !aktualis) {
+    if (szam === hetSzam && !aktualis) {
       het.classList.add("aktualis");
       het.id = "aktualis-het";
       aktualis = het;
