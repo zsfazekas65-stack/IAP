@@ -1,0 +1,14 @@
+IAP – HOL TARTUNK? / AKTUÁLIS HÉT
+
+A csomag minden tantárgyi oldalán:
+- az aktuális hét kék kiemelést kap;
+- megjelenik az „AKTUÁLIS HÉT” jelölés;
+- jobb alsó sarokban „↩ Aktuális hét” visszaugró gomb van;
+- a főlap Hol tartunk? részéből bármely tantárgy aktuális hetére lehet ugrani.
+
+HETI ÁTÁLLÍTÁS:
+Az iap-aktualis-het.js fájl elején ezt az egy sort kell módosítani:
+const IAP_AKTUALIS_HET = 1;
+
+Példa a 3. hétre:
+const IAP_AKTUALIS_HET = 3;

@@ -1,27 +1,49 @@
-/* IAP – központi aktuális hét beállítás
-   Csak ezt az egy számot kell átírni hetente. */
+/* IAP – központi aktuális hét
+   Hetente csak az alábbi egy számot kell átírni. */
 const IAP_AKTUALIS_HET = 1;
 
-(function(){
+(function () {
   const n = Number(IAP_AKTUALIS_HET);
-  const badge = document.getElementById('iap-aktualis-het-szam');
-  const felirat = document.getElementById('iap-aktualis-het-felirat');
-  if (badge) badge.textContent = n + '.';
-  if (felirat) felirat.textContent = n + '. tanítási hét';
+  if (!Number.isFinite(n) || n < 1 || n > 36) return;
 
-  let talalat = null;
-  document.querySelectorAll('.het').forEach(function(het){
-    const szamEl = het.querySelector('.het-szam');
-    const szam = parseInt(szamEl ? szamEl.textContent : '', 10);
-    if (szam === n) {
-      het.classList.add('aktualis');
-      if (!het.id) het.id = 'aktualis-het';
-      talalat = het;
+  const badge = document.getElementById("iap-aktualis-het-szam");
+  const felirat = document.getElementById("iap-aktualis-het-felirat");
+  if (badge) badge.textContent = n + ".";
+  if (felirat) felirat.textContent = n + ". tanítási hét";
+
+  let aktualis = null;
+  document.querySelectorAll(".het").forEach(function (het) {
+    het.classList.remove("aktualis");
+    if (het.id === "aktualis-het") het.removeAttribute("id");
+    const szamEl = het.querySelector(".het-szam");
+    const szam = parseInt(szamEl ? szamEl.textContent : "", 10);
+    if (szam === n && !aktualis) {
+      het.classList.add("aktualis");
+      het.id = "aktualis-het";
+      aktualis = het;
     }
   });
 
-  const ugrik = document.querySelector('a[href$="#aktualis-het"]');
-  if (ugrik && talalat && location.pathname.endsWith(ugrik.getAttribute('href').split('#')[0])) {
-    ugrik.href = '#aktualis-het';
+  if (!aktualis) return;
+
+  // Tantárgyi oldalon mindig legyen gyors visszaugrás az aktuális héthez.
+  let vissza = document.querySelector(".iap-aktualis-vissza");
+  if (!vissza) {
+    vissza = document.createElement("a");
+    vissza.className = "iap-aktualis-vissza";
+    vissza.href = "#aktualis-het";
+    vissza.setAttribute("aria-label", "Vissza az aktuális héthez");
+    vissza.innerHTML = "↩ Aktuális hét";
+    document.body.appendChild(vissza);
+  }
+
+  // Ha éppen az aktuális hét látszik, a gomb maradjon diszkrétebb.
+  if ("IntersectionObserver" in window) {
+    const obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        vissza.classList.toggle("iap-kozel", entry.isIntersecting);
+      });
+    }, {threshold: 0.25});
+    obs.observe(aktualis);
   }
 })();

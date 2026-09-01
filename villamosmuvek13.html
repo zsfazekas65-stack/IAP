@@ -5,64 +5,605 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IAP – Villamos művek – 13. évfolyam</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef4f9;color:#203447}header{background:linear-gradient(135deg,#102f4c,#236ca5);color:white;padding:28px 20px;text-align:center}header h1{margin:0;font-size:34px}header p{color:#d7e9f6}nav{background:#fff;padding:12px 20px;box-shadow:0 2px 12px #173a5e22;position:sticky;top:0;z-index:5}nav a{color:#173a5e;text-decoration:none;font-weight:700;margin-right:22px}main{max-width:1100px;margin:30px auto;padding:0 18px}.bevezeto{background:white;border-radius:18px;padding:22px 26px;margin-bottom:24px;box-shadow:0 8px 24px #173a5e18;border-left:7px solid #2b78b8}.het{display:flex;background:white;border-radius:16px;margin:14px 0;overflow:hidden;box-shadow:0 5px 18px #173a5e14}.het-szam{width:84px;min-width:84px;background:linear-gradient(180deg,#173a5e,#2b78b8);color:white;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:800}.het-tartalom{padding:18px 20px;flex:1}.het h3{margin:0 0 7px;color:#173a5e}.het p{margin:0 0 13px;color:#607487}.gombok{display:flex;flex-wrap:wrap;gap:9px}.gombok a{padding:9px 13px;border-radius:9px;background:#2b78b8;color:white;font-size:14px;font-weight:700;text-decoration:none}.feladat-gomb{background:#2e86c1!important}.gyakorlat-gomb{background:#1769aa!important}.uj-anyagresz{margin:28px 0 14px;padding:12px 16px;border-left:6px solid #2b78b8;background:#eaf3fa;color:#173a5e;font-weight:800;letter-spacing:.04em;border-radius:8px}footer{text-align:center;padding:30px;color:#607487}@media(max-width:650px){.het{display:block}.het-szam{width:100%;height:50px}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef4f9;color:#203447}
+header{background:linear-gradient(135deg,#102f4c,#236ca5);color:white;padding:28px 20px;text-align:center}
+header h1{margin:0;font-size:34px}
+header p{color:#d7e9f6}
+nav{background:#fff;padding:12px 20px;box-shadow:0 2px 12px #173a5e22;position:sticky;top:0;z-index:5}
+nav a{color:#173a5e;text-decoration:none;font-weight:700;margin-right:22px}
+main{max-width:1100px;margin:30px auto;padding:0 18px}
+.bevezeto{background:white;border-radius:18px;padding:22px 26px;margin-bottom:24px;box-shadow:0 8px 24px #173a5e18;border-left:7px solid #2b78b8}
+.het{display:flex;background:white;border-radius:16px;margin:14px 0;overflow:hidden;box-shadow:0 5px 18px #173a5e14}
+.het-szam{width:84px;min-width:84px;background:linear-gradient(180deg,#173a5e,#2b78b8);color:white;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:800}
+.het-tartalom{padding:18px 20px;flex:1}
+.het h3{margin:0 0 7px;color:#173a5e}
+.het p{margin:0 0 13px;color:#607487}
+.gombok{display:flex;flex-wrap:wrap;gap:9px}
+.gombok a{padding:9px 13px;border-radius:9px;background:#2b78b8;color:white;font-size:14px;font-weight:700;text-decoration:none}
+.gombok .hamarosan{background:#dbe6ee;color:#71818d;cursor:not-allowed;pointer-events:none}
+.feladat-gomb{background:#2e86c1!important}
+.gyakorlat-gomb{background:#1769aa!important}
+.feladat-gomb.hamarosan,.gyakorlat-gomb.hamarosan{background:#dbe6ee!important;color:#71818d!important}
+footer{text-align:center;padding:30px;color:#607487}
+@media(max-width:650px){.het{display:block}.het-szam{width:100%;height:50px}}
+
+/* IAP – közös aktuális hét kiemelés */
+.het{position:relative}
+.het.aktualis{
+  margin:12px 0;
+  padding-top:42px!important;
+  background:linear-gradient(135deg,#e8f3ff,#f8fbff)!important;
+  border:2px solid #1976d2!important;
+  border-radius:14px!important;
+  box-shadow:0 10px 28px #1976d22b!important;
+}
+.het.aktualis::before{
+  content:"●  AKTUÁLIS HÉT";
+  position:absolute;top:10px;left:88px;
+  padding:5px 12px;border-radius:999px;
+  background:#1976d2;color:#fff;
+  font-size:.78rem;font-weight:800;letter-spacing:.04em;
+  z-index:1;
+}
+.het.aktualis .het-szam{
+  background:linear-gradient(135deg,#0d47a1,#2196f3)!important;
+  box-shadow:0 5px 14px #1976d244!important;
+}
+.iap-aktualis-vissza{
+  position:fixed;right:22px;bottom:22px;z-index:9999;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 16px;border-radius:999px;
+  background:#0d71b9;color:#fff!important;text-decoration:none!important;
+  font:800 14px/1.2 "Segoe UI",Arial,sans-serif;
+  box-shadow:0 8px 24px #0d47a14d;
+  transition:transform .15s ease,filter .15s ease,opacity .15s ease;
+}
+.iap-aktualis-vissza:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.iap-aktualis-vissza.iap-kozel{opacity:.32}
+@media(max-width:650px){
+  .het.aktualis::before{left:18px}
+  .iap-aktualis-vissza{right:12px;bottom:12px;padding:11px 14px}
+}
+
+</style>
+
+<style>
+.uj-anyagresz{margin:28px 0 14px;padding:12px 16px;border-left:6px solid #2b78b8;background:#eaf3fa;color:#173a5e;font-weight:800;letter-spacing:.04em;border-radius:8px}
 </style>
 </head>
 <body>
-<header><h1>⚡ Villamos művek – 13. évfolyam</h1><p>IAP • Integrált Automatika Program • 36 hetes tananyagrendszer</p></header>
-<nav><a href="index.html">← IAP főoldal</a><a href="#hetek">Hetek</a></nav>
+<header>
+  <h1>⚡ Villamos művek – 13. évfolyam</h1>
+  <p>IAP • Integrált Automatika Program • 36 hetes tananyagrendszer</p>
+</header>
+<nav>
+  <a href="index.html">← IAP főoldal</a>
+  <a href="#hetek">Hetek</a>
+</nav>
 <main>
-<section class="bevezeto"><h2>Villamos művek</h2><p>36 hetes szakmai kurzus a villamosenergia-termelés, -átvitel, -elosztás, hálózatok, alállomások és kapcsolódó üzemviteli témák feldolgozásához.</p><p>Minden hétnél külön Tananyag, Bemutató, Feladat és Gyakorlat gomb található.</p></section>
-<section id="hetek"></section>
+<section class="bevezeto">
+  <h2>Villamos művek</h2>
+  <p>36 hetes szakmai kurzus a villamosenergia-termelés, -átvitel, -elosztás, hálózatok, alállomások és kapcsolódó üzemviteli témák feldolgozásához.</p>
+  <p>Minden hétnél külön Tananyag, Bemutató, Feladat és Gyakorlat gomb található. A heteket a tananyagok elkészülésével sorban aktiváljuk.</p>
+</section>
+<section id="hetek">
+
+<div class="het">
+  <div class="het-szam">01</div>
+  <div class="het-tartalom">
+    <h3>1. hét</h3>
+    <p>Villamos művek – 1. heti tananyag.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/01_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/01_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/01_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/01_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">02</div>
+  <div class="het-tartalom">
+    <h3>2. hét</h3>
+    <p>Villamos művek – 2. heti tananyag.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/02_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/02_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/02_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/02_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">03</div>
+  <div class="het-tartalom">
+    <h3>3. hét – A villamosenergia-rendszer felépítése – az erőműtől a fogyasztóig</h3>
+    <p>Termelés, átvitel, elosztás, alállomások, feszültségszintek és a nagyfeszültségű energiaátvitel szerepe.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/03_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/03_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/03_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/03_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">04</div>
+  <div class="het-tartalom">
+    <h3>4. hét – Erőművi generátorok és blokktranszformátorok</h3>
+    <p>Szinkrongenerátorok, gerjesztés, fordulatszám és frekvencia kapcsolata, blokktranszformátor szerepe, hálózatra kapcsolás és alapvető védelmek.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/04_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/04_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/04_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/04_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">05</div>
+  <div class="het-tartalom">
+    <h3>5. hét – Erőműtípusok és energiatermelési módok</h3>
+    <p>Hő-, atom-, víz-, szél- és naperőművek energiaátalakítási lánca, szabályozhatósága, hatásfoka és szerepe a villamosenergia-rendszerben.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/05_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/05_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/05_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/05_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">06</div>
+  <div class="het-tartalom">
+    <h3>6. hét – Komplex összefoglalás: energiaút, generátor, transzformátor, erőműtípusok</h3>
+    <p>Az 1–5. hét témaköreinek lezárása: energiaút az erőműtől a fogyasztóig, szinkrongenerátor, blokktranszformátor, feszültségszintek, erőműtípusok és alapvető számítások.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/06_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/06_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/06_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/06_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">07</div>
+  <div class="het-tartalom">
+    <h3>7. hét – Nagyfeszültségű kapcsolóberendezések és alállomási készülékek</h3>
+    <p>Megszakítók, szakaszolók, földelőkapcsolók, gyűjtősínek, mérőváltók és túlfeszültség-védelem szerepe az alállomásokban.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/07_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/07_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/07_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/07_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">08</div>
+  <div class="het-tartalom">
+    <h3>8. hét – Alállomási kapcsolási sémák és gyűjtősín-rendszerek</h3>
+    <p>Egyszeres, osztott és kettős gyűjtősínes rendszerek, gyűjtősín-összekötő mező, üzembiztonság, karbantarthatóság és kapcsolási rugalmasság.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/08_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/08_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/08_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/08_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">09</div>
+  <div class="het-tartalom">
+    <h3>9. hét – Védelmi rendszerek és relévédelem alapjai</h3>
+    <p>Hálózati hibák, túláram, zárlat, földzárlat, mérőváltók, védelmi relék, megszakító-kioldás és szelektivitás.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/09_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/09_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/09_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/09_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">10</div>
+  <div class="het-tartalom">
+    <h3>10. hét – Transzformátorok az alállomásokban</h3>
+    <p>Teljesítménytranszformátorok feladata és felépítése, hűtés, fokozatkapcsoló, üzemi felügyelet, Buchholz- és differenciálvédelem.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/10_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/10_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/10_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/10_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">11</div>
+  <div class="het-tartalom">
+    <h3>11. hét – Kapcsolási csoportok és párhuzamos üzem</h3>
+    <p>Háromfázisú transzformátorok kapcsolási csoportjai, óraszám és fáziseltolás, párhuzamos üzem feltételei, terhelésmegosztás és hibás párhuzamosítás következményei.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/11_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/11_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/11_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/11_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">12</div>
+  <div class="het-tartalom">
+    <h3>12. hét – Alállomási mérőváltók részletesen</h3>
+    <p>Áramváltók és feszültségváltók feladata, áttétele, mérő- és védelmi magok, pontosság, burden, polaritás, szekunder köri biztonság és alállomási alkalmazások.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/12_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/12_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/12_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/12_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">13</div>
+  <div class="het-tartalom">
+    <h3>13. hét – Alállomási segédüzemi rendszerek és egyenáramú ellátás</h3>
+    <p>AC és DC segédüzem, akkumulátortelep, töltőberendezés, DC elosztó, kioldó- és zárókörök, DC földzárlat, felügyeleti jelzések és üzemzavari ellenőrzések.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/13_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/13_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/13_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/13_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">14</div>
+  <div class="het-tartalom">
+    <h3>14. hét – Alállomási irányítástechnika és távfelügyelet</h3>
+    <p>Helyi és távvezérlés, parancsok és állapot-visszajelzések, reteszelések, SCADA, eseménynaplózás, IED-k, kommunikáció és az IEC 61850 alapgondolata.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/14_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/14_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/14_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/14_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">15</div>
+  <div class="het-tartalom">
+    <h3>15. hét – Villamos kapcsolókészülékek rendszerezése</h3>
+    <div style="display:inline-block;margin:4px 0 10px;padding:5px 11px;border-radius:999px;background:#0b5f9e;color:#fff;font-size:12px;font-weight:800;letter-spacing:.3px;">ÚJ ANYAGRÉSZ – VILLAMOS KAPCSOLÓKÉSZÜLÉKEK</div>
+    <p>Kapcsolási feladatok, megszakító, szakaszoló, terheléskapcsoló, földelőkapcsoló és biztosító; névleges feszültség és áram, zárlati igénybevétel, megszakítóképesség és készülékválasztás.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/15_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/15_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/15_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/15_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">16</div>
+  <div class="het-tartalom">
+    <h3>16. hét – Szakaszolók és földelőkapcsolók</h3>
+    <p>Szakaszolók feladata, látható leválasztás, szerkezeti kialakítások és hajtások; földelőkapcsolók, zárlati záróképesség, reteszelések és biztonságos kapcsolási sorrend.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/16_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/16_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/16_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/16_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">17</div>
+  <div class="het-tartalom">
+    <h3>17. hét – Megszakítók felépítése és működése</h3>
+    <p>A megszakító fő szerkezeti egységei, érintkezőrendszer, kapcsolási ív és ívoltás, rugóerőtárolós hajtás, záró- és kioldótekercsek, védelmi kioldási lánc, valamint a legfontosabb névleges és zárlati adatok.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/17_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/17_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/17_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/17_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">18</div>
+  <div class="het-tartalom">
+    <h3>18. hét – Nagyfeszültségű megszakítótípusok</h3>
+    <p>Olajos, légnyomásos, SF6- és vákuummegszakítók; ívoltó közegek, működési elvek, alkalmazási területek, előnyök és korlátok, valamint környezeti és készülékválasztási szempontok.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/18_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/18_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/18_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/18_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">19</div>
+  <div class="het-tartalom">
+    <h3>19. hét – Biztosítók és olvadóbiztosítók</h3>
+    <p>Az olvadóbiztosító működési elve és szerkezete, idő-áram jelleggörbe, megszakítóképesség és áramkorlátozó hatás; középfeszültségű HH biztosítók, transzformátor- és motorvédelem, valamint szelektivitás.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/19_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/19_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/19_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/19_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">20</div>
+  <div class="het-tartalom">
+    <h3>20. hét – Kapcsolókészülékek hajtásai és működtetőkörei</h3>
+    <p>Kézi, motoros, rugóerőtárolós és pneumatikus hajtások; rugófeltöltő motor, záró- és kioldótekercsek, DC segédüzem, segédérintkezők, reteszelések, anti-pumping és működtetőköri hibakeresés.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/20_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/20_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/20_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/20_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">21</div>
+  <div class="het-tartalom">
+    <h3>21. hét – Kapcsolókészülékek reteszelése és üzembiztonsága</h3>
+    <p>Mechanikai, villamos és digitális reteszelések; megszakító–szakaszoló–földelőkapcsoló kapcsolatok, engedélyezési feltételek, lockout, LOCAL/REMOTE vezérlés, fail-safe szemlélet és biztonságos kapcsolási sorrendek.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/21_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/21_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/21_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/21_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">22</div>
+  <div class="het-tartalom">
+    <h3>22. hét – Kapcsolókészülékek ellenőrzése, karbantartása és komplex gyakorlata</h3>
+    <p>Állapotellenőrzés, érintkezők, szigetelés, hajtás és segédüzem; funkciópróba, kapcsolási idők, reteszelések, hibakeresés, dokumentálás és a 15–22. heti kapcsolókészülék-témakör összefoglalása.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/22_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/22_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/22_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/22_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="uj-anyagresz">ÚJ ANYAGRÉSZ – ENERGIAGAZDÁLKODÁS</div>
+<div class="het">
+  <div class="het-szam">23</div>
+  <div class="het-tartalom">
+    <h3>23. hét – Energiagazdálkodás alapjai</h3>
+    <p>Energia és teljesítmény, villamos fogyasztás, E = P·t, hatásfok és veszteség, fajlagos energiafogyasztás, valamint az energiagazdálkodás mérés–elemzés–beavatkozás ciklusa.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/23_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/23_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/23_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/23_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">24</div>
+  <div class="het-tartalom">
+    <h3>24. hét – Villamosenergia-fogyasztás és terhelési görbék</h3>
+    <p>Terhelési görbe, pillanatnyi, átlag- és csúcsteljesítmény, alapterhelés, a görbe alatti energia, terhelési tényező, csúcslevágás, terhelésáthelyezés és automatizált terhelésfelügyelet.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/24_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/24_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/24_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/24_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">25</div>
+  <div class="het-tartalom">
+    <h3>25. hét – Csúcsterhelés, egyidejűség és teljesítményigény</h3>
+    <p>Beépített és igényelt teljesítmény, egyidejűségi tényező, fogyasztócsoportok, csúcsterhelés, motorindítások időzítése, fogyasztói prioritások és automatizált terhelésmenedzsment.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/25_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/25_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/25_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/25_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">26</div>
+  <div class="het-tartalom">
+    <h3>26. hét – Hatásos, meddő és látszólagos teljesítmény</h3>
+    <p>P, Q és S fogalma, teljesítményháromszög, cos φ, induktív meddőigény, kondenzátoros kompenzálás, kompenzálási teljesítmény és a hálózati áram csökkentése.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/26_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/26_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/26_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/26_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">27</div>
+  <div class="het-tartalom">
+    <h3>27. hét – Meddőenergia-kompenzálás a gyakorlatban</h3>
+    <p>Egyedi, csoportos és központi kompenzálás, automatikus kondenzátortelep, fokozatkapcsolás, Qc méretezése, túlkompenzálás, kisütési idő, harmonikusok és fojtózott kivitel.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/27_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/27_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/27_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/27_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">28</div>
+  <div class="het-tartalom">
+    <h3>28. hét – Villamosenergia-veszteségek és hatásfok</h3>
+    <p>Hatásfok, veszteségi teljesítmény, I²R vezetékveszteség, transzformátor- és motorveszteségek, veszteségi energia, éves költség és energiamegtakarítási lehetőségek.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/28_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/28_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/28_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/28_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">29</div>
+  <div class="het-tartalom">
+    <h3>29. hét – Villamosenergia-költségek és fogyasztási költségelemzés</h3>
+    <p>Energia- és teljesítményjellegű költségek, almérés, fajlagos energiafelhasználás, bázisidőszak, energetikai KPI-k, megtakarítás és egyszerű megtérülési számítás.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/29_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/29_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/29_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/29_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">30</div>
+  <div class="het-tartalom">
+    <h3>30. hét – Energiahatékonyság ipari fogyasztóknál</h3>
+    <p>Motorok és hajtások, szivattyúk, ventilátorok, sűrített levegő, világítás, segédüzemek, üresjárati alapterhelés, automatizálás, karbantartás és energiahatékonysági intézkedések.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/30_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/30_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/30_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/30_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">31</div>
+  <div class="het-tartalom">
+    <h3>31. hét – Energiagazdálkodás, monitoring és terhelésmenedzsment</h3>
+    <p>Almérők, adatgyűjtés, SCADA, terhelési görbék, energetikai KPI-k, riasztások, prioritási csoportok, load shedding, PLC-alapú csúcsterhelés-kezelés és adatminőség.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/31_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/31_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/31_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/31_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+<div class="het">
+  <div class="het-szam">32</div>
+  <div class="het-tartalom">
+    <h3>32. hét – Komplex energiagazdálkodási gyakorlat és összefoglalás</h3>
+    <p>A 20 órás energiagazdálkodási témakör lezárása: energia és teljesítmény, terhelési görbe, P-Q-S és cos φ, mérés, veszteségek, költség, energiahatékonyság, monitoring, terhelésmenedzsment és komplex ipari esettanulmány.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/32_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/32_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/32_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/32_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+<div class="uj-anyagresz">ÚJ ANYAGRÉSZ – VILLAMOS VÉDELMEK</div>
+<div class="het">
+  <div class="het-szam">33</div>
+  <div class="het-tartalom">
+    <h3>33. hét – Villamos védelmek alapjai</h3>
+    <p>A védelem feladata, védelmi rendszer felépítése, mérőváltók, védelmi relék, megszakító, szelektivitás, védelmi zónák, fő- és tartalékvédelem.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/33_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/33_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/33_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/33_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+<div class="het">
+  <div class="het-szam">34</div>
+  <div class="het-tartalom">
+    <h3>34. hét – Túláram-, zárlat- és földzárlatvédelem</h3>
+    <p>Túláramvédelmi fokozatok, áram-idő karakterisztikák, szelektív időlépcsőzés, áramváltó-áttétel, földzárlat, maradékáram, 3I₀, összegző áramváltó és csillagpont-kezelés.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/34_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/34_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/34_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/34_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+<div class="het">
+  <div class="het-szam">35</div>
+  <div class="het-tartalom">
+    <h3>35. hét – Differenciálvédelem, transzformátor-, motor- és generátorvédelem</h3>
+    <p>Differenciálvédelmi elv, külső és belső hiba, stabilizálás, transzformátorvédelem, Buchholz-relé, motor termikus és aszimmetriavédelme, valamint a generátor fő védelmi funkciói.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/35_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/35_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/35_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/35_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+<div class="het">
+  <div class="het-szam">36</div>
+  <div class="het-tartalom">
+    <h3>36. hét – Digitális védelmi relék, szelektivitás és komplex védelmi gyakorlat</h3>
+    <p>Numerikus relék jelútja és funkciói, eseménynapló, zavaríró, kommunikáció, időszinkron, idő-, áram-, zóna- és logikai szelektivitás, megszakítóhiba-védelem és komplex üzemzavar-elemzés.</p>
+    <div class="gombok">
+      <a href="tananyagok/villamosmuvek13/36_het.pdf" target="_blank">📖 Tananyag</a>
+      <a href="ppt/villamosmuvek13/36_het.pptx" download>📊 Bemutató</a>
+      <a class="feladat-gomb" href="feladatok/villamosmuvek13/36_het_feladat.pdf" target="_blank">✓ Feladat</a>
+      <a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/36_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
 </main>
 <footer>IAP • Integrált Automatika Program</footer>
-<script>
-const weeks=[
-[1,'Villamos művek – 1. heti tananyag.','Villamos művek – 1. heti tananyag.'],
-[2,'Villamos művek – 2. heti tananyag.','Villamos művek – 2. heti tananyag.'],
-[3,'A villamosenergia-rendszer felépítése – az erőműtől a fogyasztóig','Termelés, átvitel, elosztás, alállomások és feszültségszintek.'],
-[4,'Erőművi generátorok és blokktranszformátorok','Szinkrongenerátorok, gerjesztés, blokktranszformátor és hálózatra kapcsolás.'],
-[5,'Erőműtípusok és energiatermelési módok','Hő-, atom-, víz-, szél- és naperőművek.'],
-[6,'Komplex összefoglalás: energiaút, generátor, transzformátor, erőműtípusok','Az 1–5. hét összefoglalása.'],
-[7,'Nagyfeszültségű kapcsolóberendezések és alállomási készülékek','Megszakítók, szakaszolók, földelőkapcsolók, gyűjtősínek és mérőváltók.'],
-[8,'Alállomási kapcsolási sémák és gyűjtősín-rendszerek','Egyszeres, osztott és kettős gyűjtősínes rendszerek.'],
-[9,'Védelmi rendszerek és relévédelem alapjai','Hálózati hibák, relévédelem, mérőváltók és szelektivitás.'],
-[10,'Transzformátorok az alállomásokban','Teljesítménytranszformátorok, hűtés, fokozatkapcsoló és védelem.'],
-[11,'Kapcsolási csoportok és párhuzamos üzem','Kapcsolási csoportok, óraszám, fáziseltolás és párhuzamos üzem.'],
-[12,'Alállomási mérőváltók részletesen','Áram- és feszültségváltók, áttételek, pontosság és szekunder köri biztonság.'],
-[13,'Villamos művek – 13. heti tananyag','13. heti villamos művek tananyag.'],
-[14,'Alállomási irányítástechnika és távfelügyelet','Helyi és távvezérlés, SCADA, eseménynaplózás, IED-k és IEC 61850 alapok.'],
-[15,'Villamos kapcsolókészülékek rendszerezése','Kapcsolási feladatok és készülékválasztás.','ÚJ ANYAGRÉSZ – VILLAMOS KAPCSOLÓKÉSZÜLÉKEK'],
-[16,'Szakaszolók és földelőkapcsolók','Látható leválasztás, földelőkapcsolók, reteszelések és kapcsolási sorrend.'],
-[17,'Megszakítók felépítése és működése','Érintkezőrendszer, ívoltás, hajtás, kioldási lánc és névleges adatok.'],
-[18,'Nagyfeszültségű megszakítótípusok','SF6-, vákuum- és egyéb megszakítók felépítése, működése és alkalmazása.'],
-[19,'Biztosítók és olvadóbiztosítók','Biztosítók feladata, működése, karakterisztikái és alkalmazása.'],
-[20,'Kapcsolókészülékek hajtásai és működtetőkörei','Motoros, rugóerőtárolós és egyéb hajtások, záró- és kioldókörök.'],
-[21,'Kapcsolókészülékek reteszelése és üzembiztonsága','Mechanikus és villamos reteszelések, kapcsolási biztonság és hibamegelőzés.'],
-[22,'Kapcsolókészülékek ellenőrzése, karbantartása és komplex gyakorlata','Ellenőrzési, karbantartási és komplex kapcsolókészülék-gyakorlat.'],
-[23,'Energiagazdálkodás alapjai','Villamos szakmai és ipari energiagazdálkodás alapjai.','ÚJ ANYAGRÉSZ – ENERGIAGAZDÁLKODÁS'],
-[24,'Villamosenergia-fogyasztás és terhelési görbék','Fogyasztási adatok, terhelési görbék, csúcsterhelés és alapterhelés.'],
-[25,'Csúcsterhelés, egyidejűség és teljesítményigény','Beépített és igényelt teljesítmény, egyidejűség és terhelésmenedzsment.'],
-[26,'Hatásos, meddő és látszólagos teljesítmény','P, Q, S, teljesítményháromszög és cos φ.'],
-[27,'Meddőenergia-kompenzálás a gyakorlatban','Kondenzátortelepek, kompenzálás, túlkompenzálás és harmonikusok.'],
-[28,'Villamosenergia-veszteségek és hatásfok','I²R veszteség, gépveszteségek, hatásfok és megtakarítás.'],
-[29,'Villamosenergia-költségek és fogyasztási költségelemzés','Energia- és teljesítményköltségek, KPI-k és megtérülés.'],
-[30,'Energiahatékonyság ipari fogyasztóknál','Motorok, hajtások, szivattyúk, sűrített levegő és automatizálás.'],
-[31,'Energiagazdálkodás, monitoring és terhelésmenedzsment','Almérés, SCADA, terhelési görbék, KPI-k és load shedding.'],
-[32,'Komplex energiagazdálkodási gyakorlat és összefoglalás','A 20 órás energiagazdálkodási blokk komplex összefoglalása.'],
-[33,'Villamos védelmek alapjai','Védelmi rendszer, mérőváltók, relék, megszakító, szelektivitás és védelmi zónák.','ÚJ ANYAGRÉSZ – VILLAMOS VÉDELMEK'],
-[34,'Túláram-, zárlat- és földzárlatvédelem','Túláramvédelmi fokozatok, szelektivitás, 3I₀ és földzárlatvédelem.'],
-[35,'Differenciálvédelem, transzformátor-, motor- és generátorvédelem','Differenciálvédelem és fő gépvédelmi funkciók.'],
-[36,'Digitális védelmi relék, szelektivitás és komplex védelmi gyakorlat','Numerikus relék, eseménynapló, zavaríró, kommunikáció és komplex szelektivitás.']
-];
-const root=document.getElementById('hetek');
-weeks.forEach(w=>{
- const n=String(w[0]).padStart(2,'0');
- if(w[3]) root.insertAdjacentHTML('beforeend',`<div class="uj-anyagresz">${w[3]}</div>`);
- root.insertAdjacentHTML('beforeend',`<div class="het"><div class="het-szam">${n}</div><div class="het-tartalom"><h3>${w[0]}. hét – ${w[1]}</h3><p>${w[2]}</p><div class="gombok"><a href="tananyagok/villamosmuvek13/${n}_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosmuvek13/${n}_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosmuvek13/${n}_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosmuvek13/${n}_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>`);
-});
-</script>
-
-<script src="iap-naptar.js"></script>
+<script src="iap-aktualis-het.js"></script>
 </body>
 </html>
