@@ -27,6 +27,24 @@ const IAP_AKTUALIS_HET = 1;
     });
   }
 
+  // Villamos szerelések 11.: jelenleg az 1–3. hét anyagai teljesek.
+  // A későbbi hetek hibás, még nem létező fájlhivatkozásait letiltjuk.
+  if (oldal === 'villamosszereles11.html') {
+    document.querySelectorAll('.het').forEach(function (het) {
+      const szamEl = het.querySelector('.het-szam');
+      const szam = parseInt(szamEl ? szamEl.textContent : '', 10);
+      if (!Number.isFinite(szam) || szam <= 3) return;
+      het.querySelectorAll('.gombok a').forEach(function (a) {
+        a.classList.add('hamarosan');
+        a.removeAttribute('href');
+        a.removeAttribute('target');
+        a.removeAttribute('download');
+        a.setAttribute('aria-disabled', 'true');
+        a.setAttribute('tabindex', '-1');
+      });
+    });
+  }
+
   const n = typeof window.aktualisIAPHet === 'function' ? window.aktualisIAPHet() : Number(IAP_AKTUALIS_HET);
   if (n === null || !Number.isFinite(Number(n)) || Number(n) < 1 || Number(n) > 36) return;
 
