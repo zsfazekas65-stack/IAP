@@ -744,3 +744,52 @@ html {
     color: #6f7d89 !important;
     letter-spacing: 0.1px;
 }
+
+
+/* =========================================================
+   IAP – EGYSÉGES HETI GOMBOK
+   A PLC tantárgy gombgrafikája minden tantárgyban.
+   Csak a Tananyag / Bemutató / Feladat / Gyakorlat gombokra.
+   ========================================================= */
+
+.gombok a[href*="tananyagok/"],
+.gombok a[href*="ppt/"],
+.gombok a[href*="feladatok/"],
+.gombok a[href*="gyakorlatok/"] {
+    display: inline-block !important;
+    background: #eef3f7 !important;
+    color: #183a5a !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    padding: 9px 14px !important;
+    margin-right: 8px !important;
+    margin-bottom: 5px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: 0.2s !important;
+    width: auto !important;
+    text-align: left !important;
+    transform: none !important;
+}
+
+.gombok a[href*="tananyagok/"]:hover,
+.gombok a[href*="ppt/"]:hover,
+.gombok a[href*="feladatok/"]:hover,
+.gombok a[href*="gyakorlatok/"]:hover {
+    background: #183a5a !important;
+    color: white !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* A mobilnézetben is maradjon a PLC-szerű kompakt gomb */
+@media (max-width: 700px) {
+    .gombok a[href*="tananyagok/"],
+    .gombok a[href*="ppt/"],
+    .gombok a[href*="feladatok/"],
+    .gombok a[href*="gyakorlatok/"] {
+        width: auto !important;
+        text-align: left !important;
+    }
+}
