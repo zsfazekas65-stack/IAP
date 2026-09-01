@@ -3,6 +3,19 @@
 const IAP_AKTUALIS_HET = 1;
 
 (function () {
+  // PLC oldal: régi hivatkozások automatikus javítása a tényleges fájlnevekre.
+  if (/\/plc\.html(?:$|[?#])/i.test(location.pathname + location.search + location.hash)) {
+    document.querySelectorAll('a[href^="feladatok/plc/"]').forEach(function (a) {
+      a.href = a.getAttribute('href').replace(/\/(\d{2})_het\.pdf$/, '/$1_het_feladat.pdf');
+    });
+    document.querySelectorAll('a[href^="gyakorlatok/plc/"]').forEach(function (a) {
+      a.href = a.getAttribute('href').replace(/\/(\d{2})_het\.pdf$/, '/$1_het_gyakorlat.pdf');
+    });
+    document.querySelectorAll('nav a').forEach(function (a) {
+      if (a.textContent.trim() === 'Kapcsolat' && a.getAttribute('href') === '#') a.href = 'kapcsolat.html';
+    });
+  }
+
   const n = Number(IAP_AKTUALIS_HET);
   if (!Number.isFinite(n) || n < 1 || n > 36) return;
 
