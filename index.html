@@ -1,52 +1,316 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IAP – Integrált Automatika Program</title>
-<style>
-:root{--navy:#061a30;--navy2:#0a2a49;--blue:#0e70b7;--cyan:#20b9f2;--text:#14243a;--muted:#617089;--card:#fff;--line:#dbe3ea;--green:#1c8a3d;--orange:#ef6c00;--purple:#5924a8;--teal:#1f9ca6}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#f5f7fa}a{text-decoration:none;color:inherit}.topbar{background:linear-gradient(180deg,#06182d 0%,#071d35 100%);color:#fff}.brand-row{max-width:1480px;margin:auto;min-height:180px;display:flex;align-items:center;gap:46px;padding:22px 44px}.dunaferr-brand{display:flex;align-items:center;gap:18px;padding-right:38px;border-right:1px solid rgba(255,255,255,.35);min-width:400px}.dunaferr-brand img{width:190px;height:auto;display:block}.dunaferr-text{line-height:1.02}.dunaferr-text .dszc{font-size:50px;font-weight:800;letter-spacing:.5px}.dunaferr-text .name{font-size:29px;font-weight:800}.dunaferr-text .sub{font-size:15px;margin-top:8px;letter-spacing:.3px}.iap-brand{display:flex;align-items:center;gap:20px;min-width:0}.iap-mark{font-size:86px;font-weight:800;line-height:.9;letter-spacing:1px}.iap-sep{width:1px;height:100px;background:rgba(255,255,255,.35)}.iap-copy strong{display:block;font-size:27px;line-height:1.2;color:#33b8ef}.iap-copy span{display:block;margin-top:8px;font-size:18px;color:#fff}.nav{background:#082746;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.09)}.nav-inner{max-width:1480px;margin:auto;display:flex;align-items:center;min-height:68px;padding:0 44px}.nav-inner>a{color:#fff;font-weight:700;font-size:17px;padding:15px 26px;border-right:1px solid rgba(255,255,255,.28)}.nav-inner>a:first-child{background:#0d71b9;border-radius:7px;margin-right:18px;border-right:0;font-size:25px;padding:9px 21px}.nav-inner>a:last-child{border-right:0}.hero{min-height:320px;background:radial-gradient(circle at 76% 36%,rgba(0,180,255,.18),transparent 28%),linear-gradient(90deg,#061d35 0%,#082948 48%,#0a3356 100%);color:#fff;position:relative;overflow:hidden}.hero-inner{max-width:1480px;margin:auto;padding:38px 74px 34px;position:relative;z-index:2}.hero h1{margin:0;max-width:720px;font-size:46px;line-height:1.15;letter-spacing:.3px}.hero .line{width:115px;height:4px;background:#2bbcf1;margin:22px 0}.hero p{max-width:650px;font-size:21px;line-height:1.55;margin:0;color:#f0f4f8}.grades{padding:24px 44px 30px;background:#f7f8fa;scroll-margin-top:16px}.grades h2{text-align:center;margin:0 0 26px;font-size:27px;color:#0e2c50}.grades h2:after{content:"";display:block;width:170px;height:3px;margin:9px auto 0;background:linear-gradient(90deg,transparent,#34b9f0,transparent)}.cards{max-width:1420px;margin:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:26px}.card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 20px rgba(20,42,74,.08);min-height:290px;padding:22px 20px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:.18s ease}.card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(20,42,74,.13)}.grade-num{font-size:72px;font-weight:800;line-height:1}.card h3{margin:4px 0 10px;font-size:24px}.c9 .grade-num,.c9 h3{color:#0b3d78}.c10 .grade-num,.c10 h3{color:var(--green)}.c11 .grade-num,.c11 h3{color:var(--orange)}.c12 .grade-num,.c12 h3{color:var(--purple)}.c13 .grade-num,.c13 h3{color:#b12a66}.cadult .grade-num,.cadult h3{color:var(--teal)}.footer{background:#061a30;color:#fff;padding:18px 44px}.footer-inner{max-width:1420px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}.footer .motto{font-size:16px}.footer .links{display:flex;gap:34px;color:#39b7ee;font-size:14px}.footer .copy{font-size:15px}.nav-disabled{color:rgba(255,255,255,.48);font-weight:700;font-size:17px;padding:15px 26px;border-right:1px solid rgba(255,255,255,.28);cursor:not-allowed;white-space:nowrap}.disabled-card{opacity:.58;cursor:not-allowed;filter:grayscale(.35);transform:none!important}.nav-drop{position:relative;display:flex;align-items:stretch;flex:0 0 auto}.nav-drop button{appearance:none;border:0;border-right:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;font:inherit;font-weight:700;font-size:17px;padding:15px 26px;cursor:pointer;white-space:nowrap}.nav-drop button:hover,.nav-drop:focus-within button{background:rgba(14,112,183,.42)}.nav-menu{display:none;position:absolute;top:100%;left:0;width:max-content;min-width:245px;background:#fff;border-radius:0 0 9px 9px;box-shadow:0 14px 30px rgba(0,0,0,.22);overflow:hidden;z-index:50}.nav-drop:hover .nav-menu,.nav-drop:focus-within .nav-menu{display:block}.nav-menu a{display:block;width:100%;color:#12304f;background:#fff;border:0!important;padding:13px 18px!important;font-size:15px!important;font-weight:700;white-space:nowrap}.nav-menu a:hover{color:#fff;background:#0d71b9}.subject-buttons{width:100%;display:flex;flex-direction:column;gap:8px;margin-top:12px}.subject-btn{display:block;width:100%;padding:10px 8px;border-radius:7px;text-align:center;font-size:13px;font-weight:800;line-height:1.15;white-space:nowrap;color:#fff;background:rgba(7,54,91,.88);box-shadow:0 4px 10px rgba(11,39,64,.12)}.subject-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}.disabled-subject{background:#8796a5;cursor:not-allowed}.iap-small-logo-wrap{margin-left:auto;display:flex;align-items:center;justify-content:flex-end}.iap-small-logo{display:block;width:220px;max-height:96px;object-fit:contain;background:#fff;border-radius:7px;padding:4px 7px}.hero-with-image{position:relative;overflow:hidden}.hero-with-image .hero-inner{position:relative;z-index:2;width:56%;margin-left:max(calc((100% - 1180px)/2),28px);margin-right:auto}.hero-robot{position:absolute;z-index:1;top:0;right:0;width:46%;height:100%;background:linear-gradient(90deg,rgba(5,29,54,1) 0%,rgba(5,29,54,.48) 18%,rgba(5,29,54,0) 42%),url("iap_robot_pcb_hero.png") center/cover no-repeat}@media(max-width:1100px){.brand-row{gap:28px;padding:18px 24px}.dunaferr-brand{min-width:330px;padding-right:24px}.dunaferr-brand img{width:150px}.dunaferr-text .dszc{font-size:38px}.dunaferr-text .name{font-size:23px}.iap-mark{font-size:68px}.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:800px){.hero-with-image .hero-inner{width:auto;margin-left:24px;margin-right:24px}.hero-robot{opacity:.22;width:65%}}@media(max-width:760px){.brand-row{flex-direction:column;align-items:flex-start}.dunaferr-brand{border-right:0;border-bottom:1px solid rgba(255,255,255,.25);padding:0 0 18px;width:100%;min-width:0}.nav-inner{overflow-x:auto;padding:0 14px}.nav-inner>a{white-space:nowrap;padding:14px 18px}.nav-drop{position:static}.nav-menu{position:fixed;left:12px;right:12px;top:auto;min-width:0;border-radius:9px}.hero-inner{padding:32px 28px}.hero h1{font-size:36px}.cards{grid-template-columns:1fr}.footer-inner{flex-direction:column;align-items:flex-start}.iap-small-logo{width:145px;max-height:70px}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAP – Integrált Automatika Program</title>
+    <link rel="stylesheet" href="style.css">
 
-/* IAP – Hol tartunk? */
-.hol-tartunk{background:linear-gradient(135deg,#eaf5ff,#f8fbff);border-top:1px solid #cfe4f7;border-bottom:1px solid #cfe4f7;padding:18px 44px}
-.hol-tartunk-inner{max-width:1420px;margin:auto;display:flex;align-items:center;gap:18px;justify-content:space-between}
-.hol-tartunk-title{display:flex;align-items:center;gap:14px;min-width:0}
-.hol-tartunk-badge{display:grid;place-items:center;min-width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#0d47a1,#2196f3);color:#fff;font-size:26px;font-weight:800;box-shadow:0 7px 18px rgba(25,118,210,.24)}
-.hol-tartunk-copy strong{display:block;color:#0e2c50;font-size:22px;margin-bottom:4px}
-.hol-tartunk-copy span{color:#52697d;font-size:16px}
-.hol-tartunk-link{flex:0 0 auto;display:inline-block;padding:11px 16px;border-radius:9px;background:#0d71b9;color:#fff;font-weight:800;font-size:14px}
-.hol-tartunk-link:hover{filter:brightness(1.08)}
-@media(max-width:760px){.hol-tartunk{padding:16px 20px}.hol-tartunk-inner{align-items:flex-start;flex-direction:column}.hol-tartunk-link{width:100%;text-align:center}}
+    <style>
+        .hero-gombok{
+            display:flex;
+            flex-wrap:wrap;
+            gap:14px;
+            justify-content:center;
+            align-items:center;
+            margin-top:20px;
+        }
+        .moodle-gomb{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+            min-width:220px;
+            padding:14px 22px;
+            border-radius:14px;
+            text-decoration:none;
+            font-weight:800;
+            letter-spacing:.2px;
+            color:#fff;
+            background:linear-gradient(135deg,#f28c28,#d96b00);
+            box-shadow:0 8px 22px rgba(217,107,0,.24);
+            transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+        }
+        .moodle-gomb:hover{
+            transform:translateY(-2px);
+            box-shadow:0 11px 26px rgba(217,107,0,.32);
+            filter:brightness(1.03);
+        }
+        .moodle-gomb:focus-visible{
+            outline:3px solid rgba(242,140,40,.35);
+            outline-offset:4px;
+        }
+        .moodle-gomb .moodle-ikon{
+            width:30px;
+            height:30px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:9px;
+            background:rgba(255,255,255,.16);
+            font-size:18px;
+        }
+        .moodle-gomb .moodle-szoveg{
+            display:flex;
+            flex-direction:column;
+            line-height:1.05;
+            text-align:left;
+        }
+        .moodle-gomb .moodle-szoveg strong{font-size:16px;}
+        .moodle-gomb .moodle-szoveg span{
+            margin-top:4px;
+            font-size:11px;
+            font-weight:600;
+            opacity:.9;
+        }
+        @media (max-width:640px){
+            .hero-gombok{flex-direction:column;}
+            .hero-gombok .fo-gomb,
+            .hero-gombok .moodle-gomb{width:min(92vw,320px); box-sizing:border-box;}
+        }
+    </style>
 
-.hol-tartunk-inner{align-items:flex-start!important}
-.hol-tartunk-jobb{flex:1;max-width:930px}
-.hol-tartunk-seged{font-size:13px;font-weight:800;color:#52697d;margin:0 0 7px 2px;text-transform:uppercase;letter-spacing:.04em}
-.hol-tartunk-tantargyak{display:grid;grid-template-columns:repeat(2,minmax(230px,1fr));gap:7px}
-.hol-tartunk-tantargyak a{display:grid;grid-template-columns:42px 1fr 18px;align-items:center;gap:8px;padding:8px 10px;border-radius:9px;background:#fff;border:1px solid #cfe4f7;color:#173a5e;text-decoration:none;font-size:13px;font-weight:700;box-shadow:0 2px 8px #12355b0d}
-.hol-tartunk-tantargyak a:hover{border-color:#1976d2;background:#f4f9ff}
-.hol-tartunk-tantargyak b{color:#1976d2}
-.hol-tartunk-tantargyak i{font-style:normal;color:#1976d2;font-weight:900}
-@media(max-width:900px){.hol-tartunk-tantargyak{grid-template-columns:1fr}}
+</head>
 
-</style></head><body>
-<header class="topbar"><div class="brand-row"><div class="dunaferr-brand"><img src="dunaferr_logo.png" alt="DSZC Dunaferr logó"><div class="dunaferr-text"><div class="dszc">DSZC</div><div class="name">DUNAFERR</div><div class="sub">SZAKKÉPZÉSI CENTRUM</div></div></div><div class="iap-brand"><div class="iap-mark">IAP</div><div class="iap-sep"></div><div class="iap-copy"><strong>Integrált<br>Automatika<br>Program</strong><span>Tanulj. Alkalmazz. Alkoss.</span></div></div><div class="iap-small-logo-wrap"><img src="iap_logo.png" alt="IAP – Integrált Automatika Program logó" class="iap-small-logo"></div></div></header>
-<nav class="nav"><div class="nav-inner"><a href="#evfolyamok" aria-label="Ugrás az évfolyamokhoz" title="Évfolyamok">⌂</a><a href="villamos9.html">9. ÉVFOLYAM</a><div class="nav-drop"><button type="button">10. ÉVFOLYAM ▾</button><div class="nav-menu"><a href="villamos10.html">Villamos alapismeretek</a><a href="gepeszet10.html">Gépészeti alapismeretek</a></div></div><div class="nav-drop"><button type="button">11. ÉVFOLYAM ▾</button><div class="nav-menu"><a href="analog11.html">Analóg áramkörök</a><a href="elektrotechnika11.html">Elektrotechnika</a><a href="villamosszereles11.html">Villamos szerelések</a></div></div><div class="nav-drop"><button type="button">12. ÉVFOLYAM ▾</button><div class="nav-menu"><a href="plc.html">PLC alapismeretek</a><a href="folyamatiranyitas12.html">Folyamatirányítás</a></div></div><div class="nav-drop"><button type="button">13. ÉVFOLYAM ▾</button><div class="nav-menu"><a href="villamosmuvek13.html">Villamos művek</a><a href="epuletvillamossag13.html">Épületvillamossági hálózatok</a></div></div><span class="nav-disabled" title="Hamarosan">FELNŐTT OKTATÁS</span><a href="kapcsolat.html">KAPCSOLAT</a></div></nav>
-<section class="hero hero-with-image"><div class="hero-inner"><h1>ÜDVÖZÖLLEK AZ IAP<br>OKTATÁSI RENDSZERBEN!</h1><div class="line"></div><p>Az IAP (Integrált Automatika Program) célja, hogy korszerű, gyakorlatorientált tudást nyújtson a villamosipar és az automatika területén.</p></div><div class="hero-robot" aria-hidden="true"></div></section>
+<body>
 
-<section class="hol-tartunk" id="hol-tartunk" aria-label="Aktuális tanítási hét">
-  <div class="hol-tartunk-inner">
-    <div class="hol-tartunk-title">
-      <div class="hol-tartunk-badge" id="iap-aktualis-het-szam">1.</div>
-      <div class="hol-tartunk-copy">
-        <strong>Hol tartunk? <span id="iap-aktualis-het-felirat">1. tanítási hét</span></strong>
-        <span>Az IAP oldalain az aktuális hét külön kiemelést kap.</span>
-      </div>
+<header>
+    <img src="logo.png" alt="IAP – Integrált Automatika Program" class="iap-logo" style="width:min(450px, 45vw); height:auto; display:block; margin:0 auto;">
+    <div style="margin-top:10px; text-align:center; font-weight:800; letter-spacing:.5px;">
+        Tanulj! Alkalmazz! Alkoss!
     </div>
-    <div class="hol-tartunk-jobb"><div class="hol-tartunk-seged">Ugrás az aktuális heti anyaghoz:</div><div class="hol-tartunk-tantargyak"><a href="villamos9.html#aktualis-het"><b>9.</b><span>Villamos alapismeretek</span><i>→</i></a><a href="villamos10.html#aktualis-het"><b>10.</b><span>Villamos alapismeretek</span><i>→</i></a><a href="gepeszet10.html#aktualis-het"><b>10.</b><span>Gépészeti alapismeretek</span><i>→</i></a><a href="analog11.html#aktualis-het"><b>11.</b><span>Analóg áramkörök</span><i>→</i></a><a href="elektrotechnika11.html#aktualis-het"><b>11.</b><span>Elektrotechnika</span><i>→</i></a><a href="villamosszereles11.html#aktualis-het"><b>11.</b><span>Villamos szerelések</span><i>→</i></a><a href="plc.html#aktualis-het"><b>12.</b><span>PLC alapismeretek</span><i>→</i></a><a href="folyamatiranyitas12.html#aktualis-het"><b>12.</b><span>Folyamatirányítás</span><i>→</i></a><a href="villamosmuvek13.html#aktualis-het"><b>13.</b><span>Villamos művek</span><i>→</i></a><a href="epuletvillamossag13.html#aktualis-het"><b>13.</b><span>Épületvillamossági hálózatok</span><i>→</i></a></div></div>
-  </div>
-</section>
-<section class="grades" id="evfolyamok"><h2>VÁLASSZ ÉVFOLYAMOT!</h2><div class="cards"><div class="card c9"><div class="grade-num">9.</div><h3>ÉVFOLYAM</h3><div class="subject-buttons"><a class="subject-btn" href="villamos9.html">Villamos alapismeretek</a></div></div><div class="card c10"><div class="grade-num">10.</div><h3>ÉVFOLYAM</h3><div class="subject-buttons"><a class="subject-btn" href="villamos10.html">Villamos alapismeretek</a><a class="subject-btn" href="gepeszet10.html">Gépészeti alapismeretek</a></div></div><div class="card c11"><div class="grade-num">11.</div><h3>ÉVFOLYAM</h3><div class="subject-buttons"><a class="subject-btn" href="analog11.html">Analóg áramkörök</a><a class="subject-btn" href="elektrotechnika11.html">Elektrotechnika</a><a class="subject-btn" href="villamosszereles11.html">Villamos szerelések</a></div></div><div class="card c12"><div class="grade-num">12.</div><h3>ÉVFOLYAM</h3><div class="subject-buttons"><a class="subject-btn" href="plc.html">PLC alapismeretek</a><a class="subject-btn" href="folyamatiranyitas12.html">Folyamatirányítás</a></div></div><div class="card c13"><div class="grade-num">13.</div><h3>ÉVFOLYAM</h3><div class="subject-buttons"><a class="subject-btn" href="villamosmuvek13.html">Villamos művek</a><a class="subject-btn" href="epuletvillamossag13.html">Épületvillamossági hálózatok</a></div></div><div class="card cadult disabled-card" aria-disabled="true" title="Hamarosan"><div class="grade-num">♟</div><h3>FELNŐTT OKTATÁS</h3><div class="subject-buttons"><span class="subject-btn disabled-subject">HAMAROSAN</span></div></div></div></section>
-<footer class="footer"><div class="footer-inner"><div class="motto">💡 Tanulj ma, hogy holnap te irányítsd a jövőt!</div><div class="links"><a href="kapcsolat.html">KAPCSOLAT</a><a href="statusz.html">IAP STÁTUSZ</a><a href="moodle.html">MOODLE</a></div><div class="copy">© IAP</div></div></footer>
+</header>
 
-<script src="iap-aktualis-het.js"></script>
-</body></html>
+<nav>
+    <a href="index.html">Kezdőlap</a>
+    <a href="#evfolyamok">Évfolyamok</a>
+    <a href="#tantargyak">Tantárgyak</a>
+    <a href="#">Kapcsolat</a>
+</nav>
+
+<main>
+
+    <section class="hero">
+        <h2>Digitális tananyagportál</h2>
+
+        <p>
+            Villamos, automatizálási és mechatronikai tananyagok
+            évfolyamok és tantárgyak szerint rendezve.
+        </p>
+
+        <div class="hero-gombok">
+            <a href="#evfolyamok" class="fo-gomb">
+                Tananyagok megnyitása
+            </a>
+
+            <a href="moodle.html" class="moodle-gomb" aria-label="Moodle tesztadatbázis megnyitása">
+                <span class="moodle-ikon">🎓</span>
+                <span class="moodle-szoveg">
+                    <strong>Moodle</strong>
+                    <span>Tesztadatbázis</span>
+                </span>
+            </a>
+        </div>
+    </section>
+
+
+    <section id="evfolyamok" class="dashboard">
+
+        <h2>Válassz évfolyamot</h2>
+
+        <div class="evfolyam-grid">
+
+            <div class="evfolyam-kartya kiemelt">
+                <div class="evfolyam-szam">9.</div>
+
+                <h3>9. évfolyam</h3>
+
+                <p>Villamos alapozó ismeretek.</p>
+
+                <div class="tantargy-lista">
+                    <a href="villamos9.html">Villamos alapismeretek</a>
+                </div>
+            </div>
+
+
+            <div class="evfolyam-kartya">
+                <div class="evfolyam-szam">10.</div>
+
+                <h3>10. évfolyam</h3>
+
+                <p>Villamos és gépészeti alapozás.</p>
+
+                <div class="tantargy-lista">
+                    <a href="villamos10.html">Villamos alapismeretek</a>
+                    <a href="#">Gépészeti alapismeretek</a>
+                </div>
+            </div>
+
+
+            <div class="evfolyam-kartya">
+                <div class="evfolyam-szam">11.</div>
+
+                <h3>11. évfolyam</h3>
+
+                <p>Automatizálás és irányítástechnika.</p>
+
+                <div class="tantargy-lista">
+                    <a href="elektrotechnika11.html">Elektrotechnika</a>
+                    <a href="analog11.html">Analóg áramkörök</a>
+                    <a href="villamosszereles11.html">Villamos szerelések</a>
+                </div>
+            </div>
+
+
+            <div class="evfolyam-kartya">
+                <div class="evfolyam-szam">12.</div>
+
+                <h3>12. évfolyam</h3>
+
+                <p>Haladó villamos és automatizálási témák.</p>
+
+                <div class="tantargy-lista">
+                    <a href="plc.html">PLC alapismeretek</a>
+                    <a href="folyamatiranyitas12.html">Folyamatirányítás</a>
+                </div>
+            </div>
+
+
+            <div class="evfolyam-kartya">
+                <div class="evfolyam-szam">13.</div>
+
+                <h3>13. évfolyam</h3>
+
+                <p>Haladó épületvillamossági és villamosenergia-rendszerek.</p>
+
+                <div class="tantargy-lista">
+                    <a href="epuletvillamossag13.html">Épületvillamossági hálózatok</a>
+                    <a href="villamosmuvek13.html">Villamos művek</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="tantargyak" class="gyorseleres">
+
+        <h2>Gyors elérés</h2>
+
+        <div class="gyors-grid">
+
+            <a href="plc.html" class="gyors-kartya">
+                <div class="ikon">⚙️</div>
+                <h3>PLC alapismeretek</h3>
+                <p>36 hetes tananyag, bemutatók és gyakorlatok.</p>
+            </a>
+
+
+            <a href="elektrotechnika11.html" class="gyors-kartya">
+                <div class="ikon">⚡</div>
+                <h3>Elektrotechnika</h3>
+                <p>Áramkörök, mérések és villamos gépek.</p>
+            </a>
+
+
+            <a href="analog11.html" class="gyors-kartya">
+                <div class="ikon">📈</div>
+                <h3>Analóg áramkörök</h3>
+                <p>Diódák, tranzisztorok, erősítők és szűrők.</p>
+            </a>
+<a href="villamosszereles11.html" class="gyors-kartya">
+                <div class="ikon">🧰</div>
+                <h3>Villamos szerelések</h3>
+                <p>36 hetes gyakorlati kurzus szerelési feladatokkal és műhelymunkával.</p>
+            </a>
+
+            <a href="epuletvillamossag13.html" class="gyors-kartya">
+                <div class="ikon">🏢</div>
+                <h3>Épületvillamossági hálózatok</h3>
+                <p>13. évfolyam • 36 hetes kurzus • épületvillamossági rendszerek.</p>
+            </a>
+
+            <a href="villamosmuvek13.html" class="gyors-kartya">
+                <div class="ikon">⚡</div>
+                <h3>Villamos művek</h3>
+                <p>13. évfolyam • 36 hetes kurzus • villamosenergia-rendszerek és hálózatok.</p>
+            </a>
+
+            <a href="folyamatiranyitas12.html" class="gyors-kartya">
+                <div class="ikon">🎛️</div>
+                <h3>Folyamatirányítás</h3>
+                <p>Szabályozás, PID és ipari folyamatok.</p>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>IAP – Integrált Automatika Program</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const kartyak = Array.from(document.querySelectorAll('.evfolyam-kartya'));
+        let taroltEvfolyam = null;
+        try {
+            taroltEvfolyam = localStorage.getItem('iap-kivalasztott-evfolyam');
+        } catch (hiba) {
+            taroltEvfolyam = null;
+        }
+
+        function kijelol(kartya) {
+            kartyak.forEach(function (elem) {
+                elem.classList.remove('kiemelt');
+                elem.setAttribute('aria-selected', 'false');
+            });
+
+            kartya.classList.add('kiemelt');
+            kartya.setAttribute('aria-selected', 'true');
+
+            const evfolyam = kartya.querySelector('.evfolyam-szam');
+            if (evfolyam) {
+                try {
+                    localStorage.setItem(
+                        'iap-kivalasztott-evfolyam',
+                        evfolyam.textContent.trim().replace('.', '')
+                    );
+                } catch (hiba) {
+                    // Helyi fájlként megnyitva is működjön a kijelölés.
+                }
+            }
+        }
+
+        kartyak.forEach(function (kartya) {
+            const evfolyam = kartya.querySelector('.evfolyam-szam');
+            kartya.setAttribute('role', 'button');
+            kartya.setAttribute('tabindex', '0');
+            kartya.style.cursor = 'pointer';
+
+            kartya.addEventListener('click', function () {
+                kijelol(kartya);
+            });
+
+            kartya.addEventListener('keydown', function (esemeny) {
+                if (esemeny.key === 'Enter' || esemeny.key === ' ') {
+                    esemeny.preventDefault();
+                    kijelol(kartya);
+                }
+            });
+
+            if (evfolyam && evfolyam.textContent.trim().replace('.', '') === taroltEvfolyam) {
+                kijelol(kartya);
+            } else if (!kartya.hasAttribute('aria-selected')) {
+                kartya.setAttribute('aria-selected', kartya.classList.contains('kiemelt') ? 'true' : 'false');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
