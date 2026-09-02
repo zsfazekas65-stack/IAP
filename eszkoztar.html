@@ -68,7 +68,7 @@ h1{margin:18px 0 8px;font-size:clamp(30px,5vw,48px)}
 main{max-width:1180px;margin:0 auto;padding:18px 20px 50px}
 .categories{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:16px;
   margin-bottom:26px;
 }
@@ -140,6 +140,15 @@ footer{text-align:center;color:#6f8da9;padding:10px 20px 36px;font-size:13px}
   .categories,.grid{grid-template-columns:1fr}
   header{padding-top:30px}
 }
+
+.modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(2,10,20,.78);padding:20px;overflow:auto}
+.modal-box{max-width:760px;margin:6vh auto;background:#0d213b;border:1px solid rgba(55,200,255,.4);border-radius:18px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.modal-head h2{margin:0}
+.close-btn{border:0;background:#173b64;color:white;border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer}
+.codebox{white-space:pre-wrap;background:#06111f;border:1px solid #214d78;border-radius:12px;padding:16px;color:#dff3ff;line-height:1.55;overflow:auto}
+.steps{line-height:1.7;color:#d9e9f7}
+@media(max-width:1050px){.categories{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -163,6 +172,9 @@ footer{text-align:center;color:#6f8da9;padding:10px 20px 36px;font-size:13px}
     </button>
     <button class="category-btn" data-filter="moodle">
       <span class="emoji">🎓</span><strong>Moodle és tesztek</strong><small>Kérdésbank, GIFT, import</small>
+    </button>
+    <button class="category-btn" data-filter="muhely">
+      <span class="emoji">🛠️</span><strong>Moodle műhely</strong><small>Kurzus, vizsga, tesztkészítés</small>
     </button>
   </section>
 
@@ -208,10 +220,69 @@ footer{text-align:center;color:#6f8da9;padding:10px 20px 36px;font-size:13px}
       <p>Moodle kérdésbank importálási segédlet. Hasznos GIFT- és más kérdésfájlok betöltéséhez.</p>
       <a href="https://docs.moodle.org/502/en/Import_questions" target="_blank" rel="noopener">Import súgó ↗</a>
     </article>
+
+    <article class="card" data-cat="muhely" data-keywords="9m villamos 1 5 hét kurzus dunaferr moodle vizsga 50 kérdés">
+      <span class="tag">IAP kurzus</span>
+      <h2>⚡ 9M – Villamos 1–5. hét</h2>
+      <p>Közvetlen belépés a 9M Villamos 1–5. hét Moodle-kurzusba. Az 5. héthez kapcsolódó vizsga innen érhető el.</p>
+      <a href="https://moodle.dunaferriskola.hu/course/view.php?id=1648" target="_blank" rel="noopener">Kurzus megnyitása ↗</a>
+    </article>
+
+    <article class="card" data-cat="muhely" data-keywords="gift minta sablon tesztkészítés moodle igaz hamis feleletválasztós rövid válasz">
+      <span class="tag">Gyorssegéd</span>
+      <h2>🧩 GIFT tesztminta</h2>
+      <p>Rövid, azonnal másolható GIFT minták a leggyakoribb Moodle kérdéstípusokhoz.</p>
+      <a href="#" onclick="showGift();return false;">Minták megnyitása ↓</a>
+    </article>
+
+    <article class="card" data-cat="muhely" data-keywords="moodle munkamenet teszt kérdésbank import ellenőrzés vizsga iap">
+      <span class="tag">IAP munkamenet</span>
+      <h2>✅ Tesztkészítés 5 lépésben</h2>
+      <p>Kérdések elkészítése → GIFT mentés → import a kérdésbankba → teszt összeállítása → előnézet és ellenőrzés.</p>
+      <a href="#" onclick="showSteps();return false;">Lépések megnyitása ↓</a>
+    </article>
+
+    <article class="card" data-cat="muhely" data-keywords="50 kérdés vizsga öt hét iap ellenőrzés számonkérés">
+      <span class="tag">Vizsgarend</span>
+      <h2>📝 5. hét – 50 kérdéses vizsga</h2>
+      <p>IAP emlékeztető: az öthetes tanulási szakasz végén a Moodle-ban 50 kérdéses vizsga következik.</p>
+      <a href="https://moodle.dunaferriskola.hu/course/view.php?id=1648" target="_blank" rel="noopener">Vizsgakurzus ↗</a>
+    </article>
   </section>
 
   <div class="empty" id="empty">Nincs találat. Próbálj másik keresőkifejezést.</div>
 </main>
+
+
+<div class="modal" id="giftModal" onclick="if(event.target===this)closeModal('giftModal')">
+  <div class="modal-box">
+    <div class="modal-head"><h2>🧩 GIFT gyorsminta</h2><button class="close-btn" onclick="closeModal('giftModal')">Bezárás ✕</button></div>
+    <p>Másold a kívánt mintát egy UTF-8 kódolású <strong>.txt</strong> fájlba, majd importáld a Moodle kérdésbankba.</p>
+    <div class="codebox">::Igaz-hamis:: Az Ohm-törvény U = R · I. {TRUE}
+
+::Feleletválasztós:: Mi az ellenállás mértékegysége? {
+=ohm
+~volt
+~amper
+~watt
+}
+
+::Rövid válasz:: Mi a feszültség jele? {=U}</div>
+  </div>
+</div>
+
+<div class="modal" id="stepsModal" onclick="if(event.target===this)closeModal('stepsModal')">
+  <div class="modal-box">
+    <div class="modal-head"><h2>✅ IAP Moodle munkamenet</h2><button class="close-btn" onclick="closeModal('stepsModal')">Bezárás ✕</button></div>
+    <div class="steps">
+      <p><strong>1.</strong> Készítsd el a kérdéseket GIFT formátumban.</p>
+      <p><strong>2.</strong> Mentsd a fájlt UTF-8 kódolású .txt fájlként.</p>
+      <p><strong>3.</strong> Moodle → Kérdésbank → Importálás → GIFT formátum.</p>
+      <p><strong>4.</strong> Állítsd össze a tesztet a kérdésbankból.</p>
+      <p><strong>5.</strong> Előnézetben ellenőrizd a pontozást, válaszokat és a kérdések megjelenését.</p>
+    </div>
+  </div>
+</div>
 
 <footer>IAP Eszköztár</footer>
 
@@ -243,6 +314,15 @@ buttons.forEach(btn=>{
     filter=btn.dataset.filter;
     applyFilters();
   });
+});
+
+function showGift(){document.getElementById('giftModal').style.display='block'}
+function showSteps(){document.getElementById('stepsModal').style.display='block'}
+function closeModal(id){document.getElementById(id).style.display='none'}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
+  }
 });
 </script>
 </body>
