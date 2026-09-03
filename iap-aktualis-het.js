@@ -26,34 +26,32 @@ const IAP_AKTUALIS_HET = 1;
   }
 
   /* Villamos szerelések 11. – automatikus heti fájlfelismerés.
-     Nincs több kézi "1–9 aktív, 10-től tiltva" szabály.
-     A motor minden hét négy fájlját ellenőrzi, és csak a ténylegesen létezőket aktiválja. */
+     FONTOS: a már működő, href-fel rendelkező gombokat soha nem tiltjuk le.
+     Csak a "hamarosan" / href nélküli gombokat próbáljuk automatikusan aktiválni. */
   if (oldal === 'villamosszereles11.html') {
     const letezik = async function (url) {
       try {
-        const r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-        return r.ok;
+        let r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+        if (r.ok) return true;
+        r = await fetch(url, { method: 'GET', cache: 'no-store', headers: { 'Range': 'bytes=0-0' } });
+        return r.ok || r.status === 206;
       } catch (_) {
         return false;
       }
     };
 
-    const allit = function (a, url, ok, letoltes) {
+    const aktival = function (a, url, letoltes) {
       if (!a) return;
-      if (ok) {
-        a.href = url;
-        a.classList.remove('hamarosan');
-        a.removeAttribute('aria-disabled');
-        a.removeAttribute('tabindex');
-        if (letoltes) a.setAttribute('download', '');
-        else a.setAttribute('target', '_blank');
-      } else {
-        a.classList.add('hamarosan');
-        a.removeAttribute('href');
+      a.href = url;
+      a.classList.remove('hamarosan');
+      a.removeAttribute('aria-disabled');
+      a.removeAttribute('tabindex');
+      if (letoltes) {
+        a.setAttribute('download', '');
         a.removeAttribute('target');
+      } else {
+        a.setAttribute('target', '_blank');
         a.removeAttribute('download');
-        a.setAttribute('aria-disabled', 'true');
-        a.setAttribute('tabindex', '-1');
       }
     };
 
@@ -65,23 +63,35 @@ const IAP_AKTUALIS_HET = 1;
       const gombok = het.querySelectorAll('.gombok a');
       if (!gombok.length) return;
 
-      const tananyag = `tananyagok/villamosszereles11/${w}_het.pdf`;
-      const pptx = `ppt/villamosszereles11/${w}_het.pptx`;
-      const pptPdf = `ppt/villamosszereles11/${w}_het.pdf`;
-      const feladat = `feladatok/villamosszereles11/${w}_het_feladat.pdf`;
-      const gyakorlat = `gyakorlatok/villamosszereles11/${w}_het_gyakorlat.pdf`;
+      const jeloltek = [
+        [`tananyagok/villamosszereles11/${w}_het.pdf`, false],
+        [`ppt/villamosszereles11/${w}_het.pptx`, true],
+        [`feladatok/villamosszereles11/${w}_het_feladat.pdf`, false],
+        [`gyakorlatok/villamosszereles11/${w}_het_gyakorlat.pdf`, false]
+      ];
 
-      const [vanTananyag, vanPptx, vanPptPdf, vanFeladat, vanGyakorlat] = await Promise.all([
-        letezik(tananyag), letezik(pptx), letezik(pptPdf), letezik(feladat), letezik(gyakorlat)
-      ]);
+      for (let i = 0; i < Math.min(gombok.length, 4); i++) {
+        const a = gombok[i];
+        /* Már beállított link = érintetlenül hagyjuk. */
+        if (a.getAttribute('href')) continue;
 
-      allit(gombok[0], tananyag, vanTananyag, false);
-      if (vanPptx) allit(gombok[1], pptx, true, true);
-      else allit(gombok[1], pptPdf, vanPptPdf, false);
-      allit(gombok[2], feladat, vanFeladat, false);
-      allit(gombok[3], gyakorlat, vanGyakorlat, false);
+        let [url, letoltes] = jeloltek[i];
+        let ok = await letezik(url);
 
-      if (vanTananyag || vanPptx || vanPptPdf || vanFeladat || vanGyakorlat) {
+        /* A bemutatónál PPTX hiányában PDF-et is elfogadunk. */
+        if (i === 1 && !ok) {
+          const pdfUrl = `ppt/villamosszereles11/${w}_het.pdf`;
+          if (await letezik(pdfUrl)) {
+            url = pdfUrl;
+            letoltes = false;
+            ok = true;
+          }
+        }
+
+        if (ok) aktival(a, url, letoltes);
+      }
+
+      if ([...gombok].some(a => a.getAttribute('href'))) {
         const h3 = het.querySelector('.het-tartalom h3');
         if (h3) h3.textContent = h3.textContent.replace(/\s*[–-]\s*hamarosan\s*$/i, '');
       }
