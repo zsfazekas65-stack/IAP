@@ -25,21 +25,66 @@ const IAP_AKTUALIS_HET = 1;
     });
   }
 
-  // Villamos szerelések 11.: jelenleg az 1–9. hét anyagai teljesek.
-  // A 10. héttől a még nem létező fájlhivatkozásokat letiltjuk.
+  /* Villamos szerelések 11. – automatikus heti fájlfelismerés.
+     Nincs több kézi "1–9 aktív, 10-től tiltva" szabály.
+     A motor minden hét négy fájlját ellenőrzi, és csak a ténylegesen létezőket aktiválja. */
   if (oldal === 'villamosszereles11.html') {
-    document.querySelectorAll('.het').forEach(function (het) {
-      const szamEl = het.querySelector('.het-szam');
-      const szam = parseInt(szamEl ? szamEl.textContent : '', 10);
-      if (!Number.isFinite(szam) || szam <= 9) return;
-      het.querySelectorAll('.gombok a').forEach(function (a) {
+    const letezik = async function (url) {
+      try {
+        const r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+        return r.ok;
+      } catch (_) {
+        return false;
+      }
+    };
+
+    const allit = function (a, url, ok, letoltes) {
+      if (!a) return;
+      if (ok) {
+        a.href = url;
+        a.classList.remove('hamarosan');
+        a.removeAttribute('aria-disabled');
+        a.removeAttribute('tabindex');
+        if (letoltes) a.setAttribute('download', '');
+        else a.setAttribute('target', '_blank');
+      } else {
         a.classList.add('hamarosan');
         a.removeAttribute('href');
         a.removeAttribute('target');
         a.removeAttribute('download');
         a.setAttribute('aria-disabled', 'true');
         a.setAttribute('tabindex', '-1');
-      });
+      }
+    };
+
+    document.querySelectorAll('.het').forEach(async function (het) {
+      const szamEl = het.querySelector('.het-szam');
+      const n = parseInt(szamEl ? szamEl.textContent : '', 10);
+      if (!Number.isFinite(n)) return;
+      const w = String(n).padStart(2, '0');
+      const gombok = het.querySelectorAll('.gombok a');
+      if (!gombok.length) return;
+
+      const tananyag = `tananyagok/villamosszereles11/${w}_het.pdf`;
+      const pptx = `ppt/villamosszereles11/${w}_het.pptx`;
+      const pptPdf = `ppt/villamosszereles11/${w}_het.pdf`;
+      const feladat = `feladatok/villamosszereles11/${w}_het_feladat.pdf`;
+      const gyakorlat = `gyakorlatok/villamosszereles11/${w}_het_gyakorlat.pdf`;
+
+      const [vanTananyag, vanPptx, vanPptPdf, vanFeladat, vanGyakorlat] = await Promise.all([
+        letezik(tananyag), letezik(pptx), letezik(pptPdf), letezik(feladat), letezik(gyakorlat)
+      ]);
+
+      allit(gombok[0], tananyag, vanTananyag, false);
+      if (vanPptx) allit(gombok[1], pptx, true, true);
+      else allit(gombok[1], pptPdf, vanPptPdf, false);
+      allit(gombok[2], feladat, vanFeladat, false);
+      allit(gombok[3], gyakorlat, vanGyakorlat, false);
+
+      if (vanTananyag || vanPptx || vanPptPdf || vanFeladat || vanGyakorlat) {
+        const h3 = het.querySelector('.het-tartalom h3');
+        if (h3) h3.textContent = h3.textContent.replace(/\s*[–-]\s*hamarosan\s*$/i, '');
+      }
     });
   }
 
