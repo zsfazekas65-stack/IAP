@@ -1,0 +1,16 @@
+(()=>{
+function schoolWeek(d=new Date()){
+  const start=new Date(2026,8,1),end=new Date(2027,5,15);
+  if(d<start)return 1;if(d>end)return 36;
+  const breaks=[[new Date(2026,9,23),new Date(2026,10,1)],[new Date(2026,11,19),new Date(2027,0,3)],[new Date(2027,2,25),new Date(2027,3,4)]];
+  let n=0,cur=new Date(start);
+  while(cur<=d){const day=cur.getDay(),inBreak=breaks.some(([a,b])=>cur>=a&&cur<=b);if(day===1&&!inBreak)n++;cur.setDate(cur.getDate()+1)}
+  return Math.max(1,Math.min(36,n||1));
+}
+function style(){if(document.getElementById('iap-felnott-now-style'))return;const s=document.createElement('style');s.id='iap-felnott-now-style';s.textContent=`
+.het{position:relative}.het.aktualis{margin:12px 0;padding-top:42px!important;background:linear-gradient(135deg,#e8f3ff,#f8fbff)!important;border:2px solid #1976d2!important;border-radius:14px!important;box-shadow:0 10px 28px #1976d22b!important}.het.aktualis::before{content:'●  AKTUÁLIS HÉT';position:absolute;top:10px;left:88px;padding:5px 12px;border-radius:999px;background:#1976d2;color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.04em;z-index:1}.het.aktualis .het-szam{background:linear-gradient(135deg,#0d47a1,#2196f3)!important;box-shadow:0 5px 14px #1976d244!important}.iap-aktualis-vissza{position:fixed;right:22px;bottom:22px;z-index:9999;display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;background:#0d71b9;color:#fff!important;text-decoration:none!important;font:800 14px/1.2 'Segoe UI',Arial,sans-serif;box-shadow:0 8px 24px #0d47a14d;transition:transform .15s ease,filter .15s ease,opacity .15s ease}.iap-aktualis-vissza:hover{filter:brightness(1.08);transform:translateY(-1px)}.iap-aktualis-vissza.iap-kozel{opacity:.32}.iap-aktualis-par{position:fixed;right:22px;bottom:22px;z-index:9999;display:flex;flex-direction:column;gap:8px}.iap-aktualis-par .iap-aktualis-vissza{position:static}@media(max-width:650px){.het.aktualis::before{left:18px}.iap-aktualis-vissza,.iap-aktualis-par{right:12px;bottom:12px}.iap-aktualis-vissza{padding:11px 14px}}
+`;document.head.appendChild(s)}
+function init(){style();const w=schoolWeek();const target=document.getElementById('het'+w)||document.getElementById('het-'+w);if(target){target.classList.add('aktualis');const a=document.createElement('a');a.className='iap-aktualis-vissza';a.href='#'+target.id;a.innerHTML='↘ Aktuális hét <strong>'+w+'.</strong>';a.setAttribute('aria-label','Ugrás az aktuális, '+w+'. hétre');document.body.appendChild(a);const obs=new IntersectionObserver(es=>{a.classList.toggle('iap-kozel',es.some(e=>e.isIntersecting))},{threshold:.25});obs.observe(target);return}
+if(location.pathname.endsWith('/epuletvillamossag2_felnott.html')||location.pathname.endsWith('epuletvillamossag2_felnott.html')){const wrap=document.createElement('div');wrap.className='iap-aktualis-par';wrap.innerHTML='<a class="iap-aktualis-vissza" href="epuletvillamossag2_felnott_jelenleti.html#het'+w+'">🏫 Jelenléti · '+w+'. hét</a><a class="iap-aktualis-vissza" href="epuletvillamossag2_felnott_digitalis.html#het'+w+'">💻 Digitális · '+w+'. hét</a>';document.body.appendChild(wrap)}}
+document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();
+})();
