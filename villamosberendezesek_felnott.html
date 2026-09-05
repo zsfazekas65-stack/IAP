@@ -19,29 +19,10 @@
 </main>
 <footer>© IAP – Integrált Automatika Program • Tanulj! Alkalmazz! Alkoss!</footer>
 <script>
-const topics={
-1:'A villamos gépek szerepe, fő csoportjai és alapvető szerkezeti részei',
-2:'Állórész és forgórész felépítése, feladata',
-3:'Mágneses kör, vasmag, légrés, tekercselések',
-4:'Egyenáramú gépek szerkezeti felépítése',
-5:'Aszinkron gépek felépítése: kalickás és csúszógyűrűs forgórész',
-6:'Szinkron gépek felépítése és gerjesztése',
-7:'Transzformátor mint álló villamos gép: vasmag és tekercselések',
-8:'Villamos gépek hűtése, szigetelése, csapágyazása és mechanikai részei',
-9:'Adattábla, gépazonosítás és szerkezeti kialakítás felismerése dokumentáció alapján',
-10:'Összefoglalás: villamos gépek szerkezeti összehasonlítása és gyakorlati felismerése'
-};
+const topics={1:'A villamos gépek szerepe, fő csoportjai és alapvető szerkezeti részei',2:'Állórész és forgórész felépítése, feladata',3:'Mágneses kör, vasmag, légrés, tekercselések',4:'Egyenáramú gépek szerkezeti felépítése',5:'Aszinkron gépek felépítése: kalickás és csúszógyűrűs forgórész',6:'Szinkron gépek felépítése és gerjesztése',7:'Transzformátor mint álló villamos gép: vasmag és tekercselések',8:'Villamos gépek hűtése, szigetelése, csapágyazása és mechanikai részei',9:'Adattábla, gépazonosítás és szerkezeti kialakítás felismerése dokumentáció alapján',10:'Összefoglalás: villamos gépek szerkezeti összehasonlítása és gyakorlati felismerése'};
 const grid=document.getElementById('weekgrid');for(let i=1;i<=36;i++){const a=document.createElement('a');a.href='#het'+i;a.textContent=i+'. hét';grid.appendChild(a)}
 const holder=document.getElementById('hetek');
-for(let i=1;i<=36;i++){
- const d=document.createElement('div');d.className='het';d.id='het'+i;const num=String(i).padStart(2,'0');const title=topics[i]||'Tartalom később kerül feltöltésre.';
- const desc=i<=10?'Tananyagegység: Villamos gépek felépítése • digitális oktatás • 1 óra':'A következő tananyagegység tartalma később kerül feltöltésre.';
- let buttons='<span class="hamarosan">📖 Tananyag</span><span class="hamarosan">📊 Bemutató</span><span class="hamarosan">✓ Feladat</span><span class="hamarosan">🧪 Gyakorlat</span>';
- if(i===1){buttons='<a href="https://zsfazekas65-stack.github.io/IAP/tananyagok/villamosberendezesek_felnott/01_het.pdf" target="_blank">📖 Tananyag</a><a href="https://zsfazekas65-stack.github.io/IAP/ppt/villamosberendezesek_felnott/01_het.pptx">📊 Bemutató</a><a class="feladat-gomb" href="https://zsfazekas65-stack.github.io/IAP/feladatok/villamosberendezesek_felnott/01_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="https://zsfazekas65-stack.github.io/IAP/gyakorlatok/villamosberendezesek_felnott/01_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>'}
- let challenge='';
- if(i===1){challenge='<div class="iap-kihivas"><strong>⚡ IAP heti kihívás</strong>Egy műhelyben találsz egy ismeretlen villamos motort. Burkolatbontás nélkül nevezz meg legalább öt kívülről megfigyelhető szerkezeti elemet vagy jellemzőt, és írd le, milyen következtetést lehet levonni belőlük.<br><button type="button" onclick="this.parentElement.classList.toggle(\'nyitott\');this.textContent=this.parentElement.classList.contains(\'nyitott\')?\'Válasz elrejtése\':\'Megoldás mutatása\'">Megoldás mutatása</button><div class="valasz">Például: tengelyvég – mechanikai teljesítményátadás; kapocsdoboz – villamos csatlakozás; bordázott gépház – hőleadás; ventilátorburkolat – kényszerhűtés; adattábla – a gép villamos és mechanikai névleges adatai.</div></div>'}
- d.innerHTML='<div class="het-szam">'+num+'</div><div class="het-tartalom"><h3>'+i+'. hét – '+title+'</h3><p>'+desc+'</p><div class="gombok">'+buttons+'</div>'+challenge+'</div>';holder.appendChild(d);
-}
-</script>
+for(let i=1;i<=36;i++){const d=document.createElement('div');d.className='het';d.id='het'+i;const num=String(i).padStart(2,'0');const title=topics[i]||'Tartalom később kerül feltöltésre.';const desc=i<=10?'Tananyagegység: Villamos gépek felépítése • digitális oktatás • 1 óra':'A következő tananyagegység tartalma később kerül feltöltésre.';let buttons='<span class="hamarosan">📖 Tananyag</span><span class="hamarosan">📊 Bemutató</span><span class="hamarosan">✓ Feladat</span><span class="hamarosan">🧪 Gyakorlat</span>';if(i===1){buttons='<a href="https://zsfazekas65-stack.github.io/IAP/tananyagok/villamosberendezesek_felnott/01_het.pdf" target="_blank">📖 Tananyag</a><a href="https://zsfazekas65-stack.github.io/IAP/ppt/villamosberendezesek_felnott/01_het.pptx">📊 Bemutató</a><a class="feladat-gomb" href="https://zsfazekas65-stack.github.io/IAP/feladatok/villamosberendezesek_felnott/01_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="https://zsfazekas65-stack.github.io/IAP/gyakorlatok/villamosberendezesek_felnott/01_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>'}let challenge='';if(i===1){challenge='<div class="iap-kihivas"><strong>⚡ IAP heti kihívás</strong>Egy műhelyben találsz egy ismeretlen villamos motort. Burkolatbontás nélkül nevezz meg legalább öt kívülről megfigyelhető szerkezeti elemet vagy jellemzőt, és írd le, milyen következtetést lehet levonni belőlük.<br><button type="button" onclick="this.parentElement.classList.toggle(\'nyitott\');this.textContent=this.parentElement.classList.contains(\'nyitott\')?\'Válasz elrejtése\':\'Megoldás mutatása\'">Megoldás mutatása</button><div class="valasz">Például: tengelyvég – mechanikai teljesítményátadás; kapocsdoboz – villamos csatlakozás; bordázott gépház – hőleadás; ventilátorburkolat – kényszerhűtés; adattábla – a gép villamos és mechanikai névleges adatai.</div></div>'}d.innerHTML='<div class="het-szam">'+num+'</div><div class="het-tartalom"><h3>'+i+'. hét – '+title+'</h3><p>'+desc+'</p><div class="gombok">'+buttons+'</div>'+challenge+'</div>';holder.appendChild(d)}
+</script><script src="iap-felnott-aktualis-het.js?v=1"></script>
 </body>
 </html>
