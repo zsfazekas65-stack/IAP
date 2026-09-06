@@ -25,10 +25,12 @@ const IAP_AKTUALIS_HET = 1;
     });
   }
 
-  /* Villamos szerelések 11. – automatikus heti fájlfelismerés.
+  /* Villamos szerelések 11. és Elektrotechnika 11. – automatikus heti fájlfelismerés.
      FONTOS: a már működő, href-fel rendelkező gombokat soha nem tiltjuk le.
      Csak a "hamarosan" / href nélküli gombokat próbáljuk automatikusan aktiválni. */
-  if (oldal === 'villamosszereles11.html') {
+  if (oldal === 'villamosszereles11.html' || oldal === 'elektrotechnika11.html') {
+    const mappa = oldal === 'villamosszereles11.html' ? 'villamosszereles11' : 'elektrotechnika11';
+
     const letezik = async function (url) {
       try {
         let r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
@@ -46,6 +48,9 @@ const IAP_AKTUALIS_HET = 1;
       a.classList.remove('hamarosan');
       a.removeAttribute('aria-disabled');
       a.removeAttribute('tabindex');
+      a.style.pointerEvents = 'auto';
+      a.style.cursor = 'pointer';
+      a.style.opacity = '1';
       if (letoltes) {
         a.setAttribute('download', '');
         a.removeAttribute('target');
@@ -64,31 +69,42 @@ const IAP_AKTUALIS_HET = 1;
       if (!gombok.length) return;
 
       const jeloltek = [
-        [`tananyagok/villamosszereles11/${w}_het.pdf`, false],
-        [`ppt/villamosszereles11/${w}_het.pptx`, true],
-        [`feladatok/villamosszereles11/${w}_het_feladat.pdf`, false],
-        [`gyakorlatok/villamosszereles11/${w}_het_gyakorlat.pdf`, false]
+        [`tananyagok/${mappa}/${w}_het.pdf`, false],
+        [`ppt/${mappa}/${w}_het.pptx`, true],
+        [`feladatok/${mappa}/${w}_het_feladat.pdf`, false],
+        [`gyakorlatok/${mappa}/${w}_het_gyakorlat.pdf`, false]
       ];
 
       for (let i = 0; i < Math.min(gombok.length, 4); i++) {
         const a = gombok[i];
-        /* Már beállított link = érintetlenül hagyjuk. */
-        if (a.getAttribute('href')) continue;
+        const [url, letoltes] = jeloltek[i];
 
-        let [url, letoltes] = jeloltek[i];
-        let ok = await letezik(url);
+        /* Ha a link már jó, csak biztosítjuk, hogy ne maradjon tiltott állapotban. */
+        if (a.getAttribute('href')) {
+          a.classList.remove('hamarosan');
+          a.removeAttribute('aria-disabled');
+          a.removeAttribute('tabindex');
+          a.style.pointerEvents = 'auto';
+          a.style.cursor = 'pointer';
+          a.style.opacity = '1';
+          continue;
+        }
+
+        let celUrl = url;
+        let celLetoltes = letoltes;
+        let ok = await letezik(celUrl);
 
         /* A bemutatónál PPTX hiányában PDF-et is elfogadunk. */
         if (i === 1 && !ok) {
-          const pdfUrl = `ppt/villamosszereles11/${w}_het.pdf`;
+          const pdfUrl = `ppt/${mappa}/${w}_het.pdf`;
           if (await letezik(pdfUrl)) {
-            url = pdfUrl;
-            letoltes = false;
+            celUrl = pdfUrl;
+            celLetoltes = false;
             ok = true;
           }
         }
 
-        if (ok) aktival(a, url, letoltes);
+        if (ok) aktival(a, celUrl, celLetoltes);
       }
 
       if ([...gombok].some(a => a.getAttribute('href'))) {
