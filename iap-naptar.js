@@ -15,6 +15,25 @@
   function kiemelAktualisHet(){stilusBetoltese();const a=aktualisIAPHet();document.querySelectorAll('.het').forEach(h=>h.classList.remove('aktualis-het','aktualis'));if(!a)return;document.querySelectorAll('.het').forEach(h=>{const e=h.querySelector('.het-szam');if(e&&parseInt(e.textContent.trim(),10)===a)h.classList.add('aktualis-het')})}
   function subjectDesignBetoltese(){const oldal=location.pathname.split('/').pop().toLowerCase();if(!TANTARGY_OLDALAK.includes(oldal)||document.getElementById('iap-subject-design'))return;const l=document.createElement('link');l.id='iap-subject-design';l.rel='stylesheet';l.href='./iap-subject-design.css?v=4';document.head.appendChild(l)}
   function kihivasMotorBetoltese(){const oldal=location.pathname.split('/').pop().toLowerCase();if(!TANTARGY_OLDALAK.includes(oldal)||oldal==='villamos9.html')return;if(window.IAPKihivas){window.IAPKihivas.autoInit?.();return}if(document.getElementById('iap-kihivas-motor-loader')||document.querySelector('script[src*="iap-kihivas-motor.js"]'))return;const s=document.createElement('script');s.id='iap-kihivas-motor-loader';s.src='./iap-kihivas-motor.js?v=4';s.async=false;s.onload=()=>window.IAPKihivas?.autoInit?.();s.onerror=()=>console.error('IAP: a központi kihívásmotor nem tölthető be.');document.body.appendChild(s)}
+  function javitasVillamosszereles11Het11(){
+    const oldal=location.pathname.split('/').pop().toLowerCase();
+    if(oldal!=='villamosszereles11.html')return;
+    const hetek=[...document.querySelectorAll('.het')];
+    const h=hetek.find(x=>parseInt((x.querySelector('.het-szam')?.textContent||'').trim(),10)===11);
+    if(!h)return;
+    const g=h.querySelectorAll('.gombok a');
+    if(g.length<4)return;
+    const base='https://zsfazekas65-stack.github.io/IAP/';
+    const hrefek=[
+      base+'tananyagok/villamosszereles11/11_het.pdf',
+      base+'ppt/villamosszereles11/11_het.pptx',
+      base+'feladatok/villamosszereles11/11_het_feladat.pdf',
+      base+'gyakorlatok/villamosszereles11/11_het_gyakorlat.pdf'
+    ];
+    g.forEach((a,i)=>{a.classList.remove('hamarosan');a.href=hrefek[i];a.target='_blank';a.removeAttribute('download');a.style.pointerEvents='auto';a.style.cursor='pointer';a.style.opacity='1';});
+    const cim=h.querySelector('h3');
+    if(cim&&cim.textContent.includes('hamarosan'))cim.textContent='11. hét – Villamos biztonságtechnika';
+  }
   function haladasKovetese(){const oldal=location.pathname.split('/').pop().toLowerCase();if(!TANTARGY_OLDALAK.includes(oldal))return;const hetek=[...document.querySelectorAll('.het')];if(!hetek.length)return;const tantargy=(document.querySelector('.tantargy-fejlec h2')?.textContent||document.querySelector('header h1')?.textContent||document.title||'IAP tantárgy').trim();
     function adat(h){const m=(h.querySelector('.het-szam')?.textContent||'').match(/\d+/);if(!m)return null;const het=+m[0];h.id=`het-${het}`;const tema=(h.querySelector('.het-tartalom h3')?.textContent||h.querySelector('h3')?.textContent||`${het}. hét`).trim();return{oldal,tantargy,het,tema,hash:`#het-${het}`,ido:Date.now()}}
     function ment(h){const a=adat(h);if(!a)return;try{localStorage.setItem('iap_folytatom',JSON.stringify(a))}catch(e){}}
@@ -23,6 +42,6 @@
     else {const a=aktualisIAPHet();const h=a&&document.getElementById(`het-${a}`);if(h)ment(h)}
   }
   window.IAP_NAPTAR=IAP_NAPTAR;window.aktualisIAPHet=aktualisIAPHet;window.kiemelAktualisIAPHet=kiemelAktualisHet;window.kiemelAktualisHet=kiemelAktualisHet;
-  function indul(){subjectDesignBetoltese();kiemelAktualisHet();kihivasMotorBetoltese();haladasKovetese()}
+  function indul(){subjectDesignBetoltese();javitasVillamosszereles11Het11();kiemelAktualisHet();kihivasMotorBetoltese();haladasKovetese()}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',indul);else indul();
 })();
