@@ -1,132 +1,99 @@
 %PDF-1.4
-%IAP
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [ 6 0 R 8 0 R 10 0 R ] /Count 3 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Encoding /BaseEncoding /WinAnsiEncoding /Differences [ 128 /Aacute 129 /Eacute 130 /Iacute 131 /Oacute 132 /Odieresis 133 /Ohungarumlaut 134 /Uacute 135 /Udieresis 136 /Uhungarumlaut 137 /aacute 138 /eacute 139 /iacute 140 /oacute 141 /odieresis 142 /ohungarumlaut 143 /uacute 144 /udieresis 145 /uhungarumlaut ] >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding 3 0 R >>
+<<
+/BaseFont /Symbol /Name /F3 /Subtype /Type1 /Type /Font
+>>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding 3 0 R >>
+<<
+/Contents 10 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 9 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
 endobj
 6 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 7 0 R >>
+<<
+/Contents 11 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 9 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
 endobj
 7 0 obj
-<< /Length 1939 >>
-stream
-0.035 0.16 0.32 rg 0 780 595 62 re f
-1 1 1 rg BT /F2 17 Tf 42 812 Td (12. h\212t - Elektrom\211gneses indukci\214 \212s induktivit\211s) Tj ET
-0.08 0.45 0.75 rg 0 773 595 7 re f
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 748 Td (T\215rt\212nelmi nyit\214 - Michael Faraday, 1831) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 730 Td (Faraday k\213s\212rletei megmutatt\211k, hogy v\211ltoz\214 m\211gneses t\212r villamos fesz\220lts\212get) Tj ET
-BT /F1 10 Tf 54 716 Td (hozhat l\212tre. Ez az elektrom\211gneses indukci\214 alapja, \212s n\212lk\220le nem l\212tezne a mai) Tj ET
-BT /F1 10 Tf 54 702 Td (villamosenergia-termel\212s, a transzform\211tor, az indukci\214s motor vagy sz\211mos) Tj ET
-BT /F1 10 Tf 54 688 Td (\212rz\212kel\216.) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 666 Td (1. M\211gneses fluxus \212s induk\211lt fesz\220lts\212g) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 648 Td (A m\211gneses fluxus azt fejezi ki, hogy mennyi m\211gneses t\212r halad \211t egy fel\220leten.) Tj ET
-BT /F1 10 Tf 54 634 Td (Ha a tekercset \211tmetsz\216 fluxus megv\211ltozik, a tekercs kapcsain fesz\220lts\212g jelenik) Tj ET
-BT /F1 10 Tf 54 620 Td (meg.) Tj ET
-BT /F1 10 Tf 54 606 Td (Faraday-t\215rv\212ny: Ui = -N * dPhi/dt) Tj ET
-BT /F1 10 Tf 54 592 Td (N a menetsz\211m, dPhi a fluxusv\211ltoz\211s, dt a v\211ltoz\211s ideje. A negat\213v el\216jel Lenz) Tj ET
-BT /F1 10 Tf 54 578 Td (t\215rv\212ny\212re utal.) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 556 Td (2. Lenz t\215rv\212nye) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 538 Td (Az induk\211lt \211ram ir\211nya mindig olyan, hogy m\211gneses hat\211s\211val akad\211lyozza az \216t) Tj ET
-BT /F1 10 Tf 54 524 Td (l\212trehoz\214 v\211ltoz\211st. Ez az energiamegmarad\211s egyik villamos megjelen\212se. A szab\211ly) Tj ET
-BT /F1 10 Tf 54 510 Td (seg\213t az induk\211lt polarit\211s meghat\211roz\211s\211ban.) Tj ET
-0.45 0.5 0.58 rg BT /F1 8 Tf 44 28 Td (IAP - Felnott oktatas - Elektrotechnika - 12. het) Tj ET
-endstream
+<<
+/PageMode /UseNone /Pages 9 0 R /Type /Catalog
+>>
 endobj
 8 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 9 0 R >>
+<<
+/Author (anonymous) /CreationDate (D:20260906124014+00'00') /Creator (anonymous) /Keywords () /ModDate (D:20260906124014+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (unspecified) /Title (untitled) /Trapped /False
+>>
 endobj
 9 0 obj
-<< /Length 1895 >>
-stream
-0.035 0.16 0.32 rg 0 780 595 62 re f
-1 1 1 rg BT /F2 17 Tf 42 812 Td (12. h\212t - \204indukci\214, induktivit\211s, energia) Tj ET
-0.08 0.45 0.75 rg 0 773 595 7 re f
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 748 Td (3. \204indukci\214) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 730 Td (Ha egy tekercs saj\211t \211rama v\211ltozik, a saj\211t m\211gneses tere is v\211ltozik. Ez a) Tj ET
-BT /F1 10 Tf 54 716 Td (v\211ltoz\211s a tekercsben olyan fesz\220lts\212get induk\211l, amely az \211ramv\211ltoz\211ssal) Tj ET
-BT /F1 10 Tf 54 702 Td (ellent\212tes hat\211s\217.) Tj ET
-BT /F1 10 Tf 54 688 Td (UL = -L * di/dt) Tj ET
-BT /F1 10 Tf 54 674 Td (Az L induktivit\211s m\212rt\212kegys\212ge a henry \(H\). Nagyobb L eset\212n ugyanakkora) Tj ET
-BT /F1 10 Tf 54 660 Td (\211ramv\211ltoz\211s nagyobb fesz\220lts\212get hoz l\212tre.) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 638 Td (4. A tekercsben t\211rolt energia) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 620 Td (A m\211gneses t\212r energi\211t t\211rol. Ez az energia a k\215r megszak\213t\211sakor felszabadulhat,) Tj ET
-BT /F1 10 Tf 54 606 Td (ez\212rt rel\212k, m\211gnesszelepek \212s kontaktorok vez\212rl\212sekor t\217lfesz\220lts\212g keletkezhet.) Tj ET
-BT /F1 10 Tf 54 592 Td (W = 1/2 * L * I^2) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 570 Td (5. Gyakorlati v\212delem) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 552 Td (- Egyen\211ram\217 rel\212tekercsn\212l v\212d\216di\214da haszn\211lhat\214.) Tj ET
-BT /F1 10 Tf 54 538 Td (- V\211ltakoz\214 \211ram\217 tekercsn\212l RC tag vagy varisztor alkalmazhat\214.) Tj ET
-BT /F1 10 Tf 54 524 Td (- A v\212d\216elem cs\215kkenti a kapcsol\214elemre jut\214 fesz\220lts\212gl\215k\212st.) Tj ET
-BT /F1 10 Tf 54 510 Td (- A polarit\211sra \212rz\212keny v\212d\216di\214d\211t mindig helyes ir\211nyban kell bek\215tni.) Tj ET
-0.45 0.5 0.58 rg BT /F1 8 Tf 44 28 Td (IAP - Felnott oktatas - Elektrotechnika - 12. het) Tj ET
-endstream
+<<
+/Count 2 /Kids [ 5 0 R 6 0 R ] /Type /Pages
+>>
 endobj
 10 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 11 0 R >>
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 3582
+>>
+stream
+GauHN=``B<&Ur?8Qq&SoN\EDbPU]+'Ue!3lgC\#[JM0B2\:bWQJd'cbQ@F:n#NoJ2[(1cdY+i>;%8>[XFjDfU_10]/^!6r[mXi*!b6[.hig)8i-+Pu_D_@W,3[]k`jhDBaDSMlB+rQ:FPtEA8-T#FlNabngn0-AsT6!_X:D"8XUN$?2kN)I9Z_,;b1PWPjF8k,%\bJiNrmICh58\19PaOZ/j,!LqZQf>5+4$l$>`mp8(%@rbC*"='&l)p?0?OSs+tC!u.E[a<OcRQko[r@QjQ4lF:E/j'*68KEW(9Zo]so1LIXc?\E@E+*0iSc[as/_kQb>B_'1NPUU*PaETmU<@`JIH,GWk)Ogg(9+C2ur'A8Y[SAUZ'R>8;&92C'klmap(TV9jf:>>(sED-A1=Ah"F<hi!.Bd#&NQ%N_:5)lX[J_Jh4$!P*G;a<`76n\!Y[iG;f5,!V$^nm>CVoAMZnY-Q;Bd&6Gdm[DIGY"jfZ=G/dOR^T#?P;^ep)F3NM-\X!!&WN$bn=k8<$^]s(.3?iN@*2F=elMLa5.!ee]>2k(/k\.6CD:dc-;LN5&jecFfuuKcK7lIbf6>eW]eh8Um.AF8"K\cU`g\u0[9Khc.:(V4RFV"agm+oF@`]BkP1A[>$U"uhg[+pSpD^D4ZcqPXI!-H:1,>p/4'/S>GO.l_,Hl-PS1Uh<8Z:p=%'4_s\59DcdE#"R/16/2nEF%''T[[5_"YeB-.E*CTu#MsOeB"R`AC.[=!s)I3(lSE77BQ_nbsMcWi9NJ?6EuPMAaYmNhNV'[:[X5A<@.nAKYMN$T2E#AVg_q^a!S4g8nm+6Z\u(?'BC<_7"@f\ko]DXA7\p?.i\n].L(r-$H7Uo('e#73?pPga]_0Pq-`14'*$'H:ZZ+B(h/+[Z2tF!OPHImt<p[&bgNIr=%R"oj%5h1h#>^ViI88>t-,WlN5,+(n>+\)CaY";%+5k)JRQmQl*<8880.76L3W7nrS(D\g.IPi_\,_eJHMIaTM-pD/"2*/,%0ZVT_5.XRCH;%YnGCdVI5D1M.C6R0"%:r9gIq#T'.1`!s@,Tr*Zm/d1fUUa\e+O<I.2J-A8G8J=l=o7i!S`YB@bk-:ks)8.<TO=Bc5H:\Z<@[<'cQ%F$PS*1#t`A#KU]E!4>D-elp.?>esBRpJ3UYJ?P2C3#[kgtFAQ7JGiH"#<8-@:D#<18'+rr&&2(FB>dj$8$3*L-AE:ONgFP]7G:04G,s?9P1"LbZ5X-tuPn_I>EX4g'CVfp0+N^+Gj^4JBmD3N$^53]1&'fQC>.(4_Zgi5L=Q6%65GTPun<Rth39/T19d5m,togNqE\/*(S*_@qGND#b.`ee4F>m^2U4UcJ8O:g(@o!;<=bLYjr([B1kr%lYRsRk/=Y"d.JrEcq`(@<Wppd$J[ihHA1^[U8E[nbf1Sg'7MYU#i`V,epl?keWV3J%`F@6-6_o03:>nhuQp(A?pgG8O4[.!^FA[#po)u!o=#-^!0<>L7"kb*hW(m%!3B'MZR3M1S-Me%5V/+&.(C^1io]]mL`\GAPhrdI!<]?3MY[6d.8"_#b:s6f=lG]s&'X*B+0\K4=l,$^%(3.VW9Mi(#n^G7mKctBuE\3P^s6Yi?L/kh9]U\7o0l_E?\,u$^JK#NHdgh.:[mqOM-4D&:t)0BMGFWZLa+QqdZ3YPe"!=4k.^X.UuQM7d8m:8s.kn2mk5b&M;UG!,lU'R1&mrBkmK"G]VN:!9kb:p5o+7:=Ts<+uU9KP4HUi)Xr2Kdl9%':=U<aK2NjG$qi0h`#CZNR,^`\:f9tH1hZ9;FM2oj(D(37H(=TWoZ2;ArO&f:D8TW2O"`Qd!dqd3L7'(P_V/#A)mhl>@$kYLUp.R"6iFKBJ;+(u2GgnB%6ORB3[b5^+=eL*#k(P<<2e7V=JCgKS!T0u2ZHaiq!LC90YI*%%.$ku>r<tbGY@*WI<P78QKf#bKeD8[2\$ZlQB]U)Rt)X4L]ml8Np(U(qNkZK-jXPCp+HmRX._iP)tc7OUHS=d0e\R\Si5R;HQCCf/=BVA2pLBeC0@1N6k;pB5fks1RqK@0EucTb@5f>X3HrI1S*%/4,,kd.<k+F6VP1H)o.8+T3+qIEd:7?&!\-Dg8aMSWIOanFE.5%7;H-196=/I$,AkXdfjt1h&lU@_FWRcfn!B'if/A8O&*k,4YHg/[gO]QL'7?@R8=;cmD'tO,oh_LqJF8tFp=T.QCU8_C-V*J6]='Y)gkTpZZWN?&grEi>(R'W8n/h3)%I$G0G/J2&#PbBo`T+3<kn)Joj98=<[!62!AK3b9#.,>*>5'i-?+Ut<<$\/T^Y/Fb9XC=CnLqqkfi6<#9/BuF]<Z#r^3Eh>BGc(Bc6\:tDut^n\M)OI:&uR9gVVnN.eH'?J#lq"dX9%;\T@Fg;:)eE[f)E4AR3F!bM=WVplc<MD-7nSG(4[B=R1d&B(8(cT`OadJ5D(SCB?gG;BT<>60O]F"/,ba5nFr*HKDGSJ,j_*A?poLM-K5ae=1R9H_dcZ^8T_-YToRK";`lnWbgkmSp5rg2s[fOX+e6^QgVRAkRPM50<quGeG#@q!C(blj;!CY1Ru=O4g'_8>7J\@al0UNeiU&+=5RIja4^"8J]W#<#N9!MUmka[n^VW<i;JHK9GHA&<.Qa@(cC0hiC;X7%qNGM[;,/sqE20.4Xr>&IBHheZ1k?cZLYoerMm^bRU'&1O<4j+]n.WL[']3*RW]IM(@NgVV!R'FDV$hb%6?KqkK>?2f.m5T*E!drM"`1(m^(ZEA=`G'\XdO,1jaatRp3mP]EL&O%So+E<l#'A!F?CiKsJB@0T,FU-H6,pdM3QJj>E/Z1bgeZE895).76rkTNpTI>t['_g.@QEW0I2n=.n_(jQ$-dd2)?!("EDsI/`R)`Ep'%V=W]orVY@::ZQpX]VCFt=l2e:,J7Xq%XIo9#en>)On&1%@^tM3SsD(Qa#?>BC7H+B?:29$NHlm168@>#b#$Tr`At"fWbsH]_4@4>CNBCZRtpeS_Y[h%%h$tq%d9XZJP9,m\lm?H?bB<OEjuQZ]5B?H)oN33_@\6i+P/9%c\6W)NH>#PH`/9Pk#^B)VFF'Hb&qP/%.aZ>L&H^gJ"M@cq7O&JbWG.a*!+K)jjmW@-S4%MnE.0OIls1+qc1,pgE7TL0Ym<&;cIP^Isd;_4LCIo-B"7Sn'da]>Euh+Y/;jQ(Hamn=kGnhM21-KJ9a>O,GXJLVXhg!qeHh86qi_MB6J=gkdOXo/WS$LjqL6Bq!4%\E6[jDdbfWNs5/-cf*cpRf#+irSjA(C6!nql?c1qmI_c`p'Dj-uEEj^On>/Vt"DmE;Ql*:#[W=ioZA,6s_]$rL[&&l95e$>A4Ys0*0>o#PU-J(<0S.ti;N9;$]C`;:(k8X[H5#\X`ADI`)7'!oJ1NRF[Z0_%jogk]V[2Y;rU3ueTc;L!<OE3cZhq>XD4Rg]q5GiF=C%D'_RaROB4(_+'GJ-+l,4Tt,slOkjp/-cHjl;g6Ju/e(ISI8[&8H=A\Uh=W`B-B1iTTa^2T'b5EHFrY:nD$Enu_aNF)!*;epT*#MFHs3ZVpF,qr:'X"[.<W.*dB-I;Yrc(!!U~>endstream
 endobj
 11 0 obj
-<< /Length 1968 >>
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 3434
+>>
 stream
-0.035 0.16 0.32 rg 0 780 595 62 re f
-1 1 1 rg BT /F2 17 Tf 42 812 Td (12. h\212t - Sz\211m\213t\211sok \212s \215sszefoglal\211s) Tj ET
-0.08 0.45 0.75 rg 0 773 595 7 re f
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 748 Td (6. Mintap\212lda - Faraday t\215rv\212nye) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 730 Td (Egy 200 menetes tekercsben a fluxus 0,002 Wb \212rt\212kkel v\211ltozik 0,05 s alatt.) Tj ET
-BT /F1 10 Tf 54 716 Td (Ui = N * dPhi/dt = 200 * 0,002 / 0,05 = 8 V.) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 694 Td (7. Mintap\212lda - \204indukci\214) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 676 Td (Egy L = 0,5 H induktivit\211s\217 tekercs \211rama 20 A/s sebess\212ggel v\211ltozik.) Tj ET
-BT /F1 10 Tf 54 662 Td (UL = L * di/dt = 0,5 * 20 = 10 V.) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 640 Td (8. Mintap\212lda - M\211gneses energia) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 622 Td (L = 0,4 H \212s I = 3 A eset\212n:) Tj ET
-BT /F1 10 Tf 54 608 Td (W = 1/2 * 0,4 * 3^2 = 1,8 J.) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 586 Td (\204sszefoglal\211s) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 568 Td (A 12. h\212t kulcsfogalmai: m\211gneses fluxus, Faraday-t\215rv\212ny, Lenz-t\215rv\212ny,) Tj ET
-BT /F1 10 Tf 54 554 Td (\215nindukci\214, induktivit\211s, m\211gneses energia \212s tekercsek kapcsol\211si t\217lfesz\220lts\212ge.) Tj ET
-BT /F1 10 Tf 54 540 Td (A k\215vetkez\216 hetekben ezekre \212p\220l a v\211ltakoz\214 \211ram\217 k\215r\215k vizsg\211lata.) Tj ET
-0.035 0.16 0.32 rg BT /F2 12 Tf 44 518 Td (Ellen\216rz\216 k\212rd\212sek) Tj ET
-0 0 0 rg
-BT /F1 10 Tf 54 500 Td (1. Mikor keletkezik induk\211lt fesz\220lts\212g? 2. Mit mond ki Lenz t\215rv\212nye? 3. Mi az) Tj ET
-BT /F1 10 Tf 54 486 Td (induktivit\211s m\212rt\212kegys\212ge? 4. Mi\212rt keletkezhet nagy fesz\220lts\212g rel\212) Tj ET
-BT /F1 10 Tf 54 472 Td (kikapcsol\211sakor? 5. Mire szolg\211l a v\212d\216di\214da?) Tj ET
-0.45 0.5 0.58 rg BT /F1 8 Tf 44 28 Td (IAP - Felnott oktatas - Elektrotechnika - 12. het) Tj ET
-endstream
+Gatm>h/D(,&qBX__8eBO(m3fjJ`>Toj.:7)dAFqV*qCM%l*V_;egJSRoD\DA,UIo\].)<6(g)\`E\t]0i,;-u<59Sq^UG/8I_8/=0*rg:?/HgB0LOG6d>.$D8#M0-=LfK(\X9sITc#!\@E+]f.)LjT;(0qtm4:$+J5[^._+JELYX*1a7Mf_pNTk?dA3/2ClY??&1=C)FqerFI6e>\lp"StZJi"82jTG[pq;k4FaUtCL1/8B5,m?$s]Nh]9ndDh0moXdG0EZpYEmd`M=Sdhc8MI_Z)>i4?_^oY;LUZJCoE-<+l";L,8,I?2589lBekPgV4%r7'>N!+\eS\D"F_69G>d[^,-3RA.WEe#pAFP'YlMKi/1KY?Frd32s+,L/0&kPZg?RiD`R`<k+(oA3b/c*AEeX1'fZa#[D9cYf'qg0Y>N$aFf>h#ooOD.#8D:_eTq2#R%.H^5kbg+mX6ri`MY$+&b4#9-_AF2A/!Geok&<2)X7caP5JAGIe0_XXX]Ba4E'_>PB]VLq?EfpJd,4UF,NIB@EC=<X58VNc&^QiNXk/>G3GSK2%E@Np1dI2^SMR&X<)0R.B6]?s.2467%esjL@m@&3@[sDk.CHEVSDORifK)$JnR'Qg#+3fV5^`k.,Wh<J?8i[E\]<O*&rUH[C(53P"XR4EoU]aN%>LER/+!O<d4jbBg@Q5fj.2QPZ<b"#7P-J.LklPW+WE`?B6DhLVmCaAlqW[I,o],m^^Z(JKG`cImW];@4';<QJ)bMrQSsF(cBn6Z8-lkqe(7o\?F%RmIjhaJ;k>nWuE`^m8#&pO'`cUDXX@'C=Xp%%<4mYZ(P\j@,Rqd.c[h*N"asM(!gLWE*XZ$S@S![cAfPj\CDKeif[t.MV:+ejK\.$K5K]H%a9__SrD7/%,B^HI=e!TjI)Y5_urb&j>H'S8rWWN:ig;j4V%SpuWSC\oV[58(u#Y;`S).RatWH$SHD>R&Ioq@/"dNcN")jIQ39.0W3M,e,k$-oPs`F&p*m<FYkNG5"N0Z]U*A%)NmVU2[[\joD[.\5&h-g\/C*;moih;3!Z0+9]G;JM(,&\0a=#BHe:fWMah4pl?QS>Bh"3Z<d(NIb>LNXOd4NtkbV=uuBO>Z-D)0,L?@;mr\]_"@h=]Bu3!c&#.a'kfG;H"5F9,?fG2gU3qZj-Ro,AVg`K/m-#/p&l9-e:CgPbX14h:;!_OgidsMhcQ#hV>,qbh&2Or(kV,p\'<\4RqZ"L%X'<IpCrCK5h,:NHcA),@1'YV5JoOMmopHL)"64P\Y@FiB2<fgEM&h2FF<u@n"lN:B<pEdh7\e[kEFTP;-"M,r?SQ4`QmQOa>i"ujbGj:/S5l:^mZY""&.OCXG3ao`u.3<?uH_5.Q<#QQ:f,m$;295h,9%(F,QoMJ-&@(L&_Pego'>b&>@uS2p]f\5F!CfNem;4lDmqXD"h?]H3[K^BD[%^5LC&IE4(4b,NEf<VPDqC3m1'PP(@q`#hk^OBG*Y_d3,8gRSS'lY%T!MYtu!W=u&!/Fi5Um<A%g!!VtRS/G\;Bfd<%mO[I!<o<$8\4OUWFX"RB&K!ra+9.%ZFdJ1O<6GIT50RmsTWGC0J0R#+B4<h,ekNC@&6GJ^:bg0faQ"rZS>9kq0*rs"Tb97hrI/GLb#l#fJJA4>Mbe.:2X.LV&3=oI%aKh%^VaDUNPnP_eRfe,ler*u\ki`K]4QP>$*WT&>5QMV8ZPc8Ci<15GFkrE0*JmErU<ek<Q/0>V8)fB)Gr0Y_L!]9n--Z+cM>QX1d&+>u_0]_N5!>g('`)HVBlp/lrA9PQZW!OBXK)Yd*C=-:[X02Tc_nK(0``M)'(@"EH$;k=:ge9=A!eNuM-)$uA2]`Wkc[B<2G["CDo);eZ@7Aqgm/1<AElo`>b0k>;-,Uja$N't]BiNZCu7D%%X=eu5oLN<dkP9lP#A2fM-I4J(;XiS^N6G0hmXs#ZdV4PaIS?rLk"RMeEK="/8Yui/oj19dkMd,`!c3uF*'R9\GUV^_qcAEGmN^%@>fjE/9Y[[gVHom!2/Z?e:<e41'+0s#)T9G89`g2>ID2(DV*XW*]K.tEOINBN_W0N7&N9VesW./gP:5jh([`oB(!"m!Eh)&.8U*,R\*O5LOLnY9$qA6IN$rW,"8EaDX6ohYW>:DH?'+<$/K\$AD1/@f$3s1/c,@fEr#\nQW)3<aklfFOfRMO'p<hH@Vn13YtW1Q%F9mE@_]<AS3OJ\&BelARG#b]8Dl+,JCrNCV%X/k9t6h6?4<it!9l\SXm*Q[1pZZ/Ji!fi,LCrtMD>@9&S]1W&S\%NpEGSjd(\A=Ce^M;drUlK%im)7J0"_WJ#g;6n\OKqVcloDp?-.X`Y=l+QS]cl4.E,gd[1eH!K`!aa!oM'`BUN^AVp-%?r9%=jgL_tEi'In<oO96O8U[N_Ygs0_K)O+!gZ44&[5G`:4jkbHg+W6b7j<A#o9H^"+%Z9;bqV?L$l!Mk9$hX9r6g\\KnqrTObb0QS_2N6dcCs10H6&Xeg^4P3!'b)uJH3L\\YQ1MCRY3OH1QAMS3P0;*1KT;@Oo2W9*'@mC250V@1Fdjpm/&E*NTY4CMro$bFGjm)dp-H1%meAqlT!,,MC=tUM79o8s8>"`WO3J1sJ;TKW6VGj.)l&#Q_b/QclGa^erZt[W:#F(L1g:Dpnp'YX#,J@1n)-1@$/?lFV"@!R\"]gZ^c;2?*h^UC_CtgsNAm>Qt(7nGX%fN`@&M#6a:ZKF02.5Nq9o$.$FP&f`!DLf:muQZ;6k=V*_a1K=qfnobR*+nL@sW]=/L@J@dkC3,lus3No6j8CGa@#MWSB[&$0Z/R:@/_k]lZ$GZO-BTfEZ/dLhBR`4`&.NRGP#'retau=PKtC27fgh`)\b$j_*cARpc;M$X9f/"f't:qpDbiZWlh#DYR2ecsqtQ7V1BOY:b9V)Kr4Lq4+MYh:@g:J1e24>Za(j`:?"^.`aGWqT&`'@KIA^MnnW28e:S!rV1QeiUsYtYgPrA?[euPmiA!)&J#W8ZPh!39lfppK*/XlQedk1$OsuJgU68ZM8aVOX['JF%BNfG1'a2[3sEo;2h.4/>d+lTB.p]FFpkk[L41lCD7ahjmuu(NQ6.1GjdkBk$6P-^0>>Wop3`J$NCp/o.eT'&;=$H?Z/7.CX8Rsk\B?OB)T[3=jsm"VUIYlB,aS%%4of.idh[Rj:!n]cKRB8KKrj9Jak1u>,T>UP>V&7TbMRelDg#NXG^$lKH"Ba4oJV9V31-LpBTtD;]uF;3H]47pUf</i'^uT<Fe`+6ISW6GO5kC^NSkQ8[skrt2p7hMPj$Q&#>.2DKhWX]&%^?uq^&O+@+,-!bZFKOX:cX'F[p`X0USV#;J"hV&#b(mitQ=n4<Kn3r4rA9Wh;"Uf53>?n*(%[f*@or7WWnea^WT:Fg#%\W5ZPBii5h6+EX[V1_lS[+)i;rg]~>endstream
 endobj
 xref
 0 12
 0000000000 65535 f 
-0000000014 00000 n 
-0000000063 00000 n 
-0000000135 00000 n 
-0000000476 00000 n 
-0000000562 00000 n 
-0000000653 00000 n 
-0000000789 00000 n 
-0000002780 00000 n 
-0000002916 00000 n 
-0000004863 00000 n 
-0000005001 00000 n 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000408 00000 n 
+0000000612 00000 n 
+0000000816 00000 n 
+0000000884 00000 n 
+0000001145 00000 n 
+0000001210 00000 n 
+0000004884 00000 n 
 trailer
-<< /Size 12 /Root 1 0 R >>
+<<
+/ID 
+[<2b9011ecb3743c79f407253c647d8732><2b9011ecb3743c79f407253c647d8732>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 8 0 R
+/Root 7 0 R
+/Size 12
+>>
 startxref
-7022
+8410
 %%EOF
