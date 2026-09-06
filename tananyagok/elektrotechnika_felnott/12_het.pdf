@@ -1,0 +1,132 @@
+%PDF-1.4
+%IAP
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [ 6 0 R 8 0 R 10 0 R ] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Encoding /BaseEncoding /WinAnsiEncoding /Differences [ 128 /Aacute 129 /Eacute 130 /Iacute 131 /Oacute 132 /Odieresis 133 /Ohungarumlaut 134 /Uacute 135 /Udieresis 136 /Uhungarumlaut 137 /aacute 138 /eacute 139 /iacute 140 /oacute 141 /odieresis 142 /ohungarumlaut 143 /uacute 144 /udieresis 145 /uhungarumlaut ] >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding 3 0 R >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 1939 >>
+stream
+0.035 0.16 0.32 rg 0 780 595 62 re f
+1 1 1 rg BT /F2 17 Tf 42 812 Td (12. h\212t - Elektrom\211gneses indukci\214 \212s induktivit\211s) Tj ET
+0.08 0.45 0.75 rg 0 773 595 7 re f
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 748 Td (T\215rt\212nelmi nyit\214 - Michael Faraday, 1831) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 730 Td (Faraday k\213s\212rletei megmutatt\211k, hogy v\211ltoz\214 m\211gneses t\212r villamos fesz\220lts\212get) Tj ET
+BT /F1 10 Tf 54 716 Td (hozhat l\212tre. Ez az elektrom\211gneses indukci\214 alapja, \212s n\212lk\220le nem l\212tezne a mai) Tj ET
+BT /F1 10 Tf 54 702 Td (villamosenergia-termel\212s, a transzform\211tor, az indukci\214s motor vagy sz\211mos) Tj ET
+BT /F1 10 Tf 54 688 Td (\212rz\212kel\216.) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 666 Td (1. M\211gneses fluxus \212s induk\211lt fesz\220lts\212g) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 648 Td (A m\211gneses fluxus azt fejezi ki, hogy mennyi m\211gneses t\212r halad \211t egy fel\220leten.) Tj ET
+BT /F1 10 Tf 54 634 Td (Ha a tekercset \211tmetsz\216 fluxus megv\211ltozik, a tekercs kapcsain fesz\220lts\212g jelenik) Tj ET
+BT /F1 10 Tf 54 620 Td (meg.) Tj ET
+BT /F1 10 Tf 54 606 Td (Faraday-t\215rv\212ny: Ui = -N * dPhi/dt) Tj ET
+BT /F1 10 Tf 54 592 Td (N a menetsz\211m, dPhi a fluxusv\211ltoz\211s, dt a v\211ltoz\211s ideje. A negat\213v el\216jel Lenz) Tj ET
+BT /F1 10 Tf 54 578 Td (t\215rv\212ny\212re utal.) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 556 Td (2. Lenz t\215rv\212nye) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 538 Td (Az induk\211lt \211ram ir\211nya mindig olyan, hogy m\211gneses hat\211s\211val akad\211lyozza az \216t) Tj ET
+BT /F1 10 Tf 54 524 Td (l\212trehoz\214 v\211ltoz\211st. Ez az energiamegmarad\211s egyik villamos megjelen\212se. A szab\211ly) Tj ET
+BT /F1 10 Tf 54 510 Td (seg\213t az induk\211lt polarit\211s meghat\211roz\211s\211ban.) Tj ET
+0.45 0.5 0.58 rg BT /F1 8 Tf 44 28 Td (IAP - Felnott oktatas - Elektrotechnika - 12. het) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 1895 >>
+stream
+0.035 0.16 0.32 rg 0 780 595 62 re f
+1 1 1 rg BT /F2 17 Tf 42 812 Td (12. h\212t - \204indukci\214, induktivit\211s, energia) Tj ET
+0.08 0.45 0.75 rg 0 773 595 7 re f
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 748 Td (3. \204indukci\214) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 730 Td (Ha egy tekercs saj\211t \211rama v\211ltozik, a saj\211t m\211gneses tere is v\211ltozik. Ez a) Tj ET
+BT /F1 10 Tf 54 716 Td (v\211ltoz\211s a tekercsben olyan fesz\220lts\212get induk\211l, amely az \211ramv\211ltoz\211ssal) Tj ET
+BT /F1 10 Tf 54 702 Td (ellent\212tes hat\211s\217.) Tj ET
+BT /F1 10 Tf 54 688 Td (UL = -L * di/dt) Tj ET
+BT /F1 10 Tf 54 674 Td (Az L induktivit\211s m\212rt\212kegys\212ge a henry \(H\). Nagyobb L eset\212n ugyanakkora) Tj ET
+BT /F1 10 Tf 54 660 Td (\211ramv\211ltoz\211s nagyobb fesz\220lts\212get hoz l\212tre.) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 638 Td (4. A tekercsben t\211rolt energia) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 620 Td (A m\211gneses t\212r energi\211t t\211rol. Ez az energia a k\215r megszak\213t\211sakor felszabadulhat,) Tj ET
+BT /F1 10 Tf 54 606 Td (ez\212rt rel\212k, m\211gnesszelepek \212s kontaktorok vez\212rl\212sekor t\217lfesz\220lts\212g keletkezhet.) Tj ET
+BT /F1 10 Tf 54 592 Td (W = 1/2 * L * I^2) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 570 Td (5. Gyakorlati v\212delem) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 552 Td (- Egyen\211ram\217 rel\212tekercsn\212l v\212d\216di\214da haszn\211lhat\214.) Tj ET
+BT /F1 10 Tf 54 538 Td (- V\211ltakoz\214 \211ram\217 tekercsn\212l RC tag vagy varisztor alkalmazhat\214.) Tj ET
+BT /F1 10 Tf 54 524 Td (- A v\212d\216elem cs\215kkenti a kapcsol\214elemre jut\214 fesz\220lts\212gl\215k\212st.) Tj ET
+BT /F1 10 Tf 54 510 Td (- A polarit\211sra \212rz\212keny v\212d\216di\214d\211t mindig helyes ir\211nyban kell bek\215tni.) Tj ET
+0.45 0.5 0.58 rg BT /F1 8 Tf 44 28 Td (IAP - Felnott oktatas - Elektrotechnika - 12. het) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 1968 >>
+stream
+0.035 0.16 0.32 rg 0 780 595 62 re f
+1 1 1 rg BT /F2 17 Tf 42 812 Td (12. h\212t - Sz\211m\213t\211sok \212s \215sszefoglal\211s) Tj ET
+0.08 0.45 0.75 rg 0 773 595 7 re f
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 748 Td (6. Mintap\212lda - Faraday t\215rv\212nye) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 730 Td (Egy 200 menetes tekercsben a fluxus 0,002 Wb \212rt\212kkel v\211ltozik 0,05 s alatt.) Tj ET
+BT /F1 10 Tf 54 716 Td (Ui = N * dPhi/dt = 200 * 0,002 / 0,05 = 8 V.) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 694 Td (7. Mintap\212lda - \204indukci\214) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 676 Td (Egy L = 0,5 H induktivit\211s\217 tekercs \211rama 20 A/s sebess\212ggel v\211ltozik.) Tj ET
+BT /F1 10 Tf 54 662 Td (UL = L * di/dt = 0,5 * 20 = 10 V.) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 640 Td (8. Mintap\212lda - M\211gneses energia) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 622 Td (L = 0,4 H \212s I = 3 A eset\212n:) Tj ET
+BT /F1 10 Tf 54 608 Td (W = 1/2 * 0,4 * 3^2 = 1,8 J.) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 586 Td (\204sszefoglal\211s) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 568 Td (A 12. h\212t kulcsfogalmai: m\211gneses fluxus, Faraday-t\215rv\212ny, Lenz-t\215rv\212ny,) Tj ET
+BT /F1 10 Tf 54 554 Td (\215nindukci\214, induktivit\211s, m\211gneses energia \212s tekercsek kapcsol\211si t\217lfesz\220lts\212ge.) Tj ET
+BT /F1 10 Tf 54 540 Td (A k\215vetkez\216 hetekben ezekre \212p\220l a v\211ltakoz\214 \211ram\217 k\215r\215k vizsg\211lata.) Tj ET
+0.035 0.16 0.32 rg BT /F2 12 Tf 44 518 Td (Ellen\216rz\216 k\212rd\212sek) Tj ET
+0 0 0 rg
+BT /F1 10 Tf 54 500 Td (1. Mikor keletkezik induk\211lt fesz\220lts\212g? 2. Mit mond ki Lenz t\215rv\212nye? 3. Mi az) Tj ET
+BT /F1 10 Tf 54 486 Td (induktivit\211s m\212rt\212kegys\212ge? 4. Mi\212rt keletkezhet nagy fesz\220lts\212g rel\212) Tj ET
+BT /F1 10 Tf 54 472 Td (kikapcsol\211sakor? 5. Mire szolg\211l a v\212d\216di\214da?) Tj ET
+0.45 0.5 0.58 rg BT /F1 8 Tf 44 28 Td (IAP - Felnott oktatas - Elektrotechnika - 12. het) Tj ET
+endstream
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000014 00000 n 
+0000000063 00000 n 
+0000000135 00000 n 
+0000000476 00000 n 
+0000000562 00000 n 
+0000000653 00000 n 
+0000000789 00000 n 
+0000002780 00000 n 
+0000002916 00000 n 
+0000004863 00000 n 
+0000005001 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+7022
+%%EOF
