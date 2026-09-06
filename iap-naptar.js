@@ -55,8 +55,25 @@
       }
     });
   }
+  function javitasPLC(){
+    const oldal=location.pathname.split('/').pop().toLowerCase();
+    if(oldal!=='plc.html')return;
+    const kapcsolat=[...document.querySelectorAll('nav a')].find(a=>a.textContent.trim().toLowerCase()==='kapcsolat');
+    if(kapcsolat)kapcsolat.href='kapcsolat.html';
+    document.querySelectorAll('.het').forEach(h=>{
+      const n=parseInt((h.querySelector('.het-szam')?.textContent||'').trim(),10);
+      if(!n)return;
+      const nn=String(n).padStart(2,'0');
+      const g=h.querySelectorAll('.gombok a');
+      if(g.length<4)return;
+      g[2].href=`feladatok/plc/${nn}_het_feladat.pdf`;
+      g[2].target='_blank';
+      g[3].href=`gyakorlatok/plc/${nn}_het_gyakorlat.pdf`;
+      g[3].target='_blank';
+    });
+  }
   function haladasKovetese(){const oldal=location.pathname.split('/').pop().toLowerCase();if(!TANTARGY_OLDALAK.includes(oldal))return;const hetek=[...document.querySelectorAll('.het')];if(!hetek.length)return;const tantargy=(document.querySelector('.tantargy-fejlec h2')?.textContent||document.querySelector('header h1')?.textContent||document.title||'IAP tantárgy').trim();function adat(h){const m=(h.querySelector('.het-szam')?.textContent||'').match(/\d+/);if(!m)return null;const het=+m[0];h.id=`het-${het}`;const tema=(h.querySelector('.het-tartalom h3')?.textContent||h.querySelector('h3')?.textContent||`${het}. hét`).trim();return{oldal,tantargy,het,tema,hash:`#het-${het}`,ido:Date.now()}}function ment(h){const a=adat(h);if(!a)return;try{localStorage.setItem('iap_folytatom',JSON.stringify(a))}catch(e){}}hetek.forEach(h=>{adat(h);h.addEventListener('pointerdown',()=>ment(h));h.querySelectorAll('a,button').forEach(x=>x.addEventListener('click',()=>ment(h),true))});const hash=location.hash.match(/het-(\d+)/);if(hash){const h=document.getElementById(`het-${+hash[1]}`);if(h){ment(h);setTimeout(()=>h.scrollIntoView({behavior:'smooth',block:'center'}),120)}}else{const a=aktualisIAPHet();const h=a&&document.getElementById(`het-${a}`);if(h)ment(h)}}
   window.IAP_NAPTAR=IAP_NAPTAR;window.aktualisIAPHet=aktualisIAPHet;window.kiemelAktualisIAPHet=kiemelAktualisHet;window.kiemelAktualisHet=kiemelAktualisHet;
-  function indul(){subjectDesignBetoltese();javitasVillamosszereles11();kiemelAktualisHet();kihivasMotorBetoltese();haladasKovetese()}
+  function indul(){subjectDesignBetoltese();javitasVillamosszereles11();javitasPLC();kiemelAktualisHet();kihivasMotorBetoltese();haladasKovetese()}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',indul);else indul();
 })();
