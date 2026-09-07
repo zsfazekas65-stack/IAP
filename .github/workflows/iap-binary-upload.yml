@@ -1,0 +1,36 @@
+name: IAP binary upload
+
+on:
+  push:
+    paths:
+      - '.iap-upload/**'
+
+permissions:
+  contents: write
+
+jobs:
+  decode-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode payloads
+        shell: bash
+        run: |
+          shopt -s nullglob
+          for f in .iap-upload/*.b64; do
+            rel=$(basename "$f" .b64 | sed 's|__|/|g')
+            mkdir -p "$(dirname "$rel")"
+            base64 -d "$f" > "$rel"
+          done
+      - name: Commit generated binaries
+        shell: bash
+        run: |
+          git config user.name "iap-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add tananyagok ppt feladatok gyakorlatok || true
+          if git diff --cached --quiet; then
+            echo "No binary changes"
+          else
+            git commit -m "Add IAP binary materials"
+            git push
+          fi
