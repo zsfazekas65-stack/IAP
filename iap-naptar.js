@@ -17,7 +17,14 @@
     9:{cim:'Kapcsolók és dugaljak szerelési alapjai',leiras:'25–27. óra: szerelvénydobozok, kapcsolók és dugaljak biztonságos bekötése, rögzítése és ellenőrzése.'},
     10:{cim:'Kapcsolók és dugaszolóaljzatok',leiras:'28–30. óra: egypólusú kapcsoló és dugaszolóaljzat bekötése, L–N–PE szerepek, vezető-előkészítés, mechanikai rögzítés és villamos ellenőrzés.'},
     11:{cim:'Egyszerű világítási áramkör',leiras:'31–33. óra: egyszerű egypólusú világítási áramkör összeállítása, a fázisvezető kapcsolása, a lámpatest bekötése, kötésellenőrzés és biztonságos próba.'},
-    12:{cim:'IAP Kihívás I. – Villamos biztonságtechnika',leiras:'34–36. óra: komplex biztonságtechnikai tudáspróba veszélyfelismeréssel, döntési sorrenddel, mérési tervvel, szakmai indoklással és dokumentációval.'}
+    12:{cim:'IAP Kihívás I. – Villamos biztonságtechnika',leiras:'34–36. óra: komplex biztonságtechnikai tudáspróba veszélyfelismeréssel, döntési sorrenddel, mérési tervvel, szakmai indoklással és dokumentációval.'},
+    13:{cim:'Hibavédelem alapjai',leiras:'37–39. óra: a hibavédelem célja, alapfogalmai, védővezető és automatikus lekapcsolás szerepe.'},
+    14:{cim:'Áram-védőkapcsolók',leiras:'40–42. óra: az áram-védőkapcsoló működési elve, kiválasztása, bekötése és ellenőrzése.'},
+    15:{cim:'Túlfeszültség-védelem',leiras:'43–45. óra: túlfeszültségek eredete, SPD fokozatok és alapvető beépítési szempontok.'},
+    16:{cim:'Védővezetők és EPH',leiras:'46–48. óra: PE vezetők, egyenpotenciálra hozás és a védelmi összekötések gyakorlati kialakítása.'},
+    17:{cim:'Egyszerű világítási kapcsolás',leiras:'49–51. óra: egypólusú világítási áramkör szerelése, ellenőrzése és biztonságos üzembe helyezése.'},
+    18:{cim:'Váltókapcsolás',leiras:'52–54. óra: egy világítási fogyasztó kapcsolása két helyről, két váltókapcsolóval.'},
+    19:{cim:'Keresztkapcsolás',leiras:'55–57. óra: egy világítási fogyasztó kapcsolása három vagy több helyről, két váltókapcsoló és keresztkapcsoló alkalmazásával.'}
   };
   function datum(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12,0,0)}
   function napKezdete(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate(),12,0,0)}
@@ -33,7 +40,7 @@
     const oldal=location.pathname.split('/').pop().toLowerCase();
     if(oldal!=='villamosszereles11.html')return;
     const base='https://zsfazekas65-stack.github.io/IAP/';
-    const keszHet=18;
+    const keszHet=19;
     document.querySelectorAll('.het').forEach(h=>{
       const n=parseInt((h.querySelector('.het-szam')?.textContent||'').trim(),10);
       if(!n)return;
