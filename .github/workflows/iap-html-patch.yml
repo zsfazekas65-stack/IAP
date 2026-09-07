@@ -1,0 +1,37 @@
+name: IAP HTML patch
+
+on:
+  push:
+    paths:
+      - '.iap-patch/**'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch Villamos szerelések 11
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('villamosszereles11.html')
+          s=p.read_text(encoding='utf-8')
+          tag='<script src="iap-vs11-fix20.js?v=1"></script>'
+          if tag not in s:
+              s=s.replace('</body></html>',tag+'</body></html>')
+          p.write_text(s,encoding='utf-8')
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "iap-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add villamosszereles11.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Fix VS11 week 20 buttons"
+            git push
+          fi
