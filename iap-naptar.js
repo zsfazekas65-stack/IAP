@@ -26,7 +26,8 @@
     18:{cim:'Váltókapcsolás',leiras:'52–54. óra: egy világítási fogyasztó kapcsolása két helyről, két váltókapcsolóval.'},
     19:{cim:'Keresztkapcsolás',leiras:'55–57. óra: egy világítási fogyasztó kapcsolása három vagy több helyről, két váltókapcsoló és keresztkapcsoló alkalmazásával.'},
     20:{cim:'Lépcsőházi automata és impulzusrelé',leiras:'58–60. óra: több kezelési hely nyomógombokkal, időzített világításvezérlés és impulzusrelés állapotváltás.'},
-    21:{cim:'Ipari szerelvények és kapcsolókészülékek',leiras:'61–63. óra: ipari kapcsoló-, vezérlő-, védelmi, jelző- és csatlakozókészülékek felismerése, kiválasztása, kapocsazonosítása és DIN-sínes szerelési alapjai.'}
+    21:{cim:'Ipari szerelvények és kapcsolókészülékek',leiras:'61–63. óra: ipari kapcsoló-, vezérlő-, védelmi, jelző- és csatlakozókészülékek felismerése, kiválasztása, kapocsazonosítása és DIN-sínes szerelési alapjai.'},
+    22:{cim:'Mágneskapcsolók és segédrelék szerelése',leiras:'64–66. óra: mágneskapcsolók és segédrelék felépítése, A1–A2 tekercskapcsok, fő- és segédérintkezők, kapocsjelölések, tekercsfeszültség és DIN-sínes szerelés.'}
   };
   function datum(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12,0,0)}
   function napKezdete(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate(),12,0,0)}
@@ -42,7 +43,7 @@
     const oldal=location.pathname.split('/').pop().toLowerCase();
     if(oldal!=='villamosszereles11.html')return;
     const base='https://zsfazekas65-stack.github.io/IAP/';
-    const keszHet=21;
+    const keszHet=22;
     document.querySelectorAll('.het').forEach(h=>{
       const n=parseInt((h.querySelector('.het-szam')?.textContent||'').trim(),10);
       if(!n)return;
