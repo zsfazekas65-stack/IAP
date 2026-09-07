@@ -24,7 +24,8 @@
     16:{cim:'Védővezetők és EPH',leiras:'46–48. óra: PE vezetők, egyenpotenciálra hozás és a védelmi összekötések gyakorlati kialakítása.'},
     17:{cim:'Egyszerű világítási kapcsolás',leiras:'49–51. óra: egypólusú világítási áramkör szerelése, ellenőrzése és biztonságos üzembe helyezése.'},
     18:{cim:'Váltókapcsolás',leiras:'52–54. óra: egy világítási fogyasztó kapcsolása két helyről, két váltókapcsolóval.'},
-    19:{cim:'Keresztkapcsolás',leiras:'55–57. óra: egy világítási fogyasztó kapcsolása három vagy több helyről, két váltókapcsoló és keresztkapcsoló alkalmazásával.'}
+    19:{cim:'Keresztkapcsolás',leiras:'55–57. óra: egy világítási fogyasztó kapcsolása három vagy több helyről, két váltókapcsoló és keresztkapcsoló alkalmazásával.'},
+    20:{cim:'Lépcsőházi automata és impulzusrelé',leiras:'58–60. óra: több kezelési hely nyomógombokkal, időzített világításvezérlés és impulzusrelés állapotváltás.'}
   };
   function datum(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12,0,0)}
   function napKezdete(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate(),12,0,0)}
@@ -40,7 +41,7 @@
     const oldal=location.pathname.split('/').pop().toLowerCase();
     if(oldal!=='villamosszereles11.html')return;
     const base='https://zsfazekas65-stack.github.io/IAP/';
-    const keszHet=19;
+    const keszHet=20;
     document.querySelectorAll('.het').forEach(h=>{
       const n=parseInt((h.querySelector('.het-szam')?.textContent||'').trim(),10);
       if(!n)return;
