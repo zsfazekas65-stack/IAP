@@ -1,0 +1,80 @@
+name: IAP VS11 week22 PPT rebuild
+
+on:
+  push:
+    paths:
+      - '.iap-patch/vs11-week22-ppt.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install python-pptx
+        run: pip install python-pptx
+      - name: Build 22 week PPTX
+        run: |
+          python - <<'PY'
+          from pptx import Presentation
+          from pptx.util import Inches, Pt
+          from pptx.dml.color import RGBColor
+          from pptx.enum.text import PP_ALIGN
+          from pptx.enum.shapes import MSO_SHAPE
+          from pathlib import Path
+
+          out=Path('ppt/villamosszereles11/22_het.pptx')
+          out.parent.mkdir(parents=True,exist_ok=True)
+          prs=Presentation(); prs.slide_width=Inches(13.333); prs.slide_height=Inches(7.5)
+          NAVY=RGBColor(7,29,53); BLUE=RGBColor(20,119,201); LIGHT=RGBColor(234,245,253); WHITE=RGBColor(255,255,255); DARK=RGBColor(23,50,77)
+
+          def add_slide(title, bullets=None, diagram=False):
+              s=prs.slides.add_slide(prs.slide_layouts[6])
+              bg=s.background.fill; bg.solid(); bg.fore_color.rgb=WHITE
+              bar=s.shapes.add_shape(MSO_SHAPE.RECTANGLE,0,0,prs.slide_width,Inches(.55)); bar.fill.solid(); bar.fill.fore_color.rgb=NAVY; bar.line.fill.background()
+              tb=s.shapes.add_textbox(Inches(.55),Inches(.72),Inches(12.1),Inches(.7)); p=tb.text_frame.paragraphs[0]; p.text=title;p.font.name='Aptos Display';p.font.size=Pt(26);p.font.bold=True;p.font.color.rgb=NAVY
+              if bullets:
+                  box=s.shapes.add_textbox(Inches(.75),Inches(1.65),Inches(6.6 if diagram else 11.8),Inches(4.9)); tf=box.text_frame;tf.word_wrap=True
+                  for i,b in enumerate(bullets):
+                      p=tf.paragraphs[0] if i==0 else tf.add_paragraph();p.text=b;p.font.name='Aptos';p.font.size=Pt(19);p.font.color.rgb=DARK;p.space_after=Pt(12)
+              if diagram:
+                  x=Inches(7.8); y=Inches(2.0); w=Inches(3.8); h=Inches(3.6)
+                  sh=s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,x,y,w,h);sh.fill.solid();sh.fill.fore_color.rgb=LIGHT;sh.line.color.rgb=BLUE
+                  tx=s.shapes.add_textbox(x+Inches(.3),y+Inches(.25),w-Inches(.6),Inches(3)); tf=tx.text_frame
+                  for i,t in enumerate(['KM1 - Mágneskapcsoló','A1        A2','1L1  3L2  5L3','2T1  4T2  6T3','13-14  NO','21-22  NC']):
+                      p=tf.paragraphs[0] if i==0 else tf.add_paragraph();p.text=t;p.alignment=PP_ALIGN.CENTER;p.font.size=Pt(17 if i else 20);p.font.bold=(i==0);p.font.color.rgb=NAVY
+              foot=s.shapes.add_textbox(Inches(.55),Inches(7.05),Inches(12.2),Inches(.25));p=foot.text_frame.paragraphs[0];p.text='IAP • Villamos szerelések • 22. hét';p.font.size=Pt(9);p.font.color.rgb=BLUE
+
+          s=prs.slides.add_slide(prs.slide_layouts[6]); bg=s.background.fill; bg.solid(); bg.fore_color.rgb=NAVY
+          box=s.shapes.add_textbox(Inches(.8),Inches(1.2),Inches(11.7),Inches(2)); tf=box.text_frame
+          p=tf.paragraphs[0];p.text='22. hét';p.font.size=Pt(25);p.font.bold=True;p.font.color.rgb=RGBColor(53,184,242)
+          p=tf.add_paragraph();p.text='Mágneskapcsolók és segédrelék szerelése';p.font.size=Pt(34);p.font.bold=True;p.font.color.rgb=WHITE
+          p=tf.add_paragraph();p.text='11. évfolyam • Villamos szerelések • 64-66. óra';p.font.size=Pt(18);p.font.color.rgb=WHITE
+          for i,label in enumerate(['TEKERCS','FŐÉRINTKEZŐ','SEGÉDÉRINTKEZŐ']):
+              sh=s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,Inches(.9+i*4.05),Inches(4.4),Inches(3.55),Inches(1.15));sh.fill.solid();sh.fill.fore_color.rgb=BLUE;sh.line.fill.background()
+              t=s.shapes.add_textbox(Inches(1.0+i*4.05),Inches(4.7),Inches(3.35),Inches(.5));p=t.text_frame.paragraphs[0];p.text=label;p.alignment=PP_ALIGN.CENTER;p.font.size=Pt(17);p.font.bold=True;p.font.color.rgb=WHITE
+
+          add_slide('Mit tanulunk ezen a héten?',['Mágneskapcsoló és segédrelé felismerése','Fő- és segédérintkezők azonosítása','A1-A2 és szabványos kapocsjelölések értelmezése','Tekercsfeszültség helyes kiválasztása','DIN-sínes szerelés és ellenőrzés'])
+          add_slide('A mágneskapcsoló szerepe',['Nagyobb teljesítményű fogyasztók gyakori kapcsolása','Kis teljesítményű vezérlőjellel működtethető','Motorvezérlések alapvető kapcsolókészüléke'],True)
+          add_slide('A mágneskapcsoló fő részei',['Elektromágneses tekercs és vasmag','Mozgó horgony és rugómechanika','Három főérintkező','NO/NC segédérintkezők','Ívoltó és csatlakozókapcsok'])
+          add_slide('Kapocsjelölések',['A1-A2: működtető tekercs','1L1-2T1, 3L2-4T2, 5L3-6T3: főáramkör','13-14: záró (NO) segédérintkező','21-22: nyitó (NC) segédérintkező'],True)
+          add_slide('Segédrelé',['Elsősorban vezérlőáramkörökben használjuk','Több segédérintkezőt biztosít','Logikai kapcsolatok, reteszelés és jelzés','Jeltöbbszörözésre is alkalmas'])
+          add_slide('Tekercsfeszültség - kritikus adat',['A vezérlőkörhöz kell illeszteni','24 V DC nem azonos 24 V AC vagy 230 V AC értékkel','Hibás tekercsfeszültség: működésképtelenség vagy károsodás','Mindig az adattábláról ellenőrizzük'])
+          add_slide('DIN-sínes szerelés',['Feszültségmentesítés és visszakapcsolás megakadályozása','Készülék stabil rögzítése','Rendezett vezetéknyomvonal és érvéghüvely','Kapcsok megfelelő meghúzása','Terv szerinti végellenőrzés'])
+          add_slide('Gyakorlati feladat',['Mágneskapcsoló és segédrelé azonosítása','A1-A2, fő- és segédérintkezők megkeresése','DIN-sínes rögzítés','NO/NC érintkezők folytonosságvizsgálata','Rövid ellenőrző jegyzőkönyv készítése'])
+          add_slide('Tipikus hibák',['Nem megfelelő tekercsfeszültség','NO és NC érintkező felcserélése','Laza vagy hibás kapocskötés','Fő- és vezérlőáramkör összekeverése','Kapcsolási rajztól eltérő vezetékezés'])
+          add_slide('IAP heti kihívás',['A vezérlőkör 230 V AC, a mágneskapcsoló tekercse 24 V AC. Beköthető közvetlenül?','A) Igen, mert mindkettő váltakozó feszültség','B) Nem, a tekercs névleges feszültségének illeszkednie kell','C) Igen, ha van segédérintkező','Helyes válasz: B'])
+          add_slide('Összefoglalás',['Mágneskapcsoló = teljesítménykapcsolás','Segédrelé = vezérlési logika','A1-A2 = tekercs','13-14 = NO, 21-22 = NC','Biztonságos szerelés = helyes kiválasztás + terv szerinti ellenőrzés'])
+          add_slide('Következő hét',['23. hét - Nyomógombok, kapcsolók és jelzőlámpák','Kezelő- és jelzőkészülékek felépítése, kiválasztása és szerelése'])
+          prs.save(out)
+          print(out, out.stat().st_size)
+          PY
+      - name: Commit rebuilt PPTX
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ppt/villamosszereles11/22_het.pptx
+          git diff --cached --quiet || git commit -m 'Villamos szerelések 11: 22. heti PPTX javítása'
+          git push
