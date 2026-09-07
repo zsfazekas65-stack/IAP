@@ -1,0 +1,43 @@
+name: IAP VS11 week22 patch
+
+on:
+  push:
+    paths:
+      - '.iap-patch/vs11-week22.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch week 22
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('iap-naptar.js')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('const keszHet=21;', 'const keszHet=22;')
+          old = "    21:{cim:'Ipari szerelvények és kapcsolókészülékek',leiras:'61–63. óra: ipari kapcsoló-, vezérlő-, védelmi, jelző- és csatlakozókészülékek felismerése, kiválasztása, kapocsazonosítása és DIN-sínes szerelési alapjai.'}\n  };"
+          new = "    21:{cim:'Ipari szerelvények és kapcsolókészülékek',leiras:'61–63. óra: ipari kapcsoló-, vezérlő-, védelmi, jelző- és csatlakozókészülékek felismerése, kiválasztása, kapocsazonosítása és DIN-sínes szerelési alapjai.'},\n    22:{cim:'Mágneskapcsolók és segédrelék szerelése',leiras:'64–66. óra: mágneskapcsolók és segédrelék felépítése, A1–A2 tekercskapcsok, fő- és segédérintkezők, kapocsjelölések, tekercsfeszültség és DIN-sínes szerelés.'}\n  };"
+          if old not in s:
+              raise SystemExit('A VS11_TEMAK 21. heti zárórésze nem található')
+          s = s.replace(old, new)
+          p.write_text(s, encoding='utf-8')
+
+          h = Path('villamosszereles11.html')
+          t = h.read_text(encoding='utf-8')
+          t = t.replace('22. hét – Mágneskapcsolók és relék', '22. hét – Mágneskapcsolók és segédrelék szerelése')
+          t = t.replace('Mágneskapcsolók és relék – elméleti alapok, szerelési szabályok, gyakorlati alkalmazás és biztonságos munkavégzés.', '64–66. óra: mágneskapcsolók és segédrelék felépítése, A1–A2 tekercskapcsok, fő- és segédérintkezők, kapocsjelölések, tekercsfeszültség és DIN-sínes szerelés.')
+          h.write_text(t, encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iap-naptar.js villamosszereles11.html
+          git diff --cached --quiet || git commit -m 'Villamos szerelések 11: 22. hét aktiválása'
+          git push
