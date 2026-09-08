@@ -1,0 +1,85 @@
+name: IAP VS11 week25
+on:
+  push:
+    paths:
+      - '.iap-patch/vs11-week25.trigger'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate week 25 assets and activate buttons
+        run: |
+          python -m pip install --quiet reportlab python-pptx
+          cat > /tmp/w25.py <<'PY'
+          from pathlib import Path
+          from reportlab.lib.pagesizes import A4
+          from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer
+          from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
+          from reportlab.lib import colors
+          from reportlab.pdfbase.ttfonts import TTFont
+          from reportlab.pdfbase import pdfmetrics
+          from reportlab.lib.units import mm
+          from pptx import Presentation
+          from pptx.util import Inches,Pt
+          from pptx.dml.color import RGBColor
+          from pptx.enum.text import PP_ALIGN
+          root=Path('.')
+          pdfmetrics.registerFont(TTFont('IAP','/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
+          pdfmetrics.registerFont(TTFont('IAPB','/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
+          title='25. hét – Kapocslécek, DIN-sínes szerelvények és vezetékezés'
+          def pdf(path, heading, paras):
+            path.parent.mkdir(parents=True,exist_ok=True)
+            doc=SimpleDocTemplate(str(path),pagesize=A4,leftMargin=18*mm,rightMargin=18*mm,topMargin=18*mm,bottomMargin=18*mm)
+            h=ParagraphStyle('h',fontName='IAPB',fontSize=18,leading=22,textColor=colors.HexColor('#071D35'),spaceAfter=10)
+            h2=ParagraphStyle('h2',fontName='IAPB',fontSize=12,leading=15,textColor=colors.HexColor('#1477C9'),spaceBefore=8,spaceAfter=4)
+            b=ParagraphStyle('b',fontName='IAP',fontSize=9.5,leading=13,textColor=colors.HexColor('#17324D'),spaceAfter=5)
+            story=[Paragraph(title,h),Paragraph('11. évfolyam • 73–75. óra • Ipari szerelvények szerelése',b),Paragraph(heading,h2)]
+            for x in paras: story.append(Paragraph(x,b)); story.append(Spacer(1,2*mm))
+            doc.build(story)
+          lesson=['A kapocslécek, DIN-sínek és kábelcsatornák a rendezett, biztonságosan karbantartható ipari vezetékezés alapjai.',
+          '<b>Kapocsléc és sorkapocs:</b> rendezett csatlakoztatás, toldás, elosztás és mérési pont. Gyakori kivitelek: átmenő, PE, többszintes, leválasztó és tesztkapocs.',
+          '<b>DIN-sín:</b> a 35 mm-es kalapsín egységes rögzítést biztosít sorkapcsoknak, reléknek, mágneskapcsolóknak és más moduláris készülékeknek.',
+          '<b>Vezetékelőkészítés:</b> megfelelő blankolási hossz, sérülésmentes vezető, finomsodratú vezetéknél a kapocs és gyártói előírás szerinti érvéghüvely és megfelelő krimpelés.',
+          '<b>Jelölés:</b> a kapocs- és vezetékazonosító kapcsolja össze a valós szerelést a rajzzal. A jelölés legyen tartós, olvasható és következetes.',
+          '<b>Vezetékezési rend:</b> kábelcsatorna használata, feszülésmentes vezetés, ésszerű hajlítás, hozzáférhető kapcsok és rendezett nyomvonal.',
+          '<b>Ellenőrzés:</b> vizuális vizsgálat, mechanikai stabilitás, folytonosságvizsgálat feszültségmentes állapotban és összevetés a kapcsolási rajzzal.',
+          '<b>Tipikus hibák:</b> laza kapocs, kilógó csupasz rész, szigetelés alá fogása, hibás érvéghüvely, hiányzó jelölés, zsúfolt kábelcsatorna és hiányzó végbak.',
+          '<b>Összefoglalás:</b> az ipari vezetékezés akkor jó, ha nemcsak működik, hanem áttekinthető, dokumentált, javítható és biztonságos.',
+          '<b>Következő hét:</b> 26. hét – Mágneskapcsolós motorindító áramkör – START–STOP, öntartás.']
+          pdf(root/'tananyagok/villamosszereles11/25_het.pdf','Tananyag',lesson)
+          tasks=['1. Sorolj fel négy sorkapocstípust és írd le a szerepüket!','2. Mi a DIN-sín, a végbak, a végfal, az átkötő és a jelölő szerepe?','3. Írd le a helyes vezetékelőkészítés lépéseit!','4. Sorolj fel öt tipikus vezetékezési hibát!','5. Készíts X1:1–X1:6 kapocslistát +24 V, 0 V, START, STOP, KM1 és PE funkciókkal!','6. Miért kell a vezetékeket mindkét végükön egyértelműen azonosítani?']
+          pdf(root/'feladatok/villamosszereles11/25_het_feladat.pdf','Feladatlap',tasks)
+          prac=['Feszültségmentes állapotban azonosítsd a DIN-sínt, a sorkapcsokat, a végbakokat és a kábelcsatornát.','Állíts össze X1 jelű 6–8 kapcsos sorkapocssort PE kapoccsal és végbakokkal.','Vágd méretre, blankold és szükség szerint érvéghüvelyezd a vezetékeket.','Jelöld a vezetékeket mindkét végükön, majd vezesd őket rendezetten a kábelcsatornában.','Kösd be a kapocslista szerint, majd végezz vizuális és mechanikai ellenőrzést.','Feszültségmentes állapotban végezz folytonosságvizsgálatot, és hasonlítsd össze a bekötést a rajzzal.']
+          pdf(root/'gyakorlatok/villamosszereles11/25_het_gyakorlat.pdf','Gyakorlati feladat',prac)
+          # PPTX
+          p=root/'ppt/villamosszereles11/25_het.pptx'; p.parent.mkdir(parents=True,exist_ok=True)
+          prs=Presentation(); prs.slide_width=Inches(13.333); prs.slide_height=Inches(7.5)
+          slides=[('25. hét','Kapocslécek, DIN-sínes szerelvények és vezetékezés'),('Tanulási célok','Sorkapcsok • DIN-sín • vezetékelőkészítés • jelölés • ellenőrzés'),('Kapocslécek','Átmenő, PE, többszintes és leválasztó kapcsok'),('DIN-sínes rendszer','35 mm-es sín, végbak, végfal, átkötő, jelölő'),('Vezetékelőkészítés','Blankolási hossz, érvéghüvely, krimpelés'),('Vezetékjelölés','Azonosítás mindkét végen, kapcsolat a rajzzal'),('Kábelcsatorna','Rendezett, feszülésmentes és hozzáférhető nyomvonal'),('Szerelési sorrend','Elrendezés → rögzítés → előkészítés → jelölés → bekötés'),('X1 kapocsléc példa','+24 V • 0 V • START • STOP • KM1 • PE'),('Tipikus hibák','Laza kapocs • kilógó réz • rossz jelölés • zsúfolt csatorna'),('Ellenőrzés','Vizuális vizsgálat • mechanikai ellenőrzés • folytonosság'),('IAP heti kihívás','Finomsodratú 0,75 mm² vezeték: megfelelő blankolás és a kapocs előírása szerinti érvéghüvely/krimpelés.'),('Összefoglalás','Működő + áttekinthető + dokumentált + karbantartható'),('Következő hét','Mágneskapcsolós motorindító áramkör – START–STOP, öntartás')]
+          for i,(a,b) in enumerate(slides):
+            s=prs.slides.add_slide(prs.slide_layouts[6]); bg=s.background.fill; bg.solid(); bg.fore_color.rgb=RGBColor(248,251,254)
+            sh=s.shapes.add_shape(1,0,0,prs.slide_width,Inches(.22)); sh.fill.solid(); sh.fill.fore_color.rgb=RGBColor(7,29,53); sh.line.fill.background()
+            box=s.shapes.add_textbox(Inches(.75),Inches(.75),Inches(11.8),Inches(.8)); tf=box.text_frame; tf.text=a; tf.paragraphs[0].font.name='Aptos Display'; tf.paragraphs[0].font.size=Pt(30); tf.paragraphs[0].font.bold=True; tf.paragraphs[0].font.color.rgb=RGBColor(7,29,53)
+            box=s.shapes.add_textbox(Inches(.8),Inches(2.0),Inches(11.5),Inches(3.4)); tf=box.text_frame; tf.word_wrap=True; tf.text=b; tf.paragraphs[0].font.name='Aptos'; tf.paragraphs[0].font.size=Pt(22); tf.paragraphs[0].font.color.rgb=RGBColor(23,50,77)
+            foot=s.shapes.add_textbox(Inches(.8),Inches(6.85),Inches(11.5),Inches(.25)); foot.text_frame.text=f'IAP • Villamos szerelések • 25. hét • {i+1}'; foot.text_frame.paragraphs[0].font.size=Pt(9); foot.text_frame.paragraphs[0].font.color.rgb=RGBColor(96,117,138)
+          prs.save(p)
+          # patch central JS
+          js=Path('iap-naptar.js'); txt=js.read_text(encoding='utf-8')
+          txt=txt.replace('const keszHet=24;','const keszHet=25;')
+          if "25:{cim:'Kapocslécek, DIN-sínes szerelvények és vezetékezés'" not in txt:
+            needle="    24:{cim:'Motorvédő kapcsolók és túlterhelés-védelem',leiras:'70–72. óra: túlterhelés és zárlat megkülönböztetése, motorvédő kapcsolók és túlterhelési relék szerepe, 95–96 és 97–98 segédérintkezők, áramtartomány, beállítás, szerelés és működési ellenőrzés.'}\n"
+            repl=needle[:-1]+",\n    25:{cim:'Kapocslécek, DIN-sínes szerelvények és vezetékezés',leiras:'73–75. óra: sorkapcsok és DIN-sínes szerelvények, vezetékelőkészítés, érvéghüvelyezés, kapocs- és vezetékjelölés, kábelcsatornás vezetékezés, kötésellenőrzés és dokumentálás.'}\n"
+            txt=txt.replace(needle,repl)
+          js.write_text(txt,encoding='utf-8')
+          PY
+          python /tmp/w25.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tananyagok/villamosszereles11/25_het.pdf ppt/villamosszereles11/25_het.pptx feladatok/villamosszereles11/25_het_feladat.pdf gyakorlatok/villamosszereles11/25_het_gyakorlat.pdf iap-naptar.js
+          git commit -m 'VS11: 25. hét teljes csomag és gombok aktiválása' || exit 0
+          git pull --rebase origin main
+          git push origin main
