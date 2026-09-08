@@ -16,13 +16,13 @@ main{max-width:1180px;padding:38px 24px 70px}
 .tantargy-fejlec:after{content:"IAP // SZAKMAI MODUL";position:absolute;right:24px;top:18px;color:#9ab0c1;font-size:10px;font-weight:900;letter-spacing:.14em}
 .tantargy-fejlec h2{margin:0 0 7px!important;font-size:30px;color:var(--iap-navy)!important;letter-spacing:.01em}
 .tantargy-fejlec p{margin:0;color:var(--iap-muted)!important;font-weight:700}
-.plc-nav{max-width:none;margin:0 auto 34px;grid-template-columns:repeat(4,1fr);gap:13px}
-.plc-nav a{position:relative;padding:18px 14px;border:1px solid #d8e5ee;border-radius:11px;background:linear-gradient(180deg,#fff,#f7fafc);box-shadow:0 5px 16px rgba(20,55,88,.07);overflow:hidden}
-.plc-nav a:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#29b9ef,#116bab)}
-.plc-nav a:after{content:"";position:absolute;right:10px;top:10px;width:5px;height:5px;border-radius:50%;background:#36bde9;box-shadow:0 0 0 3px rgba(54,189,233,.12)}
-.plc-nav a span{font-size:20px;color:#1675bd}
-.plc-nav a:hover{background:linear-gradient(135deg,#0b527f,#147fc2);color:#fff;transform:translateY(-3px)}
-.plc-nav a:hover span{color:#9be6ff}
+.plc-nav{max-width:1000px;margin:0 auto 50px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.plc-nav a{background:white;text-decoration:none;color:#183a5a;padding:18px;border-radius:10px;text-align:center;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,.10);transition:.2s}
+.plc-nav a:before,.plc-nav a:after{content:none}
+.plc-nav a span{display:block;font-size:24px;margin-bottom:5px;color:#183a5a}
+.plc-nav a small{display:block;margin-top:6px;color:#667;font-weight:normal}
+.plc-nav a:hover{background:#183a5a;color:white;transform:translateY(-4px);box-shadow:0 6px 15px rgba(0,0,0,.18)}
+.plc-nav a:hover span,.plc-nav a:hover small{color:white}
 .kereso-terulet{max-width:none;margin:0 auto 42px;padding:24px 28px;border:1px solid var(--iap-line);border-radius:14px;box-shadow:0 7px 22px rgba(20,55,88,.07);background:linear-gradient(120deg,#fff,#f9fbfd)}
 .kereso-terulet h2{margin-bottom:6px;font-size:23px!important}
 #kereso{background:#f7fafc;border:1px solid #c8d8e4;border-radius:9px;transition:.2s}
