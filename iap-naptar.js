@@ -29,7 +29,8 @@
     21:{cim:'Ipari szerelvények és kapcsolókészülékek',leiras:'61–63. óra: ipari kapcsoló-, vezérlő-, védelmi, jelző- és csatlakozókészülékek felismerése, kiválasztása, kapocsazonosítása és DIN-sínes szerelési alapjai.'},
     22:{cim:'Mágneskapcsolók és segédrelék szerelése',leiras:'64–66. óra: mágneskapcsolók és segédrelék felépítése, A1–A2 tekercskapcsok, fő- és segédérintkezők, kapocsjelölések, tekercsfeszültség és DIN-sínes szerelés.'},
     23:{cim:'Nyomógombok, kapcsolók és jelzőlámpák',leiras:'67–69. óra: nyomógombok, választókapcsolók és jelzőlámpák működése, NO/NC érintkezők, kapocsjelölések, panelbe szerelés, feliratozás és START–STOP jelzőkör kialakítása.'},
-    24:{cim:'Motorvédő kapcsolók és túlterhelés-védelem',leiras:'70–72. óra: túlterhelés és zárlat megkülönböztetése, motorvédő kapcsolók és túlterhelési relék szerepe, 95–96 és 97–98 segédérintkezők, áramtartomány, beállítás, szerelés és működési ellenőrzés.'}
+    24:{cim:'Motorvédő kapcsolók és túlterhelés-védelem',leiras:'70–72. óra: túlterhelés és zárlat megkülönböztetése, motorvédő kapcsolók és túlterhelési relék szerepe, 95–96 és 97–98 segédérintkezők, áramtartomány, beállítás, szerelés és működési ellenőrzés.'},
+    25:{cim:'Kapocslécek, DIN-sínes szerelvények és vezetékezés',leiras:'73–75. óra: sorkapcsok és DIN-sínes szerelvények, vezetékelőkészítés, érvéghüvelyezés, kapocs- és vezetékjelölés, kábelcsatornás vezetékezés, kötésellenőrzés és dokumentálás.'}
   };
   function datum(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12,0,0)}
   function napKezdete(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate(),12,0,0)}
@@ -45,7 +46,7 @@
     const oldal=location.pathname.split('/').pop().toLowerCase();
     if(oldal!=='villamosszereles11.html')return;
     const base='https://zsfazekas65-stack.github.io/IAP/';
-    const keszHet=24;
+    const keszHet=25;
     document.querySelectorAll('.het').forEach(h=>{
       const n=parseInt((h.querySelector('.het-szam')?.textContent||'').trim(),10);
       if(!n)return;
