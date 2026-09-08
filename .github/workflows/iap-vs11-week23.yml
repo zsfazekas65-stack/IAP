@@ -1,0 +1,49 @@
+name: IAP VS11 week23 patch
+
+on:
+  push:
+    paths:
+      - '.iap-patch/vs11-week23.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch week 23
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p=Path('iap-naptar.js')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('const keszHet=22;', 'const keszHet=23;')
+          old="    22:{cim:'Mágneskapcsolók és segédrelék szerelése',leiras:'64–66. óra: mágneskapcsolók és segédrelék felépítése, A1–A2 tekercskapcsok, fő- és segédérintkezők, kapocsjelölések, tekercsfeszültség és DIN-sínes szerelés.'}\n  };"
+          new="    22:{cim:'Mágneskapcsolók és segédrelék szerelése',leiras:'64–66. óra: mágneskapcsolók és segédrelék felépítése, A1–A2 tekercskapcsok, fő- és segédérintkezők, kapocsjelölések, tekercsfeszültség és DIN-sínes szerelés.'},\n    23:{cim:'Nyomógombok, kapcsolók és jelzőlámpák',leiras:'67–69. óra: nyomógombok, választókapcsolók és jelzőlámpák működése, NO/NC érintkezők, kapocsjelölések, panelbe szerelés, feliratozás és START–STOP jelzőkör kialakítása.'}\n  };"
+          if old not in s:
+              raise SystemExit('A 22. heti VS11 témablokk zárása nem található')
+          s=s.replace(old,new)
+          p.write_text(s,encoding='utf-8')
+
+          h=Path('villamosszereles11.html')
+          t=h.read_text(encoding='utf-8')
+          import re
+          # A 23. heti statikus blokk címének és leírásának egységesítése; a központi JS a gombokat is aktiválja.
+          pat=r'(<div class="het"><div class="het-szam">23</div><div class="het-tartalom"><h3>)(.*?)(</h3><p>)(.*?)(</p>)'
+          repl=r'\g<1>23. hét – Nyomógombok, kapcsolók és jelzőlámpák\g<3>67–69. óra: nyomógombok, választókapcsolók és jelzőlámpák működése, NO/NC érintkezők, kapocsjelölések, panelbe szerelés, feliratozás és START–STOP jelzőkör kialakítása.\g<5>'
+          t,n=re.subn(pat,repl,t,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit('A 23. heti HTML blokk nem található')
+          h.write_text(t,encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iap-naptar.js villamosszereles11.html
+          git diff --cached --quiet || git commit -m 'Villamos szerelések 11: 23. hét aktiválása'
+          git pull --rebase origin main
+          git push
