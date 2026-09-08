@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Activate Villamos szerelések 11 week 36
+      - name: Force-fix Villamos szerelések 11 week 36 buttons
         shell: python
         run: |
           from pathlib import Path
@@ -21,23 +21,27 @@ jobs:
 
           p=Path('villamosszereles11.html')
           s=p.read_text(encoding='utf-8')
+
+          # Ensure canonical week 36 block and cache-busted URLs.
           start=s.find('<div class="het"><div class="het-szam">36</div>')
-          if start==-1: raise SystemExit('36. heti blokk nem található')
-          end=s.find('</div></div></section></main>', start)
-          if end==-1: raise SystemExit('36. heti blokk vége nem található')
-          w='<div class="het"><div class="het-szam">36</div><div class="het-tartalom"><h3>36. hét – Év végi összefoglalás és projekt</h3><p>106–108. óra: egész éves szakmai tudás rendszerezése; biztonságtechnika, szerelés, hibavédelem, ipari vezérlés, mérés, hibakeresés és dokumentáció összekapcsolása; komplex évzáró projekt és szakmai önértékelés.</p><div class="gombok"><a href="tananyagok/villamosszereles11/36_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/36_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/36_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/36_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
+          if start == -1:
+              raise SystemExit('36. heti blokk nem található')
+          marker='</div></div></div></div></section></main>'
+          end=s.find(marker,start)
+          if end == -1:
+              raise SystemExit('36. heti blokk vége nem található')
+          w='<div class="het"><div class="het-szam">36</div><div class="het-tartalom"><h3>36. hét – Év végi összefoglalás és projekt</h3><p>106–108. óra: egész éves szakmai tudás rendszerezése; biztonságtechnika, szerelés, hibavédelem, ipari vezérlés, mérés, hibakeresés és dokumentáció összekapcsolása; komplex évzáró projekt és szakmai önértékelés.</p><div class="gombok"><a href="tananyagok/villamosszereles11/36_het.pdf?v=3602" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/36_het.pptx?v=3602" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/36_het_feladat.pdf?v=3602" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/36_het_gyakorlat.pdf?v=3602" target="_blank">🧪 Gyakorlat</a></div></div></div>'
           s=s[:start]+w+s[end:]
-          s=re.sub(r'iap-naptar\.js\?v=\d+','iap-naptar.js?v=36',s)
+          s=re.sub(r'iap-naptar\.js\?v=\d+','iap-naptar.js?v=3602',s)
+
+          force="""<script id=\"vs11-week36-force\">document.addEventListener('DOMContentLoaded',function(){const hs=[...document.querySelectorAll('.het')];const h=hs.find(x=>parseInt((x.querySelector('.het-szam')?.textContent||'').trim(),10)===36);if(!h)return;const a=h.querySelectorAll('.gombok a');const u=['tananyagok/villamosszereles11/36_het.pdf?v=3602','ppt/villamosszereles11/36_het.pptx?v=3602','feladatok/villamosszereles11/36_het_feladat.pdf?v=3602','gyakorlatok/villamosszereles11/36_het_gyakorlat.pdf?v=3602'];a.forEach((x,i)=>{x.classList.remove('hamarosan');x.href=u[i];x.style.pointerEvents='auto';x.style.opacity='1';x.style.cursor='pointer';if(i===1){x.removeAttribute('target');x.setAttribute('download','')}else{x.target='_blank';x.removeAttribute('download')}});});</script>"""
+          s=re.sub(r'<script id="vs11-week36-force">.*?</script>','',s,flags=re.S)
+          s=s.replace('</body>',force+'</body>')
           p.write_text(s,encoding='utf-8')
 
           j=Path('iap-naptar.js')
           t=j.read_text(encoding='utf-8')
           t=t.replace('const keszHet=35;','const keszHet=36;')
-          if "36:{cim:'Év végi összefoglalás és projekt'" not in t:
-              needle="35:{cim:'Mérés, ellenőrzés és dokumentálás',leiras:'103–105. óra: kész szerelés ellenőrzési sorrendje, szemrevételezés, folytonosságvizsgálat, mérési eredmények értékelése, működéspróba, mérési jegyzőkönyv és átadási dokumentáció készítése.'}};"
-              repl="35:{cim:'Mérés, ellenőrzés és dokumentálás',leiras:'103–105. óra: kész szerelés ellenőrzési sorrendje, szemrevételezés, folytonosságvizsgálat, mérési eredmények értékelése, működéspróba, mérési jegyzőkönyv és átadási dokumentáció készítése.'},36:{cim:'Év végi összefoglalás és projekt',leiras:'106–108. óra: egész éves szakmai tudás rendszerezése; biztonságtechnika, szerelés, hibavédelem, ipari vezérlés, mérés, hibakeresés és dokumentáció összekapcsolása; komplex évzáró projekt és szakmai önértékelés.'}};"
-              if needle not in t: raise SystemExit('35. heti témaadat nem található')
-              t=t.replace(needle,repl,1)
           j.write_text(t,encoding='utf-8')
 
       - name: Commit patch
@@ -46,4 +50,9 @@ jobs:
           git config user.name "iap-bot"
           git config user.email "actions@users.noreply.github.com"
           git add villamosszereles11.html iap-naptar.js
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Villamos szerelések 11: 36. hét teljes aktiválása" && git push; fi
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Villamos szerelések 11: 36. hét gombjainak kényszerített javítása"
+            git push
+          fi
