@@ -1,0 +1,47 @@
+name: IAP VS11 week24 patch
+
+on:
+  push:
+    paths:
+      - '.iap-patch/vs11-week24.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch week 24
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('iap-naptar.js')
+          s = p.read_text(encoding='utf-8')
+          if 'const keszHet=23;' not in s:
+              raise SystemExit('A keszHet=23 nem található')
+          s = s.replace('const keszHet=23;', 'const keszHet=24;', 1)
+          old = "    23:{cim:'Nyomógombok, kapcsolók és jelzőlámpák',leiras:'67–69. óra: nyomógombok, választókapcsolók és jelzőlámpák működése, NO/NC érintkezők, kapocsjelölések, panelbe szerelés, feliratozás és START–STOP jelzőkör kialakítása.'}\n  };"
+          new = "    23:{cim:'Nyomógombok, kapcsolók és jelzőlámpák',leiras:'67–69. óra: nyomógombok, választókapcsolók és jelzőlámpák működése, NO/NC érintkezők, kapocsjelölések, panelbe szerelés, feliratozás és START–STOP jelzőkör kialakítása.'},\n    24:{cim:'Motorvédő kapcsolók és túlterhelés-védelem',leiras:'70–72. óra: túlterhelés és zárlat megkülönböztetése, motorvédő kapcsolók és túlterhelési relék szerepe, 95–96 és 97–98 segédérintkezők, áramtartomány, beállítás, szerelés és működési ellenőrzés.'}\n  };"
+          if old not in s:
+              raise SystemExit('A 23. heti VS11 zárórész nem található')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+
+          h = Path('villamosszereles11.html')
+          if h.exists():
+              t = h.read_text(encoding='utf-8')
+              t = t.replace('24. hét – Ipari villamos szerelések – hamarosan', '24. hét – Motorvédő kapcsolók és túlterhelés-védelem')
+              t = t.replace('24. hét – Motorvédő kapcsolók és túlterhelés-védelem – hamarosan', '24. hét – Motorvédő kapcsolók és túlterhelés-védelem')
+              h.write_text(t, encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add iap-naptar.js villamosszereles11.html || true
+          git diff --cached --quiet || git commit -m 'Villamos szerelések 11: 24. hét aktiválása'
+          git pull --rebase origin main
+          git push
