@@ -13,33 +13,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Activate Villamos szerelések 11 week 33
+      - name: Activate Villamos szerelések 11 week 34
         shell: python
         run: |
           from pathlib import Path
           import re
 
-          p = Path('villamosszereles11.html')
-          s = p.read_text(encoding='utf-8')
-          start = s.find('<div class="het"><div class="het-szam">33</div>')
-          end = s.find('<div class="het"><div class="het-szam">34</div>', start)
-          if start == -1 or end == -1:
-              raise SystemExit('33/34. heti blokk nem található')
-          week33 = '<div class="het"><div class="het-szam">33</div><div class="het-tartalom"><h3>33. hét – Komplex lakásvillamossági feladat</h3><p>97–99. óra: kapcsolási rajz értelmezése, munkaterv és anyaglista készítése, világítási és dugaszolóaljzat-áramkörök szerelése, PE-folytonosság és bekötés ellenőrzése, működéspróba, hibakeresés és dokumentálás.</p><div class="gombok"><a href="tananyagok/villamosszereles11/33_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/33_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/33_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/33_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
-          s = s[:start] + week33 + s[end:]
-          s = re.sub(r'iap-naptar\.js\?v=\d+', 'iap-naptar.js?v=33', s)
-          p.write_text(s, encoding='utf-8')
+          p=Path('villamosszereles11.html')
+          s=p.read_text(encoding='utf-8')
+          start=s.find('<div class="het"><div class="het-szam">34</div>')
+          end=s.find('<div class="het"><div class="het-szam">35</div>',start)
+          if start==-1 or end==-1: raise SystemExit('34/35. heti blokk nem található')
+          w='<div class="het"><div class="het-szam">34</div><div class="het-tartalom"><h3>34. hét – Komplex ipari szerelési feladat</h3><p>100–102. óra: mágneskapcsolós START–STOP öntartó vezérlőkör tervezése, szerelése, ellenőrzése, hibakeresése és dokumentálása.</p><div class="gombok"><a href="tananyagok/villamosszereles11/34_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/34_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/34_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/34_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
+          s=s[:start]+w+s[end:]
+          s=re.sub(r'iap-naptar\.js\?v=\d+','iap-naptar.js?v=34',s)
+          p.write_text(s,encoding='utf-8')
 
-          j = Path('iap-naptar.js')
-          t = j.read_text(encoding='utf-8')
-          t = t.replace('const keszHet=32;', 'const keszHet=33;')
-          if "33:{cim:'Komplex lakásvillamossági feladat'" not in t:
-              needle = "32:{cim:'Karbantartás és javítás',leiras:'94–96. óra: hibajavító, megelőző és állapotfüggő karbantartás, hibajelek felismerése, tervszerű ellenőrzés, javítási munkafolyamat, cserealkatrész kiválasztása, javítás utáni mérés, működéspróba és dokumentálás.'}};"
-              repl = "32:{cim:'Karbantartás és javítás',leiras:'94–96. óra: hibajavító, megelőző és állapotfüggő karbantartás, hibajelek felismerése, tervszerű ellenőrzés, javítási munkafolyamat, cserealkatrész kiválasztása, javítás utáni mérés, működéspróba és dokumentálás.'},33:{cim:'Komplex lakásvillamossági feladat',leiras:'97–99. óra: kapcsolási rajz értelmezése, munkaterv és anyaglista készítése, világítási és dugaszolóaljzat-áramkörök szerelése, PE-folytonosság és bekötés ellenőrzése, működéspróba, hibakeresés és dokumentálás.'}};"
-              if needle not in t:
-                  raise SystemExit('A 32. heti VS11 témaadat nem található')
-              t = t.replace(needle, repl, 1)
-          j.write_text(t, encoding='utf-8')
+          j=Path('iap-naptar.js')
+          t=j.read_text(encoding='utf-8')
+          t=t.replace('const keszHet=33;','const keszHet=34;')
+          if "34:{cim:'Komplex ipari szerelési feladat'" not in t:
+              needle="33:{cim:'Komplex lakásvillamossági feladat',leiras:'97–99. óra: kapcsolási rajz értelmezése, munkaterv és anyaglista készítése, világítási és dugaszolóaljzat-áramkörök szerelése, PE-folytonosság és bekötés ellenőrzése, működéspróba, hibakeresés és dokumentálás.'}};"
+              repl="33:{cim:'Komplex lakásvillamossági feladat',leiras:'97–99. óra: kapcsolási rajz értelmezése, munkaterv és anyaglista készítése, világítási és dugaszolóaljzat-áramkörök szerelése, PE-folytonosság és bekötés ellenőrzése, működéspróba, hibakeresés és dokumentálás.'},34:{cim:'Komplex ipari szerelési feladat',leiras:'100–102. óra: mágneskapcsolós START–STOP öntartó vezérlőkör tervezése, szerelése, ellenőrzése, hibakeresése és dokumentálása.'}};"
+              if needle not in t: raise SystemExit('33. heti témaadat nem található')
+              t=t.replace(needle,repl,1)
+          j.write_text(t,encoding='utf-8')
 
       - name: Commit patch
         shell: bash
@@ -47,9 +45,4 @@ jobs:
           git config user.name "iap-bot"
           git config user.email "actions@users.noreply.github.com"
           git add villamosszereles11.html iap-naptar.js
-          if git diff --cached --quiet; then
-            echo "No changes"
-          else
-            git commit -m "Villamos szerelések 11: 33. hét aktiválása"
-            git push
-          fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Villamos szerelések 11: 34. hét teljes aktiválása" && git push; fi
