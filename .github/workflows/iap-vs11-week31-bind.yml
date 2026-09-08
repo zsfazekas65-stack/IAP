@@ -1,0 +1,45 @@
+name: Bind VS11 week 31 buttons
+
+on:
+  push:
+    paths:
+      - '.iap-patch/vs11-week31-bind.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bind week 31 buttons directly in HTML
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p=Path('villamosszereles11.html')
+          s=p.read_text(encoding='utf-8')
+          pat=r'(<div class="het"><div class="het-szam">31</div><div class="het-tartalom"><h3>31\. hét – Hibakeresési módszerek</h3><p>)(.*?)(</p><div class="gombok">)(.*?)(</div></div></div>)'
+          repl=(r'\1Tünet és hibaok megkülönböztetése, rajz alapú áramút-követés, szakaszolásos és felezéses hibakeresés, mérési pontok kijelölése, következtetés és dokumentálás.\3'
+                '<a href="tananyagok/villamosszereles11/31_het.pdf" target="_blank">📖 Tananyag</a>'
+                '<a href="ppt/villamosszereles11/31_het.pptx" download>📊 Bemutató</a>'
+                '<a class="feladat-gomb" href="feladatok/villamosszereles11/31_het_feladat.pdf" target="_blank">✓ Feladat</a>'
+                '<a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/31_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a>\5')
+          s2,n=re.subn(pat,repl,s,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit(f'Week 31 block not found exactly once: {n}')
+          s2=s2.replace('iap-naptar.js?v=28','iap-naptar.js?v=31')
+          p.write_text(s2,encoding='utf-8')
+      - name: Commit HTML patch
+        shell: bash
+        run: |
+          git config user.name "iap-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add villamosszereles11.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Villamos szerelések 11: 31. hét közvetlen gombbekötés"
+            git push
+          fi
