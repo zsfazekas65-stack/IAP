@@ -55,3 +55,8 @@ main{max-width:1180px;padding:38px 24px 70px}
 @media(max-width:900px){.plc-nav{grid-template-columns:repeat(2,1fr)}body>nav{overflow-x:auto;white-space:nowrap}body>nav a{margin:0}.tantargy-fejlec:after{display:none}}
 @media(max-width:600px){main{padding:25px 14px 55px}.tantargy-fejlec{padding:22px 22px 22px 27px}.plc-nav{grid-template-columns:1fr}.het{display:block}.het-szam{min-height:58px;width:100%;font-size:25px}.het-tartalom{padding:19px}.gombok{display:grid;grid-template-columns:1fr 1fr}.gombok a{width:100%;text-align:center}body>header:after{font-size:64px}.blokk>h2:after{display:none}}
 @media(max-width:390px){.gombok{grid-template-columns:1fr}}
+
+/* Villamos szerelések – hétválasztó gombok visszaállítása */
+body>nav a[href^="#blokk"]{margin:7px 5px;padding:10px 18px;border:1px solid rgba(115,205,241,.45);border-radius:9px;background:linear-gradient(180deg,rgba(28,92,139,.95),rgba(11,60,96,.95));color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.2);font-size:16px;letter-spacing:.02em}
+body>nav a[href^="#blokk"]:hover{background:linear-gradient(180deg,#1886c7,#0d659e);color:#fff;border-color:#68d6fb;transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.25);text-decoration:none}
+@media(max-width:800px){body>nav a[href^="#blokk"]{padding:9px 13px;font-size:14px}}
