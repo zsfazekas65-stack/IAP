@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Force-fix Villamos szerelések 11 week 36 buttons
+      - name: Repair Villamos szerelések 11 week 36 HTML
         shell: python
         run: |
           from pathlib import Path
@@ -22,21 +22,21 @@ jobs:
           p=Path('villamosszereles11.html')
           s=p.read_text(encoding='utf-8')
 
-          # Ensure canonical week 36 block and cache-busted URLs.
           start=s.find('<div class="het"><div class="het-szam">36</div>')
           if start == -1:
               raise SystemExit('36. heti blokk nem található')
-          marker='</div></div></div></div></section></main>'
-          end=s.find(marker,start)
+          end=s.find('</section></main>', start)
           if end == -1:
-              raise SystemExit('36. heti blokk vége nem található')
-          w='<div class="het"><div class="het-szam">36</div><div class="het-tartalom"><h3>36. hét – Év végi összefoglalás és projekt</h3><p>106–108. óra: egész éves szakmai tudás rendszerezése; biztonságtechnika, szerelés, hibavédelem, ipari vezérlés, mérés, hibakeresés és dokumentáció összekapcsolása; komplex évzáró projekt és szakmai önértékelés.</p><div class="gombok"><a href="tananyagok/villamosszereles11/36_het.pdf?v=3602" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/36_het.pptx?v=3602" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/36_het_feladat.pdf?v=3602" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/36_het_gyakorlat.pdf?v=3602" target="_blank">🧪 Gyakorlat</a></div></div></div>'
-          s=s[:start]+w+s[end:]
-          s=re.sub(r'iap-naptar\.js\?v=\d+','iap-naptar.js?v=3602',s)
+              raise SystemExit('A 4. témakör vége nem található')
 
-          force="""<script id=\"vs11-week36-force\">document.addEventListener('DOMContentLoaded',function(){const hs=[...document.querySelectorAll('.het')];const h=hs.find(x=>parseInt((x.querySelector('.het-szam')?.textContent||'').trim(),10)===36);if(!h)return;const a=h.querySelectorAll('.gombok a');const u=['tananyagok/villamosszereles11/36_het.pdf?v=3602','ppt/villamosszereles11/36_het.pptx?v=3602','feladatok/villamosszereles11/36_het_feladat.pdf?v=3602','gyakorlatok/villamosszereles11/36_het_gyakorlat.pdf?v=3602'];a.forEach((x,i)=>{x.classList.remove('hamarosan');x.href=u[i];x.style.pointerEvents='auto';x.style.opacity='1';x.style.cursor='pointer';if(i===1){x.removeAttribute('target');x.setAttribute('download','')}else{x.target='_blank';x.removeAttribute('download')}});});</script>"""
+          w='<div class="het"><div class="het-szam">36</div><div class="het-tartalom"><h3>36. hét – Év végi összefoglalás és projekt</h3><p>106–108. óra: egész éves szakmai tudás rendszerezése; biztonságtechnika, szerelés, hibavédelem, ipari vezérlés, mérés, hibakeresés és dokumentáció összekapcsolása; komplex évzáró projekt és szakmai önértékelés.</p><div class="gombok"><a href="tananyagok/villamosszereles11/36_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/36_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/36_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/36_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
+
+          # week 36 closes itself; one extra </div> closes .hetek, then section/main.
+          s=s[:start] + w + '</div></section></main>' + s[end+len('</section></main>'):]
+
+          # Remove temporary force-fix script and bump the central script version.
           s=re.sub(r'<script id="vs11-week36-force">.*?</script>','',s,flags=re.S)
-          s=s.replace('</body>',force+'</body>')
+          s=re.sub(r'iap-naptar\.js\?v=\d+','iap-naptar.js?v=3603',s)
           p.write_text(s,encoding='utf-8')
 
           j=Path('iap-naptar.js')
@@ -53,6 +53,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Villamos szerelések 11: 36. hét gombjainak kényszerített javítása"
+            git commit -m "Villamos szerelések 11: 36. hét HTML-szerkezet javítása"
             git push
           fi
