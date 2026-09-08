@@ -1,4 +1,4 @@
-/* IAP – Villamos szerelések 11 – biztos gombjavítás a 20., 26. és 27. héthez – v27 */
+/* IAP – Villamos szerelések 11 – biztos gombjavítás a 20., 26. és 27. héthez – v27b */
 (()=>{
 'use strict';
 
@@ -77,12 +77,6 @@ function javit(){
 function erosites(){
   javit();
   [100,300,700,1500,3000,5000,8000].forEach(ms=>setTimeout(javit,ms));
-  const main=document.querySelector('main');
-  if(main){
-    const obs=new MutationObserver(()=>javit());
-    obs.observe(main,{subtree:true,childList:true,attributes:true,attributeFilter:['class','href','style']});
-    setTimeout(()=>obs.disconnect(),12000);
-  }
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',erosites);else erosites();
 window.addEventListener('pageshow',()=>setTimeout(javit,50));
