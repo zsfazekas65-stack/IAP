@@ -13,38 +13,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Repair Villamos szerelések 11 week 31 structure
+      - name: Activate Villamos szerelések 11 week 32
         shell: python
         run: |
           from pathlib import Path
-          import re
 
+          # HTML: 32. hét közvetlen gombbekötése és leírás javítása
           p = Path('villamosszereles11.html')
           s = p.read_text(encoding='utf-8')
-
-          # Töröljük az esetlegesen bekerült vezérlőkaraktereket.
-          s = ''.join(ch for ch in s if ch in '\n\r\t' or ord(ch) >= 32)
-
-          week31 = '<div class="het"><div class="het-szam">31</div><div class="het-tartalom"><h3>31. hét – Hibakeresési módszerek</h3><p>Tünet és hibaok megkülönböztetése, rajz alapú áramút-követés, szakaszolásos és felezéses hibakeresés, mérési pontok kijelölése, következtetés és dokumentálás.</p><div class="gombok"><a href="tananyagok/villamosszereles11/31_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/31_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/31_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/31_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
-
-          start = s.find('<div class="het"><div class="het-szam">31</div>')
-          next_week = s.find('<div class="het"><div class="het-szam">32</div>', start)
-          if start == -1 or next_week == -1:
-              raise SystemExit('31/32. heti blokk nem található')
-
-          s = s[:start] + week31 + s[next_week:]
-          s = s.replace('iap-naptar.js?v=30', 'iap-naptar.js?v=31')
+          old = '<div class="het"><div class="het-szam">32</div><div class="het-tartalom"><h3>32. hét – Karbantartás és javítás</h3><p>A hét részletes IAP anyaga később készül.</p><div class="gombok"><a class="hamarosan">📖 Tananyag</a><a class="hamarosan">📊 Bemutató</a><a class="feladat-gomb hamarosan">✓ Feladat</a><a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a></div></div></div>'
+          new = '<div class="het"><div class="het-szam">32</div><div class="het-tartalom"><h3>32. hét – Karbantartás és javítás</h3><p>94–96. óra: hibajavító, megelőző és állapotfüggő karbantartás; hibajelek felismerése; tervszerű ellenőrzés; javítási munkafolyamat; cserealkatrész kiválasztása; javítás utáni mérés, működéspróba és dokumentálás.</p><div class="gombok"><a href="tananyagok/villamosszereles11/32_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/32_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/32_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/32_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
+          if old not in s:
+              raise SystemExit('A 32. heti HTML-blokk nem található a várt formában')
+          s = s.replace(old, new, 1)
+          s = s.replace('iap-naptar.js?v=31', 'iap-naptar.js?v=32')
           p.write_text(s, encoding='utf-8')
+
+          # Központi JS: 32. hét aktiválása + témaadat
+          j = Path('iap-naptar.js')
+          t = j.read_text(encoding='utf-8')
+          t = t.replace('const keszHet=31;', 'const keszHet=32;')
+          if "32:{cim:'Karbantartás és javítás'" not in t:
+              needle = "31:{cim:'Hibakeresési módszerek',leiras:'91–93. óra: tünet és hibaok megkülönböztetése, rajz alapú áramút-követés, szakaszolásos és felezéses hibakeresés, mérési pontok kijelölése, következtetés és dokumentálás.'}};"
+              repl = "31:{cim:'Hibakeresési módszerek',leiras:'91–93. óra: tünet és hibaok megkülönböztetése, rajz alapú áramút-követés, szakaszolásos és felezéses hibakeresés, mérési pontok kijelölése, következtetés és dokumentálás.'},32:{cim:'Karbantartás és javítás',leiras:'94–96. óra: hibajavító, megelőző és állapotfüggő karbantartás, hibajelek felismerése, tervszerű ellenőrzés, javítási munkafolyamat, cserealkatrész kiválasztása, javítás utáni mérés, működéspróba és dokumentálás.'}};"
+              if needle not in t:
+                  raise SystemExit('A 31. heti VS11 témaadat nem található')
+              t = t.replace(needle, repl, 1)
+          j.write_text(t, encoding='utf-8')
 
       - name: Commit patch
         shell: bash
         run: |
           git config user.name "iap-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add villamosszereles11.html
+          git add villamosszereles11.html iap-naptar.js
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Villamos szerelések 11: 31. heti megjelenítés javítása"
+            git commit -m "Villamos szerelések 11: 32. hét aktiválása"
             git push
           fi
