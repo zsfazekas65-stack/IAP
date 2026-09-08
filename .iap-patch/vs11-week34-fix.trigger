@@ -1,0 +1,1 @@
+34. hét teljes aktiválása: HTML + központi naptár
