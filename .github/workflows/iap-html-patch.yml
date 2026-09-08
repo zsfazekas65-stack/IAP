@@ -13,15 +13,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch Villamos szerelések 11
+      - name: Patch Villamos szerelések 11 weeks 29-30
         shell: python
         run: |
           from pathlib import Path
           p=Path('villamosszereles11.html')
           s=p.read_text(encoding='utf-8')
-          tag='<script src="iap-vs11-fix20.js?v=1"></script>'
-          if tag not in s:
-              s=s.replace('</body></html>',tag+'</body></html>')
+
+          replacements = {
+            '<div class="het"><div class="het-szam">29</div><div class="het-tartalom"><h3>29. hét – Kapcsolási rajzok olvasása</h3><p>A hét részletes IAP anyaga később készül.</p><div class="gombok"><a class="hamarosan">📖 Tananyag</a><a class="hamarosan">📊 Bemutató</a><a class="feladat-gomb hamarosan">✓ Feladat</a><a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a></div></div></div>':
+            '<div class="het"><div class="het-szam">29</div><div class="het-tartalom"><h3>29. hét – Kapcsolási rajzok olvasása</h3><p>Kapcsolási rajzok jelképei, készülék- és kapocsazonosítás, áramutak követése és rajz alapján végzett hibakeresés.</p><div class="gombok"><a href="tananyagok/villamosszereles11/29_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/29_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/29_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/29_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>',
+            '<div class="het"><div class="het-szam">30</div><div class="het-tartalom"><h3>30. hét – Szerelési dokumentáció</h3><p>A hét részletes IAP anyaga később készül.</p><div class="gombok"><a class="hamarosan">📖 Tananyag</a><a class="hamarosan">📊 Bemutató</a><a class="feladat-gomb hamarosan">✓ Feladat</a><a class="gyakorlat-gomb hamarosan">🧪 Gyakorlat</a></div></div></div>':
+            '<div class="het"><div class="het-szam">30</div><div class="het-tartalom"><h3>30. hét – Szerelési dokumentáció</h3><p>Kapcsolási és szerelési rajzok, készülék- és vezetékjelölések, darabjegyzék, mérési jegyzőkönyv és módosítási napló készítése.</p><div class="gombok"><a href="tananyagok/villamosszereles11/30_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/30_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/30_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/30_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
+          }
+          for old,new in replacements.items():
+              s=s.replace(old,new)
+          s=s.replace('iap-naptar.js?v=28','iap-naptar.js?v=30')
           p.write_text(s,encoding='utf-8')
       - name: Commit patch
         shell: bash
@@ -32,6 +39,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Fix VS11 week 20 buttons"
+            git commit -m "Fix VS11 weeks 29-30 buttons"
             git push
           fi
