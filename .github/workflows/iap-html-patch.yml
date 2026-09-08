@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Activate Villamos szerelések 11 week 34
+      - name: Activate Villamos szerelések 11 week 35
         shell: python
         run: |
           from pathlib import Path
@@ -21,21 +21,21 @@ jobs:
 
           p=Path('villamosszereles11.html')
           s=p.read_text(encoding='utf-8')
-          start=s.find('<div class="het"><div class="het-szam">34</div>')
-          end=s.find('<div class="het"><div class="het-szam">35</div>',start)
-          if start==-1 or end==-1: raise SystemExit('34/35. heti blokk nem található')
-          w='<div class="het"><div class="het-szam">34</div><div class="het-tartalom"><h3>34. hét – Komplex ipari szerelési feladat</h3><p>100–102. óra: mágneskapcsolós START–STOP öntartó vezérlőkör tervezése, szerelése, ellenőrzése, hibakeresése és dokumentálása.</p><div class="gombok"><a href="tananyagok/villamosszereles11/34_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/34_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/34_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/34_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
+          start=s.find('<div class="het"><div class="het-szam">35</div>')
+          end=s.find('<div class="het"><div class="het-szam">36</div>',start)
+          if start==-1 or end==-1: raise SystemExit('35/36. heti blokk nem található')
+          w='<div class="het"><div class="het-szam">35</div><div class="het-tartalom"><h3>35. hét – Mérés, ellenőrzés és dokumentálás</h3><p>103–105. óra: kész szerelés ellenőrzési sorrendje, szemrevételezés, folytonosságvizsgálat, mérési eredmények értékelése, működéspróba, mérési jegyzőkönyv és átadási dokumentáció készítése.</p><div class="gombok"><a href="tananyagok/villamosszereles11/35_het.pdf" target="_blank">📖 Tananyag</a><a href="ppt/villamosszereles11/35_het.pptx" download>📊 Bemutató</a><a class="feladat-gomb" href="feladatok/villamosszereles11/35_het_feladat.pdf" target="_blank">✓ Feladat</a><a class="gyakorlat-gomb" href="gyakorlatok/villamosszereles11/35_het_gyakorlat.pdf" target="_blank">🧪 Gyakorlat</a></div></div></div>'
           s=s[:start]+w+s[end:]
-          s=re.sub(r'iap-naptar\.js\?v=\d+','iap-naptar.js?v=34',s)
+          s=re.sub(r'iap-naptar\.js\?v=\d+','iap-naptar.js?v=35',s)
           p.write_text(s,encoding='utf-8')
 
           j=Path('iap-naptar.js')
           t=j.read_text(encoding='utf-8')
-          t=t.replace('const keszHet=33;','const keszHet=34;')
-          if "34:{cim:'Komplex ipari szerelési feladat'" not in t:
-              needle="33:{cim:'Komplex lakásvillamossági feladat',leiras:'97–99. óra: kapcsolási rajz értelmezése, munkaterv és anyaglista készítése, világítási és dugaszolóaljzat-áramkörök szerelése, PE-folytonosság és bekötés ellenőrzése, működéspróba, hibakeresés és dokumentálás.'}};"
-              repl="33:{cim:'Komplex lakásvillamossági feladat',leiras:'97–99. óra: kapcsolási rajz értelmezése, munkaterv és anyaglista készítése, világítási és dugaszolóaljzat-áramkörök szerelése, PE-folytonosság és bekötés ellenőrzése, működéspróba, hibakeresés és dokumentálás.'},34:{cim:'Komplex ipari szerelési feladat',leiras:'100–102. óra: mágneskapcsolós START–STOP öntartó vezérlőkör tervezése, szerelése, ellenőrzése, hibakeresése és dokumentálása.'}};"
-              if needle not in t: raise SystemExit('33. heti témaadat nem található')
+          t=t.replace('const keszHet=34;','const keszHet=35;')
+          if "35:{cim:'Mérés, ellenőrzés és dokumentálás'" not in t:
+              needle="34:{cim:'Komplex ipari szerelési feladat',leiras:'100–102. óra: mágneskapcsolós START–STOP öntartó vezérlőkör tervezése, szerelése, ellenőrzése, hibakeresése és dokumentálása.'}};"
+              repl="34:{cim:'Komplex ipari szerelési feladat',leiras:'100–102. óra: mágneskapcsolós START–STOP öntartó vezérlőkör tervezése, szerelése, ellenőrzése, hibakeresése és dokumentálása.'},35:{cim:'Mérés, ellenőrzés és dokumentálás',leiras:'103–105. óra: kész szerelés ellenőrzési sorrendje, szemrevételezés, folytonosságvizsgálat, mérési eredmények értékelése, működéspróba, mérési jegyzőkönyv és átadási dokumentáció készítése.'}};"
+              if needle not in t: raise SystemExit('34. heti témaadat nem található')
               t=t.replace(needle,repl,1)
           j.write_text(t,encoding='utf-8')
 
@@ -45,4 +45,4 @@ jobs:
           git config user.name "iap-bot"
           git config user.email "actions@users.noreply.github.com"
           git add villamosszereles11.html iap-naptar.js
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Villamos szerelések 11: 34. hét teljes aktiválása" && git push; fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Villamos szerelések 11: 35. hét teljes aktiválása" && git push; fi
