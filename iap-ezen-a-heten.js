@@ -1,6 +1,7 @@
 (()=>{
 const subjects=[['9. évfolyam','Villamos alapismeretek','villamos9.html',0],['10. évfolyam','Villamos alapismeretek','villamos10.html',0],['10. évfolyam','Gépészeti alapismeretek','gepeszet10.html',0],['11. évfolyam','Analóg áramkörök','analog11.html',0],['11. évfolyam','Elektrotechnika','elektrotechnika11.html',0],['11. évfolyam','Villamos szerelések','villamosszereles11.html',0],['12. évfolyam','PLC alapismeretek','plc.html',0],['12. évfolyam','Folyamatirányítás','folyamatiranyitas12.html',0],['13. évfolyam','Villamos művek','villamosmuvek13.html',0],['13. évfolyam','Épületvillamossági hálózatok','epuletvillamossag13.html',0],['Felnőtt oktatás','Épületvillamosság 2 – jelenléti','epuletvillamossag2_felnott_jelenleti.html',1],['Felnőtt oktatás','Épületvillamosság 2 – digitális','epuletvillamossag2_felnott_digitalis.html',1],['Felnőtt oktatás','Elektrotechnika','elektrotechnika_felnott.html',1],['Felnőtt oktatás','Villamos berendezések','villamosberendezesek_felnott.html',1]];
 const moodleTests=[
+ {week:3,grade:'9. évfolyam',subject:'Villamos alapismeretek',title:'5. heti ellenőrző teszt – PRÓBA',detail:'50 kérdés • Moodle',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1648'},
  {week:5,grade:'9. évfolyam',subject:'Villamos alapismeretek',title:'5. heti ellenőrző teszt',detail:'50 kérdés • Moodle',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1648'}
 ];
 function schoolWeek(d=new Date()){
