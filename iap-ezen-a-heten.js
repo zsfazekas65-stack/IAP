@@ -1,101 +1,16 @@
 (()=>{
 const subjects=[
- ['9. évfolyam','Villamos alapismeretek','villamos9.html',0],
- ['10. évfolyam','Villamos alapismeretek','villamos10.html',0],
- ['10. évfolyam','Gépészeti alapismeretek','gepeszet10.html',0],
- ['11. évfolyam','Analóg áramkörök','analog11.html',0],
- ['11. évfolyam','Elektrotechnika','elektrotechnika11.html',0],
- ['11. évfolyam','Villamos szerelések','villamosszereles11.html',0],
- ['12. évfolyam','PLC alapismeretek','plc.html',0],
- ['12. évfolyam','Folyamatirányítás','folyamatiranyitas12.html',0],
- ['13. évfolyam','Villamos művek','villamosmuvek13.html',0],
- ['13. évfolyam','Épületvillamossági hálózatok','epuletvillamossag13.html',0],
- ['Felnőtt oktatás','Épületvillamosság 2 – jelenléti','epuletvillamossag2_felnott_jelenleti.html',1],
- ['Felnőtt oktatás','Épületvillamosság 2 – digitális','epuletvillamossag2_felnott_digitalis.html',1],
- ['Felnőtt oktatás','Elektrotechnika','elektrotechnika_felnott.html',1],
- ['Felnőtt oktatás','Villamos berendezések','villamosberendezesek_felnott.html',1]
+ ['9. évfolyam','Villamos alapismeretek','villamos9.html',0],['10. évfolyam','Villamos alapismeretek','villamos10.html',0],['10. évfolyam','Gépészeti alapismeretek','gepeszet10.html',0],['11. évfolyam','Analóg áramkörök','analog11.html',0],['11. évfolyam','Elektrotechnika','elektrotechnika11.html',0],['11. évfolyam','Villamos szerelések','villamosszereles11.html',0],['12. évfolyam','PLC alapismeretek','plc.html',0],['12. évfolyam','Folyamatirányítás','folyamatiranyitas12.html',0],['13. évfolyam','Villamos művek','villamosmuvek13.html',0],['13. évfolyam','Épületvillamossági hálózatok','epuletvillamossag13.html',0],['Felnőtt oktatás','Épületvillamosság 2 – jelenléti','epuletvillamossag2_felnott_jelenleti.html',1],['Felnőtt oktatás','Épületvillamosság 2 – digitális','epuletvillamossag2_felnott_digitalis.html',1],['Felnőtt oktatás','Elektrotechnika','elektrotechnika_felnott.html',1],['Felnőtt oktatás','Villamos berendezések','villamosberendezesek_felnott.html',1]
 ];
-
-const moodleTests=[
- {week:5,grade:'9. évfolyam',subject:'Villamos alapismeretek',title:'5. heti ellenőrző teszt',detail:'50 kérdés • Moodle',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1648'}
-];
-
-function schoolWeek(d=new Date()){
- const start=new Date(2026,8,1,12),end=new Date(2027,5,15,12);
- const breaks=[
-  [new Date(2026,9,23,12),new Date(2026,10,1,12)],
-  [new Date(2026,11,19,12),new Date(2027,0,3,12)],
-  [new Date(2027,2,25,12),new Date(2027,3,4,12)]
- ];
- if(d<start)return 1;if(d>end)return 36;
- const norm=x=>new Date(x.getFullYear(),x.getMonth(),x.getDate(),12);
- const mon=x=>{x=norm(x);const n=x.getDay();x.setDate(x.getDate()-(n===0?6:n-1));return x};
- const has=m=>{for(let i=0;i<5;i++){const x=new Date(m);x.setDate(x.getDate()+i);if(x>=start&&x<=end&&!breaks.some(([a,b])=>x>=a&&x<=b))return true}return false};
- const target=mon(d);let cur=mon(start),n=0;
- while(cur<=target){if(has(cur))n++;if(cur.getTime()===target.getTime())return Math.max(1,Math.min(36,n));cur.setDate(cur.getDate()+7)}
- return 1;
-}
-
+const moodleTests=[{week:5,grade:'9. évfolyam',subject:'Villamos alapismeretek',title:'5. heti ellenőrző teszt',detail:'50 kérdés • Moodle',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1648'}];
+function schoolWeek(d=new Date()){const start=new Date(2026,8,1,12),end=new Date(2027,5,15,12),breaks=[[new Date(2026,9,23,12),new Date(2026,10,1,12)],[new Date(2026,11,19,12),new Date(2027,0,3,12)],[new Date(2027,2,25,12),new Date(2027,3,4,12)]];if(d<start)return 1;if(d>end)return 36;const norm=x=>new Date(x.getFullYear(),x.getMonth(),x.getDate(),12),mon=x=>{x=norm(x);const n=x.getDay();x.setDate(x.getDate()-(n===0?6:n-1));return x},has=m=>{for(let i=0;i<5;i++){const x=new Date(m);x.setDate(x.getDate()+i);if(x>=start&&x<=end&&!breaks.some(([a,b])=>x>=a&&x<=b))return true}return false},target=mon(d);let cur=mon(start),n=0;while(cur<=target){if(has(cur))n++;if(cur.getTime()===target.getTime())return Math.max(1,Math.min(36,n));cur.setDate(cur.getDate()+7)}return 1}
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-
-function addTimetableButton(){
- const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[href="orarend.html"]'))return;
- const a=document.createElement('a');a.href='orarend.html';a.textContent='ÓRAREND';a.title='Fazekas Zsolt órarendje';
- const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)
-}
-
-function addKretaButton(){
- const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[data-iap-kreta]'))return;
- const a=document.createElement('a');a.href='https://dvszc-dunaferr.e-kreta.hu';a.textContent='KRÉTA';a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('data-iap-kreta','1');
- const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)
-}
-
-function ensureAlertStyle(){
- if(document.getElementById('iap-moodle-style'))return;
- const s=document.createElement('style');s.id='iap-moodle-style';s.textContent=`
- .iap-moodle-alert{max-width:1420px;margin:18px auto;padding:0 44px}
- .iap-moodle-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px;border-radius:12px;box-shadow:0 7px 20px rgba(40,80,110,.10)}
- .iap-moodle-card.upcoming{border:1px solid #a9cfe8;border-left:6px solid #1478bd;background:linear-gradient(120deg,#eef8ff,#fff)}
- .iap-moodle-label{display:block;color:#12649b;font-size:11px;font-weight:900;letter-spacing:.12em}
- .iap-moodle-card h3{margin:5px 0 4px;color:#0b3858;font-size:22px}
- .iap-moodle-card p{margin:0;color:#4e7088;font-weight:700}
- .iap-moodle-btn{flex:0 0 auto;padding:13px 20px;border-radius:8px;background:#1478bd;color:#fff!important;font-weight:900;font-size:13px;letter-spacing:.04em}
- @media(max-width:760px){.iap-moodle-alert{padding:0 18px}.iap-moodle-card{align-items:flex-start;flex-direction:column}.iap-moodle-btn{width:100%;text-align:center}}
- `;document.head.appendChild(s)
-}
-
-function addPreviewAlert(){
- if(document.getElementById('iap-vizsga-proba'))return;
- ensureAlertStyle();
- const grades=document.querySelector('.grades');if(!grades)return;
- const box=document.createElement('div');box.id='iap-vizsga-proba';box.className='iap-moodle-alert';
- box.innerHTML=`<div class="iap-moodle-card upcoming"><div><span class="iap-moodle-label">⏳ VIZSGA KÖZELEG • 9. ÉVFOLYAM</span><h3>Villamos alapismeretek – 5. heti ellenőrző teszt – PRÓBA</h3><p>50 kérdés • Moodle • előjelzés mintája</p></div><a class="iap-moodle-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1648" target="_blank" rel="noopener noreferrer">KURZUS MEGNYITÁSA →</a></div>`;
- grades.parentNode.insertBefore(box,grades)
-}
-
-async function topic(url,w){
- try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw 0;const doc=new DOMParser().parseFromString(await r.text(),'text/html');for(const c of doc.querySelectorAll('.het')){const num=parseInt(c.querySelector('.het-szam')?.textContent||'',10);if(num===w)return(c.querySelector('.het-tartalom h3')?.textContent||c.querySelector('h3')?.textContent||`${w}. hét`).trim()}}catch(e){}
- return `${w}. hét`
-}
-
-function addRealMoodleNotice(w,anchor){
- const upcoming=moodleTests.filter(t=>t.week===w+1);if(!upcoming.length||!anchor)return;
- ensureAlertStyle();
- const box=document.createElement('div');box.className='iap-moodle-alert';
- box.innerHTML=upcoming.map(t=>`<div class="iap-moodle-card upcoming"><div><span class="iap-moodle-label">⏳ VIZSGA KÖZELEG • ${esc(t.grade)}</span><h3>${esc(t.subject)} – ${esc(t.title)}</h3><p>${esc(t.detail)} • jövő héten, a ${t.week}. tanítási héten</p></div><a class="iap-moodle-btn" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">KURZUS MEGNYITÁSA →</a></div>`).join('');
- anchor.parentNode.insertBefore(box,anchor.nextSibling)
-}
-
-async function init(){
- addTimetableButton();addKretaButton();addPreviewAlert();
- const grades=document.querySelector('.grades');if(!grades)return;
- if(document.querySelector('.iap-week-now'))return;
- const w=schoolWeek(),sec=document.createElement('section');sec.className='iap-week-now';
- sec.innerHTML=`<div class="iap-week-head"><div><span class="iap-week-kicker">IAP // AKTUÁLIS TANÍTÁSI HÉT</span><h2>Ezen a héten</h2><p>A tantárgyak aktuális témái egy helyen.</p></div><div class="iap-week-badge"><strong>${w}.</strong><span>HÉT</span></div></div><div class="iap-week-grid">${subjects.map((s,i)=>{const hash=s[3]?`#het${w}`:`#het-${w}`;return `<a class="iap-week-item" href="${s[2]}${hash}"><span class="iap-week-grade">${esc(s[0])}</span><strong>${esc(s[1])}</strong><small id="iap-topic-${i}">Téma betöltése…</small><span class="iap-week-go">MEGNYITÁS →</span></a>`}).join('')}</div>`;
- grades.parentNode.insertBefore(sec,grades);
- addRealMoodleNotice(w,sec);
- subjects.forEach(async(s,i)=>{const e=document.getElementById(`iap-topic-${i}`);if(e)e.textContent=await topic(s[2],w)})
-}
-
+function addTimetableButton(){const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[href="orarend.html"]'))return;const a=document.createElement('a');a.href='orarend.html';a.textContent='ÓRAREND';a.title='Fazekas Zsolt órarendje';const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)}
+function addKretaButton(){const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[data-iap-kreta]'))return;const a=document.createElement('a');a.href='https://dvszc-dunaferr.e-kreta.hu';a.textContent='KRÉTA';a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('data-iap-kreta','1');const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)}
+function ensureAlertStyle(){if(document.getElementById('iap-moodle-style'))return;const s=document.createElement('style');s.id='iap-moodle-style';s.textContent=`.iap-moodle-alert{max-width:1420px;margin:18px auto;padding:0 44px}.iap-moodle-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 25px;border-radius:12px;box-shadow:0 8px 24px rgba(40,80,110,.14)}.iap-moodle-card.upcoming{border:2px solid #75b8e4;border-left:8px solid #1478bd;background:linear-gradient(120deg,#e4f4ff,#fff)}.iap-moodle-label{display:inline-block;color:#fff;background:#1478bd;border-radius:7px;padding:8px 13px;font-size:18px;font-weight:900;letter-spacing:.06em;box-shadow:0 4px 10px rgba(20,120,189,.22)}.iap-moodle-card h3{margin:10px 0 5px;color:#0b3858;font-size:23px}.iap-moodle-card p{margin:0;color:#4e7088;font-weight:700}.iap-moodle-btn{flex:0 0 auto;padding:14px 21px;border-radius:8px;background:#1478bd;color:#fff!important;font-weight:900;font-size:13px;letter-spacing:.04em}@media(max-width:760px){.iap-moodle-alert{padding:0 18px}.iap-moodle-card{align-items:flex-start;flex-direction:column}.iap-moodle-label{font-size:16px}.iap-moodle-btn{width:100%;text-align:center}}`;document.head.appendChild(s)}
+function addPreviewAlert(){if(document.getElementById('iap-vizsga-proba'))return;ensureAlertStyle();const grades=document.querySelector('.grades');if(!grades)return;const box=document.createElement('div');box.id='iap-vizsga-proba';box.className='iap-moodle-alert';box.innerHTML=`<div class="iap-moodle-card upcoming"><div><span class="iap-moodle-label">⏳ VIZSGA KÖZELEG • 9. ÉVFOLYAM</span><h3>Villamos alapismeretek – 5. heti ellenőrző teszt – PRÓBA</h3><p>50 kérdés • Moodle • előjelzés mintája</p></div><a class="iap-moodle-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1648" target="_blank" rel="noopener noreferrer">KURZUS MEGNYITÁSA →</a></div>`;grades.parentNode.insertBefore(box,grades)}
+async function topic(url,w){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw 0;const doc=new DOMParser().parseFromString(await r.text(),'text/html');for(const c of doc.querySelectorAll('.het')){const num=parseInt(c.querySelector('.het-szam')?.textContent||'',10);if(num===w)return(c.querySelector('.het-tartalom h3')?.textContent||c.querySelector('h3')?.textContent||`${w}. hét`).trim()}}catch(e){}return `${w}. hét`}
+function addRealMoodleNotice(w,anchor){const upcoming=moodleTests.filter(t=>t.week===w+1);if(!upcoming.length||!anchor)return;ensureAlertStyle();const box=document.createElement('div');box.className='iap-moodle-alert';box.innerHTML=upcoming.map(t=>`<div class="iap-moodle-card upcoming"><div><span class="iap-moodle-label">⏳ VIZSGA KÖZELEG • ${esc(t.grade)}</span><h3>${esc(t.subject)} – ${esc(t.title)}</h3><p>${esc(t.detail)} • jövő héten, a ${t.week}. tanítási héten</p></div><a class="iap-moodle-btn" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">KURZUS MEGNYITÁSA →</a></div>`).join('');anchor.parentNode.insertBefore(box,anchor.nextSibling)}
+async function init(){addTimetableButton();addKretaButton();addPreviewAlert();const grades=document.querySelector('.grades');if(!grades||document.querySelector('.iap-week-now'))return;const w=schoolWeek(),sec=document.createElement('section');sec.className='iap-week-now';sec.innerHTML=`<div class="iap-week-head"><div><span class="iap-week-kicker">IAP // AKTUÁLIS TANÍTÁSI HÉT</span><h2>Ezen a héten</h2><p>A tantárgyak aktuális témái egy helyen.</p></div><div class="iap-week-badge"><strong>${w}.</strong><span>HÉT</span></div></div><div class="iap-week-grid">${subjects.map((s,i)=>{const hash=s[3]?`#het${w}`:`#het-${w}`;return `<a class="iap-week-item" href="${s[2]}${hash}"><span class="iap-week-grade">${esc(s[0])}</span><strong>${esc(s[1])}</strong><small id="iap-topic-${i}">Téma betöltése…</small><span class="iap-week-go">MEGNYITÁS →</span></a>`}).join('')}</div>`;grades.parentNode.insertBefore(sec,grades);addRealMoodleNotice(w,sec);subjects.forEach(async(s,i)=>{const e=document.getElementById(`iap-topic-${i}`);if(e)e.textContent=await topic(s[2],w)})}
 document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();
 })();
