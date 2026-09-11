@@ -1,65 +1,101 @@
 (()=>{
-const subjects=[['9. évfolyam','Villamos alapismeretek','villamos9.html',0],['10. évfolyam','Villamos alapismeretek','villamos10.html',0],['10. évfolyam','Gépészeti alapismeretek','gepeszet10.html',0],['11. évfolyam','Analóg áramkörök','analog11.html',0],['11. évfolyam','Elektrotechnika','elektrotechnika11.html',0],['11. évfolyam','Villamos szerelések','villamosszereles11.html',0],['12. évfolyam','PLC alapismeretek','plc.html',0],['12. évfolyam','Folyamatirányítás','folyamatiranyitas12.html',0],['13. évfolyam','Villamos művek','villamosmuvek13.html',0],['13. évfolyam','Épületvillamossági hálózatok','epuletvillamossag13.html',0],['Felnőtt oktatás','Épületvillamosság 2 – jelenléti','epuletvillamossag2_felnott_jelenleti.html',1],['Felnőtt oktatás','Épületvillamosság 2 – digitális','epuletvillamossag2_felnott_digitalis.html',1],['Felnőtt oktatás','Elektrotechnika','elektrotechnika_felnott.html',1],['Felnőtt oktatás','Villamos berendezések','villamosberendezesek_felnott.html',1]];
+const subjects=[
+ ['9. évfolyam','Villamos alapismeretek','villamos9.html',0],
+ ['10. évfolyam','Villamos alapismeretek','villamos10.html',0],
+ ['10. évfolyam','Gépészeti alapismeretek','gepeszet10.html',0],
+ ['11. évfolyam','Analóg áramkörök','analog11.html',0],
+ ['11. évfolyam','Elektrotechnika','elektrotechnika11.html',0],
+ ['11. évfolyam','Villamos szerelések','villamosszereles11.html',0],
+ ['12. évfolyam','PLC alapismeretek','plc.html',0],
+ ['12. évfolyam','Folyamatirányítás','folyamatiranyitas12.html',0],
+ ['13. évfolyam','Villamos művek','villamosmuvek13.html',0],
+ ['13. évfolyam','Épületvillamossági hálózatok','epuletvillamossag13.html',0],
+ ['Felnőtt oktatás','Épületvillamosság 2 – jelenléti','epuletvillamossag2_felnott_jelenleti.html',1],
+ ['Felnőtt oktatás','Épületvillamosság 2 – digitális','epuletvillamossag2_felnott_digitalis.html',1],
+ ['Felnőtt oktatás','Elektrotechnika','elektrotechnika_felnott.html',1],
+ ['Felnőtt oktatás','Villamos berendezések','villamosberendezesek_felnott.html',1]
+];
+
 const moodleTests=[
- {week:3,grade:'9. évfolyam',subject:'Villamos alapismeretek',title:'5. heti ellenőrző teszt – PRÓBA',detail:'50 kérdés • Moodle',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1648'},
  {week:5,grade:'9. évfolyam',subject:'Villamos alapismeretek',title:'5. heti ellenőrző teszt',detail:'50 kérdés • Moodle',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1648'}
 ];
+
 function schoolWeek(d=new Date()){
- const start=new Date(2026,8,1,12),end=new Date(2027,5,15,12),breaks=[[new Date(2026,9,23,12),new Date(2026,10,1,12)],[new Date(2026,11,19,12),new Date(2027,0,3,12)],[new Date(2027,2,25,12),new Date(2027,3,4,12)]];
- if(d<start)return 1;if(d>end)return 36;const norm=x=>new Date(x.getFullYear(),x.getMonth(),x.getDate(),12),mon=x=>{x=norm(x);const n=x.getDay();x.setDate(x.getDate()-(n===0?6:n-1));return x};const has=m=>{for(let i=0;i<5;i++){const x=new Date(m);x.setDate(x.getDate()+i);if(x>=start&&x<=end&&!breaks.some(([a,b])=>x>=a&&x<=b))return true}return false};const target=mon(d);let cur=mon(start),n=0;while(cur<=target){if(has(cur))n++;if(cur.getTime()===target.getTime())return Math.max(1,Math.min(36,n));cur.setDate(cur.getDate()+7)}return 1;
+ const start=new Date(2026,8,1,12),end=new Date(2027,5,15,12);
+ const breaks=[
+  [new Date(2026,9,23,12),new Date(2026,10,1,12)],
+  [new Date(2026,11,19,12),new Date(2027,0,3,12)],
+  [new Date(2027,2,25,12),new Date(2027,3,4,12)]
+ ];
+ if(d<start)return 1;if(d>end)return 36;
+ const norm=x=>new Date(x.getFullYear(),x.getMonth(),x.getDate(),12);
+ const mon=x=>{x=norm(x);const n=x.getDay();x.setDate(x.getDate()-(n===0?6:n-1));return x};
+ const has=m=>{for(let i=0;i<5;i++){const x=new Date(m);x.setDate(x.getDate()+i);if(x>=start&&x<=end&&!breaks.some(([a,b])=>x>=a&&x<=b))return true}return false};
+ const target=mon(d);let cur=mon(start),n=0;
+ while(cur<=target){if(has(cur))n++;if(cur.getTime()===target.getTime())return Math.max(1,Math.min(36,n));cur.setDate(cur.getDate()+7)}
+ return 1;
 }
+
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function topic(url,w){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw 0;const doc=new DOMParser().parseFromString(await r.text(),'text/html');for(const c of doc.querySelectorAll('.het')){const num=parseInt(c.querySelector('.het-szam')?.textContent||'',10);if(num===w)return(c.querySelector('.het-tartalom h3')?.textContent||c.querySelector('h3')?.textContent||`${w}. hét`).trim()}}catch(e){}return `${w}. hét`}
-function addTimetableButton(){const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[href="orarend.html"]'))return;const a=document.createElement('a');a.href='orarend.html';a.textContent='ÓRAREND';a.title='Fazekas Zsolt órarendje';const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)}
-function addKretaButton(){const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[data-iap-kreta]'))return;const a=document.createElement('a');a.href='https://dvszc-dunaferr.e-kreta.hu';a.textContent='KRÉTA';a.title='Dunaferr KRÉTA megnyitása';a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('data-iap-kreta','1');const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)}
-function addMobileSupport(){
- if(document.getElementById('iap-mobile-style'))return;
- const style=document.createElement('style');style.id='iap-mobile-style';style.textContent=`
- .iap-mobile-bar,.iap-mobile-panel{display:none}
- @media(max-width:900px){
-  html,body{width:100%;max-width:100%;overflow-x:hidden!important}
-  .brand-row{min-height:auto!important;padding:12px 16px!important;gap:14px!important;flex-direction:row!important;align-items:center!important;flex-wrap:wrap!important}
-  .dunaferr-brand{min-width:0!important;width:auto!important;padding:0 14px 0 0!important;border-right:1px solid rgba(255,255,255,.25)!important;border-bottom:0!important;gap:10px!important}
-  .dunaferr-brand img{width:86px!important}.dunaferr-text .dszc{font-size:24px!important}.dunaferr-text .name{font-size:15px!important}.dunaferr-text .sub{font-size:9px!important;margin-top:4px!important}
-  .iap-brand{gap:9px!important}.iap-mark{font-size:42px!important}.iap-sep{height:54px!important}.iap-copy strong{font-size:15px!important;line-height:1.1!important}.iap-copy span{font-size:11px!important;margin-top:4px!important}
-  .iap-small-logo-wrap{margin-left:auto!important}.iap-small-logo{width:96px!important;max-height:50px!important}
-  .nav-inner{display:none!important}
-  .iap-mobile-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 14px;background:#082746;color:#fff}
-  .iap-mobile-home{font-size:22px;font-weight:900;padding:7px 13px;border-radius:7px;background:#0d71b9;color:#fff!important}
-  .iap-mobile-toggle{appearance:none;border:1px solid rgba(255,255,255,.25);background:#0a365e;color:#fff;border-radius:8px;padding:10px 16px;font-size:15px;font-weight:900;letter-spacing:.03em;cursor:pointer}
-  .iap-mobile-panel{display:none;background:#071d35;border-top:1px solid rgba(255,255,255,.12);padding:12px 14px 16px;max-height:72vh;overflow-y:auto}
-  .iap-mobile-panel.open{display:block}
-  .iap-mobile-group{margin:7px 0;border:1px solid rgba(255,255,255,.13);border-radius:9px;overflow:hidden;background:#0a2948}
-  .iap-mobile-group-title{padding:10px 12px;color:#67c9f2;font-size:12px;font-weight:900;letter-spacing:.06em;background:#09223d}
-  .iap-mobile-link{display:block;padding:12px 14px;color:#fff!important;border-top:1px solid rgba(255,255,255,.1);font-weight:800;font-size:14px}
-  .iap-mobile-link:first-child{border-top:0}.iap-mobile-link:hover{background:#0d71b9}
-  .hero{min-height:auto!important}.hero-inner{padding:26px 20px!important}.hero h1{font-size:31px!important}.hero p{font-size:17px!important}.hero-with-image .hero-inner{width:auto!important;margin:0!important}.hero-robot{opacity:.14!important;width:70%!important}
-  .grades{padding:22px 14px 26px!important}.cards{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}.card{min-height:0!important;padding:18px 14px!important}.grade-line .num{font-size:38px!important}.card h3{font-size:19px!important}
-  .iap-week-now{padding:22px 14px!important}.iap-week-grid{grid-template-columns:1fr!important}
- }
- @media(max-width:560px){
-  .brand-row{gap:9px!important}.dunaferr-brand img{width:68px!important}.dunaferr-text .dszc{font-size:20px!important}.dunaferr-text .name{font-size:13px!important}.dunaferr-text .sub{display:none!important}
-  .iap-mark{font-size:36px!important}.iap-copy strong{font-size:13px!important}.iap-copy span{font-size:10px!important}.iap-small-logo-wrap{display:none!important}
-  .cards{grid-template-columns:1fr!important}.hero h1{font-size:28px!important}.iap-week-head{padding:17px!important}.iap-week-head h2{font-size:25px!important}
- }
- @media(max-width:900px) and (orientation:landscape){
-  .brand-row{padding:8px 14px!important;gap:10px!important}.dunaferr-brand img{width:70px!important}.dunaferr-text .dszc{font-size:20px!important}.dunaferr-text .name{font-size:13px!important}.dunaferr-text .sub{display:none!important}
-  .iap-mark{font-size:36px!important}.iap-sep{height:42px!important}.iap-copy strong{font-size:13px!important}.iap-copy span{font-size:10px!important}.iap-small-logo{width:80px!important;max-height:42px!important}
-  .hero-inner{padding:20px 24px!important}.hero h1{font-size:30px!important}.hero p{font-size:16px!important}.hero .line{margin:14px 0!important}
-  .iap-mobile-panel{max-height:65vh}
- }
- `;document.head.appendChild(style);
- const nav=document.querySelector('.nav'),src=document.querySelector('.nav-inner');if(!nav||!src)return;
- const bar=document.createElement('div');bar.className='iap-mobile-bar';bar.innerHTML='<a class="iap-mobile-home" href="#evfolyamok" aria-label="Évfolyamok">⌂</a><button class="iap-mobile-toggle" type="button" aria-expanded="false">☰ MENÜ</button>';
- const panel=document.createElement('div');panel.className='iap-mobile-panel';
- [...src.children].forEach(el=>{
-  if(el.matches('a')){if(el.getAttribute('href')==='#evfolyamok')return;const a=el.cloneNode(true);a.className='iap-mobile-link';panel.appendChild(a);return}
-  if(el.classList.contains('nav-drop')){const g=document.createElement('div');g.className='iap-mobile-group';const title=document.createElement('div');title.className='iap-mobile-group-title';title.textContent=(el.querySelector('button')?.textContent||'').replace('▾','').trim();g.appendChild(title);el.querySelectorAll('.nav-menu a').forEach(x=>{const a=x.cloneNode(true);a.className='iap-mobile-link';g.appendChild(a)});panel.appendChild(g);return}
-  if(el.classList.contains('nav-disabled')){const g=document.createElement('div');g.className='iap-mobile-group';const d=document.createElement('div');d.className='iap-mobile-group-title';d.textContent=el.textContent.trim();g.appendChild(d);panel.appendChild(g)}
- });
- nav.appendChild(bar);nav.appendChild(panel);const btn=bar.querySelector('.iap-mobile-toggle');btn.addEventListener('click',()=>{const open=panel.classList.toggle('open');btn.setAttribute('aria-expanded',open?'true':'false');btn.textContent=open?'✕ BEZÁRÁS':'☰ MENÜ'});panel.addEventListener('click',e=>{if(e.target.closest('a')){panel.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.textContent='☰ MENÜ'}})
+
+function addTimetableButton(){
+ const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[href="orarend.html"]'))return;
+ const a=document.createElement('a');a.href='orarend.html';a.textContent='ÓRAREND';a.title='Fazekas Zsolt órarendje';
+ const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)
 }
-function addMoodleNotice(w,anchor){if(!anchor)return;const current=moodleTests.filter(t=>t.week===w),upcoming=moodleTests.filter(t=>t.week===w+1);if(!current.length&&!upcoming.length)return;const style=document.createElement('style');style.textContent='.iap-moodle-alert{max-width:1420px;margin:18px auto 0;padding:0 44px}.iap-moodle-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px;border-radius:12px;background:#fff;box-shadow:0 7px 20px rgba(90,60,10,.09);margin-top:12px}.iap-moodle-card.current{border:1px solid #f0c36a;border-left:6px solid #ef8b00;background:linear-gradient(120deg,#fff9ea,#fff)}.iap-moodle-card.upcoming{border:1px solid #a9cfe8;border-left:6px solid #1478bd;background:linear-gradient(120deg,#eef8ff,#fff)}.iap-moodle-label{display:block;font-size:11px;font-weight:900;letter-spacing:.12em}.current .iap-moodle-label{color:#b46200}.upcoming .iap-moodle-label{color:#12649b}.iap-moodle-card h3{margin:5px 0 4px;font-size:22px}.current h3{color:#533100}.upcoming h3{color:#0b3858}.iap-moodle-card p{margin:0;font-weight:700}.current p{color:#745b36}.upcoming p{color:#4e7088}.iap-moodle-btn{flex:0 0 auto;padding:13px 20px;border-radius:8px;color:#fff!important;font-weight:900;font-size:13px;letter-spacing:.04em}.current .iap-moodle-btn{background:#ef8b00}.upcoming .iap-moodle-btn{background:#1478bd}.iap-moodle-btn:hover{filter:brightness(1.06);transform:translateY(-1px)}@media(max-width:760px){.iap-moodle-alert{padding:0 18px}.iap-moodle-card{align-items:flex-start;flex-direction:column}.iap-moodle-btn{width:100%;text-align:center}}';document.head.appendChild(style);const box=document.createElement('div');box.className='iap-moodle-alert';const cards=[];current.forEach(t=>cards.push(`<div class="iap-moodle-card current"><div><span class="iap-moodle-label">📝 AKTUÁLIS MOODLE-TESZT • ${esc(t.grade)}</span><h3>${esc(t.subject)} – ${esc(t.title)}</h3><p>${esc(t.detail)} • ${w}. tanítási hét</p></div><a class="iap-moodle-btn" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">TESZT MEGNYITÁSA →</a></div>`));upcoming.forEach(t=>cards.push(`<div class="iap-moodle-card upcoming"><div><span class="iap-moodle-label">⏳ VIZSGA KÖZELEG • ${esc(t.grade)}</span><h3>${esc(t.subject)} – ${esc(t.title)}</h3><p>${esc(t.detail)} • jövő héten, a ${t.week}. tanítási héten</p></div><a class="iap-moodle-btn" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">KURZUS MEGNYITÁSA →</a></div>`));box.innerHTML=cards.join('');anchor.parentNode.insertBefore(box,anchor.nextSibling)}
-async function init(){addTimetableButton();addKretaButton();addMobileSupport();const grades=document.querySelector('.grades');if(!grades||document.querySelector('.iap-week-now'))return;const w=schoolWeek(),sec=document.createElement('section');sec.className='iap-week-now';sec.innerHTML=`<div class="iap-week-head"><div><span class="iap-week-kicker">IAP // AKTUÁLIS TANÍTÁSI HÉT</span><h2>Ezen a héten</h2><p>A tantárgyak aktuális témái egy helyen.</p></div><div class="iap-week-badge"><strong>${w}.</strong><span>HÉT</span></div></div><div class="iap-week-grid">${subjects.map((s,i)=>{const hash=s[3]?`#het${w}`:`#het-${w}`;return `<a class="iap-week-item" href="${s[2]}${hash}"><span class="iap-week-grade">${esc(s[0])}</span><strong>${esc(s[1])}</strong><small id="iap-topic-${i}">Téma betöltése…</small><span class="iap-week-go">MEGNYITÁS →</span></a>`}).join('')}</div>`;grades.parentNode.insertBefore(sec,grades);addMoodleNotice(w,sec);subjects.forEach(async(s,i)=>{const e=document.getElementById(`iap-topic-${i}`);if(e)e.textContent=await topic(s[2],w)})}
+
+function addKretaButton(){
+ const nav=document.querySelector('.nav-inner');if(!nav||nav.querySelector('a[data-iap-kreta]'))return;
+ const a=document.createElement('a');a.href='https://dvszc-dunaferr.e-kreta.hu';a.textContent='KRÉTA';a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('data-iap-kreta','1');
+ const contact=nav.querySelector('a[href="kapcsolat.html"]');contact?nav.insertBefore(a,contact):nav.appendChild(a)
+}
+
+function ensureAlertStyle(){
+ if(document.getElementById('iap-moodle-style'))return;
+ const s=document.createElement('style');s.id='iap-moodle-style';s.textContent=`
+ .iap-moodle-alert{max-width:1420px;margin:18px auto;padding:0 44px}
+ .iap-moodle-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 24px;border-radius:12px;box-shadow:0 7px 20px rgba(40,80,110,.10)}
+ .iap-moodle-card.upcoming{border:1px solid #a9cfe8;border-left:6px solid #1478bd;background:linear-gradient(120deg,#eef8ff,#fff)}
+ .iap-moodle-label{display:block;color:#12649b;font-size:11px;font-weight:900;letter-spacing:.12em}
+ .iap-moodle-card h3{margin:5px 0 4px;color:#0b3858;font-size:22px}
+ .iap-moodle-card p{margin:0;color:#4e7088;font-weight:700}
+ .iap-moodle-btn{flex:0 0 auto;padding:13px 20px;border-radius:8px;background:#1478bd;color:#fff!important;font-weight:900;font-size:13px;letter-spacing:.04em}
+ @media(max-width:760px){.iap-moodle-alert{padding:0 18px}.iap-moodle-card{align-items:flex-start;flex-direction:column}.iap-moodle-btn{width:100%;text-align:center}}
+ `;document.head.appendChild(s)
+}
+
+function addPreviewAlert(){
+ if(document.getElementById('iap-vizsga-proba'))return;
+ ensureAlertStyle();
+ const grades=document.querySelector('.grades');if(!grades)return;
+ const box=document.createElement('div');box.id='iap-vizsga-proba';box.className='iap-moodle-alert';
+ box.innerHTML=`<div class="iap-moodle-card upcoming"><div><span class="iap-moodle-label">⏳ VIZSGA KÖZELEG • 9. ÉVFOLYAM</span><h3>Villamos alapismeretek – 5. heti ellenőrző teszt – PRÓBA</h3><p>50 kérdés • Moodle • előjelzés mintája</p></div><a class="iap-moodle-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1648" target="_blank" rel="noopener noreferrer">KURZUS MEGNYITÁSA →</a></div>`;
+ grades.parentNode.insertBefore(box,grades)
+}
+
+async function topic(url,w){
+ try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw 0;const doc=new DOMParser().parseFromString(await r.text(),'text/html');for(const c of doc.querySelectorAll('.het')){const num=parseInt(c.querySelector('.het-szam')?.textContent||'',10);if(num===w)return(c.querySelector('.het-tartalom h3')?.textContent||c.querySelector('h3')?.textContent||`${w}. hét`).trim()}}catch(e){}
+ return `${w}. hét`
+}
+
+function addRealMoodleNotice(w,anchor){
+ const upcoming=moodleTests.filter(t=>t.week===w+1);if(!upcoming.length||!anchor)return;
+ ensureAlertStyle();
+ const box=document.createElement('div');box.className='iap-moodle-alert';
+ box.innerHTML=upcoming.map(t=>`<div class="iap-moodle-card upcoming"><div><span class="iap-moodle-label">⏳ VIZSGA KÖZELEG • ${esc(t.grade)}</span><h3>${esc(t.subject)} – ${esc(t.title)}</h3><p>${esc(t.detail)} • jövő héten, a ${t.week}. tanítási héten</p></div><a class="iap-moodle-btn" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">KURZUS MEGNYITÁSA →</a></div>`).join('');
+ anchor.parentNode.insertBefore(box,anchor.nextSibling)
+}
+
+async function init(){
+ addTimetableButton();addKretaButton();addPreviewAlert();
+ const grades=document.querySelector('.grades');if(!grades)return;
+ if(document.querySelector('.iap-week-now'))return;
+ const w=schoolWeek(),sec=document.createElement('section');sec.className='iap-week-now';
+ sec.innerHTML=`<div class="iap-week-head"><div><span class="iap-week-kicker">IAP // AKTUÁLIS TANÍTÁSI HÉT</span><h2>Ezen a héten</h2><p>A tantárgyak aktuális témái egy helyen.</p></div><div class="iap-week-badge"><strong>${w}.</strong><span>HÉT</span></div></div><div class="iap-week-grid">${subjects.map((s,i)=>{const hash=s[3]?`#het${w}`:`#het-${w}`;return `<a class="iap-week-item" href="${s[2]}${hash}"><span class="iap-week-grade">${esc(s[0])}</span><strong>${esc(s[1])}</strong><small id="iap-topic-${i}">Téma betöltése…</small><span class="iap-week-go">MEGNYITÁS →</span></a>`}).join('')}</div>`;
+ grades.parentNode.insertBefore(sec,grades);
+ addRealMoodleNotice(w,sec);
+ subjects.forEach(async(s,i)=>{const e=document.getElementById(`iap-topic-${i}`);if(e)e.textContent=await topic(s[2],w)})
+}
+
 document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();
 })();
