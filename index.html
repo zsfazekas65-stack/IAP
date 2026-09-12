@@ -33,7 +33,7 @@
   </div>
 </main>
 <script>
-const IAP_TEACHER_PIN_HASH='cf6f41924c4f6e4a15b44c26a20f90deda373b0044f1a5dc4b203070ce74dbe8';
+const IAP_TEACHER_PIN_HASH='353644551c422cfbda087f398820d35d6ff3a997ac53ba7f549cc6483b58a3ef';
 async function sha256(text){const data=new TextEncoder().encode(text);const hash=await crypto.subtle.digest('SHA-256',data);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');}
 async function teacherLogin(){
   if(sessionStorage.getItem('iapTeacherAuth')==='1'){location.href='oktato.html';return;}
