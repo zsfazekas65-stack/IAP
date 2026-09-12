@@ -3,20 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>IAP – Belépés</title>
+<title>IAP – Integrált Automatika Program</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#04192d;color:#fff}body{min-height:100vh}.page{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;background-image:linear-gradient(to bottom,rgba(2,17,32,.05) 35%,rgba(2,17,32,.72) 78%,rgba(2,17,32,.92) 100%),url('./iap_role_final.png');background-position:center;background-size:cover;background-repeat:no-repeat}.entry{position:relative;z-index:2;width:min(900px,92vw);margin:0 auto 5vh;text-align:center}.entry h1{margin:0 0 18px;font-size:clamp(24px,3vw,40px);text-shadow:0 3px 14px #000}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:20px}.btn{min-height:105px;border:1px solid rgba(255,255,255,.35);border-radius:18px;display:flex;align-items:center;justify-content:center;gap:14px;text-decoration:none;color:white;font-size:clamp(21px,2.4vw,30px);font-weight:900;letter-spacing:.04em;box-shadow:0 14px 35px rgba(0,0,0,.35);transition:.2s}.btn:hover{transform:translateY(-4px);filter:brightness(1.08)}.student{background:linear-gradient(135deg,rgba(0,119,190,.96),rgba(20,190,242,.94))}.teacher{background:linear-gradient(135deg,rgba(12,42,70,.97),rgba(37,91,132,.96))}.icon{font-size:38px}@media(max-width:650px){.page{background-position:center top}.entry{margin-bottom:24px}.buttons{grid-template-columns:1fr;gap:12px}.btn{min-height:82px}}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 70% 25%,rgba(32,185,242,.17),transparent 28%),linear-gradient(135deg,#06182d,#082b4c 62%,#0b4169);color:#fff;display:flex;flex-direction:column}.top{max-width:1180px;width:100%;margin:auto auto 0;padding:34px 24px 18px;display:flex;align-items:center;justify-content:space-between;gap:25px}.iap strong{font-size:72px;line-height:.9}.iap span{display:block;margin-top:10px;color:#39bff4;font-size:22px;font-weight:800}.school{display:flex;align-items:center;gap:14px;text-align:right;color:#d8e6ef;font-weight:700}.school img{width:82px;height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.22))}.main{max-width:1180px;width:100%;margin:0 auto auto;padding:25px 24px 60px;text-align:center}.kicker{font-size:12px;font-weight:900;letter-spacing:.18em;color:#65cef6}.main h1{font-size:39px;margin:10px 0 8px}.motto{font-size:22px;color:#dceaf2;margin:0 0 35px}.choice{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px;margin:auto}.card{min-height:245px;border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-decoration:none;box-shadow:0 18px 45px rgba(0,0,0,.22);transition:.2s}.card:hover{transform:translateY(-6px);box-shadow:0 25px 55px rgba(0,0,0,.3)}.student{background:linear-gradient(145deg,#0875bd,#20b9f2)}.teacher{background:linear-gradient(145deg,#102b46,#275a80)}.icon{font-size:50px}.card strong{font-size:27px;margin:15px 0 9px}.card span:last-child{font-size:15px;line-height:1.5;opacity:.92;max-width:330px}.foot{text-align:center;padding:18px 20px;color:#a9c3d5;font-size:13px;border-top:1px solid rgba(255,255,255,.1)}@media(max-width:700px){.top{align-items:flex-start;flex-direction:column}.school{text-align:left}.school img{width:68px}.iap strong{font-size:58px}.choice{grid-template-columns:1fr}.main h1{font-size:30px}.motto{font-size:18px}.card{min-height:190px}}
 </style>
 </head>
 <body>
-<main class="page">
-<section class="entry" aria-label="IAP belépés">
-<h1>Válaszd ki a felületet!</h1>
-<div class="buttons">
-<a class="btn student" href="tanulo.html"><span class="icon">🎓</span><span>TANULÓ</span></a>
-<a class="btn teacher" href="oktato.html"><span class="icon">👨‍🏫</span><span>OKTATÓ</span></a>
+<div class="top">
+  <div class="iap"><strong>IAP</strong><span>Integrált Automatika Program</span></div>
+  <div class="school">
+    <img src="https://dunaujvarosi.cms.szc.edir.hu/uploads/DSZC_logo_2016_6d9258fe35.png" alt="Dunaújvárosi Szakképzési Centrum logó">
+    <div>DSZC Dunaferr Technikum<br>és Szakképző Iskola</div>
+  </div>
 </div>
-</section>
+<main class="main">
+  <span class="kicker">IAP // BELÉPÉS</span>
+  <h1>Üdvözöllek az IAP oktatási rendszerben!</h1>
+  <p class="motto">Tanulj! Alkalmazz! Alkoss!</p>
+  <div class="choice">
+    <a class="card student" href="tanulo.html"><span class="icon">🎓</span><strong>TANULÓ</strong><span>Tananyagok elérése évfolyam és tantárgy szerint.</span></a>
+    <a class="card teacher" href="oktato.html"><span class="icon">👨‍🏫</span><strong>OKTATÓ</strong><span>Tanítási rendszer, órarend és oktatói eszközök.</span></a>
+  </div>
 </main>
+<footer class="foot">Integrált Automatika Program • IAP</footer>
 </body>
 </html>
