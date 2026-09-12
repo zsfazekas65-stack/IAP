@@ -25,12 +25,25 @@
         <div class="menu" aria-hidden="true"><div>ELEKTRONIKA</div><div>INFORMATIKA</div><div>GÉPÉSZET</div><div>AUTOMATIZÁLÁS</div><div>SZAKMAI SIKER</div><div>BIZTOS JÖVŐ</div></div>
         <div class="choice">
           <a class="card student" href="tanulo.html"><span class="icon">🎓</span><strong>TANULÓ</strong><small>BELÉPÉS A TANULÓI FELÜLETRE</small><span class="arrow">›</span></a>
-          <a class="card teacher" href="oktato.html"><span class="icon">👨‍🏫</span><strong>OKTATÓ</strong><small>BELÉPÉS AZ OKTATÓI FELÜLETRE</small><span class="arrow">›</span></a>
+          <a class="card teacher" id="teacherEntry" href="oktato.html"><span class="icon">👨‍🏫</span><strong>OKTATÓ</strong><small>TANÁRI PIN-KÓD SZÜKSÉGES</small><span class="arrow">›</span></a>
         </div>
       </div>
     </section>
     <footer class="bottom"><div><div class="line"></div>DUNAÚJVÁROSI SZAKKÉPZÉSI CENTRUM</div><div class="center">TUDÁS · GYAKORLAT · JÖVŐ</div><div class="right quote">„A technika nem cél,<br>hanem lehetőség egy jobb világra.”</div></footer>
   </div>
 </main>
+<script>
+const IAP_TEACHER_PIN_HASH='cf6f41924c4f6e4a15b44c26a20f90deda373b0044f1a5dc4b203070ce74dbe8';
+async function sha256(text){const data=new TextEncoder().encode(text);const hash=await crypto.subtle.digest('SHA-256',data);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+async function teacherLogin(){
+  if(sessionStorage.getItem('iapTeacherAuth')==='1'){location.href='oktato.html';return;}
+  const pin=prompt('Tanári PIN-kód:');
+  if(pin===null)return;
+  if(await sha256(pin.trim())===IAP_TEACHER_PIN_HASH){sessionStorage.setItem('iapTeacherAuth','1');location.href='oktato.html';}
+  else alert('Hibás PIN-kód.');
+}
+document.getElementById('teacherEntry').addEventListener('click',function(e){e.preventDefault();teacherLogin();});
+if(new URLSearchParams(location.search).get('oktato')==='1')teacherLogin();
+</script>
 </body>
 </html>
