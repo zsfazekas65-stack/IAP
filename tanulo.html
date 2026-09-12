@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAP – Tanulói felület</title>
+<style>
+:root{--navy:#061a30;--blue:#0d71b9;--cyan:#20b9f2;--text:#14243a;--muted:#617089;--line:#dbe3ea;--bg:#f5f7fa}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}a{text-decoration:none;color:inherit}.top{background:linear-gradient(180deg,#06182d,#082746);color:#fff}.top-inner{max-width:1180px;margin:auto;padding:26px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:16px}.iap{font-size:52px;font-weight:900;letter-spacing:1px}.copy strong{display:block;color:#33b8ef;font-size:21px}.copy span{display:block;margin-top:4px;font-size:13px}.home{padding:11px 16px;border:1px solid rgba(255,255,255,.25);border-radius:9px;background:#0d71b9;color:#fff;font-weight:900}.hero{background:linear-gradient(90deg,#082746,#0a365e);color:#fff;text-align:center;padding:34px 20px}.hero h1{margin:0;font-size:34px}.hero p{margin:10px auto 0;max-width:700px;color:#eaf4fb;font-size:17px;line-height:1.5}.content{max-width:1180px;margin:auto;padding:30px 20px 42px}.content h2{text-align:center;color:#0e2c50;margin:0 0 24px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px;box-shadow:0 7px 18px rgba(20,42,74,.08)}.card h3{margin:0 0 14px;font-size:24px;color:#0b3d78}.subject{display:block;margin-top:9px;padding:13px 12px;border-radius:9px;background:linear-gradient(135deg,#0d71b9,#1697d4);color:#fff;font-weight:900;text-align:center;transition:.18s ease}.subject:hover{transform:translateY(-2px);filter:brightness(1.05)}.note{margin:28px auto 0;max-width:760px;text-align:center;color:var(--muted);font-weight:700;line-height:1.5}.footer{background:#061a30;color:#fff;padding:18px 20px;text-align:center;font-size:14px}@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.iap{font-size:42px}.hero h1{font-size:29px}}@media(max-width:600px){.grid{grid-template-columns:1fr}.top-inner{align-items:flex-start;flex-direction:column}.home{align-self:stretch;text-align:center}.hero{padding:28px 16px}.hero h1{font-size:25px}.content{padding:24px 14px}.card h3{font-size:21px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner"><div class="brand"><div class="iap">IAP</div><div class="copy"><strong>Tanulói felület</strong><span>Tanulj! Alkalmazz! Alkoss!</span></div></div><a class="home" href="index.html">⌂ Főlap</a></div></header>
+<section class="hero"><h1>Válaszd ki az órád tananyagát!</h1><p>Ezen az oldalon csak a tanórákhoz tartozó tantárgyakat éred el. Válaszd ki az évfolyamodat, majd a tantárgyat.</p></section>
+<main class="content"><h2>TANÓRAI ANYAGOK</h2><div class="grid">
+<div class="card"><h3>9. évfolyam</h3><a class="subject" href="villamos9.html">Villamos alapismeretek</a></div>
+<div class="card"><h3>10. évfolyam</h3><a class="subject" href="villamos10.html">Villamos alapismeretek</a><a class="subject" href="gepeszet10.html">Gépészeti alapismeretek</a></div>
+<div class="card"><h3>11. évfolyam</h3><a class="subject" href="analog11.html">Analóg áramkörök</a><a class="subject" href="elektrotechnika11.html">Elektrotechnika</a><a class="subject" href="villamosszereles11.html">Villamos szerelések</a></div>
+<div class="card"><h3>12. évfolyam</h3><a class="subject" href="plc.html">PLC alapismeretek</a><a class="subject" href="folyamatiranyitas12.html">Folyamatirányítás</a></div>
+<div class="card"><h3>13. évfolyam</h3><a class="subject" href="villamosmuvek13.html">Villamos művek</a><a class="subject" href="epuletvillamossag13.html">Épületvillamossági hálózatok</a></div>
+<div class="card"><h3>Felnőtt oktatás</h3><a class="subject" href="epuletvillamossag2_felnott.html">Épületvillamosság 2</a><a class="subject" href="elektrotechnika_felnott.html">Elektrotechnika</a><a class="subject" href="villamosberendezesek_felnott.html">Villamos berendezések</a></div>
+</div><p class="note">A tanulói felületen nincs órarend, Eszköztár, KKK/PTT, tanári segédlet vagy adminisztrációs funkció.</p></main>
+<footer class="footer">© IAP – Integrált Automatika Program</footer>
+</body></html>
