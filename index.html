@@ -1,8 +1,114 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#041b31">
 <title>IAP – Integrált Automatika Program</title>
-<style>*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 70% 25%,rgba(32,185,242,.17),transparent 28%),linear-gradient(135deg,#06182d,#082b4c 62%,#0b4169);color:#fff;display:flex;flex-direction:column}.top{max-width:1180px;width:100%;margin:auto auto 0;padding:34px 24px 18px;display:flex;align-items:center;justify-content:space-between;gap:25px}.iap strong{font-size:72px;line-height:.9}.iap span{display:block;margin-top:10px;color:#39bff4;font-size:22px;font-weight:800}.school{text-align:right;color:#d8e6ef;font-weight:700}.main{max-width:1180px;width:100%;margin:0 auto auto;padding:25px 24px 60px;text-align:center}.kicker{font-size:12px;font-weight:900;letter-spacing:.18em;color:#65cef6}.main h1{font-size:39px;margin:10px 0 8px}.motto{font-size:22px;color:#dceaf2;margin:0 0 35px}.choice{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px;margin:auto}.card{min-height:245px;border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-decoration:none;box-shadow:0 18px 45px rgba(0,0,0,.22);transition:.2s}.card:hover{transform:translateY(-6px);box-shadow:0 25px 55px rgba(0,0,0,.3)}.student{background:linear-gradient(145deg,#0875bd,#20b9f2)}.teacher{background:linear-gradient(145deg,#102b46,#275a80)}.icon{font-size:50px}.card strong{font-size:27px;margin:15px 0 9px}.card span:last-child{font-size:15px;line-height:1.5;opacity:.92;max-width:330px}.foot{text-align:center;padding:18px 20px;color:#a9c3d5;font-size:13px;border-top:1px solid rgba(255,255,255,.1)}@media(max-width:700px){.top{align-items:flex-start;flex-direction:column}.school{text-align:left}.iap strong{font-size:58px}.choice{grid-template-columns:1fr}.main h1{font-size:30px}.motto{font-size:18px}.card{min-height:190px}}</style>
+<style>
+:root{--navy:#041426;--navy2:#06233d;--cyan:#16bdf4;--cyan2:#59d6ff;--text:#f7fbff;--muted:#b6c9d8;--line:rgba(96,206,255,.25);--card:rgba(4,27,49,.86)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#041426;color:var(--text);overflow-x:hidden}a{text-decoration:none;color:inherit}.shell{max-width:1500px;margin:auto}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(3,19,35,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(68,196,245,.3);box-shadow:0 8px 30px rgba(0,0,0,.22)}
+.top-inner{max-width:1500px;margin:auto;display:grid;grid-template-columns:auto 1fr minmax(220px,360px) auto;align-items:center;gap:18px;padding:0 28px}.brand{display:flex;align-items:center;gap:14px;min-height:78px}.brand-iap{font-size:49px;line-height:.9;font-weight:1000;letter-spacing:-3px}.brand-iap .a{color:#17bdf4}.brand-copy{font-size:13px;line-height:1.35;font-weight:900;letter-spacing:.06em}.nav{display:flex;align-items:stretch;justify-content:center;height:78px}.nav a{min-width:110px;padding:12px 13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-left:1px solid rgba(255,255,255,.04);font-size:12px;font-weight:800;transition:.2s}.nav a:hover,.nav a.active{background:rgba(18,158,218,.13);box-shadow:inset 0 -3px 0 var(--cyan)}.nav .ico{font-size:25px}.search{position:relative}.search input{width:100%;border:0;outline:0;border-radius:999px;padding:12px 44px 12px 18px;background:#f7fbff;color:#17304a;font-size:14px;box-shadow:0 4px 20px rgba(0,0,0,.15)}.search button{position:absolute;right:5px;top:4px;width:35px;height:35px;border:0;border-radius:50%;background:transparent;font-size:18px;cursor:pointer}.clock{display:flex;align-items:center;gap:9px;font-size:12px;line-height:1.45;white-space:nowrap}.clock .ico{font-size:24px;color:var(--cyan)}
+.hero{position:relative;min-height:560px;isolation:isolate;overflow:hidden;background:#062039}.hero:before{content:"";position:absolute;inset:0;z-index:-3;background-image:url('https://duna-dunaferr.cms.intezmeny.edir.hu/uploads/dunaferr_iskola_0f75d3e29e.jpg');background-size:cover;background-position:center 44%}.hero:after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(2,18,34,.98) 0%,rgba(3,24,44,.93) 32%,rgba(4,28,49,.42) 58%,rgba(2,16,29,.28) 78%,rgba(2,15,28,.78) 100%),linear-gradient(0deg,rgba(3,19,35,.96) 0%,transparent 34%)}
+.circuit{position:absolute;pointer-events:none;opacity:.72;filter:drop-shadow(0 0 6px rgba(22,189,244,.35))}.circuit.top{width:500px;height:250px;left:30%;top:0}.circuit.right{width:330px;height:290px;right:0;top:130px;transform:scaleX(-1)}.circuit path{fill:none;stroke:#18c7ff;stroke-width:3}.circuit circle{fill:#062039;stroke:#18c7ff;stroke-width:3}
+.hero-inner{max-width:1500px;margin:auto;padding:34px 52px 112px;display:grid;grid-template-columns:minmax(520px,.95fr) 1.05fr;gap:40px;align-items:center}.hero-copy{max-width:680px}.kicker{color:#21c5f7;letter-spacing:.34em;font-size:14px;font-weight:800;margin-bottom:16px}.logo{font-size:112px;font-weight:1000;line-height:.82;letter-spacing:-6px;margin:8px 0}.logo .a{color:#18bdf3}.program{font-size:26px;font-weight:900;letter-spacing:.03em;border-bottom:2px solid #16bdf4;padding-bottom:12px;display:inline-block}.program .blue{color:#1cc4f7}.hero h1{font-size:45px;line-height:1.05;margin:18px 0 22px;letter-spacing:-.02em}.features{display:grid;gap:9px;margin-top:15px}.feature{display:flex;align-items:center;gap:13px;font-size:16px}.feature b{color:#1fc4f6;font-size:25px;width:30px;text-align:center}.pcb{margin-top:24px;width:520px;max-width:90%;height:120px;position:relative;border:1px solid rgba(40,199,250,.35);border-radius:18px;background:linear-gradient(145deg,rgba(7,48,82,.78),rgba(4,24,44,.35));transform:perspective(700px) rotateX(53deg) rotateZ(7deg);box-shadow:0 15px 35px rgba(0,0,0,.35),inset 0 0 35px rgba(24,189,243,.08)}.pcb:before,.pcb:after{content:"";position:absolute;inset:16px;background:repeating-linear-gradient(90deg,transparent 0 30px,rgba(32,198,248,.32) 31px 33px),repeating-linear-gradient(0deg,transparent 0 24px,rgba(32,198,248,.2) 25px 27px)}.pcb:after{inset:28px 80px;background:linear-gradient(90deg,transparent 0 30%,#1ac3f5 30% 31%,transparent 31% 66%,#1ac3f5 66% 67%,transparent 67%);opacity:.6}.quote{align-self:start;justify-self:end;margin:8px 18px 0 0;max-width:330px;text-align:right;font-style:italic;font-size:19px;line-height:1.55;text-shadow:0 2px 12px #001}.quote strong{display:block;margin-top:9px;font-style:normal;font-size:16px}.vertical{position:absolute;right:70px;bottom:130px;letter-spacing:.28em;line-height:2.15;font-size:15px;color:#d7e8f4;text-align:left}.vertical:after{content:"";display:block;width:74px;border-bottom:3px solid var(--cyan);margin-top:8px}
+.tiles-wrap{position:relative;margin-top:-93px;z-index:5;padding:0 48px}.tiles{max-width:1500px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}.tile{position:relative;min-height:104px;padding:18px 17px;border:1px solid rgba(30,196,246,.9);border-radius:17px;background:linear-gradient(145deg,rgba(5,28,49,.96),rgba(8,42,70,.94));display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 16px 32px rgba(0,0,0,.32);overflow:hidden;transition:.2s}.tile:after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,#11c4f2,#37e4cb)}.tile:nth-child(2):after{background:linear-gradient(90deg,#ff7a00,#ffae00)}.tile:nth-child(3):after{background:linear-gradient(90deg,#8b51ff,#b166ff)}.tile:nth-child(4):after{background:linear-gradient(90deg,#0aa8ea,#16c9f3)}.tile:nth-child(5):after{background:linear-gradient(90deg,#8bea19,#b7f11f)}.tile:hover{transform:translateY(-7px);filter:brightness(1.09)}.tile .ico{font-size:34px}.tile strong{margin-top:8px;font-size:15px}
+.lower{background:#f4f8fb;color:#10243a;padding:28px 50px 30px}.lower-grid{max-width:1500px;margin:auto;display:grid;grid-template-columns:1.08fr 1.15fr .85fr;gap:0}.panel{padding:0 28px;border-right:1px solid #dbe7ef}.panel:first-child{padding-left:0}.panel:last-child{border-right:0;padding-right:0}.panel h2{font-size:17px;margin:0 0 14px;display:flex;align-items:center;gap:10px}.panel h2 span{color:#0b9edb;font-size:24px}.news{display:grid;gap:9px}.news-item{display:grid;grid-template-columns:65px 1fr;gap:12px;align-items:center}.date{background:#dff3ff;border-radius:8px;padding:7px;text-align:center;color:#0879b8;font-weight:900;font-size:11px}.date strong{font-size:18px}.news-item b{display:block;font-size:13px}.news-item p{margin:2px 0;color:#65778a;font-size:12px;line-height:1.35}.mission p{margin:2px 0 15px;line-height:1.5;font-size:13px}.mission-icons{display:flex;justify-content:space-around;gap:10px;text-align:center}.mission-icon b{width:46px;height:46px;border:2px solid #10aee8;border-radius:50%;display:grid;place-items:center;font-size:22px;margin:auto}.mission-icon span{display:block;margin-top:6px;font-size:10px;font-weight:900}.quick{display:grid;gap:7px}.quick a{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #dae6ee;border-radius:7px;padding:9px 12px;font-size:12px;font-weight:800;box-shadow:0 2px 7px rgba(19,48,73,.08)}.quick a:hover{border-color:#10aee8;color:#0679b5}.quick .qico{color:#0aa8e3;margin-right:8px}.quick .label{flex:1}
+.footer{background:linear-gradient(90deg,#041728,#0a2a45);border-top:1px solid rgba(46,184,235,.28);color:#adc2d0;padding:18px 48px;font-size:12px}.footer-inner{max-width:1500px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:center}.footer .left{letter-spacing:.12em}.footer a:hover{color:#fff}
+@media(max-width:1150px){.top-inner{grid-template-columns:auto 1fr auto}.search{display:none}.hero-inner{grid-template-columns:1fr .75fr;padding-left:34px;padding-right:34px}.logo{font-size:90px}.hero h1{font-size:38px}.tiles{grid-template-columns:repeat(5,1fr);gap:10px}.tiles-wrap{padding:0 22px}.tile strong{font-size:12px}.lower-grid{grid-template-columns:1fr 1fr}.panel{border-right:0}.panel:last-child{grid-column:1/-1;margin-top:24px;padding-left:0}}
+@media(max-width:800px){.top-inner{display:flex;flex-wrap:wrap;padding:0 16px}.brand{min-height:66px}.brand-iap{font-size:42px}.brand-copy{display:none}.clock{margin-left:auto}.nav{order:3;width:100%;height:auto;overflow:auto;justify-content:flex-start}.nav a{min-width:95px;padding:10px 8px}.hero{min-height:660px}.hero:after{background:linear-gradient(90deg,rgba(2,18,34,.97),rgba(2,18,34,.62)),linear-gradient(0deg,rgba(3,19,35,.98),transparent 40%)}.hero-inner{grid-template-columns:1fr;padding:32px 22px 130px}.hero-copy{max-width:100%}.quote,.vertical,.circuit.right{display:none}.logo{font-size:78px}.program{font-size:20px}.hero h1{font-size:34px}.pcb{width:430px}.tiles-wrap{margin-top:-95px}.tiles{grid-template-columns:repeat(2,1fr)}.tile:last-child{grid-column:1/-1}.lower{padding:26px 18px}.lower-grid{grid-template-columns:1fr}.panel,.panel:first-child,.panel:last-child{padding:0;border:0;margin:0 0 26px}.panel:last-child{grid-column:auto}.footer{padding:16px 20px}.footer-inner{flex-direction:column;align-items:flex-start}}
+@media(max-width:480px){.clock{font-size:10px}.clock .ico{font-size:19px}.hero{min-height:690px}.logo{font-size:66px}.program{font-size:16px}.hero h1{font-size:29px}.kicker{font-size:11px}.features{font-size:14px}.tiles{grid-template-columns:1fr}.tile:last-child{grid-column:auto}.tiles-wrap{margin-top:-80px}.mission-icons{display:grid;grid-template-columns:1fr 1fr}.news-item{grid-template-columns:55px 1fr}}
+</style>
 </head>
-<body><div class="top"><div class="iap"><strong>IAP</strong><span>Integrált Automatika Program</span></div><div class="school">DSZC Dunaferr Technikum<br>és Szakképző Iskola</div></div><main class="main"><span class="kicker">IAP // BELÉPÉS</span><h1>Üdvözöllek az IAP oktatási rendszerben!</h1><p class="motto">Tanulj! Alkalmazz! Alkoss!</p><div class="choice"><a class="card student" href="tanulo.html"><span class="icon">🎓</span><strong>TANULÓ</strong><span>Tananyagok elérése évfolyam és tantárgy szerint.</span></a><a class="card teacher" href="oktato.html"><span class="icon">👨‍🏫</span><strong>OKTATÓ</strong><span>Tanítási rendszer, órarend és oktatói eszközök.</span></a></div></main><footer class="foot">Integrált Automatika Program • IAP</footer></body></html>
+<body>
+<header class="topbar">
+  <div class="top-inner">
+    <a class="brand" href="index.html" aria-label="IAP főoldal"><div class="brand-iap">I<span class="a">A</span>P</div><div class="brand-copy">INTEGRÁLT<br>AUTOMATIKA PROGRAM</div></a>
+    <nav class="nav" aria-label="Fő navigáció">
+      <a class="active" href="index.html"><span class="ico">⌂</span><span>Főoldal</span></a>
+      <a href="tanulo.html"><span class="ico">▤</span><span>Tantárgyak</span></a>
+      <a href="eszkoztar.html"><span class="ico">🔧</span><span>Eszköztár</span></a>
+      <a href="oktato.html"><span class="ico">👥</span><span>Munkaközösség</span></a>
+      <a href="https://www.dunaferriskola.hu/rolunk/elerhetoseg" target="_blank" rel="noopener"><span class="ico">✉</span><span>Kapcsolat</span></a>
+    </nav>
+    <form class="search" onsubmit="return iapSearch(event)"><input id="siteSearch" type="search" placeholder="Keresés…" aria-label="Keresés az IAP oldalon"><button aria-label="Keresés">⌕</button></form>
+    <div class="clock"><span class="ico">▣</span><span id="iapClock">Betöltés…</span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="circuit top" viewBox="0 0 500 250" aria-hidden="true"><path d="M25 0v42h102l36 36h111l39 39h115"/><path d="M85 0v28h88l44 44h93l55 55h110"/><path d="M150 0v18h75l37 37h72l65 65h81"/><circle cx="429" cy="117" r="8"/><circle cx="474" cy="127" r="7"/></svg>
+  <svg class="circuit right" viewBox="0 0 330 290" aria-hidden="true"><path d="M0 42h110l37 37h105l44 44h34"/><path d="M0 88h83l44 44h90l58 58h55"/><path d="M0 140h61l43 43h78l65 65h83"/><circle cx="8" cy="42" r="7"/><circle cx="8" cy="88" r="7"/><circle cx="8" cy="140" r="7"/></svg>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="kicker">TUDÁS · GYAKORLAT · JÖVŐ</div>
+      <div class="logo">I<span class="a">A</span>P</div>
+      <div class="program">INTEGRÁLT <span class="blue">AUTOMATIKA</span> PROGRAM</div>
+      <h1>Tanulj! Alkalmazz! Alkoss!</h1>
+      <div class="features">
+        <div class="feature"><b>⌁</b><span>Modern oktatás</span></div>
+        <div class="feature"><b>⚙</b><span>Gyakorlati tudás</span></div>
+        <div class="feature"><b>▦</b><span>Ipari technológiák</span></div>
+        <div class="feature"><b>↗</b><span>Valódi lehetőségek</span></div>
+      </div>
+      <div class="pcb" aria-hidden="true"></div>
+    </div>
+    <div class="quote">„A technika hidat épít<br>a jelen és a jövő között.”<strong>Nikola Tesla</strong></div>
+  </div>
+  <div class="vertical">ISKOLA<br>SZAKMA<br>ÉLET<br>JÖVŐ</div>
+</section>
+
+<div class="tiles-wrap">
+  <div class="tiles">
+    <a class="tile" href="tanulo.html"><span class="ico">⌂</span><strong>TANTÁRGYAK</strong></a>
+    <a class="tile" href="eszkoztar.html"><span class="ico">🔧</span><strong>ESZKÖZTÁR</strong></a>
+    <a class="tile" href="oktato.html"><span class="ico">👥</span><strong>MUNKAKÖZÖSSÉG</strong></a>
+    <a class="tile" href="https://www.dunaferriskola.hu/rolunk/elerhetoseg" target="_blank" rel="noopener"><span class="ico">✉</span><strong>KAPCSOLAT</strong></a>
+    <a class="tile" href="orarend.html"><span class="ico">▤</span><strong>ÓRAREND</strong></a>
+  </div>
+</div>
+
+<section class="lower">
+  <div class="lower-grid">
+    <div class="panel">
+      <h2><span>◉</span> Aktuális hírek</h2>
+      <div class="news">
+        <div class="news-item"><div class="date">SZEPT.<br><strong>12.</strong></div><div><b>IAP főoldal megújult</b><p>Új technikai arculat, gyorsabb navigáció és közvetlen elérés az IAP fő funkcióihoz.</p></div></div>
+        <div class="news-item"><div class="date">SZEPT.<br><strong>10.</strong></div><div><b>IAP tananyagfrissítés</b><p>Új és javított heti tananyagok, feladatok és gyakorlati anyagok.</p></div></div>
+        <div class="news-item"><div class="date">SZEPT.<br><strong>08.</strong></div><div><b>Moodle tesztek</b><p>Kérdésbankok és összefoglaló tesztek az IAP oktatási rendszerben.</p></div></div>
+      </div>
+    </div>
+    <div class="panel mission">
+      <h2><span>◎</span> IAP küldetésünk</h2>
+      <p>Gyakorlatorientált, korszerű műszaki oktatás, amely felkészíti a diákjainkat a valós ipari kihívásokra, és hidat épít a jelen tudása és a jövő lehetőségei között.</p>
+      <div class="mission-icons">
+        <div class="mission-icon"><b>ϟ</b><span>VILLAMOSSÁG</span></div>
+        <div class="mission-icon"><b>⚙</b><span>AUTOMATIZÁLÁS</span></div>
+        <div class="mission-icon"><b>▦</b><span>MECHATRONIKA</span></div>
+        <div class="mission-icon"><b>♻</b><span>FENNTARTHATÓSÁG</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2><span>◆</span> Gyorslinkek</h2>
+      <div class="quick">
+        <a href="moodle.html"><span class="qico">▣</span><span class="label">Moodle</span><span>›</span></a>
+        <a href="eszkoztar.html"><span class="qico">▧</span><span class="label">KKK / PTT dokumentumok</span><span>›</span></a>
+        <a href="statusz.html"><span class="qico">◉</span><span class="label">IAP státusz</span><span>›</span></a>
+        <a href="oktatoi-rendszer.html"><span class="qico">↗</span><span class="label">Oktatói rendszer</span><span>›</span></a>
+        <a href="eszkoztar.html"><span class="qico">⇩</span><span class="label">Hasznos dokumentumok</span><span>›</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="footer-inner"><div class="left">IAP &nbsp;|&nbsp; DUNAÚJVÁROS &nbsp;&nbsp; TUDÁS, AMI ÖSSZEKÖT</div><div><a href="https://www.dunaferriskola.hu/rolunk/elerhetoseg" target="_blank" rel="noopener">Kapcsolat</a> &nbsp;|&nbsp; Integrált Automatika Program</div></div></footer>
+
+<script>
+const huDays=['vasárnap','hétfő','kedd','szerda','csütörtök','péntek','szombat'];
+function updateClock(){const d=new Date();const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,'0');const day=String(d.getDate()).padStart(2,'0');const h=String(d.getHours()).padStart(2,'0');const min=String(d.getMinutes()).padStart(2,'0');document.getElementById('iapClock').innerHTML=`${y}. ${m}. ${day}.<br>${huDays[d.getDay()]} ${h}:${min}`}
+updateClock();setInterval(updateClock,30000);
+function iapSearch(e){e.preventDefault();const q=document.getElementById('siteSearch').value.toLowerCase().trim();if(!q)return false;const map=[[/eszköz|kkk|ptt|gift|link/,'eszkoztar.html'],[/óra|orarend/,'orarend.html'],[/moodle|teszt/,'moodle.html'],[/státusz|statusz/,'statusz.html'],[/oktat|munkaközösség|munkakozosseg/,'oktato.html'],[/9|10|11|12|13|tantárgy|tantargy|villamos|analóg|analog|plc|folyamat|gépészet|gepeszet/,'tanulo.html']];for(const [r,u] of map){if(r.test(q)){location.href=u;return false}}location.href='tanulo.html';return false}
+</script>
+</body>
+</html>
