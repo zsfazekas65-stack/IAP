@@ -1,334 +1,201 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!DOCTYPE html><html lang="hu"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>IAP – Villamos alapismeretek – Felnőtt oktatás</title>
 <style>
 :root{--navy:#061a30;--navy2:#082746;--blue:#0e70b7;--cyan:#20b9f2;--text:#14243a;--muted:#617089;--line:#d8e4ec}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef5fa;color:var(--text)}
-header{background:linear-gradient(135deg,#061a30,#0a365e);color:white;padding:24px 22px;border-bottom:4px solid var(--cyan)}
-.head{max-width:1180px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
-.brand strong{font-size:34px} .brand span{display:block;color:#45c4f4;font-weight:800;margin-top:5px} .motto{font-weight:800}
-nav{background:#082746;color:#fff} .navin{max-width:1180px;margin:auto;display:flex;gap:0;align-items:center}
-nav a{color:#fff;text-decoration:none;font-weight:800;padding:15px 17px;border-right:1px solid rgba(255,255,255,.2)}
-.hero{background:linear-gradient(110deg,#082746,#0c4d7d);color:#fff;padding:36px 22px}
-.heroin{max-width:1180px;margin:auto} .hero h1{margin:0 0 10px;font-size:36px} .hero p{margin:0;max-width:850px;line-height:1.55;color:#eaf6fc}
-.toolbar{max-width:1180px;margin:24px auto 8px;padding:0 22px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.toolbar strong{color:#0b3d67} select{padding:11px 13px;border:1px solid #b9cfdd;border-radius:8px;background:#fff;font-weight:700;max-width:100%}
-main{max-width:1180px;margin:auto;padding:16px 22px 55px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.week{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 7px 20px rgba(20,55,88,.08);scroll-margin-top:20px}
-.week-no{flex:0 0 62px;height:62px;border-radius:12px;background:linear-gradient(145deg,#092b49,#1478bd);color:#fff;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:900}
-.week-body{min-width:0;flex:1} .eyebrow{font-size:11px;font-weight:900;letter-spacing:.12em;color:#5e839b} h2{font-size:20px;margin:5px 0 8px;color:#0b3154}
-.week p{color:#5d7183;line-height:1.45;margin:0 0 14px} .buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.buttons a{text-decoration:none;text-align:center;padding:10px 5px;border-radius:7px;background:#0e70b7;color:#fff;font-size:12px;font-weight:900}
-.buttons a:hover{background:#095b96} .challenge{margin-top:10px;border:1px solid #cfe2ee;border-radius:8px;background:#f4faff;padding:9px 11px}
-.challenge summary{cursor:pointer;color:#0b5e98;font-weight:900;font-size:13px} .challenge p{margin:8px 0 0;font-size:13px}
-.floating{position:fixed;right:18px;bottom:20px;z-index:20;display:flex;flex-direction:column;gap:8px}
-.floating a{width:48px;height:48px;border-radius:50%;background:#0e70b7;color:#fff;text-decoration:none;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.22)}
-footer{background:#061a30;color:#fff;text-align:center;padding:20px} footer b{color:#43c5f5}
-@media(max-width:820px){main{grid-template-columns:1fr} .head{align-items:flex-start;flex-direction:column} .hero h1{font-size:29px}}
-@media(max-width:520px){.week{gap:10px;padding:14px} .week-no{flex-basis:48px;height:48px;font-size:19px} .buttons{grid-template-columns:1fr} nav a{padding:12px 10px;font-size:13px}}
-</style>
-</head>
-<body id="top">
-<header><div class="head"><div class="brand"><strong>IAP</strong><span>Integrált Automatika Program</span></div><div class="motto">Tanulj! Alkalmazz! Alkoss!</div></div></header>
-<nav><div class="navin"><a href="oktatoi-rendszer.html">← Oktatási rendszer</a><a href="#het-1">1. hét</a><a href="#het-16">16. hét</a></div></nav>
-<section class="hero"><div class="heroin"><h1>Villamos alapismeretek</h1><p><b>Felnőtt oktatás – Erősáramú elektrotechnikus</b><br>16 hetes felkészülés az ágazati alapvizsgáig. Elmélet, számítás, mérés és gyakorlati áramkörépítés egységes IAP-rendszerben.</p></div></section>
-<div class="toolbar"><strong>⚡ 16 hét • ágazati alapvizsgáig</strong><label>Ugrás a hétre: <select id="weekSelect"><option value="">Válassz hetet…</option><option value="het-1">1. hét – A villamosság alapjai</option>
-<option value="het-2">2. hét – Feszültség és áramkör</option>
-<option value="het-3">3. hét – Ellenállás és Ohm törvénye</option>
-<option value="het-4">4. hét – Villamos teljesítmény és energia</option>
-<option value="het-5">5. hét – Ellenállások soros kapcsolása</option>
-<option value="het-6">6. hét – Párhuzamos kapcsolás</option>
-<option value="het-7">7. hét – Vegyes és összetett áramkörök</option>
-<option value="het-8">8. hét – Villamos energiaforrások</option>
-<option value="het-9">9. hét – Kapcsolási rajzok és rajzjelek</option>
-<option value="het-10">10. hét – Villamos mérőműszerek</option>
-<option value="het-11">11. hét – Villamos alapmérések</option>
-<option value="het-12">12. hét – Áramkör építése és mérése</option>
-<option value="het-13">13. hét – Villamos biztonságtechnika</option>
-<option value="het-14">14. hét – Biztonságos munkavégzés</option>
-<option value="het-15">15. hét – Komplex vizsgagyakorlat</option>
-<option value="het-16">16. hét – Ágazati alapvizsga-felkészítés</option></select></label></div>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef5fa;color:var(--text)}
+header{background:linear-gradient(135deg,#061a30,#0a365e);color:#fff;padding:23px 22px;border-bottom:4px solid var(--cyan)}.head{max-width:1080px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand b{font-size:36px}.brand span{display:block;color:#42c5f6;font-weight:800}.motto{font-weight:800}
+nav{background:#082746}.navin{max-width:1080px;margin:auto;display:flex}nav a{padding:14px 17px;color:#fff;text-decoration:none;font-weight:800;border-right:1px solid #ffffff33}
+.hero{padding:34px 22px;background:linear-gradient(110deg,#082746,#0c4d7d);color:#fff}.heroin{max-width:1080px;margin:auto}.hero h1{font-size:35px;margin:0 0 8px}.hero p{margin:0;line-height:1.5}
+.jump{max-width:1080px;margin:22px auto 0;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}select{padding:10px;border:1px solid #b8cfdd;border-radius:8px;background:#fff;font-weight:700}
+main{max-width:1080px;margin:16px auto 55px;padding:0 18px}.week{background:#fff;border:1px solid var(--line);border-radius:14px;padding:21px 23px;margin:0 0 16px;box-shadow:0 7px 20px #14375812;scroll-margin-top:18px}
+.weekhead{display:flex;align-items:center;gap:15px}.num{width:58px;height:58px;flex:0 0 58px;border-radius:11px;background:linear-gradient(145deg,#092b49,#1478bd);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900}.weekhead span{font-size:11px;letter-spacing:.12em;color:#66869d;font-weight:900}h2{margin:4px 0 0;color:#0b3154;font-size:22px}.desc{color:#5d7183;line-height:1.5;margin:14px 0}
+.buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.buttons a{padding:11px 6px;text-align:center;border-radius:7px;background:#0e70b7;color:#fff;text-decoration:none;font-size:13px;font-weight:900}.buttons a:hover{background:#095b96}
+.challenge{margin-top:13px;padding:13px 15px;border-left:5px solid #20b9f2;border-radius:8px;background:#eef9ff}.challenge strong{color:#075d94;font-size:13px;letter-spacing:.04em}.challenge p{margin:7px 0 0;line-height:1.45;color:#3f6075}
+.float{position:fixed;right:18px;bottom:20px;display:flex;flex-direction:column;gap:8px;z-index:20}.float a{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0e70b7;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 5px 16px #0004}
+footer{background:#061a30;color:#fff;text-align:center;padding:19px}@media(max-width:700px){.buttons{grid-template-columns:1fr 1fr}.head{flex-direction:column;align-items:flex-start}}@media(max-width:440px){.buttons{grid-template-columns:1fr}}
+</style></head><body id="top">
+<header><div class="head"><div class="brand"><b>IAP</b><span>Integrált Automatika Program</span></div><div class="motto">Tanulj! Alkalmazz! Alkoss!</div></div></header>
+<nav><div class="navin"><a href="oktatoi-rendszer.html">← Oktatási rendszer</a></div></nav>
+<section class="hero"><div class="heroin"><h1>Villamos alapismeretek</h1><p><b>Felnőtt oktatás – Erősáramú elektrotechnikus</b><br>16 hét az ágazati alapvizsgáig • elmélet • számítás • mérés • gyakorlat</p></div></section>
+<div class="jump"><b>⚡ 16 hét – az ágazati alapvizsgáig</b><label>Ugrás a hétre: <select id="ws"><option value="">Válassz hetet…</option><option value="het-1">1. hét – A villamosság alapjai</option><option value="het-2">2. hét – Feszültség és áramkör</option><option value="het-3">3. hét – Ellenállás és Ohm törvénye</option><option value="het-4">4. hét – Villamos teljesítmény és energia</option><option value="het-5">5. hét – Ellenállások soros kapcsolása</option><option value="het-6">6. hét – Párhuzamos kapcsolás</option><option value="het-7">7. hét – Vegyes és összetett áramkörök</option><option value="het-8">8. hét – Villamos energiaforrások</option><option value="het-9">9. hét – Kapcsolási rajzok és rajzjelek</option><option value="het-10">10. hét – Villamos mérőműszerek</option><option value="het-11">11. hét – Villamos alapmérések</option><option value="het-12">12. hét – Áramkör építése és mérése</option><option value="het-13">13. hét – Villamos biztonságtechnika</option><option value="het-14">14. hét – Biztonságos munkavégzés</option><option value="het-15">15. hét – Komplex vizsgagyakorlat</option><option value="het-16">16. hét – Ágazati alapvizsga-felkészítés</option></select></label></div>
 <main>
-
-    <article class="week" id="het-1">
-      <div class="week-no">01</div>
-      <div class="week-body">
-        <div class="eyebrow">1. HÉT</div>
-        <h2>A villamosság alapjai</h2>
-        <p>Atom, elektron, villamos töltés; vezetők, szigetelők és félvezetők; a villamos áram fogalma.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/01_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/01_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/01_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-2">
-      <div class="week-no">02</div>
-      <div class="week-body">
-        <div class="eyebrow">2. HÉT</div>
-        <h2>Feszültség és áramkör</h2>
-        <p>Potenciál, feszültség, áramforrás, fogyasztó, kapcsoló; nyitott és zárt áramkör.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/02_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/02_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/02_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-3">
-      <div class="week-no">03</div>
-      <div class="week-body">
-        <div class="eyebrow">3. HÉT</div>
-        <h2>Ellenállás és Ohm törvénye</h2>
-        <p>Ellenállás, fajlagos ellenállás, vezető ellenállása; Ohm törvénye és alapvető számítások.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/03_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/03_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/03_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-4">
-      <div class="week-no">04</div>
-      <div class="week-body">
-        <div class="eyebrow">4. HÉT</div>
-        <h2>Villamos teljesítmény és energia</h2>
-        <p>Teljesítmény, villamos munka és energia, Wh és kWh, hatásfok, gyakorlati számítások.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/04_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/04_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/04_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-5">
-      <div class="week-no">05</div>
-      <div class="week-body">
-        <div class="eyebrow">5. HÉT</div>
-        <h2>Ellenállások soros kapcsolása</h2>
-        <p>Eredő ellenállás, áram- és feszültségviszonyok, feszültségosztás, számítás és mérés.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/05_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/05_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/05_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-6">
-      <div class="week-no">06</div>
-      <div class="week-body">
-        <div class="eyebrow">6. HÉT</div>
-        <h2>Párhuzamos kapcsolás</h2>
-        <p>Eredő ellenállás, ágáramok, áramosztás, számítás és mérés.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/06_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/06_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/06_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-7">
-      <div class="week-no">07</div>
-      <div class="week-body">
-        <div class="eyebrow">7. HÉT</div>
-        <h2>Vegyes és összetett áramkörök</h2>
-        <p>Csomópont, ág, hurok; Kirchhoff-törvények alapjai; vegyes kapcsolások.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/07_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/07_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/07_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-8">
-      <div class="week-no">08</div>
-      <div class="week-body">
-        <div class="eyebrow">8. HÉT</div>
-        <h2>Villamos energiaforrások</h2>
-        <p>Ideális és valós feszültségforrás, belső ellenállás, üresjárás, terhelés, rövidzárás.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/08_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/08_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/08_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-9">
-      <div class="week-no">09</div>
-      <div class="week-body">
-        <div class="eyebrow">9. HÉT</div>
-        <h2>Kapcsolási rajzok és rajzjelek</h2>
-        <p>Villamos rajzjelek, kapcsolási rajzok értelmezése és egyszerű dokumentáció készítése.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/09_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/09_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/09_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-10">
-      <div class="week-no">10</div>
-      <div class="week-body">
-        <div class="eyebrow">10. HÉT</div>
-        <h2>Villamos mérőműszerek</h2>
-        <p>Multiméter, méréshatár, pontosság; feszültség-, áram- és ellenállásmérés.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/10_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/10_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/10_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-11">
-      <div class="week-no">11</div>
-      <div class="week-body">
-        <div class="eyebrow">11. HÉT</div>
-        <h2>Villamos alapmérések</h2>
-        <p>Multiméter helyes bekötése, folytonosságvizsgálat, hibakeresés és mérési eredmények értékelése.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/11_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/11_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/11_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-12">
-      <div class="week-no">12</div>
-      <div class="week-body">
-        <div class="eyebrow">12. HÉT</div>
-        <h2>Áramkör építése és mérése</h2>
-        <p>Kapcsolási rajz alapján áramkör összeállítása, vezeték-előkészítés, szerelés, mérés és ellenőrzés.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/12_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/12_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/12_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-13">
-      <div class="week-no">13</div>
-      <div class="week-body">
-        <div class="eyebrow">13. HÉT</div>
-        <h2>Villamos biztonságtechnika</h2>
-        <p>A villamos áram élettani hatása, áramütés, veszélyességi tényezők és alapvető védelmi módok.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/13_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/13_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/13_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-14">
-      <div class="week-no">14</div>
-      <div class="week-body">
-        <div class="eyebrow">14. HÉT</div>
-        <h2>Biztonságos munkavégzés</h2>
-        <p>Feszültségmentesítés, védőeszközök, túláramvédelem és alapvető hibavédelmi ismeretek.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/14_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/14_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/14_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-15">
-      <div class="week-no">15</div>
-      <div class="week-body">
-        <div class="eyebrow">15. HÉT</div>
-        <h2>Komplex vizsgagyakorlat</h2>
-        <p>Rajzolvasás, áramkör-összeállítás, műszerválasztás, mérés, összehasonlítás és dokumentálás.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/15_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/15_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/15_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-    <article class="week" id="het-16">
-      <div class="week-no">16</div>
-      <div class="week-body">
-        <div class="eyebrow">16. HÉT</div>
-        <h2>Ágazati alapvizsga-felkészítés</h2>
-        <p>Rendszerezés, számítások, rajzjelek, mérés, biztonságtechnika és próbavizsga.</p>
-        <div class="buttons">
-          <a href="tananyagok/villamosalapismeretek_felnott/16_het.pdf">Tananyag</a>
-          <a href="feladatok/villamosalapismeretek_felnott/16_het_feladat.pdf">Feladat</a>
-          <a href="gyakorlatok/villamosalapismeretek_felnott/16_het_gyakorlat.pdf">Gyakorlat</a>
-        </div>
-        <details class="challenge">
-          <summary>⚡ IAP kihívás</summary>
-          <p>A kihívás az adott hét tananyagának elkészítésekor kerül ide.</p>
-        </details>
-      </div>
-    </article>
-</main>
-<div class="floating"><a href="#top" title="Lap teteje">↑</a></div>
-<footer><b>IAP</b> – Villamos alapismeretek • Felnőtt oktatás • Tanulj! Alkalmazz! Alkoss!</footer>
-<script>
-document.getElementById('weekSelect').addEventListener('change',function(){if(this.value) document.getElementById(this.value).scrollIntoView({behavior:'smooth'});});
-</script>
+<section class="week" id="het-1">
+ <div class="weekhead"><div class="num">01</div><div><span>1. HÉT</span><h2>A villamosság alapjai</h2></div></div>
+ <p class="desc">Atom, elektron, villamos töltés; vezetők, szigetelők és félvezetők; a villamos áram fogalma.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/01_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/01_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/01_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/01_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Keress a környezetedben három villamos készüléket! Írd le, hol található bennük vezető és szigetelő anyag, és miért van mindkettőre szükség.</p></div>
+</section>
+<section class="week" id="het-2">
+ <div class="weekhead"><div class="num">02</div><div><span>2. HÉT</span><h2>Feszültség és áramkör</h2></div></div>
+ <p class="desc">Potenciál, feszültség, áramforrás, fogyasztó, kapcsoló; nyitott és zárt áramkör.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/02_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/02_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/02_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/02_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Rajzolj egy egyszerű zárt áramkört áramforrással, kapcsolóval és fogyasztóval! Jelöld a feszültséget és az áram feltételezett irányát.</p></div>
+</section>
+<section class="week" id="het-3">
+ <div class="weekhead"><div class="num">03</div><div><span>3. HÉT</span><h2>Ellenállás és Ohm törvénye</h2></div></div>
+ <p class="desc">Ellenállás, fajlagos ellenállás, vezető ellenállása; Ohm törvénye és alapvető számítások.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/03_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/03_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/03_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/03_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Egy 24 V-os fogyasztón 2 A áram folyik. Határozd meg az ellenállását Ohm törvényével, majd ellenőrizd az eredmény mértékegységét.</p></div>
+</section>
+<section class="week" id="het-4">
+ <div class="weekhead"><div class="num">04</div><div><span>4. HÉT</span><h2>Villamos teljesítmény és energia</h2></div></div>
+ <p class="desc">Teljesítmény, villamos munka és energia, Wh és kWh, hatásfok, gyakorlati számítások.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/04_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/04_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/04_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/04_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Egy 230 V-os, 1000 W-os fogyasztó 2 órán át működik. Számítsd ki az elfogyasztott energiát kWh-ban és a felvett áramot.</p></div>
+</section>
+<section class="week" id="het-5">
+ <div class="weekhead"><div class="num">05</div><div><span>5. HÉT</span><h2>Ellenállások soros kapcsolása</h2></div></div>
+ <p class="desc">Eredő ellenállás, áram- és feszültségviszonyok, feszültségosztás, számítás és mérés.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/05_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/05_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/05_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/05_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Építs vagy rajzolj három sorba kötött ellenállást! Határozd meg az eredő ellenállást és magyarázd meg, hogyan oszlik meg a feszültség.</p></div>
+</section>
+<section class="week" id="het-6">
+ <div class="weekhead"><div class="num">06</div><div><span>6. HÉT</span><h2>Párhuzamos kapcsolás</h2></div></div>
+ <p class="desc">Eredő ellenállás, ágáramok, áramosztás, számítás és mérés.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/06_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/06_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/06_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/06_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Három párhuzamos fogyasztó esetén jelöld az ágáramokat! Magyarázd meg egy mondatban, hogyan kapcsolódik ehhez Kirchhoff csomóponti törvénye.</p></div>
+</section>
+<section class="week" id="het-7">
+ <div class="weekhead"><div class="num">07</div><div><span>7. HÉT</span><h2>Vegyes és összetett áramkörök</h2></div></div>
+ <p class="desc">Csomópont, ág, hurok; Kirchhoff-törvények alapjai; vegyes kapcsolások.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/07_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/07_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/07_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/07_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Oldj meg egy legalább három ellenállást tartalmazó vegyes kapcsolást! Jelöld a csomópontokat, ágakat és a számítás sorrendjét.</p></div>
+</section>
+<section class="week" id="het-8">
+ <div class="weekhead"><div class="num">08</div><div><span>8. HÉT</span><h2>Villamos energiaforrások</h2></div></div>
+ <p class="desc">Ideális és valós feszültségforrás, belső ellenállás, üresjárás, terhelés, rövidzárás.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/08_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/08_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/08_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/08_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Hasonlítsd össze egy valós feszültségforrás üresjárási és terhelt kapocsfeszültségét! Írd le, mi okozza a különbséget.</p></div>
+</section>
+<section class="week" id="het-9">
+ <div class="weekhead"><div class="num">09</div><div><span>9. HÉT</span><h2>Kapcsolási rajzok és rajzjelek</h2></div></div>
+ <p class="desc">Villamos rajzjelek, kapcsolási rajzok értelmezése és egyszerű dokumentáció készítése.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/09_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/09_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/09_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/09_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Készíts szabványos jelképekkel egyszerű kapcsolási rajzot: áramforrás, biztosító, kapcsoló és lámpa. A rajz alapján sorold fel az elemeket.</p></div>
+</section>
+<section class="week" id="het-10">
+ <div class="weekhead"><div class="num">10</div><div><span>10. HÉT</span><h2>Villamos mérőműszerek</h2></div></div>
+ <p class="desc">Multiméter, méréshatár, pontosság; feszültség-, áram- és ellenállásmérés.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/10_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/10_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/10_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/10_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Írd le, hogyan mérnél multiméterrel 24 V DC feszültséget, 0,5 A áramot és egy ellenállást! Minden esetben add meg a bekötés módját.</p></div>
+</section>
+<section class="week" id="het-11">
+ <div class="weekhead"><div class="num">11</div><div><span>11. HÉT</span><h2>Villamos alapmérések</h2></div></div>
+ <p class="desc">Multiméter helyes bekötése, folytonosságvizsgálat, hibakeresés és mérési eredmények értékelése.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/11_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/11_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/11_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/11_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Kapcsolj ki egy kisfeszültségű gyakorló áramkört, majd végezz folytonosságvizsgálatot! Írd le a biztonságos mérési sorrendet.</p></div>
+</section>
+<section class="week" id="het-12">
+ <div class="weekhead"><div class="num">12</div><div><span>12. HÉT</span><h2>Áramkör építése és mérése</h2></div></div>
+ <p class="desc">Kapcsolási rajz alapján áramkör összeállítása, vezeték-előkészítés, szerelés, mérés és ellenőrzés.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/12_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/12_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/12_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/12_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Kapcsolási rajz alapján állíts össze egy egyszerű kisfeszültségű áramkört, mérd meg U, I és R értékét, majd hasonlítsd össze a számított adatokkal.</p></div>
+</section>
+<section class="week" id="het-13">
+ <div class="weekhead"><div class="num">13</div><div><span>13. HÉT</span><h2>Villamos biztonságtechnika</h2></div></div>
+ <p class="desc">A villamos áram élettani hatása, áramütés, veszélyességi tényezők és alapvető védelmi módok.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/13_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/13_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/13_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/13_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Sorolj fel legalább négy tényezőt, amely befolyásolja az áramütés veszélyességét! Mindegyikhez írj egy megelőző intézkedést.</p></div>
+</section>
+<section class="week" id="het-14">
+ <div class="weekhead"><div class="num">14</div><div><span>14. HÉT</span><h2>Biztonságos munkavégzés</h2></div></div>
+ <p class="desc">Feszültségmentesítés, védőeszközök, túláramvédelem és alapvető hibavédelmi ismeretek.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/14_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/14_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/14_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/14_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Írd le helyes sorrendben a feszültségmentesítés lépéseit, és minden lépéshez adj rövid indoklást.</p></div>
+</section>
+<section class="week" id="het-15">
+ <div class="weekhead"><div class="num">15</div><div><span>15. HÉT</span><h2>Komplex vizsgagyakorlat</h2></div></div>
+ <p class="desc">Rajzolvasás, áramkör-összeállítás, műszerválasztás, mérés, összehasonlítás és dokumentálás.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/15_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/15_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/15_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/15_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Kapcsolási rajz → összeállítás → ellenőrzés → mérés → dokumentálás: hajts végre egy teljes gyakorló feladatot, és készíts rövid mérési jegyzőkönyvet.</p></div>
+</section>
+<section class="week" id="het-16">
+ <div class="weekhead"><div class="num">16</div><div><span>16. HÉT</span><h2>Ágazati alapvizsga-felkészítés</h2></div></div>
+ <p class="desc">Rendszerezés, számítások, rajzjelek, mérés, biztonságtechnika és próbavizsga.</p>
+ <div class="buttons">
+  <a href="tananyagok/villamosalapismeretek_felnott/16_het.pdf">📘 Tananyag</a>
+  <a href="ppt/villamosalapismeretek_felnott/16_het_bemutato.pptx">🖥️ Bemutató</a>
+  <a href="feladatok/villamosalapismeretek_felnott/16_het_feladat.pdf">📝 Feladat</a>
+  <a href="gyakorlatok/villamosalapismeretek_felnott/16_het_gyakorlat.pdf">🔧 Gyakorlat</a>
+ </div>
+ <div class="challenge"><strong>⚡ IAP KIHÍVÁS</strong><p>Állíts össze saját mini próbavizsgát: 3 számítási kérdés, 3 rajzjel, 1 mérési feladat és 1 biztonságtechnikai feladat. Ezután oldd is meg.</p></div>
+</section></main>
+<div class="float"><a href="#top" title="Lap teteje">↑</a></div>
+<footer>IAP • Villamos alapismeretek • Felnőtt oktatás • Tanulj! Alkalmazz! Alkoss!</footer>
+<script>document.getElementById('ws').addEventListener('change',function(){if(this.value)document.getElementById(this.value).scrollIntoView({behavior:'smooth'})})</script>
 </body></html>
