@@ -13,10 +13,30 @@ main{max-width:1080px;margin:16px auto 55px;padding:0 18px;display:block!importa
 .challenge{margin-top:13px;padding:13px 15px;border-left:5px solid #20b9f2;border-radius:8px;background:#eef9ff}.challenge strong{color:#075d94;font-size:13px;letter-spacing:.04em}.challenge p{margin:7px 0 0;line-height:1.45;color:#3f6075}
 .float{position:fixed;right:18px;bottom:20px;display:flex;flex-direction:column;gap:8px;z-index:20}.float a{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0e70b7;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 5px 16px #0004}
 footer{background:#061a30;color:#fff;text-align:center;padding:19px}@media(max-width:700px){.buttons{grid-template-columns:1fr 1fr}.head{flex-direction:column;align-items:flex-start}}@media(max-width:440px){.buttons{grid-template-columns:1fr}}
+
+.groupnav{max-width:1080px;margin:16px auto 4px;padding:0 18px}
+.groupnav-title{font-weight:900;color:#0b3154;margin-bottom:10px}
+.groupbuttons{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.groupbtn{appearance:none;border:1px solid #0e70b7;border-radius:9px;background:#fff;color:#0b3154;
+padding:12px 8px;font-weight:900;cursor:pointer;box-shadow:0 4px 12px #14375812}
+.groupbtn:hover,.groupbtn.active{background:linear-gradient(145deg,#092b49,#1478bd);color:#fff;border-color:#1478bd}
+@media(max-width:700px){.groupbuttons{grid-template-columns:1fr 1fr}}
+
 </style></head><body id="top">
 <header><div class="head"><div class="brand"><b>IAP</b><span>Integrált Automatika Program</span></div><div class="motto">Tanulj! Alkalmazz! Alkoss!</div></div></header>
 <nav><div class="navin"><a href="oktatoi-rendszer.html">← Oktatási rendszer</a></div></nav>
 <section class="hero"><div class="heroin"><h1>Villamos alapismeretek</h1><p><b>Felnőtt oktatás – Erősáramú elektrotechnikus</b><br>16 hét az ágazati alapvizsgáig • elmélet • számítás • mérés • gyakorlat</p></div></section>
+
+<div class="groupnav" aria-label="Négyhetes tananyagegységek">
+  <div class="groupnav-title">📚 Válassz 4 hetes tananyagegységet:</div>
+  <div class="groupbuttons">
+    <button class="groupbtn active" type="button" data-from="1" data-to="4">1–4. hét</button>
+    <button class="groupbtn" type="button" data-from="5" data-to="8">5–8. hét</button>
+    <button class="groupbtn" type="button" data-from="9" data-to="12">9–12. hét</button>
+    <button class="groupbtn" type="button" data-from="13" data-to="16">13–16. hét</button>
+  </div>
+</div>
+
 <div class="jump"><b>⚡ 16 hét – az ágazati alapvizsgáig</b><label>Ugrás a hétre: <select id="ws"><option value="">Válassz hetet…</option><option value="het-1">1. hét – A villamosság alapjai</option><option value="het-2">2. hét – Feszültség és áramkör</option><option value="het-3">3. hét – Ellenállás és Ohm törvénye</option><option value="het-4">4. hét – Villamos teljesítmény és energia</option><option value="het-5">5. hét – Ellenállások soros kapcsolása</option><option value="het-6">6. hét – Párhuzamos kapcsolás</option><option value="het-7">7. hét – Vegyes és összetett áramkörök</option><option value="het-8">8. hét – Villamos energiaforrások</option><option value="het-9">9. hét – Kapcsolási rajzok és rajzjelek</option><option value="het-10">10. hét – Villamos mérőműszerek</option><option value="het-11">11. hét – Villamos alapmérések</option><option value="het-12">12. hét – Áramkör építése és mérése</option><option value="het-13">13. hét – Villamos biztonságtechnika</option><option value="het-14">14. hét – Biztonságos munkavégzés</option><option value="het-15">15. hét – Komplex vizsgagyakorlat</option><option value="het-16">16. hét – Ágazati alapvizsga-felkészítés</option></select></label></div>
 <main>
 <section class="week" id="het-1">
@@ -197,5 +217,30 @@ footer{background:#061a30;color:#fff;text-align:center;padding:19px}@media(max-w
 </section></main>
 <div class="float"><a href="#top" title="Lap teteje">↑</a></div>
 <footer>IAP • Villamos alapismeretek • Felnőtt oktatás • Tanulj! Alkalmazz! Alkoss!</footer>
-<script>document.getElementById('ws').addEventListener('change',function(){if(this.value)document.getElementById(this.value).scrollIntoView({behavior:'smooth'})})</script>
+<script>
+const weeks=[...document.querySelectorAll('.week')];
+const groupBtns=[...document.querySelectorAll('.groupbtn')];
+
+function showGroup(from,to){
+  weeks.forEach(w=>{
+    const n=parseInt(w.id.replace('het-',''),10);
+    w.style.display=(n>=from && n<=to)?'block':'none';
+  });
+  groupBtns.forEach(b=>b.classList.toggle('active',+b.dataset.from===from));
+  window.scrollTo({top:document.querySelector('.groupnav').offsetTop-12,behavior:'smooth'});
+}
+
+groupBtns.forEach(b=>b.addEventListener('click',()=>showGroup(+b.dataset.from,+b.dataset.to)));
+
+document.getElementById('ws').addEventListener('change',function(){
+  if(!this.value)return;
+  const n=parseInt(this.value.replace('het-',''),10);
+  const from=Math.floor((n-1)/4)*4+1;
+  showGroup(from,from+3);
+  setTimeout(()=>document.getElementById(this.value).scrollIntoView({behavior:'smooth'}),180);
+});
+
+// Induláskor az 1–4. hét látható.
+showGroup(1,4);
+</script>
 </body></html>
