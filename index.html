@@ -391,6 +391,87 @@ body > footer{
   body > footer{left:16px !important}
 }
 
+
+/* Dátum biztosan a dobozon belül marad */
+.menu .side-info .iap-datetime{
+  width:330px !important;
+  min-width:330px !important;
+  padding:8px 14px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+.menu .side-info .iap-datetime .date{
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  padding:0 !important;
+  margin:0 !important;
+  font-size:13px !important;
+  line-height:18px !important;
+  letter-spacing:.025em !important;
+  white-space:nowrap !important;
+  text-align:center !important;
+  overflow:hidden !important;
+}
+.menu .side-info .iap-datetime .time{
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  font-size:14px !important;
+  line-height:18px !important;
+  letter-spacing:.04em !important;
+  text-align:center !important;
+}
+
+
+/* DÁTUM/IDŐ – végleges javítás: semmi nincs levágva */
+.menu .side-info{
+  width:350px !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime{
+  width:350px !important;
+  min-width:350px !important;
+  height:74px !important;
+  min-height:74px !important;
+  box-sizing:border-box !important;
+}
+.menu .side-info .iap-datetime{
+  padding:8px 12px !important;
+  overflow:visible !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime .date,
+.menu .side-info .iap-datetime .time{
+  font-size:15px !important;
+  line-height:20px !important;
+  font-weight:700 !important;
+  letter-spacing:.025em !important;
+  text-transform:uppercase !important;
+}
+.menu .side-info .iap-datetime .date,
+.menu .side-info .iap-datetime .time{
+  display:block !important;
+  width:auto !important;
+  max-width:none !important;
+  height:auto !important;
+  padding:0 !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  text-align:center !important;
+}
+.menu .side-info .iap-datetime .time{
+  margin-top:5px !important;
+}
+
 </style>
 </head>
 <body>
@@ -424,16 +505,17 @@ body > footer{
 <script>
 
 function iapClock(){
- const now=new Date();
- const date=new Intl.DateTimeFormat('hu-HU',{
-   year:'numeric',month:'long',day:'numeric',weekday:'long'
- }).format(now);
- const time=new Intl.DateTimeFormat('hu-HU',{
-   hour:'2-digit',minute:'2-digit',hour12:false
- }).format(now);
- document.getElementById('iapCurrentDate').textContent =
-   date.charAt(0).toUpperCase()+date.slice(1);
- document.getElementById('iapCurrentTime').textContent=time;
+  const now = new Date();
+  const date = new Intl.DateTimeFormat('hu-HU',{
+    year:'numeric', month:'long', day:'numeric', weekday:'long'
+  }).format(now);
+  const time = new Intl.DateTimeFormat('hu-HU',{
+    hour:'2-digit', minute:'2-digit', hour12:false
+  }).format(now);
+  const d = document.getElementById('iapCurrentDate');
+  const t = document.getElementById('iapCurrentTime');
+  if(d) d.textContent = date.toUpperCase();
+  if(t) t.textContent = time;
 }
 iapClock();
 setInterval(iapClock,1000);
