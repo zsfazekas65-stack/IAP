@@ -20,6 +20,7 @@ footer{background:#061a30;color:#fff;text-align:center;padding:19px}@media(max-w
 .groupbtn{appearance:none;border:1px solid #0e70b7;border-radius:9px;background:#fff;color:#0b3154;
 padding:12px 8px;font-weight:900;cursor:pointer;box-shadow:0 4px 12px #14375812}
 .groupbtn:hover,.groupbtn.active{background:linear-gradient(145deg,#092b49,#1478bd);color:#fff;border-color:#1478bd}
+.week.group-hidden{display:none!important}
 @media(max-width:700px){.groupbuttons{grid-template-columns:1fr 1fr}}
 
 </style></head><body id="top">
@@ -221,26 +222,32 @@ padding:12px 8px;font-weight:900;cursor:pointer;box-shadow:0 4px 12px #14375812}
 const weeks=[...document.querySelectorAll('.week')];
 const groupBtns=[...document.querySelectorAll('.groupbtn')];
 
-function showGroup(from,to){
+function showGroup(from,to,doScroll=true){
   weeks.forEach(w=>{
     const n=parseInt(w.id.replace('het-',''),10);
-    w.style.display=(n>=from && n<=to)?'block':'none';
+    w.classList.toggle('group-hidden', !(n>=from && n<=to));
   });
   groupBtns.forEach(b=>b.classList.toggle('active',+b.dataset.from===from));
-  window.scrollTo({top:document.querySelector('.groupnav').offsetTop-12,behavior:'smooth'});
+  if(doScroll){
+    document.querySelector('.groupnav').scrollIntoView({behavior:'smooth',block:'start'});
+  }
 }
 
 groupBtns.forEach(b=>b.addEventListener('click',()=>showGroup(+b.dataset.from,+b.dataset.to)));
 
 document.getElementById('ws').addEventListener('change',function(){
-  if(!this.value)return;
-  const n=parseInt(this.value.replace('het-',''),10);
+  const targetId=this.value;
+  if(!targetId)return;
+  const n=parseInt(targetId.replace('het-',''),10);
   const from=Math.floor((n-1)/4)*4+1;
-  showGroup(from,from+3);
-  setTimeout(()=>document.getElementById(this.value).scrollIntoView({behavior:'smooth'}),180);
+  showGroup(from,from+3,false);
+  setTimeout(()=>{
+    const target=document.getElementById(targetId);
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  },80);
 });
 
 // Induláskor az 1–4. hét látható.
-showGroup(1,4);
+showGroup(1,4,false);
 </script>
 </body></html>
