@@ -11,16 +11,317 @@
 .wrap{position:relative;z-index:3;max-width:1536px;margin:auto;min-height:100vh;padding:28px 34px 22px;display:grid;grid-template-rows:auto 1fr}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:18px;max-width:980px}.brandtext strong{display:block;color:#0c3f8f;font-size:clamp(22px,2.3vw,38px);line-height:1.05;text-shadow:0 1px 1px rgba(255,255,255,.8)}.brandtext strong b{font-size:1.08em}.script{font-family:"Segoe Script","Brush Script MT",cursive;font-size:clamp(18px,2vw,32px);text-align:right;color:#f7fbff;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.45);transform:rotate(-5deg);margin-top:10px}.main{display:flex;align-items:flex-end;justify-content:center;padding:78px 0 52px}.layout{width:100%;display:grid;grid-template-columns:250px minmax(0,720px);justify-content:center;gap:42px;align-items:end}.menu{align-self:center;background:rgba(2,22,43,.44);border-left:1px solid rgba(75,190,255,.45);backdrop-filter:blur(4px);position:relative}.menu div{padding:15px 20px;border-bottom:1px solid rgba(90,192,255,.25);font-size:16px;letter-spacing:.04em;color:#e3f4ff}.choice{display:grid;grid-template-columns:1fr 1fr;gap:30px}.card{min-height:200px;border-radius:19px;padding:20px;text-decoration:none;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;box-shadow:0 16px 36px rgba(0,0,0,.34),inset 0 0 0 1px rgba(255,255,255,.07);transition:.2s}.student{background:linear-gradient(145deg,rgba(8,104,214,.97),rgba(2,37,92,.96));border:2px solid #27b8ff}.teacher{background:linear-gradient(145deg,rgba(4,163,126,.95),rgba(0,68,72,.97));border:2px solid #21e2c2}.card:hover{transform:translateY(-5px);filter:brightness(1.07)}.school-link{position:absolute;right:calc(100% + 28px);top:calc(58.333% - 23px);z-index:5;width:220px;min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 18px;border:1px solid rgba(38,191,255,.82);border-radius:14px;background:rgba(2,26,51,.78);backdrop-filter:blur(5px);color:#e8f8ff;text-decoration:none;font-size:14px;font-weight:700;letter-spacing:.04em;box-shadow:0 8px 22px rgba(0,0,0,.28);transition:.2s;white-space:nowrap}.school-link:hover{background:rgba(7,95,199,.9);transform:translateY(-2px)}.icon{font-size:52px;filter:drop-shadow(0 5px 12px rgba(0,0,0,.3))}.card strong{font-size:33px;margin:7px 0 6px}.card small{font-size:11px;letter-spacing:.04em;color:#cdeaff}.arrow{margin-top:11px;width:40px;height:40px;border:2px solid #dff7ff;border-radius:50%;display:grid;place-items:center;font-size:25px}@media(max-width:1280px){.school-link{right:auto;left:20px;top:calc(100% + 18px)}}@media(max-width:950px){.layout{grid-template-columns:1fr}.menu{display:none}.school-link{position:absolute;left:18px;bottom:58px;top:auto;right:auto;width:auto}.main{padding-top:110px}.choice{max-width:650px;margin:auto}.script{display:none}.brandtext strong{color:#fff;text-shadow:0 2px 10px #001}}@media(max-width:700px){.school-link{left:18px;bottom:58px;padding:10px 15px;font-size:12px;min-height:40px}.wrap{padding:18px}.brandtext strong{font-size:18px}.main{padding:86px 0 24px}.choice{grid-template-columns:1fr;gap:14px;max-width:440px}.card{min-height:150px;padding:15px}.icon{font-size:40px}.card strong{font-size:27px}.card small{font-size:10px}.arrow{width:35px;height:35px;font-size:21px;margin-top:8px}.school{background-position:58% center}}
 
 .iap-datetime{
- position:absolute;z-index:10;top:145px;right:34px;left:auto;transform:none;
- padding:8px 14px;border:1px solid rgba(38,191,255,.65);border-radius:12px;
+ position:absolute;z-index:10;top:auto;right:auto;left:20px;bottom:0;transform:none;
+ padding:8px 10px;border:1px solid rgba(38,191,255,.82);border-radius:14px;
  background:rgba(2,26,51,.72);box-shadow:0 6px 18px rgba(0,0,0,.28);
- text-align:center;color:#fff;min-width:250px;white-space:nowrap
+ text-align:center;color:#fff;width:220px;min-width:220px;white-space:nowrap
 }
-.iap-datetime .date{font-size:12px;font-weight:700}
-.iap-datetime .time{font-size:22px;font-weight:800;color:#69d4ff;margin-top:2px;letter-spacing:.08em}
+.iap-datetime .date{font-size:10px;font-weight:700;line-height:1.15}
+.iap-datetime .time{font-size:17px;font-weight:800;line-height:1.15;color:#69d4ff;margin-top:2px;letter-spacing:.08em}
 @media(max-width:700px){
  .iap-datetime{top:118px;right:18px;left:auto;transform:none;min-width:220px;padding:7px 10px}
  .iap-datetime .date{font-size:12px}.iap-datetime .time{font-size:22px}
+}
+
+
+/* Dátum és idő: az ISKOLA HONLAPJA gomb alatt, azonos szélességgel */
+.menu .iap-datetime{right:calc(100% + 28px);left:auto;top:calc(58.333% + 33px);bottom:auto;width:220px;min-width:220px;min-height:46px;height:46px;padding:5px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+
+/* Egységes bal oldali információs gombok */
+.menu .school-link{
+  width:240px;
+  min-height:54px;
+  height:54px;
+  right:calc(100% + 28px);
+  padding:8px 14px;
+  white-space:nowrap;
+  font-size:13px;
+  border-radius:14px;
+}
+.menu .iap-datetime{
+  width:240px;
+  min-width:240px;
+  min-height:54px;
+  height:54px;
+  right:calc(100% + 28px);
+  top:calc(58.333% + 41px);
+  padding:6px 12px;
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.menu .iap-datetime .date{
+  font-size:11px;
+  line-height:1.15;
+  font-weight:700;
+  white-space:nowrap;
+}
+.menu .iap-datetime .time{
+  font-size:18px;
+  line-height:1.15;
+  margin-top:3px;
+  font-weight:800;
+  white-space:nowrap;
+}
+@media(max-width:1280px){
+  .menu .school-link{width:240px;min-height:54px;height:54px}
+  .menu .iap-datetime{width:240px;min-width:240px;min-height:54px;height:54px}
+}
+
+
+/* --- Végleges oldalsó információs blokk --- */
+.menu .side-info{
+  position:absolute;
+  right:calc(100% + 28px);
+  top:calc(58.333% - 27px);
+  width:240px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:8;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime{
+  position:static !important;
+  inset:auto !important;
+  transform:none !important;
+  width:240px !important;
+  min-width:240px !important;
+  height:54px !important;
+  min-height:54px !important;
+  margin:0 !important;
+  border:1px solid rgba(38,191,255,.82);
+  border-radius:14px;
+  background:rgba(2,26,51,.82);
+  backdrop-filter:blur(5px);
+  box-shadow:0 8px 22px rgba(0,0,0,.28);
+  color:#e8f8ff;
+}
+.menu .side-info .school-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 14px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.035em;
+  white-space:nowrap;
+}
+.menu .side-info .school-link:hover{
+  background:rgba(7,95,199,.92);
+  transform:translateY(-2px) !important;
+}
+.menu .side-info .iap-datetime{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:5px 10px;
+  text-align:center;
+}
+.menu .side-info .iap-datetime .date{
+  font-size:11px;
+  line-height:1.1;
+  font-weight:700;
+  white-space:nowrap;
+}
+.menu .side-info .iap-datetime .time{
+  margin-top:3px;
+  font-size:18px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.07em;
+  color:#8ddcff;
+  white-space:nowrap;
+}
+@media(max-width:1280px){
+  .menu .side-info{
+    right:auto;
+    left:20px;
+    top:calc(100% + 18px);
+  }
+}
+@media(max-width:950px){
+  .menu .side-info{display:none}
+}
+
+
+/* JAVÍTÁS: a két oldalsó elem nagyobb, azonos méretű, a dátum biztosan belefér */
+.menu .side-info{
+  width:300px !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime{
+  width:300px !important;
+  min-width:300px !important;
+  height:64px !important;
+  min-height:64px !important;
+  box-sizing:border-box !important;
+}
+.menu .side-info .school-link{
+  font-size:14px !important;
+  padding:0 16px !important;
+}
+.menu .side-info .iap-datetime{
+  padding:7px 12px !important;
+  overflow:hidden !important;
+}
+.menu .side-info .iap-datetime .date{
+  display:block !important;
+  width:100% !important;
+  font-size:12px !important;
+  line-height:16px !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  text-align:center !important;
+}
+.menu .side-info .iap-datetime .time{
+  display:block !important;
+  width:100% !important;
+  font-size:20px !important;
+  line-height:22px !important;
+  margin-top:3px !important;
+  text-align:center !important;
+}
+
+
+/* Finom méretnövelés */
+.menu .side-info{
+  width:320px !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime{
+  width:320px !important;
+  min-width:320px !important;
+  height:70px !important;
+  min-height:70px !important;
+}
+.menu .side-info .school-link{
+  font-size:15px !important;
+}
+.menu .side-info .iap-datetime .date{
+  font-size:13px !important;
+  line-height:17px !important;
+}
+.menu .side-info .iap-datetime .time{
+  font-size:21px !important;
+  line-height:23px !important;
+}
+
+
+/* Egységes betűméret a két oldalsó dobozban */
+.menu .side-info{width:340px !important}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime{
+  width:340px !important;
+  min-width:340px !important;
+  height:72px !important;
+  min-height:72px !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime .date,
+.menu .side-info .iap-datetime .time{
+  font-size:15px !important;
+  line-height:20px !important;
+  font-weight:700 !important;
+  letter-spacing:.035em !important;
+}
+.menu .side-info .iap-datetime .time{
+  margin-top:4px !important;
+  color:#8ddcff !important;
+}
+
+
+/* Végleges egységesítés: azonos méret, azonos nagybetűs tipográfia */
+.menu .side-info{
+  width:340px !important;
+  top:auto !important;
+  bottom:0 !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime{
+  width:340px !important;
+  min-width:340px !important;
+  height:72px !important;
+  min-height:72px !important;
+  box-sizing:border-box !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime .date,
+.menu .side-info .iap-datetime .time{
+  font-size:15px !important;
+  line-height:20px !important;
+  font-weight:700 !important;
+  letter-spacing:.035em !important;
+  text-transform:uppercase !important;
+  font-family:inherit !important;
+}
+.menu .side-info .iap-datetime .time{
+  margin-top:4px !important;
+}
+
+
+/* Esztétikusabb, egységes IAP oldalsó blokk */
+.menu .side-info{
+  width:330px !important;
+  gap:12px !important;
+  right:calc(100% + 32px) !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime{
+  width:330px !important;
+  min-width:330px !important;
+  height:66px !important;
+  min-height:66px !important;
+  box-sizing:border-box !important;
+  border:1px solid rgba(72,202,255,.72) !important;
+  border-radius:16px !important;
+  background:
+    linear-gradient(135deg,rgba(7,39,72,.94),rgba(3,24,49,.88)) !important;
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.08) !important;
+  backdrop-filter:blur(7px) !important;
+}
+.menu .side-info .school-link{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:0 18px !important;
+}
+.menu .side-info .school-link,
+.menu .side-info .iap-datetime .date,
+.menu .side-info .iap-datetime .time{
+  font-family:inherit !important;
+  font-size:14px !important;
+  line-height:18px !important;
+  font-weight:750 !important;
+  letter-spacing:.055em !important;
+  text-transform:uppercase !important;
+  color:#eefaff !important;
+}
+.menu .side-info .iap-datetime{
+  padding:8px 16px !important;
+  justify-content:center !important;
+}
+.menu .side-info .iap-datetime .date{
+  color:#eefaff !important;
+}
+.menu .side-info .iap-datetime .time{
+  margin-top:4px !important;
+  color:#7edcff !important;
+}
+.menu .side-info .school-link:hover{
+  border-color:#8ce5ff !important;
+  background:
+    linear-gradient(135deg,rgba(10,73,130,.96),rgba(4,38,75,.94)) !important;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.34),
+    0 0 18px rgba(50,190,255,.16) !important;
 }
 
 </style>
@@ -30,10 +331,6 @@
   <div class="school" aria-hidden="true"></div>
   <div class="shade" aria-hidden="true"></div>
 
-  <div class="iap-datetime" aria-label="Aktuális dátum és idő">
-    <div class="date" id="iapCurrentDate">Dátum betöltése…</div>
-    <div class="time" id="iapCurrentTime">--:--:--</div>
-  </div>
 
   <div class="wrap">
     <header class="top">
@@ -42,7 +339,13 @@
     </header>
     <section class="main">
       <div class="layout">
-        <div class="menu" aria-hidden="true"><div>ELEKTRONIKA</div><div>INFORMATIKA</div><div>GÉPÉSZET</div><div>AUTOMATIZÁLÁS</div><div>SZAKMAI SIKER</div><div>BIZTOS JÖVŐ</div><a class="school-link" href="https://www.dunaferriskola.hu/" target="_blank" rel="noopener noreferrer" title="A Dunaferr Iskola hivatalos honlapja">🏫 ISKOLA HONLAPJA ↗</a></div>
+        <div class="menu" aria-hidden="true"><div>ELEKTRONIKA</div><div>INFORMATIKA</div><div>GÉPÉSZET</div><div>AUTOMATIZÁLÁS</div><div>SZAKMAI SIKER</div><div>BIZTOS JÖVŐ</div><div class="side-info">
+  <a class="school-link" href="https://www.dunaferriskola.hu/" target="_blank" rel="noopener noreferrer" title="A Dunaferr Iskola hivatalos honlapja">🏫 ISKOLA HONLAPJA ↗</a>
+  <div class="iap-datetime" aria-label="Aktuális dátum és idő">
+    <div class="date" id="iapCurrentDate">Dátum betöltése…</div>
+    <div class="time" id="iapCurrentTime">--:--</div>
+  </div>
+</div></div>
         <div class="choice">
           <a class="card student" href="tanulo.html"><span class="icon">🎓</span><strong>TANULÓ</strong><small>BELÉPÉS A TANULÓI FELÜLETRE</small><span class="arrow">›</span></a>
           <a class="card teacher" id="teacherEntry" href="oktato.html"><span class="icon">👨‍🏫</span><strong>OKTATÓ</strong><small>TANÁRI PIN-KÓD SZÜKSÉGES</small><span class="arrow">›</span></a>
@@ -59,7 +362,7 @@ function iapClock(){
    year:'numeric',month:'long',day:'numeric',weekday:'long'
  }).format(now);
  const time=new Intl.DateTimeFormat('hu-HU',{
-   hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false
+   hour:'2-digit',minute:'2-digit',hour12:false
  }).format(now);
  document.getElementById('iapCurrentDate').textContent =
    date.charAt(0).toUpperCase()+date.slice(1);
