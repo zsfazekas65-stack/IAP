@@ -32,7 +32,7 @@
       <div class="exam-section"><div class="exam-section-title"><span>Közelgő vizsgák</span><span class="exam-count" id="upcomingCount">0</span></div><select class="exam-select" id="upcomingExam"><option value="">Nincs közelgő vizsga</option></select><a class="exam-open disabled" id="upcomingOpen" href="#" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a></div>
       <div class="exam-section"><div class="exam-section-title"><span>Vizsgaarchívum</span><span class="exam-count" id="archiveCount">0</span></div><select class="exam-select" id="archiveExam"><option value="">Még nincs archivált vizsga</option></select><a class="exam-open disabled" id="archiveOpen" href="#" target="_blank" rel="noopener noreferrer">ARCHIVÁLT VIZSGA MEGNYITÁSA →</a></div>
     </div>
-    <div class="exam-help">A vizsgák dátum szerint automatikusan rendeződnek. A lezajlott vizsgák a Vizsgaarchívumba kerülnek, a Moodle-linkjük pedig megmarad.</div>
+    <div class="exam-help">A vizsgák dátum szerint automatikusan rendeződnek. Az elmúlt vizsgák a Vizsgaarchívumba kerülnek; azonos napon az órarendi sorrend érvényesül.</div>
   </div>
 </section>
 <section class="grades" id="evfolyamok"><h2>VÁLASSZ ÉVFOLYAMOT!</h2><div class="cards"><div class="card c9"><div class="grade-line"><span class="num">9.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="villamos9.html">Villamos alapismeretek</a></div></div><div class="card c10"><div class="grade-line"><span class="num">10.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="villamos10.html">Villamos alapismeretek</a><a class="subject-btn" href="gepeszet10.html">Gépészeti alapismeretek</a></div></div><div class="card c11"><div class="grade-line"><span class="num">11.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="analog11.html">Analóg áramkörök</a><a class="subject-btn" href="elektrotechnika11.html">Elektrotechnika</a><a class="subject-btn" href="villamosszereles11.html">Villamos szerelések</a></div></div><div class="card c12"><div class="grade-line"><span class="num">12.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="plc.html">PLC alapismeretek</a><a class="subject-btn" href="folyamatiranyitas12.html">Folyamatirányítás</a></div></div><div class="card c13"><div class="grade-line"><span class="num">13.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="villamosmuvek13.html">Villamos művek</a><a class="subject-btn" href="epuletvillamossag13.html">Épületvillamossági hálózatok</a></div></div><div class="card cadult"><div class="grade-num">♟</div><h3>FELNŐTT OKTATÁS</h3><div class="subject-buttons"><a class="subject-btn" href="epuletvillamossag2_felnott.html">Épületvillamosság 2</a><a class="subject-btn" href="elektrotechnika_felnott.html">Elektrotechnika</a><a class="subject-btn" href="villamosberendezesek_felnott.html">Villamos berendezések</a></div></div></div></section>
@@ -40,22 +40,63 @@
 <script>const mt=document.getElementById('iapMobileToggle'),mp=document.getElementById('iapMobilePanel');if(mt&&mp){mt.addEventListener('click',()=>{const o=mp.classList.toggle('open');mt.setAttribute('aria-expanded',o?'true':'false');mt.textContent=o?'✕ BEZÁRÁS':'☰ MENÜ'});mp.addEventListener('click',e=>{if(e.target.closest('a')){mp.classList.remove('open');mt.setAttribute('aria-expanded','false');mt.textContent='☰ MENÜ'}})}</script>
 
 <script>
-/* Egyetlen központi vizsgalista. Példa új elemre:
- {date:'2026-10-06',order:2,grade:'12.',subject:'PLC alapismeretek',title:'5. heti Moodle teszt',url:'https://...'}
- A date a vizsga napja, order az aznapi órarendi sorrend (1 = korábbi). */
-const IAP_EXAMS=[
-  {date:'2026-09-29',order:1,grade:'12.',subject:'PLC alapismeretek',title:'Moodle teszt',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1661'},
-  {date:'2026-10-02',order:2,grade:'13.',subject:'Villamos művek',title:'Moodle teszt',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1662'}
+/* IAP Vizsgaközpont – központi vizsgalista.
+   Új vizsgánál csak egy sort kell felvenni.
+   date: YYYY-MM-DD, order: aznapi órarendi sorrend. */
+const IAP_EXAMS = [
+  {date:'2026-10-02',order:1,grade:'12.',subject:'PLC alapismeretek',title:'Moodle vizsga',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1661'},
+  {date:'2026-10-02',order:2,grade:'13.',subject:'Villamos művek',title:'Moodle vizsga',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1662'}
 ];
+
 (function(){
- const today=new Date();today.setHours(0,0,0,0);
- const parse=e=>{const d=new Date(e.date+'T00:00:00');return {...e,_date:d}};
- const all=IAP_EXAMS.map(parse).sort((a,b)=>a._date-b._date||a.order-b.order);
- const upcoming=all.filter(e=>e._date>=today), archive=all.filter(e=>e._date<today).sort((a,b)=>b._date-a._date||b.order-a.order);
- const fmt=e=>`${e.date.replace(/-/g,'.')} • ${e.grade} ${e.subject} • ${e.title}`;
- function fill(list,selectId,openId,countId,empty){const sel=document.getElementById(selectId),btn=document.getElementById(openId),cnt=document.getElementById(countId);cnt.textContent=list.length;sel.innerHTML='';if(!list.length){sel.add(new Option(empty,''));btn.classList.add('disabled');btn.href='#';return;}list.forEach((e,i)=>sel.add(new Option(fmt(e),String(i))));const sync=()=>{const e=list[Number(sel.value)||0];btn.href=e.url;btn.classList.remove('disabled')};sel.addEventListener('change',sync);sync()}
- fill(upcoming,'upcomingExam','upcomingOpen','upcomingCount','Nincs közelgő vizsga');fill(archive,'archiveExam','archiveOpen','archiveCount','Még nincs archivált vizsga');
- const next=document.getElementById('examNext');if(upcoming.length){const e=upcoming[0];next.innerHTML=`Következő: <strong>${e.date.replace(/-/g,'.')} – ${e.grade} ${e.subject}</strong><br>${e.title}`}
+  function localDate(iso){
+    const p=iso.split('-').map(Number);
+    return new Date(p[0],p[1]-1,p[2]);
+  }
+  function huDate(iso){
+    const p=iso.split('-');
+    return p[0]+'. '+p[1]+'. '+p[2]+'.';
+  }
+  const today=new Date();
+  today.setHours(0,0,0,0);
+  const all=IAP_EXAMS.slice().sort(function(a,b){
+    return localDate(a.date)-localDate(b.date) || a.order-b.order;
+  });
+  const upcoming=all.filter(function(e){return localDate(e.date)>=today;});
+  const archive=all.filter(function(e){return localDate(e.date)<today;}).sort(function(a,b){
+    return localDate(b.date)-localDate(a.date) || b.order-a.order;
+  });
+
+  function label(e){return huDate(e.date)+' • '+e.grade+' '+e.subject+' • '+e.title;}
+  function setup(list,selectId,buttonId,countId,emptyText){
+    const sel=document.getElementById(selectId);
+    const btn=document.getElementById(buttonId);
+    const count=document.getElementById(countId);
+    if(!sel || !btn || !count) return;
+    count.textContent=String(list.length);
+    sel.innerHTML='';
+    if(!list.length){
+      const o=document.createElement('option'); o.value=''; o.textContent=emptyText; sel.appendChild(o);
+      btn.href='#'; btn.classList.add('disabled'); return;
+    }
+    list.forEach(function(e,i){
+      const o=document.createElement('option'); o.value=String(i); o.textContent=label(e); sel.appendChild(o);
+    });
+    function sync(){
+      const i=parseInt(sel.value,10);
+      const e=list[isNaN(i)?0:i];
+      if(e && e.url){btn.href=e.url;btn.classList.remove('disabled');}
+    }
+    sel.addEventListener('change',sync); sync();
+  }
+
+  setup(upcoming,'upcomingExam','upcomingOpen','upcomingCount','Nincs közelgő vizsga');
+  setup(archive,'archiveExam','archiveOpen','archiveCount','Még nincs archivált vizsga');
+  const next=document.getElementById('examNext');
+  if(next){
+    if(upcoming.length){const e=upcoming[0];next.innerHTML='Következő: <strong>'+huDate(e.date)+' – '+e.grade+' '+e.subject+'</strong><br>'+e.title;}
+    else next.textContent='Nincs rögzített közelgő vizsga.';
+  }
 })();
 </script>
 <script src="iap-ezen-a-heten.js?v=5"></script>
