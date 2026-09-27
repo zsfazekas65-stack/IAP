@@ -16,7 +16,17 @@
 </style>
 
 <style>
-.exam-center{padding:28px 44px 34px;background:#fff4e5;border-top:1px solid #f2d3aa;border-bottom:1px solid #f2d3aa}.exam-box{max-width:1420px;margin:auto;background:#fff;border:1px solid #f0c58f;border-left:6px solid #ef6c00;border-radius:12px;box-shadow:0 8px 22px rgba(80,45,10,.08);overflow:hidden}.exam-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 24px}.exam-head h2{margin:0;color:#9a4d00;font-size:27px}.exam-next{font-size:13px;font-weight:800;color:#6c4a28}.exam-panels{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #f0d7b7}.exam-section{padding:18px 22px}.exam-section+.exam-section{border-left:1px solid #f0d7b7}.exam-section-title{display:flex;justify-content:space-between;font-weight:900;color:#173a5e;margin-bottom:10px}.exam-count{background:#fff0dc;border-radius:999px;padding:3px 8px}.exam-select{width:100%;padding:12px;border:1px solid #e4bd8b;border-radius:8px;background:#fff;font-weight:700;color:#173a5e}.exam-open{display:block;margin-top:10px;text-align:center;padding:12px 14px;border-radius:8px;background:#ef6c00;color:#fff!important;font-weight:900}.exam-open.disabled{opacity:.45;pointer-events:none}@media(max-width:700px){.exam-center{padding:22px 14px}.exam-head{align-items:flex-start;flex-direction:column}.exam-panels{grid-template-columns:1fr}.exam-section+.exam-section{border-left:0;border-top:1px solid #f0d7b7}}
+/* IAP Vizsgaközpont – egységes kék arculat */
+.exam-center{padding:30px 44px 36px;background:linear-gradient(180deg,#eef6fb,#f7fafc);border-top:1px solid #d6e3ec;border-bottom:1px solid #d6e3ec}
+.exam-center-inner{max-width:1420px;margin:auto}
+.exam-center-head{background:linear-gradient(135deg,#061d35,#0d5f98);color:#fff;border-radius:14px;padding:22px 26px;box-shadow:0 9px 24px rgba(7,45,76,.16);display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:16px}
+.exam-center-head h2{margin:0;font-size:28px;letter-spacing:.02em}.exam-center-head p{margin:6px 0 0;color:#d9effa;font-size:14px}.exam-center-badge{font-size:13px;font-weight:900;letter-spacing:.08em;background:#fff;color:#0b5f96;padding:10px 14px;border-radius:999px;white-space:nowrap}
+.exam-center-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.exam-card{background:#fff;border:1px solid #cfe0eb;border-radius:12px;padding:19px;box-shadow:0 5px 16px rgba(20,55,88,.07);display:flex;flex-direction:column;min-height:170px}
+.exam-grade{font-size:11px;font-weight:900;letter-spacing:.1em;color:#1478bd;text-transform:uppercase}.exam-card h3{margin:7px 0 7px;color:#0b2946;font-size:19px}.exam-card p{margin:0 0 16px;color:#647789;font-size:13px;line-height:1.4;flex:1}
+.exam-btn{display:block;text-align:center;padding:11px 13px;border-radius:8px;background:linear-gradient(135deg,#0b5f96,#1487c9);color:#fff!important;font-weight:900;font-size:13px;box-shadow:0 4px 10px rgba(14,112,183,.18)}.exam-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.exam-note{margin:14px 2px 0;color:#66798a;font-size:12px;text-align:center}
+@media(max-width:900px){.exam-center{padding:22px 14px}.exam-center-grid{grid-template-columns:1fr}.exam-center-head{align-items:flex-start;flex-direction:column}.exam-center-head h2{font-size:24px}}
 </style>
 </head><body>
 <header class="topbar"><div class="brand-row"><div class="dunaferr-brand"><img src="dunaferr_logo.png" alt="DSZC Dunaferr logó"><div class="dunaferr-text"><div class="dszc">DSZC</div><div class="name">DUNAFERR</div><div class="sub">SZAKKÉPZÉSI CENTRUM</div></div></div><div class="iap-brand"><div class="iap-mark">IAP</div><div class="iap-sep"></div><div class="iap-copy"><strong>Integrált<br>Automatika<br>Program</strong><span>Tanulj! Alkalmazz! Alkoss!</span></div></div><div class="iap-small-logo-wrap"><img src="iap_logo.png" alt="IAP – Integrált Automatika Program logó" class="iap-small-logo"></div></div></header>
@@ -25,30 +35,35 @@
 <section class="grades" id="evfolyamok"><h2>VÁLASSZ ÉVFOLYAMOT!</h2><div class="cards"><div class="card c9"><div class="grade-line"><span class="num">9.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="villamos9.html">Villamos alapismeretek</a></div></div><div class="card c10"><div class="grade-line"><span class="num">10.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="villamos10.html">Villamos alapismeretek</a><a class="subject-btn" href="gepeszet10.html">Gépészeti alapismeretek</a></div></div><div class="card c11"><div class="grade-line"><span class="num">11.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="analog11.html">Analóg áramkörök</a><a class="subject-btn" href="elektrotechnika11.html">Elektrotechnika</a><a class="subject-btn" href="villamosszereles11.html">Villamos szerelések</a></div></div><div class="card c12"><div class="grade-line"><span class="num">12.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="plc.html">PLC alapismeretek</a><a class="subject-btn" href="folyamatiranyitas12.html">Folyamatirányítás</a></div></div><div class="card c13"><div class="grade-line"><span class="num">13.</span><span class="label">ÉVFOLYAM</span></div><div class="subject-buttons"><a class="subject-btn" href="villamosmuvek13.html">Villamos művek</a><a class="subject-btn" href="epuletvillamossag13.html">Épületvillamossági hálózatok</a></div></div><div class="card cadult"><div class="grade-num">♟</div><h3>FELNŐTT OKTATÁS</h3><div class="subject-buttons"><a class="subject-btn" href="epuletvillamossag2_felnott.html">Épületvillamosság 2</a><a class="subject-btn" href="elektrotechnika_felnott.html">Elektrotechnika</a><a class="subject-btn" href="villamosberendezesek_felnott.html">Villamos berendezések</a><a class="subject-btn" href="villamosalapismeretek_felnott.html">Villamos alapismeretek</a></div></div></div></section>
 
 <section class="exam-center" id="vizsgakozpont">
-  <div class="exam-box">
-    <div class="exam-head"><h2>📝 VIZSGA KÖZELEG</h2><div class="exam-next" id="examNext">Vizsgák betöltése…</div></div>
-    <div class="exam-panels">
-      <div class="exam-section"><div class="exam-section-title"><span>Közelgő vizsgák</span><span class="exam-count" id="upcomingCount">0</span></div><select class="exam-select" id="upcomingExam"></select><a class="exam-open disabled" id="upcomingOpen" href="#" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a></div>
-      <div class="exam-section"><div class="exam-section-title"><span>Vizsgaarchívum</span><span class="exam-count" id="archiveCount">0</span></div><select class="exam-select" id="archiveExam"></select><a class="exam-open disabled" id="archiveOpen" href="#" target="_blank" rel="noopener noreferrer">ARCHIVÁLT VIZSGA MEGNYITÁSA →</a></div>
+  <div class="exam-center-inner">
+    <div class="exam-center-head">
+      <div><h2>📝 IAP VIZSGAKÖZPONT</h2><p>Egy helyen az évfolyamok Moodle-vizsgái és gyakorló tesztjei.</p></div>
+      <div class="exam-center-badge">VIZSGÁK</div>
     </div>
+    <div class="exam-center-grid">
+      <article class="exam-card">
+        <span class="exam-grade">9. évfolyam</span>
+        <h3>Villamos alapismeretek – 1–5. hét</h3>
+        <p>Az öthetes tanulási szakaszhoz tartozó Moodle-vizsga / gyakorló teszt.</p>
+        <a class="exam-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1648" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a>
+      </article>
+      <article class="exam-card">
+        <span class="exam-grade">12. évfolyam</span>
+        <h3>PLC alapismeretek</h3>
+        <p>Moodle gyakorló teszt és vizsgafelület.</p>
+        <a class="exam-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1661" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a>
+      </article>
+      <article class="exam-card">
+        <span class="exam-grade">13. évfolyam</span>
+        <h3>Villamos művek</h3>
+        <p>Moodle gyakorló teszt és vizsgafelület.</p>
+        <a class="exam-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1662" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a>
+      </article>
+    </div>
+    <div class="exam-note">A korábbi különálló sárga vizsgagombok helyett minden vizsga innen érhető el.</div>
   </div>
 </section>
 <footer class="footer"><div class="footer-inner"><div class="motto">💡 Tanulj ma, hogy holnap te irányítsd a jövőt!</div><div class="links"><a href="oktato.html">← OKTATÓI FŐMENÜ</a><a href="eszkoztar.html">🧰 ESZKÖZTÁR</a><a href="kapcsolat.html">KAPCSOLAT</a><a href="statusz.html">IAP STÁTUSZ</a><a href="moodle.html">MOODLE</a></div><div class="copy">© IAP</div></div></footer>
 <script>const mt=document.getElementById('iapMobileToggle'),mp=document.getElementById('iapMobilePanel');if(mt&&mp){mt.addEventListener('click',()=>{const o=mp.classList.toggle('open');mt.setAttribute('aria-expanded',o?'true':'false');mt.textContent=o?'✕ BEZÁRÁS':'☰ MENÜ'});mp.addEventListener('click',e=>{if(e.target.closest('a')){mp.classList.remove('open');mt.setAttribute('aria-expanded','false');mt.textContent='☰ MENÜ'}})}</script>
-<script>
-const IAP_EXAMS=[
- {date:'2026-10-06',order:1,grade:'12.',subject:'PLC alapismeretek',title:'Moodle gyakorló teszt',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1661'},
- {date:'2026-10-06',order:2,grade:'13.',subject:'Villamos művek',title:'Moodle gyakorló teszt',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1662'}
-];
-(function(){
- const today=new Date(); today.setHours(0,0,0,0);
- const all=IAP_EXAMS.map(e=>({...e,_date:new Date(e.date+'T00:00:00')})).sort((a,b)=>a._date-b._date||a.order-b.order);
- const upcoming=all.filter(e=>e._date>=today), archive=all.filter(e=>e._date<today).sort((a,b)=>b._date-a._date||b.order-a.order);
- const fmt=e=>e.date.replace(/-/g,'.')+' • '+e.grade+' '+e.subject+' • '+e.title;
- function fill(list,sid,bid,cid,empty){const sel=document.getElementById(sid),btn=document.getElementById(bid),cnt=document.getElementById(cid);cnt.textContent=list.length;sel.innerHTML='';if(!list.length){sel.add(new Option(empty,''));btn.classList.add('disabled');btn.href='#';return;}list.forEach((e,i)=>sel.add(new Option(fmt(e),String(i))));function sync(){const e=list[Number(sel.value)||0];btn.href=e.url;btn.classList.remove('disabled')}sel.addEventListener('change',sync);sync()}
- fill(upcoming,'upcomingExam','upcomingOpen','upcomingCount','Nincs közelgő vizsga'); fill(archive,'archiveExam','archiveOpen','archiveCount','Még nincs archivált vizsga');
- const n=document.getElementById('examNext'); n.innerHTML=upcoming.length?'Következő: <strong>'+fmt(upcoming[0])+'</strong>':'Nincs rögzített közelgő vizsga.';
-})();
-</script>
 <script src="iap-ezen-a-heten.js?v=5"></script>
 </body></html>
