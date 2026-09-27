@@ -45,7 +45,8 @@
    date: YYYY-MM-DD, order: aznapi órarendi sorrend. */
 const IAP_EXAMS = [
   {date:'2026-10-02',order:1,grade:'12.',subject:'PLC alapismeretek',title:'Moodle vizsga',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1661'},
-  {date:'2026-10-02',order:2,grade:'13.',subject:'Villamos művek',title:'Moodle vizsga',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1662'}
+  {date:'2026-10-02',order:2,grade:'13.',subject:'Villamos művek',title:'Moodle vizsga',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1662'},
+  {date:'2026-10-02',order:3,grade:'13.',subject:'Épületvillamossági hálózatok',title:'Moodle teszt',url:'https://moodle.dunaferriskola.hu/course/view.php?id=1665'}
 ];
 
 (function(){
@@ -60,14 +61,17 @@ const IAP_EXAMS = [
   const today=new Date();
   today.setHours(0,0,0,0);
   const all=IAP_EXAMS.slice().sort(function(a,b){
+    if(!a.date && !b.date) return a.order-b.order;
+    if(!a.date) return 1;
+    if(!b.date) return -1;
     return localDate(a.date)-localDate(b.date) || a.order-b.order;
   });
-  const upcoming=all.filter(function(e){return localDate(e.date)>=today;});
-  const archive=all.filter(function(e){return localDate(e.date)<today;}).sort(function(a,b){
+  const upcoming=all.filter(function(e){return !e.date || localDate(e.date)>=today;});
+  const archive=all.filter(function(e){return e.date && localDate(e.date)<today;}).sort(function(a,b){
     return localDate(b.date)-localDate(a.date) || b.order-a.order;
   });
 
-  function label(e){return huDate(e.date)+' • '+e.grade+' '+e.subject+' • '+e.title;}
+  function label(e){return (e.date?huDate(e.date)+' • ':'')+e.grade+' '+e.subject+' • '+e.title;}
   function setup(list,selectId,buttonId,countId,emptyText){
     const sel=document.getElementById(selectId);
     const btn=document.getElementById(buttonId);
