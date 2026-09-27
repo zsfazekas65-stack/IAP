@@ -12,14 +12,9 @@
 </head>
 <body>
 <a class="home-float" href="oktato.html" aria-label="Vissza az oktatói főmenüre">⌂ <span>Oktatói főmenü</span></a>
-<header><div class="brand"><div class="logo">IAP</div><span>INTEGRÁLT AUTOMATIKA PROGRAM</span></div><h1>🧰 IAP Eszköztár</h1><p class="subtitle">Fontos dokumentumok, oktatási rendszerek és szakmai segédletek egy helyen.</p><div class="search-wrap"><span class="search-icon">🔎</span><input id="search" type="search" placeholder="Mit keresel? Pl. KKK, PTT, Szakma Sztár, YouTube, QR-kód, GIFT, Moodle..." autocomplete="off"></div></header>
+<header><div class="brand"><div class="logo">IAP</div><span>INTEGRÁLT AUTOMATIKA PROGRAM</span></div><h1>🧰 IAP Eszköztár</h1><p class="subtitle">Fontos dokumentumok, oktatási rendszerek és szakmai segédletek egy helyen.</p></header>
 <main>
-<section class="categories">
-<button class="category-btn active" data-filter="all"><span class="emoji">⭐</span><strong>Minden eszköz</strong><small>Az összes gyorshivatkozás</small></button>
-<button class="category-btn" data-filter="hivatalos"><span class="emoji">📚</span><strong>Hivatalos dokumentumok</strong><small>KKK, PTT, IKK, versenyanyagok</small></button>
-<button class="category-btn" data-filter="moodle"><span class="emoji">🎓</span><strong>Moodle és tesztek</strong><small>Kérdésbank, GIFT, import</small></button>
-<button class="category-btn" data-filter="muhely"><span class="emoji">🛠️</span><strong>IAP műhely</strong><small>QR-kód, videó, kurzus, tesztkészítés</small></button>
-</section>
+
 <section class="grid" id="grid">
 <article class="card" data-cat="hivatalos" data-keywords="kkk képzési kimeneti követelmények ptt programtanterv programtantervek ikk dokumentum óraszám tantárgy"><span class="tag">Hivatalos dokumentumok</span><h2>📘 KKK és PTT</h2><p>Képzési és Kimeneti Követelmények, valamint Programtantervek az IKK közös gyűjtőoldalán, ágazati és szakmánkénti dokumentumokkal.</p><a href="https://akkreditaltvizsgaztatas.ikk.hu/kkk-ptt" target="_blank" rel="noopener">KKK és PTT megnyitása ↗</a></article>
 <article class="card" data-cat="hivatalos" data-keywords="ikk oktatók intézmények segédanyag szakmai program óraterv"><span class="tag">Oktatói háttéranyag</span><h2>🏫 IKK – Intézményeknek, oktatóknak</h2><p>Szakmai programok, óratervminták, ágazati anyagok, dokumentumminták és további oktatói segédletek.</p><a href="https://www.ikk.hu/gyujto/intezmenyek" target="_blank" rel="noopener">Megnyitás ↗</a></article>
@@ -46,6 +41,11 @@
 <div class="modal" id="qrModal" onclick="if(event.target===this)closeModal('qrModal')"><div class="modal-box"><div class="modal-head"><h2>▦ IAP QR-kód készítő</h2><button class="close-btn" onclick="closeModal('qrModal')">Bezárás ✕</button></div><p>Illeszd be a megosztani kívánt webcímet. A QR-kódot a diákok telefonról azonnal beolvashatják.</p><input class="qr-input" id="qrInput" type="url" placeholder="https://..." autocomplete="off"><div class="qr-actions"><button type="button" onclick="makeQr()">QR-KÓD KÉSZÍTÉSE</button></div><div class="qr-result" id="qrResult"><img id="qrImage" alt="Generált QR-kód"><p id="qrText"></p></div></div></div>
 <footer>IAP Eszköztár</footer>
 <script>
-const search=document.getElementById('search');const cards=[...document.querySelectorAll('.card')];const buttons=[...document.querySelectorAll('.category-btn')];const empty=document.getElementById('empty');let filter='all';function applyFilters(){const q=search.value.trim().toLowerCase();let visible=0;cards.forEach(card=>{const catOk=filter==='all'||card.dataset.cat===filter;const text=(card.innerText+' '+(card.dataset.keywords||'')).toLowerCase();const searchOk=!q||text.includes(q);const show=catOk&&searchOk;card.style.display=show?'flex':'none';if(show)visible++});empty.style.display=visible?'none':'block'}search.addEventListener('input',applyFilters);buttons.forEach(btn=>{btn.addEventListener('click',()=>{buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');filter=btn.dataset.filter;applyFilters()})});function showGift(){document.getElementById('giftModal').style.display='block'}function showQr(){document.getElementById('qrModal').style.display='block';setTimeout(()=>document.getElementById('qrInput').focus(),50)}function makeQr(){const input=document.getElementById('qrInput'),v=input.value.trim();if(!v){input.focus();return}const img=document.getElementById('qrImage');img.src='https://api.qrserver.com/v1/create-qr-code/?size=320x320&data='+encodeURIComponent(v);document.getElementById('qrText').textContent=v;document.getElementById('qrResult').style.display='block'}function closeModal(id){document.getElementById(id).style.display='none'}document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal').forEach(m=>m.style.display='none')});
+function showGift(){document.getElementById('giftModal').style.display='block'}
+function showSteps(){document.getElementById('stepsModal').style.display='block'}
+function showQr(){document.getElementById('qrModal').style.display='block';setTimeout(()=>document.getElementById('qrInput').focus(),50)}
+function makeQr(){const input=document.getElementById('qrInput'),v=input.value.trim();if(!v){input.focus();return}const img=document.getElementById('qrImage');img.src='https://api.qrserver.com/v1/create-qr-code/?size=320x320&data='+encodeURIComponent(v);document.getElementById('qrText').textContent=v;document.getElementById('qrResult').style.display='block'}
+function closeModal(id){document.getElementById(id).style.display='none'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal').forEach(m=>m.style.display='none')});
 </script>
 </body></html>
