@@ -44,6 +44,22 @@ main{max-width:1280px;margin:auto;padding:28px 30px 34px}
 @media(max-width:950px){.lessons{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:720px){.lessons{grid-template-columns:repeat(2,1fr)}.top-inner{padding:15px 18px;min-height:90px}.logo{font-size:42px}.sep{height:46px}.brand-copy strong{font-size:16px}.brand-copy span{font-size:11px}.back{font-size:11px;padding:9px 10px}.hero-inner,main{padding-left:18px;padding-right:18px}}
 @media(max-width:470px){.lessons{grid-template-columns:1fr}.brand-copy{display:none}.sep{display:none}.hero h1{font-size:25px}.lesson{min-height:72px}.footer-inner{flex-direction:column;align-items:flex-start}}
+
+/* Finom színezés – IAP paletta */
+.lesson:nth-child(4n+1){background:linear-gradient(145deg,#ffffff,#eef8ff);border-color:#b9dff3}
+.lesson:nth-child(4n+1) .lesson-no{background:#dff3fd;color:#075d91}
+
+.lesson:nth-child(4n+2){background:linear-gradient(145deg,#ffffff,#f0fbf7);border-color:#bfe6d8}
+.lesson:nth-child(4n+2) .lesson-no{background:#e0f6ee;color:#16775f}
+
+.lesson:nth-child(4n+3){background:linear-gradient(145deg,#ffffff,#fff8ec);border-color:#f0d9ae}
+.lesson:nth-child(4n+3) .lesson-no{background:#fff0d2;color:#a46612}
+
+.lesson:nth-child(4n+4){background:linear-gradient(145deg,#ffffff,#f6f2ff);border-color:#d8c9ef}
+.lesson:nth-child(4n+4) .lesson-no{background:#eee5fb;color:#6a4b9c}
+
+.lesson:hover{filter:saturate(1.08)}
+
 </style>
 </head>
 <body>
