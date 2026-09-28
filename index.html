@@ -503,7 +503,7 @@ body > main{left:0 !important;}
 </div></div>
         <div class="choice">
           <a class="card student" href="tanulo.html"><span class="icon">🎓</span><strong>TANULÓ</strong><small>BELÉPÉS A TANULÓI FELÜLETRE</small><span class="arrow">›</span></a>
-          <a class="card teacher" id="teacherEntry" href="oktatoi-rendszer.html?v=20260927-vegleges"><span class="icon">👨‍🏫</span><strong>OKTATÓ</strong><small>TANÁRI PIN-KÓD SZÜKSÉGES</small><span class="arrow">›</span></a>
+          <a class="card teacher" id="teacherEntry" href="oktato.html"><span class="icon">👨‍🏫</span><strong>OKTATÓ</strong><small>TANÁRI PIN-KÓD SZÜKSÉGES</small><span class="arrow">›</span></a>
         </div>
       </div>
     </section>
@@ -529,13 +529,13 @@ setInterval(iapClock,1000);
 
 const IAP_TEACHER_PIN_HASH='353644551c422cfbda087f398820d35d6ff3a997ac53ba7f549cc6483b58a3ef';
 const fromEszkoztar=document.referrer&&new URL(document.referrer).pathname.endsWith('/eszkoztar.html');
-if(fromEszkoztar&&sessionStorage.getItem('iapTeacherAuth')==='1'){location.replace('oktatoi-rendszer.html?v=20260927-vegleges');}
+if(fromEszkoztar&&sessionStorage.getItem('iapTeacherAuth')==='1'){location.replace('oktato.html');}
 async function sha256(text){const data=new TextEncoder().encode(text);const hash=await crypto.subtle.digest('SHA-256',data);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');}
 async function teacherLogin(){
-  if(sessionStorage.getItem('iapTeacherAuth')==='1'){location.href='oktatoi-rendszer.html?v=20260927-vegleges';return;}
+  if(sessionStorage.getItem('iapTeacherAuth')==='1'){location.href='oktato.html';return;}
   const pin=prompt('Tanári PIN-kód:');
   if(pin===null)return;
-  if(await sha256(pin.trim())===IAP_TEACHER_PIN_HASH){sessionStorage.setItem('iapTeacherAuth','1');location.href='oktatoi-rendszer.html?v=20260927-vegleges';}
+  if(await sha256(pin.trim())===IAP_TEACHER_PIN_HASH){sessionStorage.setItem('iapTeacherAuth','1');location.href='oktato.html';}
   else alert('Hibás PIN-kód.');
 }
 document.getElementById('teacherEntry').addEventListener('click',function(e){e.preventDefault();teacherLogin();});
