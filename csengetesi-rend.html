@@ -2,90 +2,76 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>IAP – Csengetési rend</title>
 <style>
-:root{--navy:#061a30;--navy2:#082746;--blue:#0e70b7;--cyan:#20b9f2;--orange:#f0a33a;--text:#14243a;--muted:#66798a;--line:#d6e3ec}
+:root{--navy:#061a30;--navy2:#082746;--blue:#0e70b7;--cyan:#20b9f2;--paper:#f4f7fa;--text:#14243a;--muted:#66798a;--line:#d8e5ee;--orange:#f2a33a}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
-body{background:#f4f7fa;color:var(--text)}
+body{background:linear-gradient(180deg,#eef4f8 0,#f8fafc 100%);color:var(--text)}
 a{text-decoration:none;color:inherit}
-.topbar{background:linear-gradient(180deg,#06182d,#071d35);color:#fff}
-.brand{max-width:1180px;margin:auto;min-height:130px;padding:20px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.iap{display:flex;align-items:center;gap:18px}
-.iap-mark{font-size:64px;font-weight:900;letter-spacing:1px}
-.sep{width:1px;height:68px;background:rgba(255,255,255,.3)}
-.iap-copy strong{display:block;color:#33b8ef;font-size:23px;line-height:1.15}
-.iap-copy span{display:block;margin-top:7px;font-size:15px}
-.back{padding:12px 18px;border:1px solid rgba(255,255,255,.3);border-radius:9px;background:#0d71b9;font-weight:800}
-.back:hover{filter:brightness(1.08)}
-.hero{background:linear-gradient(120deg,#071d35,#0c4775);color:#fff}
-.hero-inner{max-width:1180px;margin:auto;padding:30px 34px;display:flex;align-items:center;gap:18px}
-.hero-icon{font-size:46px}
-.hero h1{margin:0 0 6px;font-size:34px}
-.hero p{margin:0;color:#d8edf8;font-size:16px}
-.main{max-width:1180px;margin:auto;padding:34px}
-.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 28px rgba(20,55,88,.09);overflow:hidden}
-.panel-head{padding:20px 24px;background:linear-gradient(90deg,#fff8ee,#fff);border-bottom:1px solid #f1dfc3;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.panel-head strong{font-size:18px;color:#8b5510}
-.panel-head span{font-size:13px;color:var(--muted)}
-.table{display:grid;grid-template-columns:repeat(2,1fr)}
-.row{min-height:68px;padding:14px 22px;display:flex;align-items:center;border-bottom:1px solid #e6edf2}
-.row:nth-child(odd){border-right:1px solid #e6edf2}
-.num{width:105px;font-weight:900;color:#0b3c67;font-size:17px}
-.time{font-size:19px;font-weight:800;color:#20374c;letter-spacing:.02em}
-.time span{color:var(--orange);padding:0 7px}
-.note{padding:20px 24px;background:#f8fbfd;color:var(--muted);font-size:13px;line-height:1.5}
-.footer{background:#061a30;color:#fff;margin-top:20px}
-.footer-inner{max-width:1180px;margin:auto;padding:18px 34px;display:flex;justify-content:space-between;gap:20px}
-.motto{color:#d8edf8}.copy{color:#6bcaf0}
-@media(max-width:700px){
- .brand{padding:16px 18px;min-height:auto}.iap-mark{font-size:44px}.sep{height:50px}
- .iap-copy strong{font-size:16px}.iap-copy span{font-size:11px}.back{font-size:11px;padding:9px}
- .hero-inner,.main{padding:24px 18px}.hero h1{font-size:27px}.table{grid-template-columns:1fr}
- .row:nth-child(odd){border-right:0}.num{width:90px}.time{font-size:17px}
- .footer-inner{padding:16px 18px;flex-direction:column}
-}
+.topbar{background:linear-gradient(180deg,#06182d,#071d35);color:white;box-shadow:0 5px 18px rgba(0,0,0,.18)}
+.top-inner{max-width:1280px;margin:auto;padding:18px 30px;min-height:112px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.brand{display:flex;align-items:center;gap:17px}
+.logo{font-size:58px;font-weight:900;letter-spacing:1px}
+.sep{width:1px;height:60px;background:rgba(255,255,255,.25)}
+.brand-copy strong{display:block;color:#38bdf2;font-size:22px}
+.brand-copy span{display:block;margin-top:6px;color:#fff;font-size:14px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:9px;background:#0d71b9;border:1px solid rgba(255,255,255,.22);font-size:13px;font-weight:900;letter-spacing:.025em;box-shadow:0 5px 14px rgba(0,0,0,.16)}
+.back:hover{background:#1281cd}
+.hero{background:linear-gradient(120deg,#071d35 0%,#0b4776 70%,#0c5c8e 100%);color:#fff}
+.hero-inner{max-width:1280px;margin:auto;padding:28px 30px;display:flex;align-items:center;gap:18px}
+.bell{width:58px;height:58px;border-radius:15px;background:rgba(242,163,58,.16);border:1px solid rgba(242,163,58,.55);display:grid;place-items:center;font-size:31px;box-shadow:inset 0 0 20px rgba(242,163,58,.08)}
+.hero h1{margin:0 0 5px;font-size:31px}
+.hero p{margin:0;color:#cfe8f5;font-size:15px}
+main{max-width:1280px;margin:auto;padding:28px 30px 34px}
+.sheet{background:#fff;border:1px solid #d6e3ec;border-radius:16px;box-shadow:0 12px 32px rgba(18,52,82,.10);overflow:hidden}
+.sheet-head{padding:16px 21px;background:linear-gradient(90deg,#f7fbfe,#fff);border-bottom:1px solid #dfe9f0;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.sheet-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:900;color:#0b3c67}
+.sheet-title::before{content:"";width:5px;height:28px;border-radius:5px;background:var(--orange)}
+.range{font-size:12px;font-weight:900;color:#60778b;letter-spacing:.06em}
+.lessons{padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.lesson{min-height:84px;border:1px solid #dce7ef;border-radius:11px;background:linear-gradient(145deg,#fff,#f8fbfd);display:flex;align-items:center;overflow:hidden;transition:.15s;box-shadow:0 3px 10px rgba(20,55,88,.035)}
+.lesson:hover{transform:translateY(-2px);border-color:#9fcde7;box-shadow:0 8px 17px rgba(20,55,88,.09)}
+.lesson-no{align-self:stretch;width:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#edf6fb;border-right:1px solid #dce7ef;color:#0b5689;font-size:25px;font-weight:900}
+.lesson-no span{font-size:10px;text-transform:uppercase;letter-spacing:.09em;margin-top:2px;color:#66879c}
+.lesson-time{flex:1;text-align:center;font-size:17px;font-weight:900;color:#263d50;white-space:nowrap}
+.lesson-time i{font-style:normal;color:var(--orange);padding:0 5px}
+.info{margin:0 18px 18px;padding:12px 15px;border-radius:9px;background:#f4f9fc;border-left:4px solid #20aeea;color:#60778b;font-size:12px;line-height:1.45}
+.footer{background:#061a30;color:#fff}
+.footer-inner{max-width:1280px;margin:auto;padding:16px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:13px}
+.footer .motto{color:#d5eaf5}.footer .iap{color:#64c8ef;font-weight:700}
+@media(max-width:950px){.lessons{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.lessons{grid-template-columns:repeat(2,1fr)}.top-inner{padding:15px 18px;min-height:90px}.logo{font-size:42px}.sep{height:46px}.brand-copy strong{font-size:16px}.brand-copy span{font-size:11px}.back{font-size:11px;padding:9px 10px}.hero-inner,main{padding-left:18px;padding-right:18px}}
+@media(max-width:470px){.lessons{grid-template-columns:1fr}.brand-copy{display:none}.sep{display:none}.hero h1{font-size:25px}.lesson{min-height:72px}.footer-inner{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
-<header class="topbar">
- <div class="brand">
-  <div class="iap">
-   <div class="iap-mark">IAP</div><div class="sep"></div>
-   <div class="iap-copy"><strong>Integrált Automatika Program</strong><span>Tanulj! Alkalmazz! Alkoss!</span></div>
-  </div>
-  <a class="back" href="oktato.html">← OKTATÓI FELÜLET</a>
- </div>
-</header>
-<section class="hero">
- <div class="hero-inner">
-  <div class="hero-icon">🔔</div>
-  <div><h1>Csengetési rend</h1><p>A tanítási órák kezdési és befejezési időpontjai • 0–13. óra</p></div>
- </div>
+<header class="topbar"><div class="top-inner">
+<div class="brand"><div class="logo">IAP</div><div class="sep"></div><div class="brand-copy"><strong>Integrált Automatika Program</strong><span>Tanulj! Alkalmazz! Alkoss!</span></div></div>
+<a class="back" href="oktato.html">← OKTATÓI FELÜLET</a>
+</div></header>
+<section class="hero"><div class="hero-inner"><div class="bell">🔔</div><div><h1>Csengetési rend</h1><p>A tanítási nap időrendje • 0. órától 18:40-ig</p></div></div></section>
+<main>
+<section class="sheet">
+<div class="sheet-head"><div class="sheet-title">Napi órarend</div><div class="range">07:15 — 18:40</div></div>
+<div class="lessons"><div class="lesson"><div class="lesson-no">0.<span>óra</span></div><div class="lesson-time">07:15<i>–</i>07:55</div></div>
+<div class="lesson"><div class="lesson-no">1.<span>óra</span></div><div class="lesson-time">08:00<i>–</i>08:45</div></div>
+<div class="lesson"><div class="lesson-no">2.<span>óra</span></div><div class="lesson-time">08:55<i>–</i>09:40</div></div>
+<div class="lesson"><div class="lesson-no">3.<span>óra</span></div><div class="lesson-time">09:50<i>–</i>10:35</div></div>
+<div class="lesson"><div class="lesson-no">4.<span>óra</span></div><div class="lesson-time">10:45<i>–</i>11:30</div></div>
+<div class="lesson"><div class="lesson-no">5.<span>óra</span></div><div class="lesson-time">11:45<i>–</i>12:30</div></div>
+<div class="lesson"><div class="lesson-no">6.<span>óra</span></div><div class="lesson-time">12:40<i>–</i>13:25</div></div>
+<div class="lesson"><div class="lesson-no">7.<span>óra</span></div><div class="lesson-time">13:30<i>–</i>14:10</div></div>
+<div class="lesson"><div class="lesson-no">8.<span>óra</span></div><div class="lesson-time">14:15<i>–</i>14:55</div></div>
+<div class="lesson"><div class="lesson-no">9.<span>óra</span></div><div class="lesson-time">15:00<i>–</i>15:40</div></div>
+<div class="lesson"><div class="lesson-no">10.<span>óra</span></div><div class="lesson-time">15:45<i>–</i>16:25</div></div>
+<div class="lesson"><div class="lesson-no">11.<span>óra</span></div><div class="lesson-time">16:30<i>–</i>17:10</div></div>
+<div class="lesson"><div class="lesson-no">12.<span>óra</span></div><div class="lesson-time">17:15<i>–</i>17:55</div></div>
+<div class="lesson"><div class="lesson-no">13.<span>óra</span></div><div class="lesson-time">18:00<i>–</i>18:40</div></div></div>
+<div class="info">A csengetési rend az oktatói felület része. A jobb felső <b>OKTATÓI FELÜLET</b> gombbal közvetlenül visszatérhetsz a gyűjtőlapra.</div>
 </section>
-<main class="main">
- <section class="panel">
-  <div class="panel-head"><strong>🔔 Napi csengetési rend</strong><span>07:15 – 18:40</span></div>
-  <div class="table">
-   <div class="row"><div class="num">0. óra</div><div class="time">07:15 <span>–</span> 07:55</div></div>
-<div class="row"><div class="num">1. óra</div><div class="time">08:00 <span>–</span> 08:45</div></div>
-<div class="row"><div class="num">2. óra</div><div class="time">08:55 <span>–</span> 09:40</div></div>
-<div class="row"><div class="num">3. óra</div><div class="time">09:50 <span>–</span> 10:35</div></div>
-<div class="row"><div class="num">4. óra</div><div class="time">10:45 <span>–</span> 11:30</div></div>
-<div class="row"><div class="num">5. óra</div><div class="time">11:45 <span>–</span> 12:30</div></div>
-<div class="row"><div class="num">6. óra</div><div class="time">12:40 <span>–</span> 13:25</div></div>
-<div class="row"><div class="num">7. óra</div><div class="time">13:30 <span>–</span> 14:10</div></div>
-<div class="row"><div class="num">8. óra</div><div class="time">14:15 <span>–</span> 14:55</div></div>
-<div class="row"><div class="num">9. óra</div><div class="time">15:00 <span>–</span> 15:40</div></div>
-<div class="row"><div class="num">10. óra</div><div class="time">15:45 <span>–</span> 16:25</div></div>
-<div class="row"><div class="num">11. óra</div><div class="time">16:30 <span>–</span> 17:10</div></div>
-<div class="row"><div class="num">12. óra</div><div class="time">17:15 <span>–</span> 17:55</div></div>
-<div class="row"><div class="num">13. óra</div><div class="time">18:00 <span>–</span> 18:40</div></div>
-  </div>
-  <div class="note">Az oldal az IAP oktatói felületéről közvetlenül megnyitható. A felső „Oktatói felület” gombbal egy lépésben visszatérhetsz a gyűjtőlapra.</div>
- </section>
 </main>
-<footer class="footer"><div class="footer-inner"><div class="motto">💡 Tanulj! Alkalmazz! Alkoss!</div><div class="copy">© IAP</div></div></footer>
+<footer class="footer"><div class="footer-inner"><div class="motto">Tanulj! Alkalmazz! Alkoss!</div><div class="iap">IAP • Integrált Automatika Program</div></div></footer>
 </body>
 </html>
