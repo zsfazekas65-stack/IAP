@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAP – Csengetési rend</title>
+<style>
+:root{--navy:#061a30;--navy2:#082746;--blue:#0e70b7;--cyan:#20b9f2;--orange:#f0a33a;--text:#14243a;--muted:#66798a;--line:#d6e3ec}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{background:#f4f7fa;color:var(--text)}
+a{text-decoration:none;color:inherit}
+.topbar{background:linear-gradient(180deg,#06182d,#071d35);color:#fff}
+.brand{max-width:1180px;margin:auto;min-height:130px;padding:20px 34px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.iap{display:flex;align-items:center;gap:18px}
+.iap-mark{font-size:64px;font-weight:900;letter-spacing:1px}
+.sep{width:1px;height:68px;background:rgba(255,255,255,.3)}
+.iap-copy strong{display:block;color:#33b8ef;font-size:23px;line-height:1.15}
+.iap-copy span{display:block;margin-top:7px;font-size:15px}
+.back{padding:12px 18px;border:1px solid rgba(255,255,255,.3);border-radius:9px;background:#0d71b9;font-weight:800}
+.back:hover{filter:brightness(1.08)}
+.hero{background:linear-gradient(120deg,#071d35,#0c4775);color:#fff}
+.hero-inner{max-width:1180px;margin:auto;padding:30px 34px;display:flex;align-items:center;gap:18px}
+.hero-icon{font-size:46px}
+.hero h1{margin:0 0 6px;font-size:34px}
+.hero p{margin:0;color:#d8edf8;font-size:16px}
+.main{max-width:1180px;margin:auto;padding:34px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 28px rgba(20,55,88,.09);overflow:hidden}
+.panel-head{padding:20px 24px;background:linear-gradient(90deg,#fff8ee,#fff);border-bottom:1px solid #f1dfc3;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.panel-head strong{font-size:18px;color:#8b5510}
+.panel-head span{font-size:13px;color:var(--muted)}
+.table{display:grid;grid-template-columns:repeat(2,1fr)}
+.row{min-height:68px;padding:14px 22px;display:flex;align-items:center;border-bottom:1px solid #e6edf2}
+.row:nth-child(odd){border-right:1px solid #e6edf2}
+.num{width:105px;font-weight:900;color:#0b3c67;font-size:17px}
+.time{font-size:19px;font-weight:800;color:#20374c;letter-spacing:.02em}
+.time span{color:var(--orange);padding:0 7px}
+.note{padding:20px 24px;background:#f8fbfd;color:var(--muted);font-size:13px;line-height:1.5}
+.footer{background:#061a30;color:#fff;margin-top:20px}
+.footer-inner{max-width:1180px;margin:auto;padding:18px 34px;display:flex;justify-content:space-between;gap:20px}
+.motto{color:#d8edf8}.copy{color:#6bcaf0}
+@media(max-width:700px){
+ .brand{padding:16px 18px;min-height:auto}.iap-mark{font-size:44px}.sep{height:50px}
+ .iap-copy strong{font-size:16px}.iap-copy span{font-size:11px}.back{font-size:11px;padding:9px}
+ .hero-inner,.main{padding:24px 18px}.hero h1{font-size:27px}.table{grid-template-columns:1fr}
+ .row:nth-child(odd){border-right:0}.num{width:90px}.time{font-size:17px}
+ .footer-inner{padding:16px 18px;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="brand">
+  <div class="iap">
+   <div class="iap-mark">IAP</div><div class="sep"></div>
+   <div class="iap-copy"><strong>Integrált Automatika Program</strong><span>Tanulj! Alkalmazz! Alkoss!</span></div>
+  </div>
+  <a class="back" href="oktato.html">← OKTATÓI FELÜLET</a>
+ </div>
+</header>
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-icon">🔔</div>
+  <div><h1>Csengetési rend</h1><p>A tanítási órák kezdési és befejezési időpontjai • 0–13. óra</p></div>
+ </div>
+</section>
+<main class="main">
+ <section class="panel">
+  <div class="panel-head"><strong>🔔 Napi csengetési rend</strong><span>07:15 – 18:40</span></div>
+  <div class="table">
+   <div class="row"><div class="num">0. óra</div><div class="time">07:15 <span>–</span> 07:55</div></div>
+<div class="row"><div class="num">1. óra</div><div class="time">08:00 <span>–</span> 08:45</div></div>
+<div class="row"><div class="num">2. óra</div><div class="time">08:55 <span>–</span> 09:40</div></div>
+<div class="row"><div class="num">3. óra</div><div class="time">09:50 <span>–</span> 10:35</div></div>
+<div class="row"><div class="num">4. óra</div><div class="time">10:45 <span>–</span> 11:30</div></div>
+<div class="row"><div class="num">5. óra</div><div class="time">11:45 <span>–</span> 12:30</div></div>
+<div class="row"><div class="num">6. óra</div><div class="time">12:40 <span>–</span> 13:25</div></div>
+<div class="row"><div class="num">7. óra</div><div class="time">13:30 <span>–</span> 14:10</div></div>
+<div class="row"><div class="num">8. óra</div><div class="time">14:15 <span>–</span> 14:55</div></div>
+<div class="row"><div class="num">9. óra</div><div class="time">15:00 <span>–</span> 15:40</div></div>
+<div class="row"><div class="num">10. óra</div><div class="time">15:45 <span>–</span> 16:25</div></div>
+<div class="row"><div class="num">11. óra</div><div class="time">16:30 <span>–</span> 17:10</div></div>
+<div class="row"><div class="num">12. óra</div><div class="time">17:15 <span>–</span> 17:55</div></div>
+<div class="row"><div class="num">13. óra</div><div class="time">18:00 <span>–</span> 18:40</div></div>
+  </div>
+  <div class="note">Az oldal az IAP oktatói felületéről közvetlenül megnyitható. A felső „Oktatói felület” gombbal egy lépésben visszatérhetsz a gyűjtőlapra.</div>
+ </section>
+</main>
+<footer class="footer"><div class="footer-inner"><div class="motto">💡 Tanulj! Alkalmazz! Alkoss!</div><div class="copy">© IAP</div></div></footer>
+</body>
+</html>

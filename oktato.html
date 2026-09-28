@@ -12,24 +12,6 @@
 .main{max-width:1380px;margin:auto;padding:34px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;min-height:190px;box-shadow:0 8px 22px rgba(20,55,88,.08);display:flex;flex-direction:column;transition:.18s}.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,55,88,.14);border-color:#9fcde7}.icon{font-size:38px}.card h2{margin:14px 0 8px;color:#0b3c67;font-size:22px}.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.45;flex:1}.go{margin-top:18px;color:#0e70b7;font-size:12px;font-weight:900;letter-spacing:.08em}.card.primary{background:linear-gradient(145deg,#082746,#0d5f98);color:#fff;border-color:#1478bd}.card.primary h2,.card.primary p,.card.primary .go{color:#fff}.card.primary p{color:#d9effa}
 .footer{background:#061a30;color:#fff;margin-top:12px}.footer-inner{max-width:1380px;margin:auto;padding:18px 34px;display:flex;justify-content:space-between;gap:20px;align-items:center}.motto{color:#d8edf8}.copy{color:#6bcaf0}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.brand{min-height:auto;padding:16px 18px}.iap-mark{font-size:48px}.sep{height:54px}.iap-copy strong{font-size:17px}.iap-copy span{font-size:12px}.back{font-size:12px;padding:10px}.hero-inner,.main{padding:25px 18px}.hero h1{font-size:29px}.hero p{font-size:16px}.grid{grid-template-columns:1fr}.footer-inner{padding:16px 18px;flex-direction:column;align-items:flex-start}}
-
-/* Csengetési rend – JavaScript nélküli, stabil lenyitás */
-.bell-details{grid-column:1/-1;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 22px rgba(20,55,88,.08);overflow:hidden}
-.bell-details summary{list-style:none;cursor:pointer;padding:24px;min-height:190px;display:flex;flex-direction:column;background:#fff;transition:.18s}
-.bell-details summary::-webkit-details-marker{display:none}
-.bell-details summary:hover{background:#fafdff}
-.bell-details .icon{font-size:38px}
-.bell-details h2{margin:14px 0 8px;color:#0b3c67;font-size:22px}
-.bell-details p{margin:0;color:var(--muted);font-size:14px;line-height:1.45;flex:1}
-.bell-details .go{margin-top:18px;color:#0e70b7;font-size:12px;font-weight:900;letter-spacing:.08em}
-.bell-details[open] .go::before{content:"BEZÁRÁS ↑";font-size:0}
-.bell-times{display:grid;grid-template-columns:repeat(7,minmax(110px,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
-.bell-time{background:#fff;padding:15px 8px;text-align:center}
-.bell-time b{display:block;color:#0b3c67;margin-bottom:5px}
-.bell-time span{color:var(--muted);font-weight:700}
-@media(max-width:1000px){.bell-times{grid-template-columns:repeat(4,minmax(110px,1fr))}}
-@media(max-width:650px){.bell-times{grid-template-columns:repeat(2,minmax(110px,1fr))}}
-
 </style>
 </head>
 <body>
@@ -38,10 +20,7 @@
 <main class="main"><div class="grid">
 <a class="card primary" href="oktatoi-rendszer.html"><span class="icon">📚</span><h2>Tanítási rendszer</h2><p>Évfolyamok, tantárgyak, heti tananyagok és az IAP Vizsgaközpont elérése.</p><span class="go">MEGNYITÁS →</span></a>
 <a class="card" href="orarend.html"><span class="icon">📅</span><h2>Órarend</h2><p>Az oktatói órarend és az aktuális tanítási időpontok áttekintése.</p><span class="go">MEGNYITÁS →</span></a>
-<details class="bell-details">
-<summary><span class="icon">🔔</span><h2>Csengetési rend</h2><p>A tanítási órák kezdési és befejezési időpontjai. Kattints a megjelenítéshez.</p><span class="go">MEGNYITÁS ↓</span></summary>
-<div class="bell-times"><div class="bell-time"><b>0. óra</b><span>07:15–07:55</span></div><div class="bell-time"><b>1. óra</b><span>08:00–08:45</span></div><div class="bell-time"><b>2. óra</b><span>08:55–09:40</span></div><div class="bell-time"><b>3. óra</b><span>09:50–10:35</span></div><div class="bell-time"><b>4. óra</b><span>10:45–11:30</span></div><div class="bell-time"><b>5. óra</b><span>11:45–12:30</span></div><div class="bell-time"><b>6. óra</b><span>12:40–13:25</span></div><div class="bell-time"><b>7. óra</b><span>13:30–14:10</span></div><div class="bell-time"><b>8. óra</b><span>14:15–14:55</span></div><div class="bell-time"><b>9. óra</b><span>15:00–15:40</span></div><div class="bell-time"><b>10. óra</b><span>15:45–16:25</span></div><div class="bell-time"><b>11. óra</b><span>16:30–17:10</span></div><div class="bell-time"><b>12. óra</b><span>17:15–17:55</span></div><div class="bell-time"><b>13. óra</b><span>18:00–18:40</span></div></div>
-</details>
+<a class="card" href="csengetesi-rend.html"><span class="icon">🔔</span><h2>Csengetési rend</h2><p>A tanítási órák kezdési és befejezési időpontjai.</p><span class="go">MEGNYITÁS →</span></a>
 <a class="card" href="eszkoztar.html"><span class="icon">🧰</span><h2>IAP Eszköztár</h2><p>Az oktatást és a tananyagkészítést segítő IAP eszközök.</p><span class="go">MEGNYITÁS →</span></a>
 <a class="card" href="https://moodle.dunaferriskola.hu/" target="_blank" rel="noopener noreferrer"><span class="icon">🎓</span><h2>Moodle</h2><p>A Dunaferr oktatási portál kurzusainak és tesztjeinek elérése.</p><span class="go">MOODLE MEGNYITÁSA ↗</span></a>
 <a class="card" href="statusz.html"><span class="icon">📊</span><h2>IAP státusz</h2><p>Az IAP fejlesztési és tartalmi állapotának áttekintése.</p><span class="go">MEGNYITÁS →</span></a>
