@@ -12,6 +12,20 @@
 .main{max-width:1380px;margin:auto;padding:34px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;min-height:190px;box-shadow:0 8px 22px rgba(20,55,88,.08);display:flex;flex-direction:column;transition:.18s}.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,55,88,.14);border-color:#9fcde7}.icon{font-size:38px}.card h2{margin:14px 0 8px;color:#0b3c67;font-size:22px}.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.45;flex:1}.go{margin-top:18px;color:#0e70b7;font-size:12px;font-weight:900;letter-spacing:.08em}.card.primary{background:linear-gradient(145deg,#082746,#0d5f98);color:#fff;border-color:#1478bd}.card.primary h2,.card.primary p,.card.primary .go{color:#fff}.card.primary p{color:#d9effa}
 .footer{background:#061a30;color:#fff;margin-top:12px}.footer-inner{max-width:1380px;margin:auto;padding:18px 34px;display:flex;justify-content:space-between;gap:20px;align-items:center}.motto{color:#d8edf8}.copy{color:#6bcaf0}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.brand{min-height:auto;padding:16px 18px}.iap-mark{font-size:48px}.sep{height:54px}.iap-copy strong{font-size:17px}.iap-copy span{font-size:12px}.back{font-size:12px;padding:10px}.hero-inner,.main{padding:25px 18px}.hero h1{font-size:29px}.hero p{font-size:16px}.grid{grid-template-columns:1fr}.footer-inner{padding:16px 18px;flex-direction:column;align-items:flex-start}}
+
+.bell-panel{display:none;margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 22px rgba(20,55,88,.08);overflow:hidden}
+.bell-panel.open{display:block}
+.bell-head{background:linear-gradient(120deg,#082746,#0d5f98);color:#fff;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.bell-head h2{margin:0;font-size:22px}
+.bell-close{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.08);color:#fff;border-radius:8px;padding:8px 12px;font-weight:800;cursor:pointer}
+.bell-table{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:1px;background:var(--line)}
+.bell-item{background:#fff;padding:15px 10px;text-align:center}
+.bell-item b{display:block;color:#0b3c67;margin-bottom:5px}
+.bell-item span{color:var(--muted);font-weight:700}
+button.card{width:100%;font:inherit;text-align:left;cursor:pointer}
+@media(max-width:1000px){.bell-table{grid-template-columns:repeat(4,minmax(120px,1fr))}}
+@media(max-width:650px){.bell-table{grid-template-columns:repeat(2,minmax(120px,1fr))}}
+
 </style>
 </head>
 <body>
@@ -20,11 +34,43 @@
 <main class="main"><div class="grid">
 <a class="card primary" href="oktatoi-rendszer.html"><span class="icon">📚</span><h2>Tanítási rendszer</h2><p>Évfolyamok, tantárgyak, heti tananyagok és az IAP Vizsgaközpont elérése.</p><span class="go">MEGNYITÁS →</span></a>
 <a class="card" href="orarend.html"><span class="icon">📅</span><h2>Órarend</h2><p>Az oktatói órarend és az aktuális tanítási időpontok áttekintése.</p><span class="go">MEGNYITÁS →</span></a>
-<a class="card" href="csengetesi-rend.html"><span class="icon">🔔</span><h2>Csengetési rend</h2><p>A tanítási órák kezdési és befejezési időpontjai.</p><span class="go">MEGNYITÁS →</span></a>
+<button type="button" class="card" id="bellButton" onclick="toggleBell()"><span class="icon">🔔</span><h2>Csengetési rend</h2><p>A tanítási órák kezdési és befejezési időpontjai.</p><span class="go" id="bellGo">MEGNYITÁS ↓</span></button>
 <a class="card" href="eszkoztar.html"><span class="icon">🧰</span><h2>IAP Eszköztár</h2><p>Az oktatást és a tananyagkészítést segítő IAP eszközök.</p><span class="go">MEGNYITÁS →</span></a>
 <a class="card" href="https://moodle.dunaferriskola.hu/" target="_blank" rel="noopener noreferrer"><span class="icon">🎓</span><h2>Moodle</h2><p>A Dunaferr oktatási portál kurzusainak és tesztjeinek elérése.</p><span class="go">MOODLE MEGNYITÁSA ↗</span></a>
 <a class="card" href="statusz.html"><span class="icon">📊</span><h2>IAP státusz</h2><p>Az IAP fejlesztési és tartalmi állapotának áttekintése.</p><span class="go">MEGNYITÁS →</span></a>
 <a class="card" href="https://dvszc-dunaferr.e-kreta.hu" target="_blank" rel="noopener noreferrer"><span class="icon">🗂️</span><h2>KRÉTA</h2><p>A KRÉTA elektronikus napló és adminisztrációs felület megnyitása.</p><span class="go">KRÉTA MEGNYITÁSA ↗</span></a>
-</div></main>
+</div>
+<section class="bell-panel" id="bellPanel" aria-hidden="true">
+  <div class="bell-head">
+    <h2>🔔 Csengetési rend</h2>
+    <button type="button" class="bell-close" onclick="toggleBell()">BEZÁRÁS ↑</button>
+  </div>
+  <div class="bell-table" id="bellTable"></div>
+</section>
+</main>
 <footer class="footer"><div class="footer-inner"><div class="motto">💡 Tanulj! Alkalmazz! Alkoss!</div><div class="copy">© IAP</div></div></footer>
+
+<script>
+const bells=[
+['0. óra','07:15–07:55'],['1. óra','08:00–08:45'],['2. óra','08:55–09:40'],
+['3. óra','09:50–10:35'],['4. óra','10:45–11:30'],['5. óra','11:45–12:30'],
+['6. óra','12:40–13:25'],['7. óra','13:30–14:10'],['8. óra','14:15–14:55'],
+['9. óra','15:00–15:40'],['10. óra','15:45–16:25'],['11. óra','16:30–17:10'],
+['12. óra','17:15–17:55'],['13. óra','18:00–18:40']
+];
+document.getElementById('bellTable').innerHTML=bells.map(x =>
+  `<div class="bell-item"><b>${x[0]}</b><span>${x[1]}</span></div>`
+).join('');
+
+function toggleBell(){
+  const panel=document.getElementById('bellPanel');
+  const go=document.getElementById('bellGo');
+  const opening=!panel.classList.contains('open');
+  panel.classList.toggle('open',opening);
+  panel.setAttribute('aria-hidden', opening ? 'false' : 'true');
+  go.textContent=opening ? 'BEZÁRÁS ↑' : 'MEGNYITÁS ↓';
+  if(opening) panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+
 </body></html>
