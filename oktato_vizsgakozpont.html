@@ -28,6 +28,11 @@
 .exam-note{margin:14px 2px 0;color:#66798a;font-size:12px;text-align:center}
 @media(max-width:900px){.exam-center{padding:22px 14px}.exam-center-grid{grid-template-columns:1fr}.exam-center-head{align-items:flex-start;flex-direction:column}.exam-center-head h2{font-size:24px}}
 .exam-archive{margin-top:16px;border:1px solid #cfe0eb;border-radius:12px;background:#fff;box-shadow:0 5px 16px rgba(20,55,88,.07);overflow:hidden}.exam-archive summary{list-style:none;cursor:pointer;padding:15px 18px;background:linear-gradient(135deg,#0b5f96,#1487c9);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:space-between;gap:12px}.exam-archive summary::-webkit-details-marker{display:none}.exam-archive summary:after{content:"▼";font-size:12px}.exam-archive[open] summary:after{content:"▲"}.exam-archive-list{padding:14px;display:grid;gap:10px}.exam-archive-empty{margin:0;padding:12px;color:#66798a;text-align:center;font-size:13px}.exam-card.archived{min-height:0;background:#f7fafc}.exam-card.archived .exam-btn{background:linear-gradient(135deg,#526d82,#6e8799)}.exam-date{display:block;margin:2px 0 10px;color:#66798a;font-size:12px;font-weight:800}
+
+/* Aznapi vizsga automatikus kiemelése */
+.exam-card.exam-today{position:relative;background:linear-gradient(135deg,#fff7d6,#ffe49a);border:3px solid #f0a500;box-shadow:0 10px 26px rgba(240,165,0,.30);transform:translateY(-2px)}
+.exam-card.exam-today::before{content:"MAI VIZSGA";position:absolute;top:10px;right:10px;background:#d97706;color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em;padding:6px 9px;border-radius:999px;box-shadow:0 3px 8px rgba(0,0,0,.15)}
+.exam-card.exam-today h3{color:#8a4b00}.exam-card.exam-today .exam-grade{color:#b45f00}.exam-card.exam-today .exam-date{color:#8a4b00}.exam-card.exam-today .exam-btn{background:linear-gradient(135deg,#d97706,#f0a500);box-shadow:0 5px 12px rgba(217,119,6,.25)}
 </style>
 </head><body>
 <header class="topbar"><div class="brand-row"><div class="dunaferr-brand"><img src="dunaferr_logo.png" alt="DSZC Dunaferr logó"><div class="dunaferr-text"><div class="dszc">DSZC</div><div class="name">DUNAFERR</div><div class="sub">SZAKKÉPZÉSI CENTRUM</div></div></div><div class="iap-brand"><div class="iap-mark">IAP</div><div class="iap-sep"></div><div class="iap-copy"><strong>Integrált<br>Automatika<br>Program</strong><span>Tanulj! Alkalmazz! Alkoss!</span></div></div><div class="iap-small-logo-wrap"><img src="iap_logo.png" alt="IAP – Integrált Automatika Program logó" class="iap-small-logo"></div></div></header>
@@ -102,7 +107,7 @@
  document.querySelectorAll('.exam-center-grid .exam-card[data-exam-date]').forEach(card=>{
    const raw=card.getAttribute('data-exam-date'); if(!raw)return;
    const d=new Date(raw+'T00:00:00');
-   if(!Number.isNaN(d.getTime())&&d<today){card.classList.add('archived');archive.appendChild(card);}
+   if(Number.isNaN(d.getTime()))return; if(d.getTime()===today.getTime()){card.classList.add('exam-today');} else if(d<today){card.classList.add('archived');archive.appendChild(card);}
  });
  const n=archive.querySelectorAll('.exam-card').length;
  if(empty)empty.style.display=n?'none':'block';
