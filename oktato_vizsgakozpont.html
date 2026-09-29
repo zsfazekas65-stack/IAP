@@ -65,10 +65,10 @@
         <p>Az öthetes tanulási szakaszhoz tartozó Moodle-vizsga / gyakorló teszt.</p>
         <a class="exam-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1648" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a>
       </article>
-      <article class="exam-card exam-today" data-exam-status="active" data-exam-date="2026-09-29">
+      <article class="exam-card" data-exam-status="active" data-exam-date="2026-09-29">
         <span class="exam-grade">12. évfolyam</span>
         <h3>PLC alapismeretek</h3>
-        <span class="exam-date">Vizsga: 2026. szeptember 29. – MA</span>
+        <span class="exam-date">Vizsga: 2026. szeptember 29.</span>
         <p>Moodle gyakorló teszt és vizsgafelület.</p>
         <a class="exam-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1661" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a>
       </article>
@@ -100,19 +100,35 @@
 <script>const mt=document.getElementById('iapMobileToggle'),mp=document.getElementById('iapMobilePanel');if(mt&&mp){mt.addEventListener('click',()=>{const o=mp.classList.toggle('open');mt.setAttribute('aria-expanded',o?'true':'false');mt.textContent=o?'✕ BEZÁRÁS':'☰ MENÜ'});mp.addEventListener('click',e=>{if(e.target.closest('a')){mp.classList.remove('open');mt.setAttribute('aria-expanded','false');mt.textContent='☰ MENÜ'}})}</script>
 <script>
 (function(){
- const today=new Date(); today.setHours(0,0,0,0);
- const archive=document.getElementById('exam-archive-list');
- const empty=document.getElementById('exam-archive-empty');
- const count=document.getElementById('archive-count');
- if(!archive)return;
- document.querySelectorAll('.exam-center-grid .exam-card[data-exam-date]').forEach(card=>{
-   const raw=card.getAttribute('data-exam-date'); if(!raw)return;
-   const d=new Date(raw+'T00:00:00');
-   if(Number.isNaN(d.getTime()))return; if(d.getTime()===today.getTime()){card.classList.add('exam-today');} else if(d<today){card.classList.add('archived');archive.appendChild(card);}
- });
- const n=archive.querySelectorAll('.exam-card').length;
- if(empty)empty.style.display=n?'none':'block';
- if(count)count.textContent=n+' vizsga';
+  const archive = document.getElementById('exam-archive-list');
+  const empty = document.getElementById('exam-archive-empty');
+  const count = document.getElementById('archive-count');
+  if (!archive) return;
+
+  // Helyi dátum YYYY-MM-DD alakban – nincs időzóna miatti elcsúszás.
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const today = `${yyyy}-${mm}-${dd}`;
+
+  document.querySelectorAll('.exam-center-grid .exam-card[data-exam-date]').forEach(card => {
+    const examDate = (card.dataset.examDate || '').trim();
+
+    // Minden betöltéskor tiszta állapotból indul.
+    card.classList.remove('exam-today', 'archived');
+
+    if (examDate === today) {
+      card.classList.add('exam-today');
+    } else if (examDate < today) {
+      card.classList.add('archived');
+      archive.appendChild(card);
+    }
+  });
+
+  const n = archive.querySelectorAll('.exam-card').length;
+  if (empty) empty.style.display = n ? 'none' : 'block';
+  if (count) count.textContent = n + ' vizsga';
 })();
 </script>
 </body></html>
