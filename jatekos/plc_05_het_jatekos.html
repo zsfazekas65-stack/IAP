@@ -1,63 +1,43 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PLC 5. hét – PLC nyomozó | IAP</title>
+<!DOCTYPE html><html lang="hu"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLC 5. hét – Nyomozó | IAP</title>
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:#eef3f8;color:#172433}
-header{background:linear-gradient(135deg,#092f67,#0d47a1 55%,#6a1b9a);color:white;padding:34px 18px;text-align:center}
-header h1{margin:0 0 8px;font-size:2.15rem} header p{margin:0;opacity:.94}
-main{max-width:980px;margin:24px auto;padding:0 16px 44px}
-.back{display:inline-block;margin-bottom:18px;background:#0d47a1;color:white;text-decoration:none;padding:11px 17px;border-radius:999px;font-weight:800}
-.intro,.case{background:white;border-radius:18px;box-shadow:0 7px 22px #18334d20;margin-bottom:20px;overflow:hidden}
-.intro{padding:22px;border-left:7px solid #7b1fa2}.intro h2{margin-top:0;color:#6a1b9a}
-.case-head{padding:15px 20px;background:#e9f2ff;color:#0d47a1;font-weight:900;font-size:1.08rem}
-.case-body{padding:20px}.scene{font-size:1.12rem;font-weight:700;line-height:1.55}
-.question{margin:16px 0;padding:14px 16px;background:#fff8e1;border-left:5px solid #f9a825;border-radius:9px;font-weight:800}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
-button{border:0;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer;color:white;font-size:.95rem}
-.hintBtn{background:#ef6c00}.answerBtn{background:#7b1fa2}
-.hint,.answer{display:none;margin-top:14px;padding:15px 16px;border-radius:11px;line-height:1.55}
-.hint{background:#fff3e0;border-left:5px solid #ef6c00}.answer{background:#e8f5e9;border-left:5px solid #2e7d32}
-.lesson{margin-top:11px;padding-top:10px;border-top:1px dashed #9bb0bf;font-weight:700}
-footer{text-align:center;background:#102a43;color:white;padding:19px}
-@media(max-width:600px){header h1{font-size:1.7rem}.actions button{width:100%}}
-</style>
-</head>
-<body>
-<header><h1>🕵️ PLC nyomozó</h1><p>12. évfolyam • 5. hét • Találd meg a hibát, mielőtt megnézed a megfejtést!</p></header>
-<main>
-<a class="back" href="../plc.html#blokk1">← Vissza a PLC 5. hetéhez</a>
-<section class="intro">
-<h2>🎮 Hogyan játssz?</h2>
-<p>Képzeld el, hogy te állsz a gép mellett. Először mondd ki, <strong>mit vizsgálnál meg</strong>. Ha elakadsz, kérj egy kis segítséget. A megfejtést csak utána nyisd ki.</p>
-<p><strong>Fontos:</strong> nem a gyors válasz a cél, hanem a hibakeresési gondolkodás.</p>
-</section>
-<div id="cases"></div>
-</main>
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:#edf3f8;color:#172433}header{background:linear-gradient(135deg,#082b60,#0d47a1 55%,#6a1b9a);color:#fff;padding:30px 16px;text-align:center}header h1{margin:0 0 7px}main{max-width:850px;margin:22px auto;padding:0 15px 45px}.back{display:inline-block;background:#0d47a1;color:#fff;text-decoration:none;padding:10px 15px;border-radius:999px;font-weight:800;margin-bottom:16px}.panel{background:#fff;border-radius:18px;box-shadow:0 8px 25px #17324c20;overflow:hidden}.top{padding:15px 20px;background:#e8f1ff;color:#0d47a1;font-weight:900}.body{padding:22px}.bubble{padding:16px 18px;border-radius:15px;margin:12px 0;line-height:1.55}.detective{background:#e8f1ff;border-left:5px solid #1976d2}.measure{background:#fff8e1;border-left:5px solid #f9a825}.feedback{background:#f3e5f5;border-left:5px solid #7b1fa2}.success{background:#e8f5e9;border-left:5px solid #2e7d32}.q{font-size:1.12rem;font-weight:800;margin:18px 0 12px}.choices{display:grid;gap:10px}.choices button,.next,.restart{border:0;border-radius:11px;padding:13px 15px;font-weight:800;cursor:pointer;text-align:left;font-size:.96rem}.choices button{background:#f1f5f9;color:#17324c;border:2px solid #d8e2ec}.choices button:hover{border-color:#7b1fa2;background:#faf5ff}.next,.restart{background:#7b1fa2;color:#fff;text-align:center;margin-top:15px}.progress{height:8px;background:#dce6ef}.bar{height:100%;background:#7b1fa2;transition:.3s}.casepick{display:grid;gap:10px}.casepick button{padding:14px;border:0;border-radius:12px;background:#eef4fb;color:#0d47a1;font-weight:900;cursor:pointer;text-align:left}footer{text-align:center;background:#102a43;color:#fff;padding:18px}@media(max-width:600px){.body{padding:16px}}
+</style></head><body>
+<header><h1>🕵️ PLC nyomozó</h1><p>12. évfolyam • 5. hét • Ne találgass – nyomozz!</p></header>
+<main><a class="back" href="../plc.html#blokk1">← Vissza a PLC 5. hetéhez</a><section class="panel"><div class="progress"><div class="bar" id="bar"></div></div><div class="top" id="title">PLC nyomozó</div><div class="body" id="game"></div></section></main>
 <footer>IAP – Integrált Automatika Program • Tanulj! Alkalmazz! Alkoss!</footer>
 <script>
 const cases=[
-["A titokzatos 24 volt","A műszerrel 24 V-ot mérsz a PLC bemenetén, mégsem világít a bemeneti LED.","Ha ott a 24 V, akkor biztosan jó a bemenet?","Ne csak a feszültséget nézd. Gondolj arra is, hogy van-e zárt áramút.","A közös pont vagy a visszavezetés hibás lehet. A 24 V mérése önmagában nem bizonyítja, hogy a PLC bemeneti áramköre ténylegesen áramot kap.","A PLC-bemenet működéséhez nem elég egy „szép” feszültségérték: helyes referencia és áramút is kell."],
-["PNP vagy varázslat?","A háromvezetékes PNP érzékelő LED-je világít, de a PLC bemenete néma.","Mit kapcsol a PNP érzékelő a kimenetére?","A PNP-nél keresd a pozitív oldalt, majd nézd meg a PLC közös pontját.","A PNP érzékelő pozitív feszültséget kapcsol a PLC bemenetére. Ha a bemeneti közös pont/polaritás nincs ehhez megfelelően bekötve, a PLC nem fogja érzékelni.","PNP: leegyszerűsítve „pozitívra kapcsol”."],
-["Az NPN, amit senki sem hall","Az NPN érzékelő működik, a saját LED-je jelez, a PLC mégsem érzékeli.","Mihez képest kapcsol az NPN?","Most ne a +24 V felől indulj. Gondolj a 0 V-ra és a közös pontra.","Az NPN érzékelő a negatív, 0 V-os oldal felé kapcsol. Ha a PLC bemeneti kialakítása vagy közös pontja nem illeszkedik ehhez, nem jön létre megfelelő bemeneti áram.","NPN: leegyszerűsítve „negatívra kapcsol”."],
-["A motor, amelyik nem hallgat a PLC-re","A program szerint Q1 = 0. A PLC kimeneti LED-je kialszik. A motor mégis tovább működik.","Programhiba vagy hardverhiba? Mit mérnél meg?","Relés PLC-kimenetre gondolj. Mi történhet sok kapcsolás vagy nagy terhelés után az érintkezővel?","A relékimenet érintkezője összeragadhatott. A PLC logikailag kikapcsolt, de a fizikai érintkező zárva maradt.","A kijelzett logikai állapot és a valós villamos állapot nem mindig ugyanaz. Mérni is kell."],
-["A vészgomb csapdája","A vészleállító be van kötve egy normál PLC-bemenetre. A program figyeli, és veszély esetén kikapcsolja a kimeneteket.","Akkor ez már biztonságos vészleállítás?","Mi történik, ha maga a PLC, a program vagy egy kimenet hibásodik meg?","A biztonsági funkciót nem szabad kizárólag a normál PLC-programra bízni. A gép kockázatértékelésének megfelelő, erre tervezett biztonsági áramkör/biztonsági vezérlés szükséges.","A vészleállításnál a biztonság nem egy egyszerű programutasítás."],
-["Világít a START, mégsem indul","Megnyomod a START gombot. A PLC-n az egyik bemeneti LED szépen világít, a programban a START feltétel mégsem lesz igaz.","Mi az első dolog, amit összehasonlítanál?","Nézd meg a fizikai kapocsszámot és a programban használt bemeneti címet.","Lehet, hogy a nyomógomb például I2-re van kötve, miközben a program I1-et vizsgálja.","A hibakeresés egyik alapja: fizikai bemenet ↔ PLC-cím ↔ programváltozó egyezzen."],
-["A megszakadt STOP vezeték","A STOP nyomógomb egyik vezetéke elszakad. Azt szeretnénk, hogy a gép ilyenkor ne tudjon tovább működni.","NO vagy NC érintkezőt választanál a STOP jelhez? Miért?","Olyan megoldást keress, amelynél a vezetékszakadás hasonló állapotot okoz, mint a STOP megnyomása.","A STOP jelhez tipikusan NC elvet alkalmazunk: normál állapotban folytonos az áramkör, megszakadáskor a jel eltűnik.","Ez a hibára biztonságos gondolkodás egyik egyszerű példája."],
-["Villog a szenzor, nyugodt a PLC","Egy érzékelő LED-je nagyon röviden fel-felvillan, de a PLC bemeneti állapota nem változik.","Hová tűnhetnek a nagyon rövid impulzusok?","A PLC-bemeneteknél lehet időbeli szűrés.","A bemeneti szűrő kiszűrheti a túl rövid impulzusokat, ezért a szenzoron látható jel nem feltétlenül jelenik meg a program számára.","A bemeneti szűrés zaj ellen hasznos, de gyors jeleknél számolni kell vele."],
-["Bemenet van, kimenet nincs","A megfelelő bemeneti LED világít. A kimenet mégsem kapcsol.","Mielőtt vezetéket bontasz: hol néznél körül?","Reteszelés, tiltás, üzemmód, programfeltétel, kimeneti cím.","A bemenet után a programlogikát kell követni: teljesül-e minden feltétel, nincs-e tiltás vagy reteszelés, és valóban a megfelelő kimenetet vezérli-e a program.","A jó hibakeresés lépésről lépésre követi a jel útját."],
-["A hazudós kimeneti LED","A PLC Q1 LED-je világít. A szerelő azt mondja: „A PLC jó, tehát a motoron is ott a feszültség.”","Elfogadnád ezt mérés nélkül?","Mi van a PLC LED-je és a motor között?","Nem. A kimeneti LED a PLC vezérlési állapotáról ad információt. A külső áramkörben lehet hibás biztosító, vezeték, kontaktor, tápellátás vagy csatlakozás.","A LED támpont, nem végső bizonyíték. A terepi oldalt műszerrel is ellenőrizni kell."]
+{title:"1. eset – Az érzékelő lát, a PLC nem",steps:[
+{t:"A gép eddig hibátlanul működött. Az induktív érzékelő LED-je felvillan, amikor a fémdarab elé kerül. A PLC bemeneti LED-je viszont sötét marad.",m:"Mérés: barna vezeték = +24 V, kék = 0 V, fekete vezetéken érzékeléskor megjelenik a jel.",q:"Az érzékelő tehát működik. Mi az első gyanúd?",a:[["Programhiba","🤔 Biztos? A PLC bemeneti LED-je sem világít. Ha a jel még a PLC-be sem jut be, a program egyelőre ártatlannak tűnik.",0],["A bemenet közös pontja / polaritása","Jó nyomon jársz. Nézzük meg a PLC bemeneti közös pontját.",1],["Az érzékelő rossz","Az érzékelő saját LED-je és a fekete vezetéken mért jel ezt nem támasztja alá. Keressük a hibát közelebb a PLC-hez.",0]]},
+{t:"Megnézed a bekötést. Kiderül, hogy az érzékelő NPN típusú.",m:"A PLC bemeneti közös pontja 0 V-ra van kötve.",q:"Mi a gond?",a:[["Semmi, ez így jó","Ez a csapda. Gondold végig: az NPN melyik potenciál felé kapcsol?",0],["Az NPN negatívra kapcsol, ezért ehhez a bemeneti bekötéshez nem illeszkedik","🎯 Megvan. Az NPN kimenet a 0 V felé kapcsol; a PLC bemeneti közös pontját/bekötését ehhez kell illeszteni.",2],["A +24 V-os táp túl kicsi","A 24 V itt megfelelő. Nem a feszültség nagysága a nyom.",0]]}
+],lesson:"NPN: negatív felé kapcsol. PNP: pozitív felé kapcsol. Hibakereséskor mindig együtt vizsgáld az érzékelő típusát és a PLC bemeneti közös pontját."},
+{title:"2. eset – A motor, amelyik nem akar leállni",steps:[
+{t:"A kezelő STOP-ot nyom. A program szerint Q1 = 0, a PLC Q1 LED-je kialszik, de a motor tovább forog.",m:"A PLC tehát logikailag kikapcsolta a kimenetet.",q:"Hol keresnéd először a hibát?",a:[["Átírom a PLC-programot","A program már 0-ra állította Q1-et. Előbb nézzük meg, hogy a valós kimenet követte-e.",0],["Megmérem a fizikai kimenetet / kontaktort","Pontosan. A logikai állapot után a fizikai áramutat kell követni.",1],["Kicserélem a STOP gombot","A PLC már érzékelte a leállítási parancsot, ezért most nem ez a legerősebb gyanú.",0]]},
+{t:"Méréskor azt találod, hogy a relés PLC-kimenet kapcsain a kontaktus kikapcsolt állapotban is zárt marad.",m:"A PLC LED-je sötét, de az érintkező továbbra is vezet.",q:"Mi történt?",a:[["Összeragadt a relékimenet érintkezője","🎯 Igen. A logikai 0 nem tudta fizikailag megszakítani az áramkört.",2],["A bemenet túl gyors","Ez most a kimeneti oldalon lévő fizikai hiba.",0],["NPN/PNP probléma","Az NPN/PNP a bemeneti érzékelőknél lenne nyom. Itt relékimenetet vizsgálunk.",0]]}
+],lesson:"A PLC kimeneti LED-je nem bizonyítja a terepi áramkör állapotát. A hibakereséshez mérni kell a fizikai kimenetet is."},
+{title:"3. eset – A megszakadt STOP vezeték",steps:[
+{t:"Egy gépen a STOP nyomógomb NO érintkezővel van bekötve. A gép működés közben rendben leáll, ha megnyomod.",m:"Egy nap azonban elszakad a STOP egyik vezetéke.",q:"Mi a veszély?",a:[["Semmi, a PLC majd észreveszi","Ha az NO kör eleve nyitott, a vezetékszakadás ugyanolyan állapotnak látszhat, mint a normál helyzet.",0],["A STOP megnyomása sem tud jelet adni","🎯 Így van. A szakadás rejtve maradhat, és a STOP működésképtelenné válik.",1],["A motor gyorsabban forog","A vezetékszakadás nem ettől változtatná a motor fordulatszámát.",0]]},
+{t:"Újratervezed a STOP jelét.",m:"A cél: a vezetékszakadás is jelvesztést okozzon.",q:"Melyik érintkezési elv célszerű?",a:[["NC – nyugalomban zárt","🎯 Igen. Normál állapotban folytonos a kör; STOP vagy szakadás esetén megszűnik a jel.",2],["NO – nyugalomban nyitott","Pont ezt a hibát szeretnénk elkerülni.",0],["Mindegy","Hibafelismerés szempontjából nagyon nem mindegy.",0]]}
+],lesson:"A STOP funkciónál az NC elv segít a vezetékszakadás felismerésében. Biztonsági funkcióknál mindig az adott gép előírt biztonsági megoldása az irányadó."},
+{title:"4. eset – A villogó érzékelő",steps:[
+{t:"Egy gyorsan mozgó alkatrész előtt az érzékelő LED-je egy pillanatra felvillan. A PLC online nézetében az I1 viszont végig 0 marad.",m:"A kábelezés jó, az érzékelő kimenetén oszcilloszkóppal rövid impulzus látható.",q:"Hová tűnhet a jel?",a:[["A PLC bemeneti szűrője kiszűri","Jó nyom. Nézzük meg az impulzus idejét.",1],["Biztosan rossz az érzékelő","Az oszcilloszkóp szerint valódi kimeneti impulzust ad.",0],["A motor reléje összeragadt","Ez egy bemeneti jelenség; a motorrelé nem magyarázza az eltűnő I1 jelet.",0]]},
+{t:"Az impulzus 2 ms hosszú.",m:"A PLC bemeneti szűrésének beállított ideje 10 ms.",q:"Mi a következtetés?",a:[["A 2 ms-os jel túl rövid, a PLC kiszűri","🎯 Pontosan. A jel fizikailag létezik, de a bemeneti szűrő miatt nem jut el logikai eseményként a programhoz.",2],["A PLC túl gyors","Éppen ellenkezőleg: a beállított szűrés hosszabb a jel időtartamánál.",0],["24 V helyett 230 V kell","Nem. PLC digitális bemenetnél ez veszélyes és hibás következtetés lenne.",0]]}
+],lesson:"Gyors jeleknél nemcsak a feszültségszint, hanem az impulzus időtartama és a bemeneti szűrés is számít."},
+{title:"5. eset – Világít a START, mégsem indul",steps:[
+{t:"Megnyomod a START gombot. A PLC egyik bemeneti LED-je világít, de a programban a START kontaktus nem vált át.",m:"A terepi jel tehát eljutott valamelyik PLC-bemenetre.",q:"Mit ellenőrzöl először?",a:[["A fizikai bemenet és a program címe egyezik-e","🎯 Ez a legerősebb első ellenőrzés.",1],["A motor csapágyát","Még a program START feltétele sem változik, ezért előbb maradjunk a jel útján.",0],["A hálózati 230 V frekvenciáját","Ez nem magyarázza, hogy a program miért nem látja a START jelet.",0]]},
+{t:"A nyomógomb fizikailag I2-re van kötve.",m:"A programban a START érintkező címe I1.",q:"Mi a hiba?",a:[["Címzési hiba","🎯 Megvan. A hardver I2-t kapcsol, a program viszont I1-et figyel.",2],["Rossz a PLC tápegysége","A PLC működik és I2 LED-je jelez; a nyom a címzés.",0],["Összeragadt a kimenet","Még a START feltételnél járunk, nem a kimenetnél.",0]]}
+],lesson:"Mindig kövesd végig a jel útját: érzékelő/nyomógomb → fizikai kapocs → PLC-cím → programfeltétel."},
+{title:"6. eset – A vészgomb, ami csak a programnak szól",steps:[
+{t:"A vészleállító egy normál PLC-bemenetre van kötve. A programban egy kontaktus lekapcsolja Q1-et.",m:"Próbán működik: megnyomod, a motor leáll.",q:"Kijelenthetjük, hogy ezzel kész a biztonsági funkció?",a:[["Igen, mert a próba sikerült","A próba csak azt mutatja, hogy normál működésben reagál. Mi történik egy PLC-, program- vagy kimeneti hiba esetén?",0],["Nem, a biztonsági funkcióhoz megfelelő, erre tervezett biztonsági megoldás kell","🎯 Ez a helyes irány.",1],["Igen, ha Q1 LED kialszik","A LED nem bizonyítja sem a fizikai lekapcsolást, sem a biztonsági funkció megfelelőségét.",0]]},
+{t:"Tegyük fel, hogy a normál PLC relékimenetének érintkezője összeragad.",m:"A program Q1=0-t ír, de a fizikai érintkező zárt marad.",q:"Mit bizonyít ez az eset?",a:[["A biztonságot nem szabad kizárólag a normál PLC-programra bízni","🎯 Pontosan. A biztonsági funkciót a kockázatnak és az előírásoknak megfelelő biztonsági rendszerrel kell megvalósítani.",2],["A STOP gomb legyen NO","Nem. Ez nem oldaná meg a biztonsági vezérlés alapvető problémáját.",0],["Az NPN jobb, mint a PNP","Ez teljesen más kérdéskör.",0]]}
+],lesson:"A vészleállítás biztonsági funkció. Nem egyszerű PLC-programozási feladat; a gép kockázatértékelésének és vonatkozó biztonsági követelményeinek megfelelő kialakítás szükséges."}
 ];
-const root=document.getElementById("cases");
-cases.forEach((c,i)=>{
- const s=document.createElement("section"); s.className="case";
- s.innerHTML='<div class="case-head">🔎 '+(i+1)+'. ügy – '+c[0]+'</div><div class="case-body"><div class="scene">'+c[1]+'</div><div class="question">❓ '+c[2]+'</div><div class="actions"><button class="hintBtn">💡 Kérek egy segítséget</button><button class="answerBtn">🕵️ Mutasd a megfejtést</button></div><div class="hint"><strong>Nyom:</strong> '+c[3]+'</div><div class="answer"><strong>Megfejtés:</strong> '+c[4]+'<div class="lesson">🎓 Tanulság: '+c[5]+'</div></div></div>';
- const hb=s.querySelector(".hintBtn"), ab=s.querySelector(".answerBtn"), h=s.querySelector(".hint"), a=s.querySelector(".answer");
- hb.onclick=()=>h.style.display=h.style.display==="block"?"none":"block";
- ab.onclick=()=>a.style.display=a.style.display==="block"?"none":"block";
- root.appendChild(s);
-});
-</script>
-</body></html>
+let ci=-1,si=0;
+const game=document.getElementById("game"),title=document.getElementById("title"),bar=document.getElementById("bar");
+function menu(){ci=-1;bar.style.width="0";title.textContent="🕵️ Válassz egy ügyet";game.innerHTML='<div class="bubble detective"><b>Nyomozó:</b> Ma te vagy a hibakereső. Nem adom oda előre a megoldást. Minden döntésed után kapsz egy új nyomot.</div><div class="casepick">'+cases.map((c,i)=>'<button onclick="start('+i+')">🔎 '+c.title+'</button>').join("")+'</div>'}
+function start(i){ci=i;si=0;render()}
+function render(){let c=cases[ci],s=c.steps[si];title.textContent="🔎 "+c.title;bar.style.width=((si+1)/(c.steps.length+1)*100)+"%";game.innerHTML='<div class="bubble detective"><b>Nyomozó:</b> '+s.t+'</div>'+(s.m?'<div class="bubble measure"><b>📟 Nyom:</b> '+s.m+'</div>':'')+'<div class="q">👉 '+s.q+'</div><div class="choices">'+s.a.map((x,i)=>'<button onclick="choose('+i+')">'+x[0]+'</button>').join("")+'</div><div id="fb"></div>'}
+function choose(i){let c=cases[ci],s=c.steps[si],a=s.a[i],fb=document.getElementById("fb");if(a[2]===0){fb.innerHTML='<div class="bubble feedback"><b>🤔 Nyomozó:</b> '+a[1]+'</div>';return}if(a[2]===1){fb.innerHTML='<div class="bubble success"><b>👍 Nyomozó:</b> '+a[1]+'</div><button class="next" onclick="nextStep()">Kérem a következő nyomot →</button>';return}fb.innerHTML='<div class="bubble success"><b>🎯 Megoldottad:</b> '+a[1]+'<br><br><b>🎓 Tanulság:</b> '+c.lesson+'</div><button class="next" onclick="menu()">← Új ügyet választok</button>'}
+function nextStep(){si++;render()} menu();
+</script></body></html>
