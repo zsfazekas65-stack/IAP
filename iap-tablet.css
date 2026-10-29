@@ -1,0 +1,132 @@
+/* Shared compact tablet layout. No page zoom: text remains selectable and touch targets usable. */
+.iap-system .nav-inner {flex-wrap:wrap;}
+.iap-system .nav-inner > a, .iap-system .nav-drop > button {font-size:13px; padding:13px 12px;}
+@media (max-width:1280px), (pointer:coarse) and (max-width:1600px) {
+  .iap-compact {font-size:14px; -webkit-text-size-adjust:100%;}
+  .iap-compact *, .iap-compact *::before, .iap-compact *::after {box-sizing:border-box;}
+  .iap-compact img {max-width:100%; height:auto;}
+  .iap-compact h1, .iap-compact h2, .iap-compact h3 {overflow-wrap:anywhere;}
+  .iap-compact > header:not(.topbar):not(.top):not(.head) {padding:18px 16px;}
+  .iap-compact > header h1 {font-size:26px; line-height:1.2;}
+  .iap-compact > header p {font-size:12px;}
+  .iap-compact > main:not(.page), .iap-compact .content {padding:20px 16px 76px; max-width:1080px;}
+  .iap-compact > nav:not(.nav) {display:flex; flex-wrap:wrap; justify-content:center; gap:4px; padding:6px 10px; white-space:normal;}
+  .iap-compact > nav:not(.nav) a {margin:0; padding:10px 12px; font-size:13px;}
+  .iap-compact .top-inner, .iap-compact .topbar-inner, .iap-compact .headin {padding:14px 18px; gap:14px; flex-wrap:wrap;}
+  .iap-compact .iap-mark {font-size:44px;}
+  .iap-compact .iap-copy strong {font-size:17px;}
+  .iap-compact .iap-copy span {font-size:12px;}
+  .iap-compact .sep, .iap-compact .iap-sep {height:48px;}
+  .iap-compact .hero {min-height:0; padding:20px 16px;}
+  .iap-compact .hero:has(.hero-inner) {padding:0;}
+  .iap-compact .hero-inner {padding:22px 20px;}
+  .iap-compact .hero h1 {font-size:26px; white-space:normal; line-height:1.2;}
+  .iap-compact .hero p {font-size:14px; margin-top:10px; line-height:1.45;}
+  .iap-compact .grid {gap:12px; grid-template-columns:repeat(3,minmax(0,1fr));}
+  .iap-compact .card {min-width:0; min-height:0; padding:16px;}
+  .iap-compact .card h2 {font-size:19px; margin:10px 0 7px;}
+  .iap-compact .card h3 {font-size:18px; margin:0 0 10px;}
+  .iap-compact .card p {font-size:13px;}
+  .iap-compact .icon {font-size:29px;}
+  .iap-compact .go {margin-top:12px; font-size:11px;}
+  .iap-student .subject, .iap-compact .subject-btn {font-size:13px; padding:11px 10px; min-height:40px; overflow-wrap:anywhere;}
+  .iap-compact .quick {gap:10px; margin-bottom:18px;}
+  .iap-compact .bellbtn, .iap-compact .moodlebtn {font-size:13px; padding:11px 16px;}
+  .iap-compact .footer-inner {flex-wrap:wrap; gap:14px; padding:14px 18px;}
+  .iap-compact .footer .links {flex-wrap:wrap; gap:14px;}
+  .iap-compact .tantargy-fejlec {padding:18px 20px; margin-bottom:18px;}
+  .iap-compact .tantargy-fejlec h2 {font-size:23px;}
+  .iap-compact .tantargy-fejlec p {font-size:13px;}
+  .iap-compact .tantargy-fejlec::after {display:none;}
+  .iap-compact .plc-nav {grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-bottom:22px;}
+  .iap-compact .plc-nav a {padding:12px 10px; font-size:13px;}
+  .iap-compact .plc-nav a span {font-size:20px;}
+  .iap-compact .kereso-terulet {padding:16px; margin-bottom:24px;}
+  .iap-compact .kereso-terulet h2 {font-size:20px !important;}
+  .iap-compact #kereso {width:100%; font-size:16px; padding:10px 12px;}
+  .iap-compact .blokk {margin-bottom:30px;}
+  .iap-compact .blokk > h2 {font-size:20px; padding:12px 16px;}
+  .iap-compact .het {display:flex; margin-bottom:12px;}
+  .iap-compact .het-szam {min-width:62px; width:62px; flex-shrink:0; min-height:0; font-size:24px;}
+  .iap-compact .het-tartalom {padding:16px; min-width:0;}
+  .iap-compact .het-tartalom h3 {font-size:18px; line-height:1.3;}
+  .iap-compact .het-tartalom p {font-size:13px; line-height:1.45;}
+  .iap-compact .gombok {display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; padding-top:10px;}
+  .iap-compact .gombok a {font-size:12px !important; padding:10px 12px !important; min-height:40px; margin:0 !important; width:auto !important;}
+  .iap-compact .choices {gap:16px;}
+  .iap-compact .choices .choice {padding:22px 16px;}
+  .iap-compact .choices h3 {font-size:21px;}
+  .iap-compact .head h2 {font-size:26px;}
+  .iap-compact .week-grid, .iap-compact .week-nav {gap:8px;}
+  .iap-compact .week {padding:16px; margin-bottom:14px;}
+  .iap-compact .weekhead {gap:12px;}
+  .iap-compact .buttons {display:flex; flex-wrap:wrap; gap:8px;}
+  .iap-compact .buttons a {font-size:13px; padding:11px 12px;}
+  .iap-compact .groupbuttons {flex-wrap:wrap;}
+  .iap-compact .modal-box, .iap-compact .dialog {max-width:calc(100vw - 28px); max-height:85dvh; overflow:auto;}
+  /* Fixed shortcuts share a width and occupy separate rows. */
+  .iap-compact .iap-aktualis-vissza, .iap-compact #iap-page-qr-btn, .iap-compact .iap-fel-gomb {
+    right:12px !important; width:174px !important; min-height:40px; padding:10px 12px !important;
+    font-size:12px !important; justify-content:center; text-align:center;
+  }
+  .iap-compact .iap-aktualis-vissza {bottom:12px !important;}
+  .iap-compact #iap-page-qr-btn {bottom:60px !important;}
+  .iap-compact .iap-fel-gomb {bottom:108px !important;}
+  .iap-compact #iap-floating-panel {right:12px; bottom:12px; width:174px;}
+  .iap-compact #iap-floating-panel > * {width:174px !important; min-width:174px !important; max-width:174px !important; min-height:40px !important; padding:10px 12px !important; font-size:12px !important;}
+  /* The large school header and desktop navigation need a separate tablet layout. */
+  .iap-system .brand-row {min-height:0; padding:14px 20px; gap:22px;}
+  .iap-system .dunaferr-brand {min-width:0; padding-right:18px; gap:12px;}
+  .iap-system .dunaferr-brand img {width:90px;}
+  .iap-system .dunaferr-text .dszc {font-size:28px;}
+  .iap-system .dunaferr-text .name {font-size:17px;}
+  .iap-system .dunaferr-text .sub {font-size:10px;}
+  .iap-system .iap-small-logo {width:120px; max-height:58px;}
+  .iap-system .nav-inner {display:none;}
+  .iap-system .iap-mobile-bar {display:flex; align-items:center; justify-content:space-between; padding:8px 16px; gap:12px;}
+  .iap-system .iap-mobile-home {color:#fff; font-size:13px; font-weight:800;}
+  .iap-system .iap-mobile-toggle {border:1px solid #ffffff55; background:#0a365e; color:#fff; border-radius:8px; padding:10px 14px; font-size:13px; cursor:pointer;}
+  .iap-system .iap-mobile-panel {display:none; padding:12px; max-height:65dvh; overflow:auto; background:#071d35;}
+  .iap-system .iap-mobile-panel.open {display:block;}
+  .iap-system .iap-mobile-group {margin:8px 0; border:1px solid #ffffff33; border-radius:8px;}
+  .iap-system .iap-mobile-group-title {padding:10px; color:#67c9f2; font-size:12px; font-weight:800;}
+  .iap-system .iap-mobile-link {display:block; padding:12px; color:#fff; font-size:13px; border-top:1px solid #ffffff22;}
+  .iap-system .hero-with-image .hero-inner {width:75%; margin:0;}
+  .iap-system .cards {grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px;}
+  .iap-system .grades, .iap-system .exam-center, .iap-system .iap-week-now {padding:20px 16px;}
+  .iap-system .grade-line .num {font-size:30px;}
+  .iap-system .grade-line .label {font-size:13px;}
+  .iap-system .grade-num {font-size:36px;}
+  .iap-system .exam-center-grid, .iap-system .iap-week-grid {grid-template-columns:repeat(3,minmax(0,1fr));}
+  .iap-system .exam-center-head, .iap-system .iap-week-head {padding:16px; margin-bottom:12px;}
+  .iap-system .exam-center-head h2, .iap-system .iap-week-head h2 {font-size:23px;}
+  .iap-system .exam-card {min-height:0; padding:14px;}
+  .iap-system .exam-card h3 {font-size:17px;}
+  .iap-system .exam-btn {font-size:12px;}
+  .iap-teacher .brand {min-height:0; padding:16px 20px; gap:16px; flex-wrap:wrap;}
+  .iap-teacher .iap {gap:12px;}
+  .iap-student .iap {font-size:38px;}
+  .iap-student .copy strong {font-size:18px;}
+  .iap-student .note {font-size:12px; margin-top:20px;}
+  .iap-timetable .days {grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;}
+  .iap-timetable .lesson {margin:8px; padding:10px;}
+  .iap-timetable .lesson .subject {padding:0; min-height:0; font-size:14px;}
+  .iap-timetable .status, .iap-timetable .legend, .iap-timetable .weekbar {margin:12px 16px; padding:12px;}
+}
+@media (max-width:760px) {
+  .iap-compact .grid, .iap-system .cards, .iap-system .exam-center-grid, .iap-system .iap-week-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .iap-system .brand-row {gap:14px; flex-wrap:wrap;}
+  .iap-system .iap-small-logo-wrap {display:none;}
+  .iap-system .hero-with-image .hero-inner {width:100%;}
+  .iap-system .hero-robot {opacity:.18;}
+  .iap-compact .plc-nav {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .iap-timetable .days {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:480px) {
+  .iap-compact .grid, .iap-system .cards, .iap-system .exam-center-grid, .iap-system .iap-week-grid, .iap-timetable .days {grid-template-columns:1fr;}
+  .iap-compact .hero h1 {font-size:23px;}
+  .iap-compact .het {display:block;}
+  .iap-compact .het-szam {width:100%; min-height:42px;}
+  .iap-compact .het-tartalom {padding:14px;}
+  .iap-compact .gombok a {flex:1 1 120px; text-align:center !important;}
+}
