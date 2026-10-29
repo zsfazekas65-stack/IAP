@@ -82,7 +82,7 @@
   .iap-system .dunaferr-text .name {font-size:17px;}
   .iap-system .dunaferr-text .sub {font-size:10px;}
   .iap-system .iap-small-logo {width:120px; max-height:58px;}
-  .iap-system .nav-inner {display:none;}
+  .iap-system .nav-inner {display:flex !important; flex-wrap:wrap;}
   .iap-system .iap-mobile-bar {display:flex; align-items:center; justify-content:space-between; padding:8px 16px; gap:12px;}
   .iap-system .iap-mobile-home {color:#fff; font-size:13px; font-weight:800;}
   .iap-system .iap-mobile-toggle {border:1px solid #ffffff55; background:#0a365e; color:#fff; border-radius:8px; padding:10px 14px; font-size:13px; cursor:pointer;}
@@ -130,3 +130,7 @@
   .iap-compact .het-tartalom {padding:14px;}
   .iap-compact .gombok a {flex:1 1 120px; text-align:center !important;}
 }
+
+
+.iap-system .nav-inner{display:flex!important;flex-wrap:wrap;gap:4px}
+.iap-system .iap-mobile-bar,.iap-system .iap-mobile-panel{display:none!important}
