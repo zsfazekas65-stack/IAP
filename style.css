@@ -793,3 +793,8 @@ html {
         text-align: left !important;
     }
 }
+
+/* Arányos, 20%-os kicsinyítés; az eredeti elrendezési szabályok megmaradnak. */
+@media (min-width:600px) and (max-width:1400px) {
+  body { zoom:0.8; min-height:125vh; }
+}
