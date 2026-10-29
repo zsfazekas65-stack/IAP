@@ -1,4 +1,4 @@
-/* Shared compact tablet layout. No page zoom: text remains selectable and touch targets usable. */
+/* Közös IAP tabletes stílusok. */
 .iap-system .nav-inner {flex-wrap:wrap;}
 .iap-system .nav-inner > a, .iap-system .nav-drop > button {font-size:13px; padding:13px 12px;}
 @media (max-width:1280px), (pointer:coarse) and (max-width:1600px) {
@@ -134,3 +134,14 @@
 
 .iap-system .nav-inner{display:flex!important;flex-wrap:wrap;gap:4px}
 .iap-system .iap-mobile-bar,.iap-system .iap-mobile-panel{display:none!important}
+
+
+/* Egységes, 20%-os kicsinyítés a tablet további oldalain.
+   A már elfogadott belépő- és gyűjtőoldalak mérete megmarad. */
+@media screen and (min-width:600px) and (max-width:1600px) and (pointer:coarse) {
+  body.iap-compact:not(.iap-teacher):not(.iap-system):not(.iap-student) {
+    zoom:0.8;
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+  }
+}
