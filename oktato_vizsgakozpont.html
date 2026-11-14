@@ -21,7 +21,7 @@
 .exam-center-inner{max-width:1420px;margin:auto}
 .exam-center-head{background:linear-gradient(135deg,#061d35,#0d5f98);color:#fff;border-radius:14px;padding:22px 26px;box-shadow:0 9px 24px rgba(7,45,76,.16);display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:16px}
 .exam-center-head h2{margin:0;font-size:28px;letter-spacing:.02em}.exam-center-head p{margin:6px 0 0;color:#d9effa;font-size:14px}.exam-center-badge{font-size:13px;font-weight:900;letter-spacing:.08em;background:#fff;color:#0b5f96;padding:10px 14px;border-radius:999px;white-space:nowrap}
-.exam-center-action{border:0;cursor:pointer;font-family:inherit}.exam-center-action:hover{background:#e4f4ff}.exam-center-action:focus-visible{outline:3px solid #45c9ff;outline-offset:3px}.exam-active-message{margin:0 0 16px;padding:15px 18px;border:1px solid #cfe0eb;border-radius:10px;background:#fff;color:#123b61;font-weight:700;text-align:center}.exam-center-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.exam-center-action{border:0;cursor:pointer;font-family:inherit}.exam-center-action:hover{background:#e4f4ff}.exam-center-action:focus-visible{outline:3px solid #45c9ff;outline-offset:3px}.exam-active-message[hidden]{display:none!important}.exam-active-message{margin:0 0 16px;padding:15px 18px;border:1px solid #cfe0eb;border-radius:10px;background:#fff;color:#123b61;font-weight:700;text-align:center}.exam-center-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .exam-card{background:#fff;border:1px solid #cfe0eb;border-radius:12px;padding:19px;box-shadow:0 5px 16px rgba(20,55,88,.07);display:flex;flex-direction:column;min-height:170px}
 .exam-grade{font-size:11px;font-weight:900;letter-spacing:.1em;color:#1478bd;text-transform:uppercase}.exam-card h3{margin:7px 0 7px;color:#0b2946;font-size:19px}.exam-card p{margin:0 0 16px;color:#647789;font-size:13px;line-height:1.4;flex:1}
 .exam-btn{display:block;text-align:center;padding:11px 13px;border-radius:8px;background:linear-gradient(135deg,#0b5f96,#1487c9);color:#fff!important;font-weight:900;font-size:13px;box-shadow:0 4px 10px rgba(14,112,183,.18)}.exam-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
@@ -43,9 +43,9 @@
   <div class="exam-center-inner">
     <div class="exam-center-head">
       <div><h2>📝 IAP VIZSGAKÖZPONT</h2><p>Egy helyen az évfolyamok Moodle-vizsgái és gyakorló tesztjei.</p></div>
-      <button class="exam-center-badge exam-center-action" id="exam-center-action" type="button" aria-controls="exam-active-message">VIZSGÁK</button>
+      <button class="exam-center-badge exam-center-action" id="exam-center-action" type="button" aria-controls="exam-active-message" aria-expanded="false">VIZSGÁK ▾</button>
     </div>
-    <p class="exam-active-message" id="exam-active-message" role="status" hidden>Jelenleg nincs meghirdetett vizsga.</p>
+    <p class="exam-active-message" id="exam-active-message" role="status" hidden></p>
     <div class="exam-center-grid" id="exam-active-grid">
       <article class="exam-card" data-exam-status="active" data-exam-date="2026-11-17">
         <span class="exam-grade">12E</span>
@@ -150,18 +150,43 @@
   const message = document.getElementById('exam-active-message');
   const grid = document.getElementById('exam-active-grid');
   if (action && message && grid) {
-    const activeCount = grid.querySelectorAll('.exam-card').length;
-    if (!activeCount) {
-      grid.style.display = 'none';
-      message.hidden = false;
+    const activeCards = Array.from(grid.querySelectorAll('.exam-card'));
+    const activeCount = activeCards.length;
+    const upcoming = activeCards.filter(card => card.dataset.examDate && card.dataset.examDate >= today);
+    const undated = activeCards.filter(card => !card.dataset.examDate);
+    // A gomb mindig látható, ténylegesen nyitható/zárható információt ad.
+    if (activeCount === 0) {
+      message.textContent = 'Jelenleg nincs meghirdetett vizsga.';
+    } else {
+      const titles = upcoming.map(card => {
+        const grade = card.querySelector('.exam-grade')?.textContent.trim() || '';
+        const title = card.querySelector('h3')?.textContent.trim() || '';
+        const date = card.querySelector('.exam-date')?.textContent.trim() || '';
+        return [grade, title, date].filter(Boolean).join(' – ');
+      });
+      message.replaceChildren();
+      const heading = document.createElement('strong');
+      heading.textContent = upcoming.length ? `Közelgő / mai vizsgák: ${upcoming.length}` : 'Jelenleg nincs dátummal meghirdetett vizsga.';
+      message.appendChild(heading);
+      if (titles.length) {
+        const list = document.createElement('ul');
+        list.style.cssText = 'text-align:left;max-width:750px;margin:12px auto 0;line-height:1.7';
+        titles.forEach(title => { const li = document.createElement('li'); li.textContent = title; list.appendChild(li); });
+        message.appendChild(list);
+      }
+      if (undated.length) {
+        const note = document.createElement('div');
+        note.style.marginTop = '10px';
+        note.textContent = `Dátum nélküli Moodle-kurzusok: ${undated.length} (lentebb elérhetők).`;
+        message.appendChild(note);
+      }
     }
     action.addEventListener('click', () => {
-      if (!activeCount) {
-        message.hidden = false;
-        message.scrollIntoView({behavior:'smooth',block:'center'});
-      } else {
-        grid.scrollIntoView({behavior:'smooth',block:'start'});
-      }
+      const opening = message.hidden;
+      message.hidden = !opening;
+      action.setAttribute('aria-expanded', String(opening));
+      action.textContent = opening ? 'VIZSGÁK ▴' : 'VIZSGÁK ▾';
+      if (opening) message.scrollIntoView({behavior:'smooth',block:'nearest'});
     });
   }
 })();
