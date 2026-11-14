@@ -54,10 +54,10 @@
         <p>Moodle-vizsga – PLC alapok, 5–8. hét.</p>
         <a class="exam-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1673" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a>
       </article>
-      <article class="exam-card" data-exam-status="active" data-exam-date="2026-11-17">
+      <article class="exam-card" data-exam-status="active" data-exam-date="2026-11-20">
         <span class="exam-grade">12M2</span>
         <h3>Folyamatirányítás – 5–8. hét</h3>
-        <span class="exam-date">Vizsga: 2026. november 17., 4. óra</span>
+        <span class="exam-date">Vizsga: 2026. november 20., 4. óra</span>
         <p>Moodle-vizsga – Folyamatirányítás, 5–8. hét.</p>
         <a class="exam-btn" href="https://moodle.dunaferriskola.hu/course/view.php?id=1683" target="_blank" rel="noopener noreferrer">MOODLE VIZSGA MEGNYITÁSA →</a>
       </article>
@@ -128,17 +128,19 @@
   const dd = String(now.getDate()).padStart(2, '0');
   const today = `${yyyy}-${mm}-${dd}`;
 
-  document.querySelectorAll('.exam-center-grid .exam-card[data-exam-date]').forEach(card => {
+  // Kizárólag a két új vizsga marad az aktív listában.
+  // A többi vizsga – dátum nélküli is – az archívumba kerül.
+  document.querySelectorAll('.exam-center-grid .exam-card').forEach(card => {
     const examDate = (card.dataset.examDate || '').trim();
-
-    // Minden betöltéskor tiszta állapotból indul.
+    const isCurrent = card.dataset.examStatus === 'active' &&
+      (examDate === '2026-11-17' || examDate === '2026-11-20');
     card.classList.remove('exam-today', 'archived');
-
-    if (examDate === today) {
-      card.classList.add('exam-today');
-    } else if (examDate < today) {
+    if (!isCurrent || (examDate && examDate < today)) {
       card.classList.add('archived');
+      card.dataset.examStatus = 'archived';
       archive.appendChild(card);
+    } else if (examDate === today) {
+      card.classList.add('exam-today');
     }
   });
 
