@@ -26,23 +26,12 @@
 
 
 
-<article class="card" data-cat="muhely" data-keywords="gift minta sablon tesztkészítés moodle igaz hamis feleletválasztós rövid válasz"><span class="tag">Gyorssegéd</span><h2>🧩 GIFT tesztminta</h2><p>Rövid, azonnal másolható GIFT minták a leggyakoribb Moodle kérdéstípusokhoz.</p><a href="#" onclick="showGift();return false;">Minták megnyitása ↓</a></article>
+<article class="card" data-cat="hivatalos" data-keywords="kréta kreta e-kréta elektronikus napló oktatás adminisztráció"><span class="tag">Oktatási rendszer</span><h2>📒 KRÉTA</h2><p>Gyors elérés a KRÉTA elektronikus tanügyi rendszeréhez.</p><a href="https://www.e-kreta.hu/" target="_blank" rel="noopener">KRÉTA megnyitása ↗</a></article>
 
 </section><div class="empty" id="empty">Nincs találat. Próbálj másik keresőkifejezést.</div></main>
-<div class="modal" id="giftModal" onclick="if(event.target===this)closeModal('giftModal')"><div class="modal-box"><div class="modal-head"><h2>🧩 GIFT gyorsminta</h2><button class="close-btn" onclick="closeModal('giftModal')">Bezárás ✕</button></div><p>Másold a kívánt mintát egy UTF-8 kódolású <strong>.txt</strong> fájlba, majd importáld a Moodle kérdésbankba.</p><div class="codebox">::Igaz-hamis:: Az Ohm-törvény U = R · I. {TRUE}
-
-::Feleletválasztós:: Mi az ellenállás mértékegysége? {
-=ohm
-~volt
-~amper
-~watt
-}
-
-::Rövid válasz:: Mi a feszültség jele? {=U}</div></div></div>
 <div class="modal" id="qrModal" onclick="if(event.target===this)closeModal('qrModal')"><div class="modal-box"><div class="modal-head"><h2>▦ IAP QR-kód készítő</h2><button class="close-btn" onclick="closeModal('qrModal')">Bezárás ✕</button></div><p>Illeszd be a megosztani kívánt webcímet. A QR-kódot a diákok telefonról azonnal beolvashatják.</p><input class="qr-input" id="qrInput" type="url" placeholder="https://..." autocomplete="off"><div class="qr-actions"><button type="button" onclick="makeQr()">QR-KÓD KÉSZÍTÉSE</button></div><div class="qr-result" id="qrResult"><img id="qrImage" alt="Generált QR-kód"><p id="qrText"></p></div></div></div>
 <footer>IAP Eszköztár</footer>
 <script>
-function showGift(){document.getElementById('giftModal').style.display='block'}
 function showSteps(){document.getElementById('stepsModal').style.display='block'}
 function showQr(){document.getElementById('qrModal').style.display='block';setTimeout(()=>document.getElementById('qrInput').focus(),50)}
 function makeQr(){const input=document.getElementById('qrInput'),v=input.value.trim();if(!v){input.focus();return}const img=document.getElementById('qrImage');img.src='https://api.qrserver.com/v1/create-qr-code/?size=320x320&data='+encodeURIComponent(v);document.getElementById('qrText').textContent=v;document.getElementById('qrResult').style.display='block'}
